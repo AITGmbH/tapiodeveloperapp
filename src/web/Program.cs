@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace WebApplication1
+namespace Aitgmbh.Tapio.Developerapp.Web
 {
     public static class Program
     {

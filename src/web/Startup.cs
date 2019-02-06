@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
-namespace WebApplication1
+namespace Aitgmbh.Tapio.Developerapp.Web
 {
     public class Startup
     {
@@ -39,6 +33,20 @@ namespace WebApplication1
             {
                 app.UseHsts();
             }
+
+            app.Use(async (context, next) =>
+            {
+              var path = context.Request.Path.Value;
+              if (!path.StartsWith("/api") && !path.StartsWith("/hubs") && !Path.HasExtension(path))
+              {
+                  context.Request.Path = "/index.html";
+              }
+
+              await next();
+            });
+
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
 
             app.UseHttpsRedirection();
             app.UseMvc();
