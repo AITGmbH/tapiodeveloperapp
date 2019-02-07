@@ -33,7 +33,7 @@ cd src\web
 dotnet run
 ```
 
-Navigate to <https://localhost:44391> with a browser
+Navigate to <https://localhost:5001> with a browser
 
 ### Publish
 
