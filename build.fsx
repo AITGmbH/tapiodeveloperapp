@@ -17,7 +17,7 @@ Target.create "Install.Prerequisites" (fun _ ->
         if npmPath.IsNone then failwith "npm could not be found"
 
         let npmInstallAngularCli =
-            ["-g"; "@angular/cli"]
+            ["install"; "-g"; "@angular/cli"]
             |> CreateProcess.fromRawCommand npmPath.Value
             |> CreateProcess.withWorkingDirectory "./src/web"
             |> Proc.run
