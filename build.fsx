@@ -11,11 +11,23 @@ BuildServer.install [
     TeamFoundation.Installer
 ]
 
+Target.create "Install.Prerequisites" (fun _ ->
+    if not BuildServer.isLocalBuild then
+        let npmPath = ProcessUtils.tryFindFileOnPath "npm"
+        if npmPath.IsNone then failwith "npm could not be found"
+
+        let npmInstallAngularCli =
+            ["-g"; "@angular/cli"]
+            |> CreateProcess.fromRawCommand npmPath.Value
+            |> CreateProcess.withWorkingDirectory "./src/web"
+            |> Proc.run
+        if npmInstallAngularCli.ExitCode <> 0 then failwith "could not install angular cli via npm"
+)
+
 Target.create "Build.Frontend" (fun _ ->
-    Trace.trace ""
     Npm.install (fun o ->
         { o with
-            WorkingDirectory = "./"
+            WorkingDirectory = "./src/web"
         })
 
     let angular = ProcessUtils.tryFindFileOnPath  "ng"
@@ -70,11 +82,9 @@ Target.create "DeployArtifacts" (fun _ ->
 
 Target.create "All" ignore
 
-Target.create "Build" ignore
-
-"Build.Frontend"
+"Install.Prerequisites"
+    ==> "Build.Frontend"
     ==> "Build.Backend"
-    ==> "Build"
     ==> "Publish"
     ==> "DeployArtifacts"
     ==> "All"
