@@ -1,10 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
+    <!-- SonarQube needs this -->
+    <ProjectGuid>{C470742E-828C-4311-AE68-E1DAD973AB29}</ProjectGuid>
+
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
     <AssemblyName>Aitgmbh.Tapio.Developerapp.Web</AssemblyName>
     <RootNamespace>Aitgmbh.Tapio.Developerapp.Web</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <CodeAnalysisRuleSet>web.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <CodeAnalysisRuleSet>web.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>

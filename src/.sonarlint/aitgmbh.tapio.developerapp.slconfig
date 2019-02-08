@@ -1,0 +1,11 @@
+{
+  "ServerUri": "https://sonar.aitgmbh.de",
+  "Organization": null,
+  "ProjectKey": "Tapio.DeveloperApp",
+  "Profiles": {
+    "CSharp": {
+      "ProfileKey": "cs-resharper+stylecop-88031",
+      "ProfileTimestamp": "2018-02-16T22:49:11+01:00"
+    }
+  }
+}
