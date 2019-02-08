@@ -52,7 +52,8 @@ BenchmarkDotNet.Artifacts/
 project.lock.json
 project.fragment.lock.json
 artifacts/
-**/Properties/launchSettings.json
+# see https://github.com/github/VisualStudio/issues/1405
+#**/Properties/launchSettings.json
 
 # StyleCop
 StyleCopReport.xml
