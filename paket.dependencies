@@ -9,3 +9,12 @@ group build
   nuget Fake.Core.Target
   nuget Fake.JavaScript.Npm
   nuget Fake.Dotnet.Cli
+
+group development
+  source https://api.nuget.org/v3/index.json
+
+  nuget Microsoft.AspNetCore >= 2.2.0
+  nuget Microsoft.AspNetCore.CookiePolicy >= 2.2.0
+  nuget Microsoft.AspNetCore.Mvc >= 2.2.0
+  nuget Microsoft.AspNetCore.HttpsPolicy >= 2.2.0
+  nuget Microsoft.AspNetCore.StaticFiles >= 2.2.0

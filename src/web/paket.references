@@ -1,0 +1,6 @@
+group development
+Microsoft.AspNetCore
+Microsoft.AspNetCore.CookiePolicy
+Microsoft.AspNetCore.Mvc
+Microsoft.AspNetCore.HttpsPolicy
+Microsoft.AspNetCore.StaticFiles

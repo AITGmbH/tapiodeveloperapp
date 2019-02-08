@@ -1,22 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
-
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
     <AssemblyName>Aitgmbh.Tapio.Developerapp.Web</AssemblyName>
     <RootNamespace>Aitgmbh.Tapio.Developerapp.Web</RootNamespace>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
-
   <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
-
-  <ItemGroup>
-  <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
-  <PackageReference Include="Microsoft.AspNetCore.CookiePolicy" Version="2.2.0" />
-  <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
-  <PackageReference Include="Microsoft.AspNetCore.HttpsPolicy" Version="2.2.0" />
-  <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
-  </ItemGroup>
-
+  <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>
