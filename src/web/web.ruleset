@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="SonarQube - Tapio.DeveloperApp Resharper+StyleCop" ToolsVersion="15.0">
+  <Include Path="..\.sonarlint\tapio.developerappcsharp.ruleset" Action="Default" />
+</RuleSet>

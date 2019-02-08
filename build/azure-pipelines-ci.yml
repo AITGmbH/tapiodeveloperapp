@@ -5,8 +5,19 @@ variables:
   BuildConfiguration: Release
 
 steps:
+  - task: SonarSource.sonarqube.15B84CA1-B62F-4A2A-A403-89B77A063157.SonarQubePrepare@4
+    displayName: 'Prepare analysis on SonarQube'
+    inputs:
+      SonarQube: 'AIT SonarQube'
+      projectKey: Tapio.DeveloperApp
+      projectName: Tapio.DeveloperApp
   - task: PowerShell@2
+    displayName: 'Run fake build'
     inputs:
       targetType: filePath
       workingDirectory: $(Build.Repository.LocalPath)
       filePath: build.ps1
+  - task: SonarSource.sonarqube.6D01813A-9589-4B15-8491-8164AEB38055.SonarQubeAnalyze@4
+    displayName: 'Run Code Analysis'
+  - task: SonarSource.sonarqube.291ed61f-1ee4-45d3-b1b0-bf822d9095ef.SonarQubePublish@4
+    displayName: 'Publish Quality Gate Result'
