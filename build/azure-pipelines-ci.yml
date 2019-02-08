@@ -11,6 +11,7 @@ steps:
       SonarQube: 'AIT SonarQube'
       projectKey: Tapio.DeveloperApp
       projectName: Tapio.DeveloperApp
+      extraProperties: 'sonar.resharper.cs.reportPath="%CD%\resharper.xml"'
   - task: PowerShell@2
     inputs:
       targetType: filePath
