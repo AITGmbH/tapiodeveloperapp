@@ -1,0 +1,13 @@
+.main-header{
+  background: black;
+  color: white;
+}
+
+.main-content {
+  background: cornflowerblue;
+  border-radius: 0;
+}
+
+.is-unstyled-list {
+  list-style-type: none;
+}

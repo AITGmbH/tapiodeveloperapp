@@ -1,0 +1,12 @@
+pool:
+  vmImage: vs2017-win2016
+
+variables:
+  BuildConfiguration: Release
+
+steps:
+  - task: PowerShell@2
+    inputs:
+      targetType: filePath
+      workingDirectory: $(Build.Repository.LocalPath)
+      filePath: build.ps1

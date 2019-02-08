@@ -1,0 +1,11 @@
+version 5.193.0
+
+group build
+  storage: none
+  source https://api.nuget.org/v3/index.json
+
+  nuget FSharp.Core 4.5.0.0
+  nuget Fake.BuildServer.TeamFoundation
+  nuget Fake.Core.Target
+  nuget Fake.JavaScript.Npm
+  nuget Fake.Dotnet.Cli
