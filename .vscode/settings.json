@@ -1,5 +1,6 @@
 {
   "files.associations": {
     "**/build/*.yml": "azure-pipelines"
-  }
+  },
+  "FSharp.fsacRuntime": "netcore"
 }

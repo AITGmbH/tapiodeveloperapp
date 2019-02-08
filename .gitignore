@@ -331,3 +331,5 @@ ASALocalRun/
 
 
 .buildpackages/
+
+src/web/dist/
