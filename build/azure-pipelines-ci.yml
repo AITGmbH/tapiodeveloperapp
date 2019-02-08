@@ -8,7 +8,7 @@ steps:
   - task: SonarSource.sonarqube.15B84CA1-B62F-4A2A-A403-89B77A063157.SonarQubePrepare@4
     displayName: 'Prepare analysis on SonarQube'
     inputs:
-      SonarQube: 'AIT Sonar'
+      SonarQube: 'AIT SonarQube'
       projectKey: Tapio.DeveloperApp
       projectName: Tapio.DeveloperApp
   - task: PowerShell@2
