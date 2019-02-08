@@ -11,8 +11,8 @@ steps:
       SonarQube: 'AIT SonarQube'
       projectKey: Tapio.DeveloperApp
       projectName: Tapio.DeveloperApp
-      extraProperties: 'sonar.resharper.cs.reportPath="%CD%\resharper.xml"'
   - task: PowerShell@2
+    displayName: 'Run fake build'
     inputs:
       targetType: filePath
       workingDirectory: $(Build.Repository.LocalPath)
