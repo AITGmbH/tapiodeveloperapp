@@ -1,0 +1,33 @@
+@font-face {
+    font-family: 'audimat';
+    src: url('audimat_light.eot');
+    src: url('audimat_light.eot?#iefix') format('embedded-opentype'),
+    url('audimat_light.woff2') format('woff2'),
+    url('audimat_light.woff') format('woff'),
+    url('audimat_light.ttf') format('truetype'),
+    url('audimat_light.svg#audimat_monolight') format('svg');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'audimat';
+    src: url('audimat.eot');
+    src: url('audimat.eot?#iefix') format('embedded-opentype'),
+    url('audimat.woff') format('woff'),
+    url('audimat.svg#audimat_mono') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'audimat';
+    src: url('audimat_bold.eot');
+    src: url('audimat_bold.eot?#iefix') format('embedded-opentype'),
+    url('audimat_bold.woff2') format('woff2'),
+    url('audimat_bold.woff') format('woff'),
+    url('audimat_bold.ttf') format('truetype'),
+    url('audimat_bold.svg#audimat_monobold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}

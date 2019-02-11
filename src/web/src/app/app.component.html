@@ -1,13 +1,41 @@
 <header
-  class="main-header has-text-centered">
-  <a href="https://tapio.one/"><img src="assets/img/logo/tapio.svg"></a>
-  <span> Developer App</span>
-  <span> by </span>
-  <a href="https://aitgmbh.de/"><img src="assets/img/logo/ait.svg"></a>
+  class="main-header has-text-centered level">
+
+  <div class="level-left">
+    <div class="level-item">
+      <a href="https://tapio.one/"><img src="assets/img/logo/tapio.svg" class="logo"></a>
+      <span> developer app by </span>
+      <a href="https://aitgmbh.de/"><img src="assets/img/logo/ait.svg" class="logo"></a>
+    </div>
+  </div>
+
+  <div class="level-right">
+      <div class="level-item">
+          <div class="dropdown is-right">
+              <div class="dropdown-trigger">
+                <button class="button is-white" aria-expanded="false" role="button" aria-label="Menu" aria-haspopup="true" aria-controls="dropdown-menu5" (click)="toogleHamburgerMenu($event)">
+                    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" style="display: flex;">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                      </a>
+                </button>
+              </div>
+              <div class="dropdown-menu" id="dropdown-menu5" role="menu">
+                <div class="dropdown-content">
+                    <a href="https://admin.tapio.one/" class="dropdown-item" target="_blank" rel="noopener">SelfService</a>
+                    <hr class="dropdown-divider">
+                    <a href="https://github.com/AITGmbH/tapiodeveloperapp/" class="dropdown-item" target="_blank" rel="noopener"><fa-icon [icon]="['fab', 'github']"></fa-icon> GitHub</a>
+                    <hr class="dropdown-divider">
+                    <a href="https://developer.tapio.one/" class="dropdown-item" target="_blank" rel="noopener">Developer</a>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div>
 </header>
 <main
   class="main-content box has-text-centered">
-
 </main>
 <footer class="footer">
     <div class="content has-text-centered">
@@ -16,7 +44,7 @@
           tapio Developer App by <a href="https://aitgmbh.de/">AIT GmbH & Co. KG</a>
         </li>
         <li>
-          <a href="https://github.com/AITGmbH/tapiodeveloperapp/" class="m-r-sm">
+          <a href="https://github.com/AITGmbH/tapiodeveloperapp/" rel="noopener" class="m-r-sm">
             <fa-icon [icon]="['fab', 'github']"></fa-icon> AITGmbH/tapiodeveloperapp
           </a>
         </li>

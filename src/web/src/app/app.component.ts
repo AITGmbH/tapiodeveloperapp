@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'developerapp';
+
+  toogleHamburgerMenu(event?: MouseEvent) {
+    const target = event.target as HTMLElement;
+    const realTarget = target.closest('.dropdown') as HTMLElement;
+    realTarget.classList.toggle('is-active');
+    target.classList.toggle('is-active');
+    event.stopPropagation();
+  }
 }

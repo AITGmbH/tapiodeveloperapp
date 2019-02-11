@@ -1,6 +1,13 @@
-.main-header{
-  background: black;
-  color: white;
+.main-header {
+  background: #FFF;
+  color: #000;
+  height: 50px;
+  font-family: audimat;
+}
+
+.logo {
+  margin: 26px;
+  height: 26px;
 }
 
 .main-content {
@@ -10,4 +17,14 @@
 
 .is-unstyled-list {
   list-style-type: none;
+}
+
+.button.is-white.is-active, .button.is-white:active, .button:hover {
+  background-color: #FFF;
+  border-color: transparent;
+  color: #0a0a0a;
+}
+
+.dropdown-menu {
+  padding-top: 31px;
 }
