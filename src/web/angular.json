@@ -24,6 +24,7 @@
             ],
             "styles": [
               "node_modules/bulma/css/bulma.min.css",
+              "node_modules/hamburgers/dist/hamburgers.min.css",
               "src/styles.css"
             ],
             "scripts": [],

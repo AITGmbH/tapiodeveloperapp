@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'developerapp';
+
+  toogleHamburgerMenu(event?: MouseEvent) {
+    const target = event.target as HTMLElement;
+    const realTarget = target.closest('.hamburger') as HTMLElement;
+    realTarget.classList.toggle('is-active');
+    document.getElementById('navigation').classList.toggle('is-active');
+  }
 }

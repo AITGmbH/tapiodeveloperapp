@@ -11,3 +11,23 @@
 .is-unstyled-list {
   list-style-type: none;
 }
+
+.hamburger-inner,.hamburger-inner:after,.hamburger-inner:before,.hamburger-inner.is-active,
+ .hamburger.is-active .hamburger-inner, .hamburger.is-active .hamburger-inner:before{
+  background-color: white;
+}
+
+#navigation {
+  display: none;
+  position: relative;
+  background-color: gray;
+}
+
+#navigation.is-active {
+  display: block;
+  position: relative;
+}
+
+#navigation a {
+  color: white;
+}
