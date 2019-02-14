@@ -124,7 +124,6 @@
     <Rule Id="CA2243" Action="Warning" />
     <Rule Id="CA5350" Action="Warning" />
     <Rule Id="CA5351" Action="Warning" />
-    <Rule Id="CA9999" Action="Warning" />
   </Rules>
   <Rules AnalyzerId="SonarAnalyzer.CSharp" RuleNamespace="SonarAnalyzer.CSharp">
     <Rule Id="S100" Action="Warning" />
