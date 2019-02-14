@@ -17,3 +17,6 @@ indent_size = 4
 
 [*.ps1]
 indent_size = 4
+
+[*.cs]
+indent_size = 4
