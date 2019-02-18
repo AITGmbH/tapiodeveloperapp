@@ -1,5 +1,10 @@
+using System;
+using System.Runtime.InteropServices;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+
+[assembly: CLSCompliant(false)]
+[assembly: ComVisible(false)]
 
 namespace Aitgmbh.Tapio.Developerapp.Web
 {
