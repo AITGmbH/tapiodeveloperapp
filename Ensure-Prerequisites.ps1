@@ -33,9 +33,9 @@ function Install-AngularCli() {
     }
 }
 
-if (-not (Test-ProgramAvailable 'dotnet' '--version')) {
-    $dotnetVersion = '2.2.103'
-
+function Install-DotnetCore() {
+    [CmdletBinding(SupportsShouldProcess=$true)]
+    param()
     if ($PSCmdlet.ShouldProcess('Target')) {
         if (-not $PSCmdlet.ShouldContinue('The .NET core sdk is not installed. Install .NET core SDK?', '.NET core SDK needed')) {
             Write-Host "Please installed the .NET core SDK (version $dotnetVersion) manually (https://dotnet.microsoft.com/download)"
@@ -52,8 +52,33 @@ if (-not (Test-ProgramAvailable 'dotnet' '--version')) {
         }
     }
 }
+
+$dotnetVersion = '2.2.103'
+$needsDotnetToBeInstalled = $false
+if (-not (Test-ProgramAvailable 'dotnet' '--version')) {
+    $needsDotnetToBeInstalled = $true
+}
 else {
-    Write-Host '.NET core SDK is already installed'
+    Write-Host 'At least one .NET core SDK is already installed'
+    [string[]]$outputFromDotnet = dotnet --list-sdks
+
+    [string]$escapedVersion = $dotnetVersion.Replace(".", "\.")
+    [bool]$containsExactVersion = $false
+    foreach ($item in $outputFromDotnet) {
+        # the space at the end of the string literal is on purpose to match the overall version
+        if ($item -match "^$escapedVersion ") {
+            $containsExactVersion = $true
+            break
+        }
+    }
+
+    if (!$containsExactVersion) {
+        $needsDotnetToBeInstalled = $true
+    }
+}
+
+if ($needsDotnetToBeInstalled) {
+    Install-DotnetCore
 }
 
 if (-not (Test-ProgramAvailable 'npm' '--version')) {
