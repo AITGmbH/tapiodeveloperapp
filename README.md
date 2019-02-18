@@ -58,4 +58,4 @@ The result can be found in the directory `src\web\bin\Debug\netcoreapp2.2\publis
 
 ## License
 
-Lincensed under [MIT License](LICENSE)
+Licensed under [MIT License](LICENSE)
