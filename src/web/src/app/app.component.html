@@ -11,10 +11,11 @@
 
   <div class="level-right">
       <div class="level-item">
-          <div class="dropdown is-right">
+          <div class="dropdown is-right" [class.is-active]="isHamburgerMenuActive">
               <div class="dropdown-trigger">
-                <button class="button is-white" aria-expanded="false" role="button" aria-label="Menu" aria-haspopup="true" aria-controls="dropdown-menu5" (click)="toogleHamburgerMenu($event)">
-                    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" style="display: flex;">
+                <button class="button is-white" aria-expanded="false" role="button" aria-label="Menu" aria-haspopup="true" aria-controls="dropdown-menu5" (click)="toogleHamburgerMenu()">
+                    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" style="display: flex;"
+                      [class.is-active]="isHamburgerMenuActive">
                         <span aria-hidden="true"></span>
                         <span aria-hidden="true"></span>
                         <span aria-hidden="true"></span>
@@ -23,11 +24,11 @@
               </div>
               <div class="dropdown-menu" id="dropdown-menu5" role="menu">
                 <div class="dropdown-content">
-                    <a href="https://admin.tapio.one/" class="dropdown-item" target="_blank" rel="noopener">SelfService</a>
+                    <a href="https://github.com/AITGmbH/tapiodeveloperapp/" class="dropdown-item" target="_blank" rel="noopener"><fa-icon [icon]="['fab', 'github']"></fa-icon> AITGmbH/tapiodeveloperapp</a>
                     <hr class="dropdown-divider">
-                    <a href="https://github.com/AITGmbH/tapiodeveloperapp/" class="dropdown-item" target="_blank" rel="noopener"><fa-icon [icon]="['fab', 'github']"></fa-icon> GitHub</a>
+                    <a href="https://developer.tapio.one/" class="dropdown-item" target="_blank" rel="noopener">tapio Developer Portal</a>
                     <hr class="dropdown-divider">
-                    <a href="https://developer.tapio.one/" class="dropdown-item" target="_blank" rel="noopener">Developer</a>
+                    <a href="https://admin.tapio.one/" class="dropdown-item" target="_blank" rel="noopener">tapio Management Portal</a>
                 </div>
               </div>
           </div>

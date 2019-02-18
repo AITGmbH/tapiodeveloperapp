@@ -11,8 +11,10 @@
 }
 
 .main-content {
-  background: cornflowerblue;
+  background: rgb(7, 19, 26);
   border-radius: 0;
+  padding: 0;
+  margin-bottom: 80px;
 }
 
 .is-unstyled-list {
@@ -26,5 +28,14 @@
 }
 
 .dropdown-menu {
-  padding-top: 31px;
+  padding-top: 7px;
+}
+
+.dropdown{
+  margin-right: 20px;
+}
+
+.navbar-burger{
+  height: 0;
+  width: 0;
 }
