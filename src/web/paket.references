@@ -4,3 +4,4 @@ Microsoft.AspNetCore.CookiePolicy
 Microsoft.AspNetCore.Mvc
 Microsoft.AspNetCore.HttpsPolicy
 Microsoft.AspNetCore.StaticFiles
+System.Collections.Immutable

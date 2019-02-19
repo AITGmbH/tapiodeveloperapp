@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
+using Aitgmbh.Tapio.Developerapp.Web.Services;
+
 namespace Aitgmbh.Tapio.Developerapp.Web
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Info Code Smell",
@@ -27,6 +29,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web
             services
                 .AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddSingleton<IScenarioCrawler, ScenarioCrawler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

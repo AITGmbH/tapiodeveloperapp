@@ -1,4 +1,7 @@
+using System;
 using System.Threading.Tasks;
+using Aitgmbh.Tapio.Developerapp.Web.Models;
+using Aitgmbh.Tapio.Developerapp.Web.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Aitgmbh.Tapio.Developerapp.Web.Controllers.Scenario
@@ -7,23 +10,18 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Controllers.Scenario
     [Route("api/[controller]")]
     public class ScenarioController : Controller
     {
+        private readonly IScenarioCrawler _scenarioCrawler;
+
+        public ScenarioController(IScenarioCrawler scenarioCrawler)
+        {
+            _scenarioCrawler = scenarioCrawler ?? throw new ArgumentNullException(nameof(scenarioCrawler));
+        }
+
         [HttpGet]
         public ActionResult<ScenarioEntry[]> GetAll()
         {
-            return Ok(new ScenarioEntry[] { new ScenarioEntry("Test1", "/yeah"), new ScenarioEntry("Test2", "/yeah2") });
+            var scenarioEntries = _scenarioCrawler.GetAllScenarioEntries();
+            return Ok(scenarioEntries);
         }
-    }
-
-    public class ScenarioEntry
-    {
-        public ScenarioEntry(string caption, string url)
-        {
-            Caption = caption;
-            Url = url;
-        }
-
-        public string Caption { get; }
-
-        public string Url { get; }
     }
 }
