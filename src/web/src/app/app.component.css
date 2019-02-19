@@ -20,22 +20,3 @@
 .is-unstyled-list {
   list-style-type: none;
 }
-
-.button.is-white.is-active, .button.is-white:active, .button:hover {
-  background-color: #FFF;
-  border-color: transparent;
-  color: #0a0a0a;
-}
-
-.dropdown-menu {
-  padding-top: 7px;
-}
-
-.dropdown{
-  margin-right: 20px;
-}
-
-.navbar-burger{
-  height: 0;
-  width: 0;
-}

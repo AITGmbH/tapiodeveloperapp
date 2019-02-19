@@ -7,9 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'developerapp';
-  isHamburgerMenuActive = false;
-
-  toogleHamburgerMenu() {
-    this.isHamburgerMenuActive = !this.isHamburgerMenuActive;
-  }
 }
