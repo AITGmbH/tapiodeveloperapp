@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 using Aitgmbh.Tapio.Developerapp.Web.Services;
+using Aitgmbh.Tapio.Developerapp.Web.Repositories;
 
 namespace Aitgmbh.Tapio.Developerapp.Web
 {
@@ -29,7 +30,9 @@ namespace Aitgmbh.Tapio.Developerapp.Web
             services
                 .AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddSingleton<IScenarioCrawler, ScenarioCrawler>();
+            services
+                .AddSingleton<IScenarioCrawler, ScenarioCrawler>()
+                .AddSingleton<IScenarioRepository, ScenarioRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

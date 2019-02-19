@@ -6,6 +6,6 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Services
 {
     public interface IScenarioCrawler
     {
-        IImmutableList<ScenarioEntry> GetAllScenarioEntries();
+        IImmutableList<ScenarioAttribute> GetAllScenarioEntries();
     }
 }
