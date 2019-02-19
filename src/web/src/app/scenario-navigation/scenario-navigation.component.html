@@ -1,0 +1,5 @@
+<ul>
+  <li *ngFor="let moduleEntry of moduleEntries$ | async">
+    <a href="{{moduleEntry.url}}">{{moduleEntry.caption}}</a>
+  </li>
+</ul>

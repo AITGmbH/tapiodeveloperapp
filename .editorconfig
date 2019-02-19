@@ -20,3 +20,6 @@ indent_size = 4
 
 [*.cs]
 indent_size = 4
+
+[*.ts]
+indent_size = 4

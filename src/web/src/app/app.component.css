@@ -1,4 +1,4 @@
-.main-header{
+.main-header {
   background: black;
   color: white;
 }
@@ -8,6 +8,15 @@
   border-radius: 0;
 }
 
+.main-nav {
+  background: rgb(14, 31, 41);
+}
+
 .is-unstyled-list {
   list-style-type: none;
+}
+
+.columns {
+  margin-top: 0;
+  margin-bottom: 0;
 }
