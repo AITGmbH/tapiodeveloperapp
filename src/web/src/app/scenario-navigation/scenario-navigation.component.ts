@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { ScenarioEntry, ScenarioService } from './scenario.service';
+import { ScenarioEntry, ScenarioNavigationService } from './scenario-navigation.service';
 
+/**
+ * Displays the available scenario menu entries.
+ */
 @Component({
     selector: 'app-scenario-navigation',
     templateUrl: './scenario-navigation.component.html',
@@ -10,10 +13,10 @@ import { ScenarioEntry, ScenarioService } from './scenario.service';
 export class ScenarioNavigationComponent implements OnInit {
     moduleEntries$: Observable<ScenarioEntry[]>;
 
-    constructor(private scenarioService: ScenarioService) { }
+    constructor(private scenarioNavigationService: ScenarioNavigationService) { }
 
     ngOnInit() {
-        this.scenarioService.getModules().subscribe((data) => {
+        this.scenarioNavigationService.getEntries().subscribe((data) => {
             this.moduleEntries$ = of(data);
         });
     }

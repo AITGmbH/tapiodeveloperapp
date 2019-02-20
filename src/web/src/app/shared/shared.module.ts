@@ -9,6 +9,9 @@ import { ScenarioComponent } from './components/scenario/scenario.component';
 
 library.add(faGithub);
 
+/**
+ * Provides access to shared functionality.
+ */
 @NgModule({
   declarations: [ ScenarioComponent ],
   imports: [

@@ -3,6 +3,8 @@ const { version } = require('./package.json');
 const { resolve, relative } = require('./node_modules/path');
 const { writeFileSync } = require('./node_modules/fs-extra');
 
+// this script gets executed in the npm post install step. it creates a file 'src/environments/version.ts' with git version information
+
 const gitInfo = gitDescribeSync({
     dirtyMark: false,
     dirtySemver: false,

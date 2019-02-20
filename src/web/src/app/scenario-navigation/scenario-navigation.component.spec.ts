@@ -1,16 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 
 import { ScenarioNavigationComponent } from './scenario-navigation.component';
-import { ScenarioService, ScenarioEntry } from './scenario.service';
+import { ScenarioNavigationService, ScenarioEntry } from './scenario-navigation.service';
 import { of } from 'rxjs';
 import * as moq from 'typemoq';
 import { By } from '@angular/platform-browser';
 
 describe('ScenarioNavigationComponent', () => {
     it('should create two entries', () => {
-        const scenarioServiceMock = moq.Mock.ofType<ScenarioService>();
+        const scenarioServiceMock = moq.Mock.ofType<ScenarioNavigationService>();
         scenarioServiceMock
-            .setup(ms => ms.getModules())
+            .setup(ms => ms.getEntries())
             .returns(
                 () => of([
                     { caption: 'one', url: '/one1' } as ScenarioEntry,
@@ -20,7 +20,7 @@ describe('ScenarioNavigationComponent', () => {
         TestBed.configureTestingModule({
             declarations: [ ScenarioNavigationComponent ],
             providers: [
-                { provide: ScenarioService, useFactory: () => scenarioServiceMock.object }
+                { provide: ScenarioNavigationService, useFactory: () => scenarioServiceMock.object }
             ]
         }).compileComponents();
 
