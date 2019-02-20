@@ -23,13 +23,16 @@ export class ScenarioComponent implements OnInit {
 
     version: string;
 
+    public hasBackendUrl: boolean;
+
     constructor(private scenarioService: ScenarioService) {
-        this.version = VERSION.version;
+        this.version = VERSION.hash;
     }
 
     ngOnInit(): void {
         this.scenarioService.getUrls(this.id).subscribe(docPaths => {
             if (docPaths.backend) {
+                this.hasBackendUrl = true;
                 this.backendUrl = this.gitHubRepoUrl + this.version + '/' + docPaths.backend;
             }
 

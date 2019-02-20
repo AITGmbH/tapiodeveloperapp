@@ -1,9 +1,11 @@
 <h1 class="title is-1">{{title}}</h1>
 
 <div class="container">
+  <div class="developer-links">
     <a href="{{frontendUrl}}" class="has-text-light"><fa-icon [icon]="['fab', 'github']"></fa-icon> Frontend</a>&nbsp;
-    <a href="{{backendUrl}}" class="has-text-light"><fa-icon [icon]="['fab', 'github']"></fa-icon> Backend</a>
-  <div class="actual-content">
+    <a href="{{backendUrl}}" class="has-text-light" *ngIf="hasBackendUrl"><fa-icon [icon]="['fab', 'github']"></fa-icon> Backend</a>
+  </div>
+  <div class="actual-content" class="has-text-light">
     <ng-content></ng-content>
   </div>
 </div>

@@ -5,4 +5,9 @@ h1.title {
 
 .actual-content {
   border: thin solid #fff;
+  background: #010305;
+}
+
+.developer-links {
+  text-align: right;
 }
