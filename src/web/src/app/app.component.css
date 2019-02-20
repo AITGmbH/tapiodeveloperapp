@@ -1,11 +1,20 @@
-.main-header{
-  background: black;
-  color: white;
+.main-header {
+  background: #FFF;
+  color: #000;
+  height: 50px;
+  font-family: audimat;
+}
+
+.logo {
+  margin: 26px;
+  height: 26px;
 }
 
 .main-content {
-  background: cornflowerblue;
+  background: rgb(7, 19, 26);
   border-radius: 0;
+  padding: 0;
+  margin-bottom: 80px;
 }
 
 .is-unstyled-list {
