@@ -4,7 +4,7 @@ import { ScenarioSampleComponent } from './scenario-sample.component';
 
 const routes: Routes = [
     {
-        path: 'scenario-sample',
+        path: '',
         component: ScenarioSampleComponent
     }
 ];
