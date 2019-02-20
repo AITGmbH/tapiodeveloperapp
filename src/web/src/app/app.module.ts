@@ -10,6 +10,7 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { ScenarioNavigationComponent } from './scenario-navigation/scenario-navigation.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ScenarioSampleModule } from './scenario-sample/scenario-sample.module';
+import { SharedModule } from './shared/shared.module';
 
 library.add(faGithub);
 
@@ -23,7 +24,8 @@ library.add(faGithub);
         AppRoutingModule,
         FontAwesomeModule,
         HttpClientModule,
-        ScenarioSampleModule
+        ScenarioSampleModule,
+        SharedModule
     ],
     providers: [],
     bootstrap: [AppComponent]

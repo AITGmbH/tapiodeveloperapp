@@ -1,10 +1,13 @@
 using System;
 using System.Linq;
+
 using Aitgmbh.Tapio.Developerapp.Web.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Aitgmbh.Tapio.Developerapp.Web.Controllers
 {
+    [Produces("application/json")]
+    [Route("api/[controller]")]
     public class DocumentationPathController : Controller
     {
         private readonly IScenarioRepository _scenarioRepository;
@@ -14,7 +17,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Controllers
             _scenarioRepository = scenarioRepository ?? throw new ArgumentNullException(nameof(scenarioRepository));
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public ActionResult<DocumentationPaths> Get(string id)
         {
             if (string.IsNullOrWhiteSpace(id))
