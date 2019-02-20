@@ -1,3 +1,7 @@
 html {
   overflow-y: auto;
 }
+
+body {
+  background: rgb(7, 19, 26);
+}

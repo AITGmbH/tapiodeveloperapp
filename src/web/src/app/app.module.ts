@@ -6,11 +6,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ScenarioNavigationComponent } from './scenario-navigation/scenario-navigation.component';
 import { SharedModule } from './shared/shared.module';
+import { HamburgermenuComponent } from './hamburgermenu/hamburgermenu.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        ScenarioNavigationComponent
+        ScenarioNavigationComponent,
+        HamburgermenuComponent
     ],
     imports: [
         BrowserModule,

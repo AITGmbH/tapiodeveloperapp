@@ -1,9 +1,19 @@
 <header
-  class="main-header has-text-centered">
-  <a href="https://tapio.one/" target="_blank" rel="noopener"><img src="assets/img/logo/tapio.svg"></a>
-  <span> Developer App</span>
-  <span> by </span>
-  <a href="https://aitgmbh.de/" target="_blank" rel="noopener"><img src="assets/img/logo/ait.svg"></a>
+  class="main-header has-text-centered level">
+
+  <div class="level-left">
+    <div class="level-item">
+      <a href="https://tapio.one/"><img src="assets/img/logo/tapio.svg" class="logo"></a>
+      <span> developer app by </span>
+      <a href="https://aitgmbh.de/"><img src="assets/img/logo/ait.svg" class="logo"></a>
+    </div>
+  </div>
+
+  <div class="level-right">
+      <div class="level-item">
+          <app-hamburgermenu></app-hamburgermenu>
+      </div>
+  </div>
 </header>
 
 <div class="columns">
@@ -25,7 +35,7 @@
           tapio Developer App by <a href="https://aitgmbh.de/">AIT GmbH & Co. KG</a>
         </li>
         <li>
-          <a href="https://github.com/AITGmbH/tapiodeveloperapp/" class="m-r-sm">
+          <a href="https://github.com/AITGmbH/tapiodeveloperapp/" rel="noopener" class="m-r-sm">
             <fa-icon [icon]="['fab', 'github']"></fa-icon> AITGmbH/tapiodeveloperapp
           </a>
         </li>
