@@ -3,7 +3,7 @@
   color: white;
 }
 
-.main-content {
+.main-content, .main-content .box {
   background: rgb(7, 19, 26);
 }
 
