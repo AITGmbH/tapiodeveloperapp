@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { ScenarioSampleComponent } from './scenario-sample.component';
 import { SharedModule } from '../shared/shared.module';
@@ -10,7 +11,7 @@ describe('ScenarioSampleComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ScenarioSampleComponent ],
-      imports: [ SharedModule ]
+      imports: [ SharedModule, HttpClientTestingModule ]
     })
     .compileComponents();
   }));
