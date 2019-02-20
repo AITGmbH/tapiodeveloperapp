@@ -1,7 +1,8 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Aitgmbh.Tapio.Developerapp.Web.Models;
-using Aitgmbh.Tapio.Developerapp.Web.Services;
+using Aitgmbh.Tapio.Developerapp.Web.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Aitgmbh.Tapio.Developerapp.Web.Controllers.Scenario
@@ -10,17 +11,19 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Controllers.Scenario
     [Route("api/[controller]")]
     public class ScenarioController : Controller
     {
-        private readonly IScenarioCrawler _scenarioCrawler;
+        private readonly IScenarioRepository _scenarioRepository;
 
-        public ScenarioController(IScenarioCrawler scenarioCrawler)
+        public ScenarioController(IScenarioRepository scenarioRepository)
         {
-            _scenarioCrawler = scenarioCrawler ?? throw new ArgumentNullException(nameof(scenarioCrawler));
+            _scenarioRepository = scenarioRepository ?? throw new ArgumentNullException(nameof(scenarioRepository));
         }
 
         [HttpGet]
         public ActionResult<ScenarioEntry[]> GetAll()
         {
-            var scenarioEntries = _scenarioCrawler.GetAllScenarioEntries();
+            var scenarioEntries = _scenarioRepository
+                .GetAll()
+                .Select(a => new ScenarioEntry(a.Caption, a.Url));
             return Ok(scenarioEntries);
         }
     }

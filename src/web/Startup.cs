@@ -28,11 +28,10 @@ namespace Aitgmbh.Tapio.Developerapp.Web
 #pragma warning restore S2325 // Methods and properties that don't access instance data should be static
         {
             services
+                .AddSingleton<IScenarioCrawler, ScenarioCrawler>()
+                .AddSingleton<IScenarioRepository, ScenarioRepository>()
                 .AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services
-                .AddSingleton<IScenarioCrawler, ScenarioCrawler>()
-                .AddSingleton<IScenarioRepository, ScenarioRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
