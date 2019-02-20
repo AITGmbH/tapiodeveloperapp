@@ -15,4 +15,5 @@ export class ScenarioService {
 export interface DocumentationPaths {
     frontend: string;
     backend: string;
+    tapio: string;
 }

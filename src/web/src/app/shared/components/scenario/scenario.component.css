@@ -5,6 +5,7 @@ h1.title {
 
 .actual-content {
   background: #010305;
+  min-height: 20vh;
 }
 
 .developer-links {

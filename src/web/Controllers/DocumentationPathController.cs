@@ -31,20 +31,23 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Controllers
                 return NotFound();
             }
 
-            return Ok(new DocumentationPaths(scenario.FrontendSourcePath, scenario.BackendSourcePath));
+            return Ok(new DocumentationPaths(scenario.FrontendSourcePath, scenario.BackendSourcePath, scenario.TapioDocumentationUrl));
         }
     }
 
     public class DocumentationPaths
     {
-        public DocumentationPaths(string frontend, string backend)
+        public DocumentationPaths(string frontend, string backend, string tapio)
         {
             Frontend = frontend;
             Backend = backend;
+            Tapio = tapio;
         }
 
         public string Frontend { get; }
 
         public string Backend { get; }
+
+        public string Tapio { get; }
     }
 }

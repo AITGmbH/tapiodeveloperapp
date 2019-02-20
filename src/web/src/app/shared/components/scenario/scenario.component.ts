@@ -21,6 +21,8 @@ export class ScenarioComponent implements OnInit {
 
     public frontendUrl: string;
 
+    public tapioDocumentationUrl: string;
+
     version: string;
 
     public hasBackendUrl: boolean;
@@ -38,6 +40,10 @@ export class ScenarioComponent implements OnInit {
 
             if (docPaths.frontend) {
                 this.frontendUrl = this.gitHubRepoUrl + this.version + '/' + docPaths.frontend;
+            }
+
+            if (docPaths.tapio) {
+                this.tapioDocumentationUrl = docPaths.tapio;
             }
         });
     }
