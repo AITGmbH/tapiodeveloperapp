@@ -21,10 +21,6 @@ export class ScenarioComponent implements OnInit {
 
     public frontendUrl: string;
 
-    public hasBackendUrl: boolean;
-
-    public hasFrontendUrl: boolean;
-
     version: string;
 
     constructor(private scenarioService: ScenarioService) {
@@ -35,12 +31,10 @@ export class ScenarioComponent implements OnInit {
         this.scenarioService.getUrls(this.id).subscribe(docPaths => {
             if (docPaths.backend) {
                 this.backendUrl = this.gitHubRepoUrl + this.version + '/' + docPaths.backend;
-                this.hasBackendUrl = true;
             }
 
             if (docPaths.frontend) {
                 this.frontendUrl = this.gitHubRepoUrl + this.version + '/' + docPaths.frontend;
-                this.hasFrontendUrl = true;
             }
         });
     }
