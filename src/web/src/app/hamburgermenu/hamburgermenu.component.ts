@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
+/***
+ * Displays the developer links in a hamburger menu.
+ */
 @Component({
   selector: 'app-hamburgermenu',
   templateUrl: './hamburgermenu.component.html',

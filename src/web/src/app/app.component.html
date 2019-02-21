@@ -3,9 +3,9 @@
 
   <div class="level-left">
     <div class="level-item">
-      <a href="https://tapio.one/"><img src="assets/img/logo/tapio.svg" class="logo"></a>
+      <a href="https://tapio.one/" target="_blank" rel="noopener"><img src="assets/img/logo/tapio.svg" class="logo"></a>
       <span> developer app by </span>
-      <a href="https://aitgmbh.de/"><img src="assets/img/logo/ait.svg" class="logo"></a>
+      <a href="https://aitgmbh.de/" target="_blank" rel="noopener"><img src="assets/img/logo/ait.svg" class="logo"></a>
     </div>
   </div>
 
@@ -15,9 +15,19 @@
       </div>
   </div>
 </header>
-<main
-  class="main-content box has-text-centered">
-</main>
+
+<div class="columns">
+  <div class="column is-one-quarter main-nav">
+    <app-scenario-navigation></app-scenario-navigation>
+  </div>
+  <div class="column is-paddingless main-content">
+    <main
+      class="box has-text-centered is-radiusless">
+        <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>
+
 <footer class="footer">
     <div class="content has-text-centered">
       <ul class="is-unstyled-list">
@@ -32,4 +42,3 @@
       </ul>
     </div>
 </footer>
-<router-outlet></router-outlet>

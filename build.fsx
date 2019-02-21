@@ -80,10 +80,23 @@ Target.create "DeployArtifacts" (fun _ ->
     ()
 )
 
+Target.create "Test.Frontend" (fun _ ->
+    let angular = ProcessUtils.tryFindFileOnPath  "ng"
+    if angular.IsNone then failwith "angular cli could not be found"
+
+    let ngRunTests =
+        ["test"; "--watch=false"]
+        |> CreateProcess.fromRawCommand angular.Value
+        |> CreateProcess.withWorkingDirectory "./src/web"
+        |> Proc.run
+    if ngRunTests.ExitCode <> 0 then failwith "could not install angular cli via npm"
+)
+
 Target.create "All" ignore
 
 "Install.Prerequisites"
     ==> "Build.Frontend"
+    ==> "Test.Frontend"
     ==> "Build.Backend"
     ==> "Publish"
     ==> "DeployArtifacts"

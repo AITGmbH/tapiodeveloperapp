@@ -1,0 +1,17 @@
+h1.title {
+  text-align: left;
+  color: #fff;
+}
+
+.actual-content {
+  background: #010305;
+  min-height: 20vh;
+}
+
+.developer-links {
+  text-align: right;
+}
+
+* {
+  font-family: audimat;
+}

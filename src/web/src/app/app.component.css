@@ -5,18 +5,26 @@
   font-family: audimat;
 }
 
+.main-content, .main-content .box {
+  background: rgb(7, 19, 26);
+}
+
+.main-nav {
+  background: rgb(14, 31, 41);
+  font-family: audimat;
+}
+
 .logo {
   margin: 26px;
   height: 26px;
 }
 
-.main-content {
-  background: rgb(7, 19, 26);
-  border-radius: 0;
-  padding: 0;
-  margin-bottom: 80px;
-}
 
 .is-unstyled-list {
   list-style-type: none;
+}
+
+.columns {
+  margin-top: 0;
+  margin-bottom: 0;
 }

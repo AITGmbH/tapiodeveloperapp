@@ -18,3 +18,4 @@ group development
   nuget Microsoft.AspNetCore.Mvc >= 2.2.0
   nuget Microsoft.AspNetCore.HttpsPolicy >= 2.2.0
   nuget Microsoft.AspNetCore.StaticFiles >= 2.2.0
+  nuget System.Collections.Immutable >= 1.5.0

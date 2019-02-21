@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
+using Aitgmbh.Tapio.Developerapp.Web.Services;
+using Aitgmbh.Tapio.Developerapp.Web.Repositories;
+
 namespace Aitgmbh.Tapio.Developerapp.Web
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Info Code Smell",
@@ -25,6 +28,8 @@ namespace Aitgmbh.Tapio.Developerapp.Web
 #pragma warning restore S2325 // Methods and properties that don't access instance data should be static
         {
             services
+                .AddSingleton<IScenarioCrawler, ScenarioCrawler>()
+                .AddSingleton<IScenarioRepository, ScenarioRepository>()
                 .AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
