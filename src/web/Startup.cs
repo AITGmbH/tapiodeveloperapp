@@ -1,18 +1,16 @@
 using System;
 using System.IO;
+using Aitgmbh.Tapio.Developerapp.Web.Repositories;
+using Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineOverview;
+using Aitgmbh.Tapio.Developerapp.Web.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-using Aitgmbh.Tapio.Developerapp.Web.Services;
-using Aitgmbh.Tapio.Developerapp.Web.Repositories;
-
 namespace Aitgmbh.Tapio.Developerapp.Web
 {
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Info Code Smell",
-        "S1309:Track uses of in-source issue suppressions", Justification = "<Pending>")]
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -32,6 +30,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web
                 .AddSingleton<IScenarioRepository, ScenarioRepository>()
                 .AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddHttpClient<IMachineOverviewService, MachineOverviewService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,13 +49,13 @@ namespace Aitgmbh.Tapio.Developerapp.Web
 
             app.Use(async (context, next) =>
             {
-              var path = context.Request.Path.Value;
-              if (!path.StartsWith("/api", StringComparison.OrdinalIgnoreCase) && !path.StartsWith("/hubs", StringComparison.OrdinalIgnoreCase) && !Path.HasExtension(path))
-              {
-                  context.Request.Path = "/index.html";
-              }
+                var path = context.Request.Path;
+                if (!path.StartsWithSegments("/api", StringComparison.Ordinal) && !path.StartsWithSegments("/hubs", StringComparison.Ordinal) && !Path.HasExtension(path))
+                {
+                    context.Request.Path = "/index.html";
+                }
 
-              await next();
+                await next();
             });
 
             app.UseDefaultFiles();

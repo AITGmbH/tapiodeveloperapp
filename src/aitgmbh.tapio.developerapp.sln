@@ -13,8 +13,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B988E8DF-564B-4351-ACA5-7917E9B24142}"
 	ProjectSection(SolutionItems) = preProject
 		..\.editorconfig = ..\.editorconfig
+		Directory.Build.props = Directory.Build.props
 		..\README.md = ..\README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "web.Tests.Unit", "web.Tests.Unit\web.Tests.Unit.csproj", "{80EEBF35-6B9C-417B-A078-26576FFC4547}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +41,18 @@ Global
 		{C470742E-828C-4311-AE68-E1DAD973AB29}.Release|x64.Build.0 = Release|Any CPU
 		{C470742E-828C-4311-AE68-E1DAD973AB29}.Release|x86.ActiveCfg = Release|Any CPU
 		{C470742E-828C-4311-AE68-E1DAD973AB29}.Release|x86.Build.0 = Release|Any CPU
+		{80EEBF35-6B9C-417B-A078-26576FFC4547}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80EEBF35-6B9C-417B-A078-26576FFC4547}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80EEBF35-6B9C-417B-A078-26576FFC4547}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{80EEBF35-6B9C-417B-A078-26576FFC4547}.Debug|x64.Build.0 = Debug|Any CPU
+		{80EEBF35-6B9C-417B-A078-26576FFC4547}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{80EEBF35-6B9C-417B-A078-26576FFC4547}.Debug|x86.Build.0 = Debug|Any CPU
+		{80EEBF35-6B9C-417B-A078-26576FFC4547}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80EEBF35-6B9C-417B-A078-26576FFC4547}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80EEBF35-6B9C-417B-A078-26576FFC4547}.Release|x64.ActiveCfg = Release|Any CPU
+		{80EEBF35-6B9C-417B-A078-26576FFC4547}.Release|x64.Build.0 = Release|Any CPU
+		{80EEBF35-6B9C-417B-A078-26576FFC4547}.Release|x86.ActiveCfg = Release|Any CPU
+		{80EEBF35-6B9C-417B-A078-26576FFC4547}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

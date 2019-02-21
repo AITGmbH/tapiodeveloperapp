@@ -1,15 +1,22 @@
+using System;
+
 namespace Aitgmbh.Tapio.Developerapp.Web.Models
 {
     public class ScenarioEntry
     {
-        public ScenarioEntry(string caption, string url)
+        public ScenarioEntry(string caption, Uri url)
         {
+            if (String.IsNullOrWhiteSpace(caption))
+            {
+                throw new ArgumentException("message", nameof(caption));
+            }
+
             Caption = caption;
-            Url = url;
+            Url = url ?? throw new ArgumentNullException(nameof(url));
         }
 
         public string Caption { get; }
 
-        public string Url { get; }
+        public Uri Url { get; }
     }
 }

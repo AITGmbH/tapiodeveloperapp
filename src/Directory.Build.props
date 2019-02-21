@@ -1,0 +1,8 @@
+<Project>
+
+  <PropertyGroup>
+    <NoWarn>1701;1702;IDE0022;S1309;IDE0008</NoWarn>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+
+</Project>
