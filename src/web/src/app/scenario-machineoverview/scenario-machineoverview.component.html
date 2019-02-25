@@ -4,14 +4,14 @@
   </p>
   <div>
     <div class="tile is-ancestor" *ngIf="(subscriptions$ | async); else loadingOrError">
-      <div class="tile is-parent is-2" *ngFor="let subscription of subscriptions$ | async">
+      <div class="tile is-parent is-3" *ngFor="let subscription of subscriptions$ | async">
         <div class="card">
           <header class="card-header" title="subscription {{subscription.name}} has got {{subscription.assignedMachines.length}} assigned machines">
             <h1 class="card-header-title">{{subscription.name}}</h1>
           </header>
           <div class="card-content">
             <ul>
-              <li *ngFor="let machine of subscription.assignedMachines" title="tmid: {{machine.tmid}}">
+              <li *ngFor="let machine of subscription.assignedMachines" title="Tapio machine id (tmid): {{machine.tmid}}">
                 {{machine.displayName}}
               </li>
             </ul>

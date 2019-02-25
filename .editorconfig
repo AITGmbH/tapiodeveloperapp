@@ -122,3 +122,5 @@ dotnet_naming_symbols.private_fields.required_modifiers         = readonly
 
 dotnet_naming_style.prefix_underscore.capitalization = camel_case
 dotnet_naming_style.prefix_underscore.required_prefix = _
+
+dotnet_separate_import_directive_groups = true

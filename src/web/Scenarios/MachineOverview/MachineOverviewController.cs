@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineOverview
 {
-    [Scenario("machine-overview-scenario", "Machine Overview", "/scenario-machineoverview", "src/web/src/app/scenario-machineoverview", "src/web/Scenarios/MachineOverview", "http://tapio.one")]
+    [Scenario("machine-overview-scenario", "Machine Overview", "/scenario-machineoverview",
+        "src/web/src/app/scenario-machineoverview", "src/web/Scenarios/MachineOverview", "https://developer.tapio.one/docs/SubscriptionOverview.html")]
     [Produces("application/json")]
     [Route("api/[controller]")]
     public sealed class MachineOverviewController : Controller

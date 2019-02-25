@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineOverview;
+using Aitgmbh.Tapio.Developerapp.Web.Services;
 using FluentAssertions;
 using Moq;
 using Moq.Protected;
@@ -50,6 +51,14 @@ namespace web.Tests.Unit
                     ]
             }]}";
 
+        private readonly Mock<ITokenProvider> _standardTokenProviderMock;
+
+        public MachineOverviewServiceTests()
+        {
+            _standardTokenProviderMock = new Mock<ITokenProvider>();
+            _standardTokenProviderMock.Setup(tk => tk.ReceiveTokenAsync(It.IsAny<CancellationToken>())).ReturnsAsync("");
+        }
+
         [Fact]
         public async Task GivenOneSimpleCall_WhenInvoking_ThenNoException_ShouldBeThrown()
         {
@@ -57,7 +66,7 @@ namespace web.Tests.Unit
                 .SetupSendAsyncMethod(HttpStatusCode.OK, Content);
             using (var httpClient = new HttpClient(messageHandlerMock.Object))
             {
-                var cut = new MachineOverviewService(httpClient);
+                var cut = new MachineOverviewService(httpClient, _standardTokenProviderMock.Object);
 
                 Func<Task<SubscriptionOverview>> action = () => cut.GetSubscriptionAsync(CancellationToken.None);
                 await action.Should().NotThrowAsync();
@@ -72,7 +81,7 @@ namespace web.Tests.Unit
 
             using (var httpClient = new HttpClient(messageHandlerMock.Object))
             {
-                var cut = new MachineOverviewService(httpClient);
+                var cut = new MachineOverviewService(httpClient, _standardTokenProviderMock.Object);
 
                 await cut.GetSubscriptionAsync(CancellationToken.None);
 
@@ -88,7 +97,7 @@ namespace web.Tests.Unit
                 .SetupSendAsyncMethod(HttpStatusCode.Unauthorized, "{}");
             using (var httpClient = new HttpClient(messageHandlerMock.Object))
             {
-                var cut = new MachineOverviewService(httpClient);
+                var cut = new MachineOverviewService(httpClient, _standardTokenProviderMock.Object);
 
                 Func<Task<SubscriptionOverview>> action = () => cut.GetSubscriptionAsync(CancellationToken.None);
                 await action.Should().ThrowAsync<HttpRequestException>();

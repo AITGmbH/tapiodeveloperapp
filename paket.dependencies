@@ -18,6 +18,9 @@ group development
   nuget Microsoft.AspNetCore.Mvc >= 2.2.0
   nuget Microsoft.AspNetCore.HttpsPolicy >= 2.2.0
   nuget Microsoft.AspNetCore.StaticFiles >= 2.2.0
+nuget Microsoft.Extensions.Options.DataAnnotations
+  clitool Microsoft.Extensions.SecretManager.Tools
+  nuget Microsoft.Identity.Client
   nuget System.Collections.Immutable >= 1.5.0
   nuget Newtonsoft.Json >= 12.0.1
   nuget Microsoft.Extensions.Http >= 2.2.0

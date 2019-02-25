@@ -8,6 +8,7 @@
     <AssemblyName>Aitgmbh.Tapio.Developerapp.Web</AssemblyName>
     <RootNamespace>Aitgmbh.Tapio.Developerapp.Web</RootNamespace>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <UserSecretsId>7b5c89fb-85dd-4955-878c-14e91ece3687</UserSecretsId>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
