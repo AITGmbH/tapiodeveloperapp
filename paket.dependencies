@@ -13,12 +13,12 @@ group build
 group development
   source https://api.nuget.org/v3/index.json
 
-  nuget Microsoft.AspNetCore >= 2.2.0
+  nuget Microsoft.AspNetCore = 2.2.0
   nuget Microsoft.AspNetCore.CookiePolicy >= 2.2.0
   nuget Microsoft.AspNetCore.Mvc >= 2.2.0
   nuget Microsoft.AspNetCore.HttpsPolicy >= 2.2.0
   nuget Microsoft.AspNetCore.StaticFiles >= 2.2.0
-nuget Microsoft.Extensions.Options.DataAnnotations
+  nuget Microsoft.Extensions.Options.DataAnnotations
   clitool Microsoft.Extensions.SecretManager.Tools
   nuget Microsoft.Identity.Client
   nuget System.Collections.Immutable >= 1.5.0
