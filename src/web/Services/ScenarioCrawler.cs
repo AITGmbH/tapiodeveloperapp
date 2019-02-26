@@ -7,7 +7,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Services
 {
     public class ScenarioCrawler : IScenarioCrawler
     {
-        public IImmutableList<ScenarioAttribute> GetAllScenarioEntries()
+        public IImmutableList<ScenarioAttribute> AllScenarioEntries()
         {
             var allScenarios =
                 from a in AppDomain.CurrentDomain.GetAssemblies()

@@ -1,7 +1,13 @@
 group development
+
 Microsoft.AspNetCore
 Microsoft.AspNetCore.CookiePolicy
 Microsoft.AspNetCore.Mvc
 Microsoft.AspNetCore.HttpsPolicy
 Microsoft.AspNetCore.StaticFiles
 System.Collections.Immutable
+Newtonsoft.Json
+Microsoft.Extensions.Http
+Microsoft.Identity.Client
+Microsoft.Extensions.Configuration.UserSecrets
+Microsoft.Extensions.Options.DataAnnotations

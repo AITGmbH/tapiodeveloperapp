@@ -5,6 +5,7 @@ import { ScenarioNavigationService, ScenarioEntry } from './scenario-navigation.
 import { of } from 'rxjs';
 import * as moq from 'typemoq';
 import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ScenarioNavigationComponent', () => {
     it('should create two entries', () => {
@@ -18,6 +19,7 @@ describe('ScenarioNavigationComponent', () => {
             );
 
         TestBed.configureTestingModule({
+            imports: [ RouterTestingModule ],
             declarations: [ ScenarioNavigationComponent ],
             providers: [
                 { provide: ScenarioNavigationService, useFactory: () => scenarioServiceMock.object }

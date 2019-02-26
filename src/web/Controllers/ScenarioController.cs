@@ -1,11 +1,11 @@
 using System;
 using System.Linq;
-using System.Threading.Tasks;
+
 using Aitgmbh.Tapio.Developerapp.Web.Models;
 using Aitgmbh.Tapio.Developerapp.Web.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Aitgmbh.Tapio.Developerapp.Web.Controllers.Scenario
+namespace Aitgmbh.Tapio.Developerapp.Web.Controllers
 {
     [Produces("application/json")]
     [Route("api/[controller]")]
@@ -19,11 +19,11 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Controllers.Scenario
         }
 
         [HttpGet]
-        public ActionResult<ScenarioEntry[]> GetAll()
+        public ActionResult<ScenarioEntry[]> Index()
         {
             var scenarioEntries = _scenarioRepository
                 .GetAll()
-                .Select(a => new ScenarioEntry(a.Caption, a.Url));
+                .Select(a => new ScenarioEntry(a.Caption, new Uri(a.Url, UriKind.Relative)));
             return Ok(scenarioEntries);
         }
     }

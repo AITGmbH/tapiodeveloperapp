@@ -1,18 +1,19 @@
 using System;
 using System.IO;
+
+using Aitgmbh.Tapio.Developerapp.Web.Configurations;
+using Aitgmbh.Tapio.Developerapp.Web.Repositories;
+using Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineOverview;
+using Aitgmbh.Tapio.Developerapp.Web.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
-using Aitgmbh.Tapio.Developerapp.Web.Services;
-using Aitgmbh.Tapio.Developerapp.Web.Repositories;
+using Microsoft.Extensions.Options;
 
 namespace Aitgmbh.Tapio.Developerapp.Web
 {
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Info Code Smell",
-        "S1309:Track uses of in-source issue suppressions", Justification = "<Pending>")]
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -22,23 +23,35 @@ namespace Aitgmbh.Tapio.Developerapp.Web
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-#pragma warning disable S2325 // Methods and properties that don't access instance data should be static
         public void ConfigureServices(IServiceCollection services)
-#pragma warning restore S2325 // Methods and properties that don't access instance data should be static
         {
             services
                 .AddSingleton<IScenarioCrawler, ScenarioCrawler>()
                 .AddSingleton<IScenarioRepository, ScenarioRepository>()
+                .AddSingleton<ITokenProvider, TokenProvider>()
+                .AddSingleton<OptionsValidator>()
                 .AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddHttpClient<IMachineOverviewService, MachineOverviewService>();
+            services
+                .AddOptions<TapioCloudCredentials>()
+                .Bind(Configuration.GetSection("TapioCloud"))
+                .ValidateDataAnnotations()
+#pragma warning disable S4055 // Literals should not be passed as localized parameters
+                .Validate(c => Guid.TryParse(c.ClientId, out _), @"The client secret must be a valid Guid");
+#pragma warning restore S4055 // Literals should not be passed as localized parameters
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 #pragma warning disable S2325 // Methods and properties that don't access instance data should be static
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, OptionsValidator optionsValidator)
 #pragma warning restore S2325 // Methods and properties that don't access instance data should be static
         {
+            if (optionsValidator == null)
+            {
+                throw new ArgumentNullException(nameof(optionsValidator));
+            }
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -48,15 +61,17 @@ namespace Aitgmbh.Tapio.Developerapp.Web
                 app.UseHsts();
             }
 
+            optionsValidator.Validate();
+
             app.Use(async (context, next) =>
             {
-              var path = context.Request.Path.Value;
-              if (!path.StartsWith("/api", StringComparison.OrdinalIgnoreCase) && !path.StartsWith("/hubs", StringComparison.OrdinalIgnoreCase) && !Path.HasExtension(path))
-              {
-                  context.Request.Path = "/index.html";
-              }
+                var path = context.Request.Path;
+                if (!path.StartsWithSegments("/api", StringComparison.Ordinal) && !path.StartsWithSegments("/hubs", StringComparison.Ordinal) && !Path.HasExtension(path))
+                {
+                    context.Request.Path = "/index.html";
+                }
 
-              await next();
+                await next();
             });
 
             app.UseDefaultFiles();
@@ -64,6 +79,24 @@ namespace Aitgmbh.Tapio.Developerapp.Web
 
             app.UseHttpsRedirection();
             app.UseMvc();
+        }
+    }
+
+    /// <summary>
+    /// Provides fail fast behavior for configurations on start up.
+    /// </summary>
+    public class OptionsValidator
+    {
+        private readonly IOptions<TapioCloudCredentials> _tapioCloud;
+
+        public OptionsValidator(IOptions<TapioCloudCredentials> tapioCloud)
+        {
+            _tapioCloud = tapioCloud;
+        }
+
+        public void Validate()
+        {
+            _ = _tapioCloud.Value;
         }
     }
 }

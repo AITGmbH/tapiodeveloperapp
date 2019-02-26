@@ -1,0 +1,38 @@
+<app-scenario title="Machine Overview" id="machine-overview-scenario">
+  <p>
+    All the assigned subscriptions with its assigned machines
+  </p>
+  <div>
+    <div class="tile is-ancestor" *ngIf="(subscriptions$ | async); else loadingOrError">
+      <div class="tile is-parent is-3" *ngFor="let subscription of subscriptions$ | async">
+        <div class="card">
+          <header class="card-header" title="subscription {{subscription.name}} has got {{subscription.assignedMachines.length}} assigned machines">
+            <h1 class="card-header-title">{{subscription.name}}</h1>
+          </header>
+          <div class="card-content">
+            <ul>
+              <li *ngFor="let machine of subscription.assignedMachines" title="Tapio machine id (tmid): {{machine.tmid}}">
+                {{machine.displayName}}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-scenario>
+
+<ng-template #loadingOrError>
+    <div *ngIf="errorLoading$ | async; else loading" class="message is-danger">
+      <div class="message-body">
+        An Error encountered in loading the subscriptions. Please try again later.
+        <p class="is-size-7">Consult the developer console for more information</p>
+      </div>
+    </div>
+    <ng-template #loading>
+      <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+      </div>
+    </ng-template>
+</ng-template>

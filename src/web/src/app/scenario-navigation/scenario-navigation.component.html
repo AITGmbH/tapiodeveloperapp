@@ -1,5 +1,5 @@
 <ul>
   <li *ngFor="let scenarioEntry of scenarioEntries$ | async">
-    <a href="{{scenarioEntry.url}}">{{scenarioEntry.caption}}</a>
+    <a routerLink="{{scenarioEntry.url}}">{{scenarioEntry.caption}}</a>
   </li>
 </ul>

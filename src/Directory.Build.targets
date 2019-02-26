@@ -1,0 +1,8 @@
+<Project>
+
+  <!-- In Directory.Build.targets because $(TargetFramework) may not be set when Directory.Build.props is imported. -->
+  <PropertyGroup>
+    <RuntimeFrameworkVersion Condition=" '$(TargetFramework)' == 'netcoreapp2.2' ">2.2.1</RuntimeFrameworkVersion>
+  </PropertyGroup>
+
+</Project>

@@ -5,6 +5,10 @@ const routes: Routes = [
     {
         path: 'scenario-sample',
         loadChildren: './scenario-sample/scenario-sample.module#ScenarioSampleModule'
+    },
+    {
+        path: 'scenario-machineoverview',
+        loadChildren: './scenario-machineoverview/scenario-machineoverview.module#ScenarioMachineoverviewModule'
     }
 ];
 
