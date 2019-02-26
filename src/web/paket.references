@@ -1,5 +1,4 @@
 group development
-
 Microsoft.AspNetCore
 Microsoft.AspNetCore.CookiePolicy
 Microsoft.AspNetCore.Mvc
@@ -11,3 +10,6 @@ Microsoft.Extensions.Http
 Microsoft.Identity.Client
 Microsoft.Extensions.Configuration.UserSecrets
 Microsoft.Extensions.Options.DataAnnotations
+Serilog.AspNetCore
+Serilog.Sinks.Console
+Serilog.Sinks.File

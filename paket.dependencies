@@ -21,6 +21,9 @@ group development
   nuget Microsoft.Extensions.Options.DataAnnotations
   clitool Microsoft.Extensions.SecretManager.Tools
   nuget Microsoft.Identity.Client
+  nuget Serilog.AspNetCore
+nuget Serilog.Sinks.Console
+nuget Serilog.Sinks.File
   nuget System.Collections.Immutable >= 1.5.0
   nuget Newtonsoft.Json >= 12.0.1
   nuget Microsoft.Extensions.Http >= 2.2.0

@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
 using Aitgmbh.Tapio.Developerapp.Web.Configurations;
@@ -10,14 +11,18 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 namespace Aitgmbh.Tapio.Developerapp.Web
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private readonly ILogger<Startup> _logger;
+
+        public Startup(IConfiguration configuration, ILogger<Startup> logger)
         {
+            _logger = logger;
             Configuration = configuration;
         }
 
@@ -42,10 +47,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web
 #pragma warning restore S4055 // Literals should not be passed as localized parameters
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-#pragma warning disable S2325 // Methods and properties that don't access instance data should be static
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, OptionsValidator optionsValidator)
-#pragma warning restore S2325 // Methods and properties that don't access instance data should be static
         {
             if (optionsValidator == null)
             {
@@ -69,6 +71,9 @@ namespace Aitgmbh.Tapio.Developerapp.Web
                 if (!path.StartsWithSegments("/api", StringComparison.Ordinal) && !path.StartsWithSegments("/hubs", StringComparison.Ordinal) && !Path.HasExtension(path))
                 {
                     context.Request.Path = "/index.html";
+#pragma warning disable S4055 // Literals should not be passed as localized parameters
+                    _logger.LogInformation("Rerouting from {SourceRoute} to {DestinationRoute}", path, context.Request.Path);
+#pragma warning restore S4055 // Literals should not be passed as localized parameters
                 }
 
                 await next();
@@ -94,6 +99,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web
             _tapioCloud = tapioCloud;
         }
 
+        [SuppressMessage("ReSharper", "AssignmentIsFullyDiscarded")]
         public void Validate()
         {
             _ = _tapioCloud.Value;
