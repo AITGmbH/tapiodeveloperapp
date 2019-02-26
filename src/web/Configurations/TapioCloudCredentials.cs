@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Aitgmbh.Tapio.Developerapp.Web.Configurations
 {
-    public class TapioCloud
+    public class TapioCloudCredentials
     {
         [Required(AllowEmptyStrings = false)]
         public string ClientSecret { get; set; }

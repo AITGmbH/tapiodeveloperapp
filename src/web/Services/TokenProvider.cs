@@ -16,7 +16,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Services
 #pragma warning restore S1075 // URIs should not be hardcoded
         private readonly ConfidentialClientApplication _application;
 
-        public TokenProvider(IOptions<TapioCloud> options)
+        public TokenProvider(IOptions<TapioCloudCredentials> options)
         {
             if (options == null)
             {

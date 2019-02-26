@@ -34,7 +34,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddHttpClient<IMachineOverviewService, MachineOverviewService>();
             services
-                .AddOptions<TapioCloud>()
+                .AddOptions<TapioCloudCredentials>()
                 .Bind(Configuration.GetSection("TapioCloud"))
                 .ValidateDataAnnotations()
 #pragma warning disable S4055 // Literals should not be passed as localized parameters
@@ -87,9 +87,9 @@ namespace Aitgmbh.Tapio.Developerapp.Web
     /// </summary>
     public class OptionsValidator
     {
-        private readonly IOptions<TapioCloud> _tapioCloud;
+        private readonly IOptions<TapioCloudCredentials> _tapioCloud;
 
-        public OptionsValidator(IOptions<TapioCloud> tapioCloud)
+        public OptionsValidator(IOptions<TapioCloudCredentials> tapioCloud)
         {
             _tapioCloud = tapioCloud;
         }
