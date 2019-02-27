@@ -22,6 +22,7 @@ group development
   clitool Microsoft.Extensions.SecretManager.Tools
   nuget Microsoft.Identity.Client
   nuget Serilog.AspNetCore
+nuget Serilog.Settings.Configuration
 nuget Serilog.Sinks.Console
 nuget Serilog.Sinks.File
   nuget System.Collections.Immutable >= 1.5.0

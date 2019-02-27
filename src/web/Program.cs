@@ -71,7 +71,19 @@ namespace Aitgmbh.Tapio.Developerapp.Web
                         builder.AddUserSecrets(typeof(Program).Assembly);
                     }
                 })
-                .UseSerilog()
+                .UseSerilog((ctx, loggerConfiguration) =>
+                {
+                    loggerConfiguration
+                        .ReadFrom.Configuration(ctx.Configuration)
+                        .Enrich.FromLogContext()
+                        .WriteTo.Console()
+                        .WriteTo.File(
+                            AzureLogFilePath,
+                            fileSizeLimitBytes: MaxSingleLogFileSize,
+                            rollOnFileSizeLimit: true,
+                            shared: true,
+                            flushToDiskInterval: TimeSpan.FromSeconds(1));
+                })
                 .UseStartup<Startup>();
     }
 }
