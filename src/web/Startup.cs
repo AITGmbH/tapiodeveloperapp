@@ -1,10 +1,10 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
 using Aitgmbh.Tapio.Developerapp.Web.Configurations;
 using Aitgmbh.Tapio.Developerapp.Web.Repositories;
 using Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineOverview;
+using Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineState;
 using Aitgmbh.Tapio.Developerapp.Web.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -37,7 +37,10 @@ namespace Aitgmbh.Tapio.Developerapp.Web
                 .AddSingleton<OptionsValidator>()
                 .AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddHttpClient<IMachineOverviewService, MachineOverviewService>();
+            services
+                .AddHttpClient<IMachineOverviewService, MachineOverviewService>();
+            services
+                .AddHttpClient<IMachineStateService, MachineStateService>();
             services
                 .AddOptions<TapioCloudCredentials>()
                 .Bind(Configuration.GetSection("TapioCloud"))
@@ -99,7 +102,6 @@ namespace Aitgmbh.Tapio.Developerapp.Web
             _tapioCloud = tapioCloud;
         }
 
-        [SuppressMessage("ReSharper", "AssignmentIsFullyDiscarded")]
         public void Validate()
         {
             _ = _tapioCloud.Value;

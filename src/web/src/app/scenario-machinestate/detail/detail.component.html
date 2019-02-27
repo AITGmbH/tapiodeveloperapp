@@ -1,0 +1,28 @@
+<app-scenario [title]="breadCrumb" id="machine-state-scenario">
+<p>
+  State of the machine {{id$ | async}}
+</p>
+
+<div *ngIf="machineStates$ | async as machineStates; else loading">
+  <ul *ngIf="machineStates.length; else noStates">
+    <li *ngFor="let machineState of machineStates">
+        {{machineState}}
+    </li>
+  </ul>
+  <ng-template #noStates>No States!</ng-template>
+</div>
+</app-scenario>
+
+<ng-template #loading>
+  <app-loading></app-loading>
+</ng-template>
+
+<ng-template #breadCrumb>
+  <nav class="breadcrumb" aria-label="breadcrumbs">
+    <ul>
+      <li><a routerLink="../">Machine State</a></li>
+      <li class="is-active"><a routerLink="/{{id$ | async}}" aria-current="page">{{id$ | async}}</a></li>
+    </ul>
+  </nav>
+</ng-template>
+

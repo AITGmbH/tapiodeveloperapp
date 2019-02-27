@@ -11,7 +11,8 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineOverview
     public sealed class MachineOverviewService : IMachineOverviewService
     {
         private const string GlobalDiscoSubscriptionOverview = "https://globaldisco.tapio.one/api/subscriptionOverview";
-        private readonly Uri _globalDiscoSubscriptionOverviewRequest = new Uri(GlobalDiscoSubscriptionOverview);
+
+        private static readonly Uri GlobalDiscoSubscriptionOverviewRequest = new Uri(GlobalDiscoSubscriptionOverview);
 
         private readonly HttpClient _httpClient;
         private readonly ITokenProvider _tokenProvider;
@@ -24,8 +25,8 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineOverview
 
         public async Task<SubscriptionOverview> GetSubscriptionAsync(CancellationToken cancellationToken)
         {
-            var token = await _tokenProvider.ReceiveTokenAsync(cancellationToken);
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, _globalDiscoSubscriptionOverviewRequest);
+            var token = await _tokenProvider.ReceiveTokenAsync(TapioScope.GlobalDiscovery);
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, GlobalDiscoSubscriptionOverviewRequest);
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var responseMessage = await _httpClient.SendAsync(request, cancellationToken);
             responseMessage.EnsureSuccessStatusCode();

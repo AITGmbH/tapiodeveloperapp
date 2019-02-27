@@ -1,4 +1,10 @@
-<h1 class="title is-1">{{title}}</h1>
+<ng-container [ngSwitch]="true">
+  <h1 class="title is-1" *ngSwitchCase="isString(title)">{{title}}</h1>
+  <ng-container *ngSwitchCase="isTemplateRef(title)">
+    <ng-container *ngTemplateOutlet="title"></ng-container>
+  </ng-container>
+</ng-container>
+
 
 <div class="container">
   <div class="developer-links">

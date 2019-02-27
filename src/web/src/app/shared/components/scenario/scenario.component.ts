@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { ScenarioDocumentationService } from './scenario-documentation-service';
 import { VERSION } from 'src/environments/version';
 
@@ -12,13 +12,13 @@ import { VERSION } from 'src/environments/version';
 })
 export class ScenarioComponent implements OnInit {
 
-    private gitHubRepoUrl = 'https://github.com/AITGmbH/tapiodeveloperapp/tree/';
+    private static readonly gitHubRepoUrl = 'https://github.com/AITGmbH/tapiodeveloperapp/tree/';
 
     /**
      * The title of the actual scenario.
      */
     @Input()
-    public title: string;
+    public title: string | TemplateRef<any>;
 
     /**
      * The id of the actual scenario.
@@ -56,16 +56,24 @@ export class ScenarioComponent implements OnInit {
         this.scenarioDocumentationService.getUrls(this.id).subscribe(docPaths => {
             if (docPaths.backend) {
                 this.hasBackendUrl = true;
-                this.backendUrl = this.gitHubRepoUrl + this.version + '/' + docPaths.backend;
+                this.backendUrl = ScenarioComponent.gitHubRepoUrl + this.version + '/' + docPaths.backend;
             }
 
             if (docPaths.frontend) {
-                this.frontendUrl = this.gitHubRepoUrl + this.version + '/' + docPaths.frontend;
+                this.frontendUrl = ScenarioComponent.gitHubRepoUrl + this.version + '/' + docPaths.frontend;
             }
 
             if (docPaths.tapio) {
                 this.tapioDocumentationUrl = docPaths.tapio;
             }
         });
+    }
+
+    isString(value: string | TemplateRef<any>): value is string {
+        return typeof value === 'string';
+    }
+
+    isTemplateRef(value: string | TemplateRef<any>): value is TemplateRef<any> {
+        return typeof value !== 'string';
     }
 }

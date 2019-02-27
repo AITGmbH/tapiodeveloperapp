@@ -1,3 +1,9 @@
 <app-scenario title="Sample Module" id="sample-scenario">
-  {{Welcome}}
+  <ng-container *ngIf="Welcome$ | async; else loading">
+    {{Welcome$ | async}}
+  </ng-container>
 </app-scenario>
+
+<ng-template #loading>
+  <app-loading></app-loading>
+</ng-template>

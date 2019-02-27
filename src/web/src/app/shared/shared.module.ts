@@ -6,6 +6,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 import { ScenarioComponent } from './components/scenario/scenario.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 library.add(faGithub);
 
@@ -13,15 +14,19 @@ library.add(faGithub);
  * Provides access to shared functionality.
  */
 @NgModule({
-  declarations: [ ScenarioComponent ],
-  imports: [
-    CommonModule,
-    FontAwesomeModule
-  ],
-  exports: [
-      ScenarioComponent,
-      FontAwesomeModule
-  ]
+    declarations: [
+        ScenarioComponent,
+        LoadingComponent
+    ],
+    imports: [
+        CommonModule,
+        FontAwesomeModule
+    ],
+    exports: [
+        ScenarioComponent,
+        LoadingComponent,
+        FontAwesomeModule
+    ]
 })
 export class SharedModule {
     faGitHub = faGithub;
