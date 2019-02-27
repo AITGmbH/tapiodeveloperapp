@@ -1,6 +1,6 @@
 <app-scenario [title]="breadCrumb" id="machine-state-scenario">
 <p>
-  State of the machine {{id$ | async}}
+  State of machine {{id$ | async}}
 </p>
 
 <div *ngIf="machineStates$ | async as machineStates; else loading">
