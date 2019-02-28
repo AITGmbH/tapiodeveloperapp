@@ -1,8 +1,8 @@
 .main-header {
   background: #FFF;
   color: #000;
-  height: 50px;
   font-family: audimat;
+  margin-bottom: 0;
 }
 
 .main-content, .main-content .box {
@@ -15,7 +15,7 @@
 }
 
 .logo {
-  margin: 26px;
+  margin: 13px;
   height: 26px;
 }
 
@@ -23,7 +23,6 @@
   list-style-type: none;
 }
 
-.columns {
-  margin-top: 0;
-  margin-bottom: 0;
+.footer {
+  padding: 1rem 1.5rem 2rem;
 }

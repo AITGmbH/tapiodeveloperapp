@@ -1,11 +1,11 @@
 <header
-  class="main-header has-text-centered level">
+  class="main-header has-text-centered level is-mobile">
 
   <div class="level-left">
     <div class="level-item">
-      <a href="https://tapio.one/" target="_blank" rel="noopener"><img src="assets/img/logo/tapio.svg" class="logo"></a>
-      <span> developer app by </span>
-      <a href="https://aitgmbh.de/" target="_blank" rel="noopener"><img src="assets/img/logo/ait.svg" class="logo"></a>
+      <a href="https://tapio.one/" target="_blank" rel="noopener" class="is-hidden-mobile"><img src="assets/img/logo/tapio.svg" class="logo"></a>
+      <span> developer app<span class="is-hidden-mobile"> by </span></span>
+      <a href="https://aitgmbh.de/" target="_blank" rel="noopener" class="is-hidden-mobile"><img src="assets/img/logo/ait.svg" class="logo"></a>
     </div>
   </div>
 
@@ -16,11 +16,11 @@
   </div>
 </header>
 
-<div class="columns">
+<div class="columns is-gapless">
   <div class="column is-one-quarter main-nav">
     <app-scenario-navigation></app-scenario-navigation>
   </div>
-  <div class="column is-paddingless main-content">
+  <div class="column main-content">
     <main
       class="box has-text-centered is-radiusless">
         <router-outlet></router-outlet>

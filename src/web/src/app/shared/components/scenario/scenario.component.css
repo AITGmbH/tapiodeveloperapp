@@ -9,7 +9,16 @@ h1.title {
 }
 
 .developer-links {
-  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.developer-links > a:not(:last-child){
+  margin-right: 6px;
+}
+
+.developer-links > a fa-icon {
+  margin-right: 3px;
 }
 
 * {
