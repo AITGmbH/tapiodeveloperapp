@@ -9,6 +9,10 @@ const routes: Routes = [
     {
         path: 'scenario-machineoverview',
         loadChildren: './scenario-machineoverview/scenario-machineoverview.module#ScenarioMachineoverviewModule'
+    },
+    {
+        path: 'scenario-historicaldata',
+        loadChildren: './scenario-historicaldata/scenario-historicaldata.module#ScenarioHistoricaldataModule'
     }
 ];
 
