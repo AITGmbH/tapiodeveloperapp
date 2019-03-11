@@ -23,6 +23,18 @@
   list-style-type: none;
 }
 
+.columns {
+  margin-top: 0;
+  margin-bottom: 0;
+  min-height: 50rem;
+}
+
+@media only screen and (max-device-width: 768px) {
+  .columns {
+    min-height: 20rem;
+  }
+}
+
 .footer {
   padding: 1rem 1.5rem 2rem;
 }
