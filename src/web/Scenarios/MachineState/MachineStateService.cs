@@ -28,7 +28,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineState
             _tokenProvider = tokenProvider ?? throw new ArgumentNullException(nameof(tokenProvider));
         }
 
-        public async Task<JArray> SingleAsync(Guid machineId, CancellationToken cancellationToken)
+        public async Task<JArray> SingleAsync(string machineId, CancellationToken cancellationToken)
         {
             var token = await _tokenProvider.ReceiveTokenAsync(TapioScope.CoreApi);
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, MachineStateRequest);
@@ -55,7 +55,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineState
         private class MachineStateConfiguration
         {
             [JsonProperty("tmid")]
-            public Guid MachineId { get; set; }
+            public string MachineId { get; set; }
         }
     }
 }

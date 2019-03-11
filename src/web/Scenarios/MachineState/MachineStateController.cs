@@ -19,8 +19,8 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineState
             _machineStateService = machineStateService ?? throw new ArgumentNullException(nameof(machineStateService));
         }
 
-        [HttpGet("{machineId:guid}")]
-        public async Task<IActionResult> SingleAsync(Guid machineId, CancellationToken cancellationToken)
+        [HttpGet("{machineId}")]
+        public async Task<IActionResult> SingleAsync(string machineId, CancellationToken cancellationToken)
         {
             var result = await _machineStateService.SingleAsync(machineId, cancellationToken);
             return Ok(result);
