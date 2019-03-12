@@ -1,21 +1,75 @@
 <app-scenario [title]="breadCrumb" id="machine-state-scenario">
-<p>
-  State of machine {{id$ | async}}
-</p>
-
-<div *ngIf="machineStates$ | async as machineStates; else loading">
-  <ul *ngIf="machineStates.length; else noStates">
-    <li *ngFor="let machineState of machineStates">
-        {{machineState}}
-    </li>
-  </ul>
-  <ng-template #noStates>No States!</ng-template>
+<h1 class="title is-1">State of machine {{id$ | async}}</h1>
+<div>
+  <h2 class="title is-2">Item Data</h2>
+  <ngx-datatable [rows]="itemData$ | async" [columnMode]="'force'">
+    <ngx-datatable-column name="k">
+        <ng-template let-column="column" ngx-datatable-header-template>
+          <span>Key ({{column.name}})</span>
+        </ng-template>
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          {{value}}
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="v">
+      <ng-template let-column="column" ngx-datatable-header-template>
+        <span>Value ({{column.name}})</span>
+      </ng-template>
+      <ng-template let-value="value" ngx-datatable-cell-template>
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="p">
+      <ng-template let-column="column" ngx-datatable-header-template>
+        <span>Provider ({{column.name}})</span>
+      </ng-template>
+      <ng-template let-value="value" ngx-datatable-cell-template>
+          {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="q">
+        <ng-template let-column="column" ngx-datatable-header-template>
+          <span>Quality ({{column.name}})</span>
+        </ng-template>
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          {{value}}
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="rts">
+        <ng-template let-column="column" ngx-datatable-header-template>
+          <span>Receive Time Stamp ({{column.name}})</span>
+        </ng-template>
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          {{value}}
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="sts">
+        <ng-template let-column="column" ngx-datatable-header-template>
+          <span>Source Time Stamp ({{column.name}})</span>
+        </ng-template>
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          {{value}}
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="u">
+        <ng-template let-column="column" ngx-datatable-header-template>
+          <span>Unit ({{column.name}})</span>
+        </ng-template>
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          {{value}}
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="dvt">
+        <ng-template let-column="column" ngx-datatable-header-template>
+          <span>Data Value Type ({{column.name}})</span>
+        </ng-template>
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          {{value}}
+        </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
 </div>
 </app-scenario>
-
-<ng-template #loading>
-  <app-loading></app-loading>
-</ng-template>
 
 <ng-template #breadCrumb>
   <nav class="breadcrumb" aria-label="breadcrumbs">
@@ -25,4 +79,3 @@
     </ul>
   </nav>
 </ng-template>
-

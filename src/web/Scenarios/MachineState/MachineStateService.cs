@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Mime;
@@ -32,7 +33,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineState
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public async Task<JArray> ReceiveStateOfSingleMachineAsync(string machineId, CancellationToken cancellationToken)
+        public async Task<JToken> ReceiveStateOfSingleMachineAsync(string machineId, CancellationToken cancellationToken)
         {
             if (machineId == null)
             {
@@ -68,8 +69,9 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineState
                 {
                     _logger.LogInformation("Converting content to JSON");
                     var array = await JArray.LoadAsync(jsonReader, cancellationToken);
-                    _logger.LogInformation("Received result {Json}", array);
-                    return array;
+                    var result = array.HasValues ? array.Descendants().First() : new JObject();
+                    _logger.LogInformation("Received result {@Json}", result);
+                    return result;
                 }
             }
         }

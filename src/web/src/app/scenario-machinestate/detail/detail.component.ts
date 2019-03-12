@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MachineStateService } from '../scenario-machinestate-service';
+import { MachineStateService, ItemData } from '../scenario-machinestate-service';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-detail',
@@ -10,7 +11,7 @@ import { Observable, of } from 'rxjs';
 })
 export class DetailComponent implements OnInit {
     id$: Observable<string>;
-    machineStates$: Observable<any[]>;
+    itemData$: Observable<ItemData[]>;
 
     constructor(private machineStateService: MachineStateService, private route: ActivatedRoute) { }
 
@@ -20,7 +21,9 @@ export class DetailComponent implements OnInit {
         });
 
         this.id$.subscribe(id => {
-            this.machineStates$ = this.machineStateService.getMachineState(id);
+            this.itemData$ = this.machineStateService.getMachineState(id).pipe(map(states => {
+                 return [].concat(...states.itds);
+            }));
         });
     }
 }
