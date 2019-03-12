@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MachineOverviewService } from '../scenario-machineoverview/scenario-machineoverview-service';
+import { HistoricalDataService } from './scenario-historicaldata-service';
 
 @Component({
   selector: 'app-scenario-historicaldata',
@@ -7,9 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScenarioHistoricaldataComponent implements OnInit {
 
-  constructor() { }
+    constructor(private machineOverviewService: MachineOverviewService, private historicalDataService: HistoricalDataService) { }
 
-  ngOnInit() {
+    ngOnInit() {
   }
 
 }
