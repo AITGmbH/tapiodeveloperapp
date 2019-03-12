@@ -17,7 +17,7 @@ export class MachineStateService {
         }));
     }
 
-    getMachineState(machineId: string): Observable<LastKnownState> {
+    getLastKnownStateFromMachine(machineId: string): Observable<LastKnownState> {
          return this.http.get<LastKnownState>('/api/machineState/' + machineId);
     }
 }
@@ -44,7 +44,7 @@ export interface AssignedMachine {
 export interface LastKnownState {
     tmid: string;
     itds: ItemData[];
-    conds: any[];
+    conds: Condition[];
 }
 
 export interface ItemData {
@@ -56,4 +56,31 @@ export interface ItemData {
     q: string;
     sts: string;
     rts: string;
+}
+
+export interface Condition {
+    p: string;
+    k: string;
+    s: string;
+    as: number;
+    sv: number;
+    ls: LM;
+    lm: LM;
+    vls: Vls;
+    sts: string;
+    rts: string;
+}
+
+export interface LM {
+    de: string;
+    en: string;
+}
+
+export interface Vls {
+    keys: Key[];
+}
+
+export interface Key {
+    t: string;
+    v: number;
 }

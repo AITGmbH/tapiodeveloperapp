@@ -16,7 +16,7 @@
         <span>Value ({{column.name}})</span>
       </ng-template>
       <ng-template let-value="value" ngx-datatable-cell-template>
-        {{value}}
+        {{value | json}}
       </ng-template>
     </ngx-datatable-column>
     <ngx-datatable-column name="p">
@@ -67,6 +67,91 @@
           {{value}}
         </ng-template>
     </ngx-datatable-column>
+  </ngx-datatable>
+</div>
+<div>
+  <h2 class="title is-2">Conditions</h2>
+  <ngx-datatable [rows]="conditions$ | async" [columnMode]="'force'">
+      <ngx-datatable-column name="k">
+          <ng-template let-column="column" ngx-datatable-header-template>
+            <span>Key ({{column.name}})</span>
+          </ng-template>
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            {{value}}
+          </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="p">
+          <ng-template let-column="column" ngx-datatable-header-template>
+            <span>Provider ({{column.name}})</span>
+          </ng-template>
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            {{value}}
+          </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="s">
+          <ng-template let-column="column" ngx-datatable-header-template>
+            <span>Source ({{column.name}})</span>
+          </ng-template>
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            {{value}}
+          </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="as">
+          <ng-template let-column="column" ngx-datatable-header-template>
+            <span>Active State ({{column.name}})</span>
+          </ng-template>
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            {{value}}
+          </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="sv">
+          <ng-template let-column="column" ngx-datatable-header-template>
+            <span>Severity ({{column.name}})</span>
+          </ng-template>
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            {{value}}
+          </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="lm">
+          <ng-template let-column="column" ngx-datatable-header-template>
+            <span>Localized message text ({{column.name}})</span>
+          </ng-template>
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            {{value | json}}
+          </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="ls">
+          <ng-template let-column="column" ngx-datatable-header-template>
+            <span>Localized source text ({{column.name}})</span>
+          </ng-template>
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            {{value | json}}
+          </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="vls">
+          <ng-template let-column="column" ngx-datatable-header-template>
+            <span>Additional Value List ({{column.name}})</span>
+          </ng-template>
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            {{value | json}}
+          </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="rts">
+          <ng-template let-column="column" ngx-datatable-header-template>
+            <span>Receive Time Stamp ({{column.name}})</span>
+          </ng-template>
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            {{value}}
+          </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="sts">
+          <ng-template let-column="column" ngx-datatable-header-template>
+            <span>Source Time Stamp ({{column.name}})</span>
+          </ng-template>
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            {{value}}
+          </ng-template>
+      </ngx-datatable-column>
   </ngx-datatable>
 </div>
 </app-scenario>

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MachineStateService, ItemData } from '../scenario-machinestate-service';
+import { MachineStateService, ItemData, Condition, LastKnownState } from '../scenario-machinestate-service';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-detail',
@@ -12,6 +12,7 @@ import { map } from 'rxjs/operators';
 export class DetailComponent implements OnInit {
     id$: Observable<string>;
     itemData$: Observable<ItemData[]>;
+    conditions$: Observable<Condition[]>;
 
     constructor(private machineStateService: MachineStateService, private route: ActivatedRoute) { }
 
@@ -21,9 +22,10 @@ export class DetailComponent implements OnInit {
         });
 
         this.id$.subscribe(id => {
-            this.itemData$ = this.machineStateService.getMachineState(id).pipe(map(states => {
-                 return [].concat(...states.itds);
-            }));
+            this.machineStateService.getLastKnownStateFromMachine(id).subscribe(lastKnownState => {
+                this.itemData$ = of(lastKnownState.itds);
+                this.conditions$ = of(lastKnownState.conds);
+            });
         });
     }
 }
