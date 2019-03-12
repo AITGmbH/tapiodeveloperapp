@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { ScenarioMachinestateRoutingModule } from './scenario-machinestate-routing.module';
 import { ScenarioMachinestateComponent } from './scenario-machinestate.component';
@@ -12,7 +11,6 @@ import { DetailComponent } from './detail/detail.component';
       DetailComponent
     ],
   imports: [
-    CommonModule,
     ScenarioMachinestateRoutingModule,
     SharedModule
   ]

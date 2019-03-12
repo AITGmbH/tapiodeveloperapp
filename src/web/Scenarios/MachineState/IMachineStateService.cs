@@ -7,6 +7,6 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineState
 {
     public interface IMachineStateService
     {
-        Task<JArray> SingleAsync(string machineId, CancellationToken cancellationToken);
+        Task<JArray> ReceiveStateOfSingleMachineAsync(string machineId, CancellationToken cancellationToken);
     }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map, flatMap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 /**
  * Provides access to the tapio machine state.
@@ -12,9 +12,9 @@ export class MachineStateService {
     constructor(private http: HttpClient) { }
 
     getMachines(): Observable<AssignedMachine[]> {
-        return this.http.get<SubscriptionsOverview>('/api/machineOverview/')
-            .pipe(flatMap(overview => overview.subscriptions))
-            .pipe(map(subscriptions => subscriptions.assignedMachines));
+        return this.http.get<SubscriptionsOverview>('/api/machineOverview/').pipe(map(overview => {
+            return [].concat(...overview.subscriptions.map(subscription => subscription.assignedMachines));
+        }));
     }
 
     getMachineState(machineId: string): Observable<any[]> {

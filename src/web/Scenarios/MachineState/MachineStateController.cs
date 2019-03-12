@@ -22,7 +22,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineState
         [HttpGet("{machineId}")]
         public async Task<IActionResult> SingleAsync(string machineId, CancellationToken cancellationToken)
         {
-            var result = await _machineStateService.SingleAsync(machineId, cancellationToken);
+            var result = await _machineStateService.ReceiveStateOfSingleMachineAsync(machineId, cancellationToken);
             return Ok(result);
         }
     }

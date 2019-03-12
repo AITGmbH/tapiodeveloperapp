@@ -25,7 +25,8 @@ library.add(faGithub);
     exports: [
         ScenarioComponent,
         LoadingComponent,
-        FontAwesomeModule
+        FontAwesomeModule,
+        CommonModule
     ]
 })
 export class SharedModule {
