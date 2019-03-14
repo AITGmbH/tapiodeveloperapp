@@ -1,13 +1,13 @@
-<app-scenario title="Historical Data Scenario" id="historical-data-scenario">
+<app-scenario title="Historical Data" id="historical-data-scenario">
   <p>
   </p>
   <div>
     <div class="row">
-        <div class="tile">
+      <div class="tile">
           <ng-select class="tile dropdown" [items]="assignedMachines | async" [bindLabel]="'displayName'" 
           placeholder="please select a machine" [clearable]="false" [searchable]="false" [dropdownPosition]="'bottom'"
           (change)="selectedMachineChanged($event)"></ng-select>
-        </div>
+      </div>
       <div class="sourceKeyList" *ngIf="(sourceKeys | async); else loadingOrError">
         <h1 class="sourceKeyHeader">Source Keys:</h1>
         <ul>
