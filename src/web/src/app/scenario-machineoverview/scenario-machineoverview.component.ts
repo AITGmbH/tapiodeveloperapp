@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of, Subject } from 'rxjs';
-import { Subscription, MachineOverviewService } from './scenario-machineoverview-service';
+import { MachineOverviewService } from '../shared/services/machine-overview.service';
+import { Subscription } from '../shared/models/subscription.model';
 
 @Component({
   selector: 'app-scenario-machineoverview',

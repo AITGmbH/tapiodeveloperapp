@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { ScenarioEntry, ScenarioNavigationService } from './scenario-navigation.service';
+import { ScenarioNavigationService } from '../shared/services/scenario-navigation.service';
+import { ScenarioEntry } from '../shared/models/scenario-entity.model';
 
 /**
  * Displays the available scenario menu entries.

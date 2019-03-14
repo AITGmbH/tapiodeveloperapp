@@ -1,11 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
 import { ScenarioNavigationComponent } from './scenario-navigation.component';
-import { ScenarioNavigationService, ScenarioEntry } from './scenario-navigation.service';
 import { of } from 'rxjs';
 import * as moq from 'typemoq';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
+import { ScenarioEntry } from '../shared/models/scenario-entity.model';
+import { ScenarioNavigationService } from '../shared/services/scenario-navigation.service';
 
 describe('ScenarioNavigationComponent', () => {
     it('should create two entries', () => {

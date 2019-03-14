@@ -1,14 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Observable, of, Subject } from "rxjs";
-import {
-    HistoricalDataService,
-    SourceKeysResponse
-} from "./scenario-historicaldata-service";
-import {
-    Subscription,
-    MachineOverviewService,
-    AssignedMachine
-} from "../scenario-machineoverview/scenario-machineoverview-service";
+import { HistoricalDataService } from '../shared/services/historical-data.service';
+import { SourceKeys } from '../shared/models/source-keys.model';
+import { AssignedMachine } from '../shared/models/assigned-machine.model';
 
 @Component({
     selector: "app-scenario-historicaldata",
@@ -17,17 +11,10 @@ import {
 })
 export class ScenarioHistoricaldataComponent implements OnInit {
     assignedMachines: Observable<AssignedMachine[]>;
-    sourceKeys: Observable<SourceKeysResponse[]>;
+    sourceKeys: SourceKeys;
     error$ = new Subject<boolean>();
     loading$ = new Subject<boolean>();
     loadingMachines$ = new Subject<boolean>();
-
-    rows = [
-        { name: "Austin", gender: "Male", company: "Swimlane" },
-        { name: "Dany", gender: "Male", company: "KFC" },
-        { name: "Molly", gender: "Female", company: "Burger King" }
-    ];
-    columns = [{ prop: "name" }, { name: "Gender" }, { name: "Company" }];
 
     constructor(private historicalDataService: HistoricalDataService) {
         this.error$.next(false);
@@ -50,14 +37,13 @@ export class ScenarioHistoricaldataComponent implements OnInit {
         );
     }
 
-    selectedMachineChanged(machine: AssignedMachine) {
-        console.log(machine);
+    public selectedMachineChanged(tmid: string) {
         this.loading$.next(true);
         this.error$.next(false);
         this.sourceKeys = null;
-        this.historicalDataService.getSourceKeys(machine.tmid).subscribe(
+        this.historicalDataService.getSourceKeys(tmid).subscribe(
             sourceKeys => {
-                this.sourceKeys = of(sourceKeys);
+                this.sourceKeys = sourceKeys;
                 this.loading$.next(false);
             },
             error => {

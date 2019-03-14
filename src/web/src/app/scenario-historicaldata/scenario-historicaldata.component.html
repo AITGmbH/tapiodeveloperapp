@@ -1,22 +1,14 @@
 <app-scenario title="Historical Data" id="historical-data-scenario">
-  <p>
-  </p>
   <div>
+    <app-select-machine (change)="selectedMachineChanged($event)"></app-select-machine>
     <div class="row">
-      <div class="tile">
-        <ng-select class="tile dropdown" [items]="assignedMachines | async" [bindLabel]="'displayName'" placeholder="please select a machine"
-          [clearable]="false" [searchable]="false" [dropdownPosition]="'bottom'" [loading]="loadingMachines$ | async"
-          (change)="selectedMachineChanged($event)"></ng-select>
-      </div>
-      <div class="sourceKeyList" *ngIf="sourceKeys | async; else loadingOrError">
-        <h1 class="sourceKeyHeader">Source Keys:</h1>
+      <div class="sourceKeyList" *ngIf="sourceKeys; else loadingOrError">
         <ul>
-          <li *ngFor="let key of sourceKeys | async">
+          <li *ngFor="let key of sourceKeys.keys">
             {{key}}
           </li>
         </ul>
       </div>
-
     </div>
   </div>
 </app-scenario>
@@ -33,8 +25,3 @@
     </div>
   </div>
 </ng-template>
-
-<div>
-  <ngx-datatable [rows]="rows" [columns]="columns">
-  </ngx-datatable>
-</div>

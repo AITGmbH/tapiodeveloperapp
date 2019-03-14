@@ -1,0 +1,13 @@
+.dropdown {
+    background-color: white;
+    max-width: 20rem;
+}
+
+.ng-select.dropdown ::ng-deep .ng-dropdown-panel  {
+    background-color:white;
+    color: black;
+}
+
+.ng-select.dropdown ::ng-deep .ng-placeholder  {
+    color: black;
+}
