@@ -7,11 +7,11 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 import { ScenarioComponent } from "./components/scenario/scenario.component";
 import { NgxDatatableModule } from "@swimlane/ngx-datatable";
-import { HistoricalDataService } from './services/historical-data.service';
-import { SelectMachineComponent } from './components/select-machine/select-machine.component';
+import { HistoricalDataService } from "./services/historical-data.service";
+import { SelectMachineComponent } from "./components/select-machine/select-machine.component";
 import { NgSelectModule } from "@ng-select/ng-select";
-import { MachineOverviewService } from './services/machine-overview.service';
-import { ScenarioNavigationService } from './services/scenario-navigation.service';
+import { MachineOverviewService } from "./services/machine-overview.service";
+import { ScenarioNavigationService } from "./services/scenario-navigation.service";
 
 library.add(faGithub);
 

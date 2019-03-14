@@ -1,5 +1,5 @@
-import { AssignedMachine } from './assigned-machine.model';
-import { License } from './license.model';
+import { AssignedMachine } from "./assigned-machine.model";
+import { License } from "./license.model";
 
 /***
  * Provides a single subscription.

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { ScenarioDocumentationService } from "./scenario-documentation-service";
 import { VERSION } from "src/environments/version";
 

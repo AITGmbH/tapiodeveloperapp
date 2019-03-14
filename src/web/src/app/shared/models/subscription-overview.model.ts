@@ -1,4 +1,4 @@
-import { Subscription } from './subscription.model';
+import { Subscription } from "./subscription.model";
 
 /***
  * Provides an overview of the subscriptions

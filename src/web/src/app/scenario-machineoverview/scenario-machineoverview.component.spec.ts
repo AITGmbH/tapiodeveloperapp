@@ -1,10 +1,10 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 
-import { ScenarioMachineoverviewComponent } from './scenario-machineoverview.component';
-import { SharedModule } from '../shared/shared.module';
+import { ScenarioMachineoverviewComponent } from "./scenario-machineoverview.component";
+import { SharedModule } from "../shared/shared.module";
 
-describe('ScenarioMachineoverviewComponent', () => {
+describe("ScenarioMachineoverviewComponent", () => {
   let component: ScenarioMachineoverviewComponent;
   let fixture: ComponentFixture<ScenarioMachineoverviewComponent>;
 
@@ -22,7 +22,7 @@ describe('ScenarioMachineoverviewComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

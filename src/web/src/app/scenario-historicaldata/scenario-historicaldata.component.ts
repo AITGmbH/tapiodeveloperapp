@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Observable, of, Subject } from "rxjs";
-import { HistoricalDataService } from '../shared/services/historical-data.service';
-import { SourceKeys } from '../shared/models/source-keys.model';
-import { AssignedMachine } from '../shared/models/assigned-machine.model';
+import { HistoricalDataService } from "../shared/services/historical-data.service";
+import { SourceKeys } from "../shared/models/source-keys.model";
+import { AssignedMachine } from "../shared/models/assigned-machine.model";
 
 @Component({
     selector: "app-scenario-historicaldata",

@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { ScenarioHistoricaldataComponent } from './scenario-historicaldata.component';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+import { ScenarioHistoricaldataComponent } from "./scenario-historicaldata.component";
 
 const routes: Routes = [
     {
-        path: '',
+        path: "",
         component: ScenarioHistoricaldataComponent
     }];
 

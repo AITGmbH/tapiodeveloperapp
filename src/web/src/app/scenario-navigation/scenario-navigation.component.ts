@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { ScenarioNavigationService } from '../shared/services/scenario-navigation.service';
-import { ScenarioEntry } from '../shared/models/scenario-entity.model';
+import { Component, OnInit } from "@angular/core";
+import { Observable, of } from "rxjs";
+import { ScenarioNavigationService } from "../shared/services/scenario-navigation.service";
+import { ScenarioEntry } from "../shared/models/scenario-entity.model";
 
 /**
  * Displays the available scenario menu entries.
  */
 @Component({
-    selector: 'app-scenario-navigation',
-    templateUrl: './scenario-navigation.component.html',
-    styleUrls: ['./scenario-navigation.component.css']
+    selector: "app-scenario-navigation",
+    templateUrl: "./scenario-navigation.component.html",
+    styleUrls: ["./scenario-navigation.component.css"]
 })
 export class ScenarioNavigationComponent implements OnInit {
     scenarioEntries$: Observable<ScenarioEntry[]>;

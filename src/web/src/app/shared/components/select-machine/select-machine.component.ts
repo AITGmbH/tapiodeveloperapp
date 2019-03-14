@@ -1,8 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
-import { Router, ActivatedRoute } from "@angular/router";
-import { HistoricalDataService } from '../../services/historical-data.service';
-import { Subject, Observable, of } from 'rxjs';
-import { AssignedMachine } from '../../models/assigned-machine.model';
+import { HistoricalDataService } from "../../services/historical-data.service";
+import { Observable, of } from "rxjs";
+import { AssignedMachine } from "../../models/assigned-machine.model";
 
 @Component({
   selector: "app-select-machine",
@@ -30,10 +29,10 @@ export class SelectMachineComponent implements OnInit {
   }
 
   public selectedMachineChanged(machine: AssignedMachine) {
-      if(!machine) {
+      if (!machine) {
           return;
       }
-      if(!machine.tmid) {
+      if (!machine.tmid) {
           return;
       }
       this.change.emit(machine.tmid);
