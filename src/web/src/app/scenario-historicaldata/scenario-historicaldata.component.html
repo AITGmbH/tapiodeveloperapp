@@ -1,5 +1,36 @@
 <app-scenario title="Historical Data Scenario" id="historical-data-scenario">
   <p>
-    scenario-historicaldata works!
   </p>
+  <div>
+    <div class="row">
+        <div class="tile">
+          <ng-select class="tile dropdown" [items]="assignedMachines | async" [bindLabel]="'displayName'" 
+          placeholder="please select a machine" [clearable]="false" [searchable]="false" [dropdownPosition]="'bottom'"
+          (change)="selectedMachineChanged($event)"></ng-select>
+        </div>
+      <div class="sourceKeyList" *ngIf="(sourceKeys | async); else loadingOrError">
+        <h1 class="sourceKeyHeader">Source Keys:</h1>
+        <ul>
+          <li *ngFor="let key of sourceKeys | async">
+            {{key}}
+          </li>
+        </ul>
+      </div>
+  
+    </div>
+  </div>
 </app-scenario>
+
+<ng-template #loadingOrError>
+  <div *ngIf="errorLoading$ | async; else loading" class="errorMessage">
+    <div>
+      No data available for this machine
+    </div>
+  </div>
+  <ng-template #loading>
+    <div class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+    </div>
+  </ng-template>
+</ng-template>

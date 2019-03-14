@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MachineOverviewService } from '../scenario-machineoverview/scenario-machineoverview-service';
-import { HistoricalDataService } from './scenario-historicaldata-service';
+import { Observable, of, Subject } from 'rxjs';
+import { HistoricalDataService, SourceKeysResponse } from './scenario-historicaldata-service';
+import { Subscription, MachineOverviewService, AssignedMachine } from '../scenario-machineoverview/scenario-machineoverview-service';
 
 @Component({
   selector: 'app-scenario-historicaldata',
@@ -8,10 +9,33 @@ import { HistoricalDataService } from './scenario-historicaldata-service';
   styleUrls: ['./scenario-historicaldata.component.css']
 })
 export class ScenarioHistoricaldataComponent implements OnInit {
+    assignedMachines: Observable<AssignedMachine[]>;
+    sourceKeys: Observable<SourceKeysResponse>;
+    errorLoading$ = new Subject<boolean>();
 
-    constructor(private machineOverviewService: MachineOverviewService, private historicalDataService: HistoricalDataService) { }
+    constructor(private historicalDataService: HistoricalDataService) { }
 
     ngOnInit() {
-  }
+        this.historicalDataService.getMachines().subscribe(machines => {
+            this.assignedMachines = of(machines);
 
+        }, error => {
+            console.error('could not load machines', error);
+            this.errorLoading$.next(true);
+        });
+    }
+    
+    selectedMachineChanged(machine: AssignedMachine) {
+        console.log(machine);
+        this.sourceKeys = null;
+        this.historicalDataService.getSourceKeys(machine.tmid).subscribe(
+            sourceKeys => {
+                this.sourceKeys = of(sourceKeys);
+            },
+            error => {
+                console.error('could not load sourceKeys', error);
+                this.errorLoading$.next(true);
+            }
+        );
+    }
 }

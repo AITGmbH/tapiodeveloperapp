@@ -20,7 +20,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricalData
             _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
             _tokenProvider = tokenProvider ?? throw new ArgumentNullException(nameof(tokenProvider));
         }
-        
+
         public async Task<SourceKeyResponse> ReadSourceKeys(CancellationToken cancellationToken, string machineId)
         {
             var token = await _tokenProvider.ReceiveTokenAsync(TapioScope.CoreApi);
@@ -30,6 +30,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricalData
             responseMessage.EnsureSuccessStatusCode();
             var content = await responseMessage.Content.ReadAsStringAsync();
             var result = SourceKeyResponseExtension.FromJson(content);
+            result.MachineId = machineId;
             return result;
         }
     }
