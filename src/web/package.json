@@ -24,6 +24,8 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.14",
     "@fortawesome/free-brands-svg-icons": "^5.7.1",
     "@fortawesome/free-solid-svg-icons": "^5.7.1",
+    "@ng-select/ng-select": "^2.16.2",
+    "@swimlane/ngx-datatable": "^14.0.0",
     "bulma": "^0.7.2",
     "core-js": "^2.5.4",
     "rxjs": "~6.3.3",

@@ -1,0 +1,27 @@
+<app-scenario title="Historical Data" id="historical-data-scenario">
+  <div>
+    <app-select-machine (change)="selectedMachineChanged($event)"></app-select-machine>
+    <div class="row">
+      <div class="sourceKeyList" *ngIf="sourceKeys; else loadingOrError">
+        <ul>
+          <li *ngFor="let key of sourceKeys.keys">
+            {{key}}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</app-scenario>
+<ng-template #loadingOrError>
+  <div *ngIf="error$ | async" class="errorMessage">
+    <div>
+      No data available for this machine
+    </div>
+  </div>
+  <div>
+    <div *ngIf="loading$ | async" class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+    </div>
+  </div>
+</ng-template>
