@@ -5,7 +5,6 @@ import { ScenarioHistoricconditionsRoutingModule } from './scenario-historiccond
 import { ScenarioHistoricconditionsComponent } from './scenario-historicconditions.component';
 import { SharedModule } from "../shared/shared.module";
 
-
 @NgModule({
   declarations: [ScenarioHistoricconditionsComponent],
   imports: [

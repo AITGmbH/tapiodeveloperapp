@@ -1,4 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 
@@ -18,7 +19,8 @@ import { HamburgermenuComponent } from "./hamburgermenu/hamburgermenu.component"
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
-        SharedModule
+        SharedModule,
+        BrowserAnimationsModule
     ],
     providers: [],
     bootstrap: [AppComponent]
