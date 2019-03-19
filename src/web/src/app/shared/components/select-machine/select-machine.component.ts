@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
-import { HistoricalDataService } from "../../services/historical-data.service";
 import { Observable, of } from "rxjs";
 import { AssignedMachine } from "../../models/assigned-machine.model";
+import { HistoricalDataService } from 'src/app/scenario-historicaldata/scenario-historicaldata.service';
 
 @Component({
   selector: "app-select-machine",

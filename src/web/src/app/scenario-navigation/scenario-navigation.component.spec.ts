@@ -6,7 +6,7 @@ import * as moq from "typemoq";
 import { By } from "@angular/platform-browser";
 import { RouterTestingModule } from "@angular/router/testing";
 import { ScenarioEntry } from "../shared/models/scenario-entity.model";
-import { ScenarioNavigationService } from "../shared/services/scenario-navigation.service";
+import { ScenarioNavigationService } from "./scenario-navigation.service";
 
 describe("ScenarioNavigationComponent", () => {
     it("should create two entries", () => {

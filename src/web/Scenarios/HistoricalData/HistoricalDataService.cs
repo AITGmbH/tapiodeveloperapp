@@ -21,7 +21,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricalData
             _tokenProvider = tokenProvider ?? throw new ArgumentNullException(nameof(tokenProvider));
         }
 
-        public async Task<SourceKeyResponse> ReadSourceKeys(CancellationToken cancellationToken, string machineId)
+        public async Task<SourceKeyResponse> ReadSourceKeysAsync(CancellationToken cancellationToken, string machineId)
         {
             var token = await _tokenProvider.ReceiveTokenAsync(TapioScope.CoreApi);
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, new Uri(String.Format(GetMachineSourceKeys, machineId)));
@@ -37,6 +37,6 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricalData
 
     public interface IHistoricalDataService
     {
-        Task<SourceKeyResponse> ReadSourceKeys(CancellationToken cancellationToken, string machineId);
+        Task<SourceKeyResponse> ReadSourceKeysAsync(CancellationToken cancellationToken, string machineId);
     }
 }
