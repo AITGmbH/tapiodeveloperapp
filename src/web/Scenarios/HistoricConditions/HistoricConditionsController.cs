@@ -13,7 +13,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricConditions
         "src/web/src/app/scenario-historicconditions", "src/web/Scenarios/HistoricConditions", "https://developer.tapio.one/docs/HistoricalData.html")]
     [Produces("application/json")]
     [Route("api/[controller]")]
-    public class HistoricConditionsController
+    public class HistoricConditionsController : Controller
     {
         private readonly IHistoricConditionsService _historicConditionsService;
 
@@ -22,11 +22,11 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricConditions
             _historicConditionsService = historicConditionsService;
         }
 
-        //[HttpGet("{machineId}")]
-        //public async Task<ActionResult<SubscriptionOverview>> GetSourceKeys(CancellationToken cancellationToken, string machineId)
-        //{
-        //    var keys = await _historicConditionsService.ReadSourceKeys(cancellationToken, machineId);
-        //    return Ok(keys);
-        //}
+        [HttpGet("{machineId}")]
+        public async Task<ActionResult<SubscriptionOverview>> GetConditions(CancellationToken cancellationToken, string machineId)
+        {
+            var resp = await _historicConditionsService.ReadConditions(cancellationToken, machineId);
+            return Ok(resp);
+        }
     }
 }

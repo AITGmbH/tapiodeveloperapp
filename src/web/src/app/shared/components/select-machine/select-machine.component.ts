@@ -37,5 +37,4 @@ export class SelectMachineComponent implements OnInit {
       }
       this.change.emit(machine.tmid);
   }
-
 }

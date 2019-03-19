@@ -4,6 +4,7 @@ using System.IO;
 using Aitgmbh.Tapio.Developerapp.Web.Configurations;
 using Aitgmbh.Tapio.Developerapp.Web.Repositories;
 using Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricalData;
+using Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricConditions;
 using Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineOverview;
 using Aitgmbh.Tapio.Developerapp.Web.Services;
 using Microsoft.AspNetCore.Builder;
@@ -35,6 +36,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddHttpClient<IMachineOverviewService, MachineOverviewService>();
             services.AddHttpClient<IHistoricalDataService, HistoricalDataService>();
+            services.AddHttpClient<IHistoricConditionsService, HistoricConditionsService>();
             services
                 .AddOptions<TapioCloudCredentials>()
                 .Bind(Configuration.GetSection("TapioCloud"))
