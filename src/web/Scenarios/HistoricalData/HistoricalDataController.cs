@@ -1,3 +1,4 @@
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Aitgmbh.Tapio.Developerapp.Web.Models;
@@ -22,7 +23,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricalData
         [HttpGet("{machineId}")]
         public async Task<ActionResult<SubscriptionOverview>> GetSourceKeys(CancellationToken cancellationToken, string machineId)
         {
-            var keys = await _historicalDataService.ReadSourceKeys(cancellationToken, machineId);
+            var keys = await _historicalDataService.ReadSourceKeysAsync(cancellationToken, machineId);
             return Ok(keys);
         }
     }

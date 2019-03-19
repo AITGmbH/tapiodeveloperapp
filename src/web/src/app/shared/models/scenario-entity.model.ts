@@ -1,5 +1,5 @@
 /**
- * Represents a secanario entry.
+ * Represents a scenario entry.
  */
 export class ScenarioEntry {
     /**

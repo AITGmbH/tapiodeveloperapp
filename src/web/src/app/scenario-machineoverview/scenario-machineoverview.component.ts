@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Observable, of, Subject } from "rxjs";
-import { MachineOverviewService } from "../shared/services/machine-overview.service";
+import { MachineOverviewService } from "./scenario-machineoverview.service";
 import { Subscription } from "../shared/models/subscription.model";
 
 @Component({

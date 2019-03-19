@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Observable, of, Subject } from "rxjs";
-import { HistoricalDataService } from "../shared/services/historical-data.service";
-import { SourceKeys } from "../shared/models/source-keys.model";
+import { SourceKeys } from "./source-keys.model";
 import { AssignedMachine } from "../shared/models/assigned-machine.model";
+import { HistoricalDataService } from './scenario-historicaldata.service';
 
 @Component({
     selector: "app-scenario-historicaldata",
@@ -10,7 +10,7 @@ import { AssignedMachine } from "../shared/models/assigned-machine.model";
     styleUrls: ["./scenario-historicaldata.component.css"]
 })
 export class ScenarioHistoricaldataComponent implements OnInit {
-    assignedMachines: Observable<AssignedMachine[]>;
+    assignedMachines$: Observable<AssignedMachine[]>;
     sourceKeys: SourceKeys;
     error$ = new Subject<boolean>();
     loading$ = new Subject<boolean>();
@@ -26,7 +26,7 @@ export class ScenarioHistoricaldataComponent implements OnInit {
         this.loadingMachines$.next(true);
         this.historicalDataService.getMachines().subscribe(
             machines => {
-                this.assignedMachines = of(machines);
+                this.assignedMachines$ = of(machines);
                 this.loadingMachines$.next(false);
             },
             error => {

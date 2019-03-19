@@ -3,12 +3,12 @@
     max-width: 20rem;
 }
 
-.ng-select.dropdown ::ng-deep .ng-dropdown-panel  {
+.ng-select.dropdown .ng-dropdown-panel  {
     background-color:white;
     color: black;
 }
 
-.ng-select.dropdown ::ng-deep .ng-placeholder  {
+.ng-select.dropdown .ng-placeholder  {
     color: black;
 }
 
