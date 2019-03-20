@@ -3,26 +3,27 @@ import { HttpClientTestingModule } from "@angular/common/http/testing";
 
 import { ScenarioMachineoverviewComponent } from "./scenario-machineoverview.component";
 import { SharedModule } from "../shared/shared.module";
+import { MachineOverviewService } from "./scenario-machineoverview.service";
 
 describe("ScenarioMachineoverviewComponent", () => {
-  let component: ScenarioMachineoverviewComponent;
-  let fixture: ComponentFixture<ScenarioMachineoverviewComponent>;
+    let component: ScenarioMachineoverviewComponent;
+    let fixture: ComponentFixture<ScenarioMachineoverviewComponent>;
 
-  beforeEach(async(() => {
-  TestBed.configureTestingModule({
-      declarations: [ScenarioMachineoverviewComponent],
-      imports: [SharedModule, HttpClientTestingModule]
-      })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [ScenarioMachineoverviewComponent],
+            imports: [SharedModule, HttpClientTestingModule],
+            providers: [MachineOverviewService]
+        }).compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ScenarioMachineoverviewComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(ScenarioMachineoverviewComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it("should create", () => {
-    expect(component).toBeTruthy();
-  });
+    it("should create", () => {
+        expect(component).toBeTruthy();
+    });
 });
