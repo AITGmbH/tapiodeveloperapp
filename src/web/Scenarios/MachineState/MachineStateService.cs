@@ -70,7 +70,6 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineState
                     _logger.LogInformation("Converting content to JSON");
                     var array = await JArray.LoadAsync(jsonReader, cancellationToken);
                     var result = array.HasValues ? array.Descendants().First() : new JObject();
-                    _logger.LogInformation("Received result {@Json}", result);
                     return result;
                 }
             }

@@ -30,7 +30,7 @@ Target.create "Build.Frontend" (fun _ ->
             WorkingDirectory = "./src/web"
         })
 
-    let angular = ProcessUtils.tryFindFileOnPath  "ng"
+    let angular = ProcessUtils.tryFindFileOnPath "ng"
     if angular.IsNone then failwith "angular cli could not be found"
 
     let angularResult =

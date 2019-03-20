@@ -2,8 +2,8 @@
 <h1 class="title is-1">State of machine {{id$ | async}}</h1>
 <div>
   <h2 class="title is-2">Item Data</h2>
-  <ngx-datatable [rows]="itemData$ | async" [columnMode]="'force'">
-    <ngx-datatable-column name="k">
+  <ngx-datatable [rows]="itemData$ | async" [columnMode]="'flex'" [loadingIndicator]="isLoading" [scrollbarH]="true" #itemData>
+    <ngx-datatable-column name="k" [flexGrow]="2" [resizeable]="false">
         <ng-template let-column="column" ngx-datatable-header-template>
           <span>Key ({{column.name}})</span>
         </ng-template>
@@ -11,7 +11,7 @@
           {{value}}
         </ng-template>
     </ngx-datatable-column>
-    <ngx-datatable-column name="v">
+    <ngx-datatable-column name="v" [flexGrow]="2" [resizeable]="false">
       <ng-template let-column="column" ngx-datatable-header-template>
         <span>Value ({{column.name}})</span>
       </ng-template>
@@ -19,7 +19,7 @@
         {{value | json}}
       </ng-template>
     </ngx-datatable-column>
-    <ngx-datatable-column name="p">
+    <ngx-datatable-column name="p" [flexGrow]="1" [resizeable]="false">
       <ng-template let-column="column" ngx-datatable-header-template>
         <span>Provider ({{column.name}})</span>
       </ng-template>
@@ -27,7 +27,7 @@
           {{value}}
       </ng-template>
     </ngx-datatable-column>
-    <ngx-datatable-column name="q">
+    <ngx-datatable-column name="q" [flexGrow]="1" [resizeable]="false">
         <ng-template let-column="column" ngx-datatable-header-template>
           <span>Quality ({{column.name}})</span>
         </ng-template>
@@ -35,31 +35,23 @@
           {{value}}
         </ng-template>
     </ngx-datatable-column>
-    <ngx-datatable-column name="rts">
+    <ngx-datatable-column name="rts" [flexGrow]="1" [resizeable]="false">
         <ng-template let-column="column" ngx-datatable-header-template>
           <span>Receive Time Stamp ({{column.name}})</span>
         </ng-template>
         <ng-template let-value="value" ngx-datatable-cell-template>
-          {{value}}
+          {{ value | date: 'medium' }}
         </ng-template>
     </ngx-datatable-column>
-    <ngx-datatable-column name="sts">
+    <ngx-datatable-column name="sts" [flexGrow]="1" [resizeable]="false">
         <ng-template let-column="column" ngx-datatable-header-template>
           <span>Source Time Stamp ({{column.name}})</span>
         </ng-template>
         <ng-template let-value="value" ngx-datatable-cell-template>
-          {{value}}
+          {{ value | date: 'medium' }}
         </ng-template>
     </ngx-datatable-column>
-    <ngx-datatable-column name="u">
-        <ng-template let-column="column" ngx-datatable-header-template>
-          <span>Unit ({{column.name}})</span>
-        </ng-template>
-        <ng-template let-value="value" ngx-datatable-cell-template>
-          {{value}}
-        </ng-template>
-    </ngx-datatable-column>
-    <ngx-datatable-column name="dvt">
+    <ngx-datatable-column name="dvt" [flexGrow]="1" [resizeable]="false">
         <ng-template let-column="column" ngx-datatable-header-template>
           <span>Data Value Type ({{column.name}})</span>
         </ng-template>
@@ -68,11 +60,13 @@
         </ng-template>
     </ngx-datatable-column>
   </ngx-datatable>
+  <ng-container *ngTemplateOutlet="showError">
+  </ng-container>
 </div>
 <div>
   <h2 class="title is-2">Conditions</h2>
-  <ngx-datatable [rows]="conditions$ | async" [columnMode]="'force'">
-      <ngx-datatable-column name="k">
+  <ngx-datatable [rows]="conditions$ | async" [columnMode]="'flex'" [loadingIndicator]="isLoading" [scrollbarH]="true" #conditions>
+      <ngx-datatable-column name="k" [flexGrow]="2" [resizeable]="false">
           <ng-template let-column="column" ngx-datatable-header-template>
             <span>Key ({{column.name}})</span>
           </ng-template>
@@ -80,7 +74,7 @@
             {{value}}
           </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="p">
+      <ngx-datatable-column name="p" [flexGrow]="1" [resizeable]="false">
           <ng-template let-column="column" ngx-datatable-header-template>
             <span>Provider ({{column.name}})</span>
           </ng-template>
@@ -88,7 +82,7 @@
             {{value}}
           </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="s">
+      <ngx-datatable-column name="s" [flexGrow]="2" [resizeable]="false">
           <ng-template let-column="column" ngx-datatable-header-template>
             <span>Source ({{column.name}})</span>
           </ng-template>
@@ -96,7 +90,7 @@
             {{value}}
           </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="as">
+      <ngx-datatable-column name="as" [flexGrow]="1" [resizeable]="false">
           <ng-template let-column="column" ngx-datatable-header-template>
             <span>Active State ({{column.name}})</span>
           </ng-template>
@@ -104,7 +98,7 @@
             {{value}}
           </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="sv">
+      <ngx-datatable-column name="sv" [flexGrow]="1" [resizeable]="false">
           <ng-template let-column="column" ngx-datatable-header-template>
             <span>Severity ({{column.name}})</span>
           </ng-template>
@@ -112,7 +106,7 @@
             {{value}}
           </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="lm">
+      <ngx-datatable-column name="lm" [flexGrow]="2" [resizeable]="false">
           <ng-template let-column="column" ngx-datatable-header-template>
             <span>Localized message text ({{column.name}})</span>
           </ng-template>
@@ -120,7 +114,7 @@
             {{value | json}}
           </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="ls">
+      <ngx-datatable-column name="ls" [flexGrow]="2" [resizeable]="false">
           <ng-template let-column="column" ngx-datatable-header-template>
             <span>Localized source text ({{column.name}})</span>
           </ng-template>
@@ -128,7 +122,7 @@
             {{value | json}}
           </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="vls">
+      <ngx-datatable-column name="vls" [flexGrow]="2" [resizeable]="false">
           <ng-template let-column="column" ngx-datatable-header-template>
             <span>Additional Value List ({{column.name}})</span>
           </ng-template>
@@ -136,23 +130,25 @@
             {{value | json}}
           </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="rts">
+      <ngx-datatable-column name="rts" [flexGrow]="2" [resizeable]="false">
           <ng-template let-column="column" ngx-datatable-header-template>
             <span>Receive Time Stamp ({{column.name}})</span>
           </ng-template>
           <ng-template let-value="value" ngx-datatable-cell-template>
-            {{value}}
+            {{ value | date: 'medium' }}
           </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="sts">
+      <ngx-datatable-column name="sts" [flexGrow]="2" [resizeable]="false">
           <ng-template let-column="column" ngx-datatable-header-template>
             <span>Source Time Stamp ({{column.name}})</span>
           </ng-template>
           <ng-template let-value="value" ngx-datatable-cell-template>
-            {{value}}
+            {{ value | date: 'medium' }}
           </ng-template>
       </ngx-datatable-column>
   </ngx-datatable>
+  <ng-container  *ngTemplateOutlet="showError">
+  </ng-container>
 </div>
 </app-scenario>
 
@@ -160,7 +156,15 @@
   <nav class="breadcrumb" aria-label="breadcrumbs">
     <ul>
       <li><a routerLink="../">Machine State</a></li>
-      <li class="is-active"><a routerLink="/{{id$ | async}}" aria-current="page">{{id$ | async}}</a></li>
+      <li class="is-active"><a routerLink="/{{id$ | async}}" aria-current="page">{{ id$ | async }}</a></li>
     </ul>
   </nav>
+</ng-template>
+
+<ng-template #showError>
+  <div *ngIf="hasError" class="message is-danger is-small">
+    <div class="message-body">
+      Could not retrieve machine's Item Data and Conditions from the server.
+    </div>
+  </div>
 </ng-template>
