@@ -1,3 +1,4 @@
+using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -23,8 +24,22 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricalData
         [HttpGet("{machineId}")]
         public async Task<ActionResult<SubscriptionOverview>> GetSourceKeys(CancellationToken cancellationToken, string machineId)
         {
-            var keys = await _historicalDataService.ReadSourceKeysAsync(cancellationToken, machineId);
-            return Ok(keys);
+            try
+            {
+                var keys = await _historicalDataService.ReadSourceKeysAsync(cancellationToken, machineId);
+
+                return Ok(keys);
+            }
+            catch (HttpException ex)
+            {
+                switch (ex.StatusCode)
+                {
+                    case HttpStatusCode.NotFound:
+                        return NotFound();
+                    default:
+                        throw ex;
+                }
+            }
         }
     }
 }

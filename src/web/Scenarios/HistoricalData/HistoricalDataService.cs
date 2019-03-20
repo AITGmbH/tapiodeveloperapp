@@ -1,9 +1,10 @@
 using System;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
-
+using Aitgmbh.Tapio.Developerapp.Web.Models;
 using Aitgmbh.Tapio.Developerapp.Web.Services;
 
 namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricalData
@@ -27,7 +28,10 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricalData
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, new Uri(String.Format(GetMachineSourceKeys, machineId)));
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var responseMessage = await _httpClient.SendAsync(request, cancellationToken);
-            responseMessage.EnsureSuccessStatusCode();
+            if (!responseMessage.IsSuccessStatusCode)
+            {
+                throw new HttpException(responseMessage.StatusCode);
+            }
             var content = await responseMessage.Content.ReadAsStringAsync();
             var result = SourceKeyResponseExtension.FromJson(content);
             result.MachineId = machineId;
