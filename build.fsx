@@ -89,7 +89,7 @@ Target.create "Test.Frontend" (fun _ ->
         |> CreateProcess.fromRawCommand angular.Value
         |> CreateProcess.withWorkingDirectory "./src/web"
         |> Proc.run
-    if ngRunTests.ExitCode <> 0 then failwith "could not install angular cli via npm"
+    if ngRunTests.ExitCode <> 0 then failwith "There was at least one failing test, or the tests couldn't be executed at all"
 )
 
 Target.create "All" ignore
