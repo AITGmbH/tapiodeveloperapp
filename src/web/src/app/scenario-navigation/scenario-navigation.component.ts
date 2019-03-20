@@ -13,7 +13,7 @@ import { ScenarioEntry, ScenarioNavigationService } from './scenario-navigation.
 export class ScenarioNavigationComponent implements OnInit {
     scenarioEntries$: Observable<ScenarioEntry[]>;
 
-    constructor(private scenarioNavigationService: ScenarioNavigationService) { }
+    constructor(private readonly scenarioNavigationService: ScenarioNavigationService) { }
 
     ngOnInit() {
         this.scenarioNavigationService.getEntries().subscribe((data) => {

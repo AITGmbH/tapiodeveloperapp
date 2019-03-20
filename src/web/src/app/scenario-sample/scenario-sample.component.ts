@@ -13,7 +13,7 @@ import { Observable, of } from 'rxjs';
 export class ScenarioSampleComponent implements OnInit {
     public Welcome$: Observable<string>;
 
-    constructor(private helloWorldService: HelloWorldService) { }
+    constructor(private readonly helloWorldService: HelloWorldService) { }
 
     ngOnInit(): void {
         this.helloWorldService.getWelcome().subscribe(welcome => {

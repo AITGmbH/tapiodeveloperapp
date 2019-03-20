@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class ScenarioNavigationService {
 
-    constructor(private http: HttpClient) { }
+    constructor(private readonly http: HttpClient) { }
 
     getEntries(): Observable<ScenarioEntry[]> {
         return this.http.get<ScenarioEntry[]>('/api/scenario');

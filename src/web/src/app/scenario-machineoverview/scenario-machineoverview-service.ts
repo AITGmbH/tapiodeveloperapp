@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 @Injectable({ providedIn: 'root' })
 export class MachineOverviewService {
 
-    constructor(private http: HttpClient) { }
+    constructor(private readonly http: HttpClient) { }
 
     getSubscriptions(): Observable<Subscription[]> {
          return this.http.get<SubscriptionsOverview>('/api/machineOverview').pipe(map(r => r.subscriptions));

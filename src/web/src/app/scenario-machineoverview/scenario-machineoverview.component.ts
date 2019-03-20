@@ -11,7 +11,7 @@ export class ScenarioMachineoverviewComponent implements OnInit {
     subscriptions$: Observable<Subscription[]>;
     errorLoading$ = new Subject<boolean>();
 
-    constructor(private machineOverviewService: MachineOverviewService) { }
+    constructor(private readonly machineOverviewService: MachineOverviewService) { }
 
     ngOnInit() {
         this.machineOverviewService.getSubscriptions().subscribe(subscriptions => {

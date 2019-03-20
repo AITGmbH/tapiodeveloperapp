@@ -48,7 +48,7 @@ export class ScenarioComponent implements OnInit {
 
     version: string;
 
-    constructor(private scenarioDocumentationService: ScenarioDocumentationService) {
+    constructor(private readonly scenarioDocumentationService: ScenarioDocumentationService) {
         this.version = VERSION.hash;
     }
 
