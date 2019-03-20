@@ -1,11 +1,14 @@
 {
-  "ServerUri": "https://sonar.aitgmbh.de",
-  "Organization": null,
-  "ProjectKey": "Tapio.DeveloperApp",
+  "ServerUri": "https://sonarcloud.io/",
+  "Organization": {
+    "Key": "aitowner-github",
+    "Name": "AIT GmbH & Co. KG - GitHub Projects"
+  },
+  "ProjectKey": "AITGmbH_tapiodeveloperapp",
   "Profiles": {
     "CSharp": {
-      "ProfileKey": "AWjb93fgZlzhyQZHz4Lx",
-      "ProfileTimestamp": "2019-02-14T09:16:29+01:00"
+      "ProfileKey": "AWl2aDZV0kk7morKoqE7",
+      "ProfileTimestamp": "2019-01-14T10:58:53+01:00"
     }
   }
 }
