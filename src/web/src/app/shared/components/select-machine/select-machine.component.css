@@ -1,13 +1,4 @@
-.dropdown {
+.selectmachine-ngselect.dropdown {
     background-color: white;
     max-width: 20rem;
-}
-
-.ng-select.dropdown .ng-dropdown-panel  {
-    background-color:white;
-    color: black;
-}
-
-.ng-select.dropdown .ng-placeholder  {
-    color: black;
 }

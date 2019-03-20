@@ -9,9 +9,7 @@ import { ScenarioComponent } from "./components/scenario/scenario.component";
 import { NgxDatatableModule } from "@swimlane/ngx-datatable";
 import { SelectMachineComponent } from "./components/select-machine/select-machine.component";
 import { NgSelectModule } from "@ng-select/ng-select";
-import { MachineOverviewService } from "../scenario-machineoverview/scenario-machineoverview.service";
-import { HistoricalDataService } from '../scenario-historicaldata/scenario-historicaldata.service';
-import { ScenarioNavigationService } from '../scenario-navigation/scenario-navigation.service';
+import { AvailableMachinesService } from "./services/available-machines.service";
 
 library.add(faGithub);
 
@@ -20,9 +18,20 @@ library.add(faGithub);
  */
 @NgModule({
     declarations: [ScenarioComponent, SelectMachineComponent],
-    imports: [CommonModule, FontAwesomeModule, NgxDatatableModule, NgSelectModule],
-    exports: [ScenarioComponent, FontAwesomeModule, NgxDatatableModule, SelectMachineComponent, NgSelectModule],
-    providers: [HistoricalDataService, MachineOverviewService, ScenarioNavigationService]
+    imports: [
+        CommonModule,
+        FontAwesomeModule,
+        NgxDatatableModule,
+        NgSelectModule
+    ],
+    exports: [
+        ScenarioComponent,
+        FontAwesomeModule,
+        NgxDatatableModule,
+        SelectMachineComponent,
+        NgSelectModule
+    ],
+    providers: [AvailableMachinesService]
 })
 export class SharedModule {
     faGitHub = faGithub;
