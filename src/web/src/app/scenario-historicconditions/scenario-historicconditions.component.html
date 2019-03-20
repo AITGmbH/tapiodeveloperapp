@@ -3,7 +3,7 @@
     <app-select-machine (change)="selectedMachineChanged($event)"></app-select-machine>
   </div>
   <div>
-    <app-date-range>
+    <app-date-range (change)="dateRangeChanged($event)" >
 
     </app-date-range>
   </div>

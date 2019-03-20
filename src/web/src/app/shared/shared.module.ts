@@ -10,11 +10,11 @@ import { ScenarioComponent } from "./components/scenario/scenario.component";
 import { NgxDatatableModule } from "@swimlane/ngx-datatable";
 import { SelectMachineComponent } from "./components/select-machine/select-machine.component";
 import { NgSelectModule } from "@ng-select/ng-select";
-import { MachineOverviewService } from "./services/machine-overview.service";
 import { HistoricalDataService } from '../scenario-historicaldata/scenario-historicaldata.service';
-import { ScenarioNavigationService } from "./services/scenario-navigation.service";
 import { DateRangeComponent } from "./components/date-range/date-range.component";
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { MachineOverviewService } from '../scenario-machineoverview/scenario-machineoverview.service';
+import { ScenarioNavigationService } from '../scenario-navigation/scenario-navigation.service';
 
 library.add(faGithub);
 

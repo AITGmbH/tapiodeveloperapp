@@ -1,11 +1,13 @@
 <div class="dateTimePicker">
-  <h2>Range Selection</h2>
   <label class="example-input-wrapper">
-    <input placeholder="Date Time Range:"
-           [style.width]="'350px'"
+    <input type="text"
+           placeholder="please select a date time range"
+           class="dateTimePickerInput"
            [(ngModel)]="dateTimeRange"
            [selectMode]="'range'"
-           [owlDateTimeTrigger]="dtRange1" [owlDateTime]="dtRange1">
-    <owl-date-time #dtRange1></owl-date-time>
+           [owlDateTimeTrigger]="dtRange1" [owlDateTime]="dtRange1" (dateTimeChange)="dateTimeChanged()">
+    <owl-date-time #dtRange1 ></owl-date-time>
   </label>
+  <p>{{ dateStart }}</p>
+  <p>{{ dateEnd }}</p>
 </div>

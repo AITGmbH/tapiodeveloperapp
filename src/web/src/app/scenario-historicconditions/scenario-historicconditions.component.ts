@@ -12,4 +12,12 @@ export class ScenarioHistoricconditionsComponent implements OnInit {
   ngOnInit() {
   }
 
+  public selectedMachineChanged(tmid: string) {
+    console.log('selected machine changed', tmid);
+  }
+
+  public dateRangeChanged(dateRange: {dateStart: Date, dateEnd: Date}){
+    console.log('date range changed', dateRange);
+  }
+
 }
