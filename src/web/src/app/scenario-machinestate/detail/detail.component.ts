@@ -18,9 +18,9 @@ export class DetailComponent implements OnInit {
     @ViewChild('itemData') itemData: DatatableComponent;
     @ViewChild('conditions') conditions: DatatableComponent;
 
-    constructor(private machineStateService: MachineStateService, private route: ActivatedRoute) { }
+    constructor(private readonly machineStateService: MachineStateService, private readonly route: ActivatedRoute) { }
 
-    ngOnInit() {
+    ngOnInit(): void {
         const defaultMessage = 'No data to display';
 
         this.route.params.subscribe(params => {
