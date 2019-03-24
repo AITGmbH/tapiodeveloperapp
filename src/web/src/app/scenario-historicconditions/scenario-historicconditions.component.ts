@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { BehaviorSubject, concat, Subject } from "rxjs";
-import { filter, concatMap, tap, map } from "rxjs/operators";
+import { BehaviorSubject, concat, Subject, of } from "rxjs";
+import { filter, concatMap, tap, map, catchError } from "rxjs/operators";
 import {
     HistoricconditionsService,
     ConditionData,
@@ -26,22 +26,37 @@ export class ScenarioHistoricconditionsComponent implements OnInit {
         dateStart?: Date;
         dateEnd?: Date;
     }>({});
+    public error$ = new BehaviorSubject<boolean>(false);
+    public loading$ = new BehaviorSubject<boolean>(false);
     public rows$ = new BehaviorSubject<FlatConditionDataEntry[]>([]);
+    public modalContent: string = "";
     ngOnInit() {
         this.dataChanged$
             .pipe(
-                tap(obj => console.log("1", obj)),
                 filter(obj => {
                     return !!(obj && obj.tmid && obj.dateStart && obj.dateEnd);
                 }),
-                tap(obj => console.log("2", obj)),
-                concatMap(data => {
-                    return this.historicconditionsService.getHistoricConditions(
-                        data.tmid,
-                        { from: data.dateStart, to: data.dateEnd }
-                    );
+                tap(obj => {
+                    this.loading$.next(true);
+                    this.error$.next(false);
                 }),
-                tap(obj => console.log("3", obj)),
+                concatMap(data => {
+                    return this.historicconditionsService
+                        .getHistoricConditions(data.tmid, {
+                            from: data.dateStart,
+                            to: data.dateEnd
+                        })
+                        .pipe(
+                            catchError((err, caught) => {
+                                console.warn(
+                                    "error occured while fetching data: ",
+                                    err
+                                );
+                                this.error$.next(true);
+                                return of([]);
+                            })
+                        );
+                }),
                 map((condDataArr: ConditionData[]) => {
                     return [
                         ...condDataArr.map(condData => {
@@ -61,7 +76,6 @@ export class ScenarioHistoricconditionsComponent implements OnInit {
                         return [...arr, ...curr];
                     }, []);
                 }),
-                tap(obj => console.log("4", obj)),
                 map((flattenedArray: FlatConditionDataEntry[]) => {
                     return flattenedArray.map(flatCondition => {
                         if (flatCondition.rts_end && flatCondition.rts_start) {
@@ -85,18 +99,55 @@ export class ScenarioHistoricconditionsComponent implements OnInit {
                     });
                 })
             )
-            .subscribe(
-                data => {
+            .subscribe({
+                next: data => {
+                    console.log('got data');
+                    this.loading$.next(false);
                     this.rows$.next(data);
                 },
-                err => {
-                    console.warn("error occured while fetching data: ", err);
+                error: err => {
+                    this.error$.next(true);
+                    this.loading$.next(false);
+                    console.warn(
+                        "hard error occured while fetching data: ",
+                        err
+                    );
                 }
-            );
+            });
     }
-
+    public onElementSelected($event: { selected: FlatConditionDataEntry[] }) {
+        console.log($event);
+        const data =
+            $event &&
+            $event.selected &&
+            $event.selected.length > 0 &&
+            $event.selected[0];
+        if (data) {
+            const origElement: ConditionData = {
+                key: data.key,
+                provider: data.provider,
+                values: [
+                    {
+                        sts: data.sts,
+                        rts_utc_start: data.rts_utc_start,
+                        rts_start: data.rts_start,
+                        rts_utc_end: data.rts_utc_end,
+                        rts_end: data.rts_end,
+                        rts_utc_end_quality: data.rts_utc_end_quality,
+                        p: data.p,
+                        k: data.k,
+                        s: data.s,
+                        sv: data.sv,
+                        ls: data.ls,
+                        lm: data.lm,
+                        vls: data.vls
+                    }
+                ]
+            };
+            this.modalContent = JSON.stringify(origElement, null, 2);
+        }
+    }
     public selectedMachineChanged(tmid: string) {
-        console.log("selected machine changed", tmid);
         this.dataChanged$.next({
             tmid: tmid,
             dateStart: this.dataChanged$.value.dateStart,
@@ -105,7 +156,6 @@ export class ScenarioHistoricconditionsComponent implements OnInit {
     }
 
     public dateRangeChanged(dateRange: { dateStart: Date; dateEnd: Date }) {
-        console.log("date range changed", dateRange);
         this.dataChanged$.next({
             tmid: this.dataChanged$.value.tmid,
             dateStart: dateRange.dateStart,
