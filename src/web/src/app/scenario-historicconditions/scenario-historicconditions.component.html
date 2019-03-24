@@ -1,10 +1,54 @@
 <app-scenario title="Historic Conditions" id="historic-conditions-scenario">
   <div>
-    <app-select-machine (change)="selectedMachineChanged($event)"></app-select-machine>
+    <app-select-machine
+      (change)="selectedMachineChanged($event)"
+    ></app-select-machine>
   </div>
   <div>
-    <app-date-range (change)="dateRangeChanged($event)" >
+    <app-date-range (change)="dateRangeChanged($event)"> </app-date-range>
+  </div>
+  <!--
+  <pre>
+    {{ rows$ | async | json }}
+  </pre>
+-->
 
-    </app-date-range>
+  <div>
+    <ngx-datatable
+      class="material datatable"
+      [columnMode]="'force'"
+      [headerHeight]="50"
+      [footerHeight]="50"
+      [rowHeight]="50"
+      [scrollbarV]="true"
+      [scrollbarH]="true"
+      [rows]="rows$ | async"
+      [sorts]="[
+        { prop: 'duration', dir: 'desc' },
+        { prop: 'sts', dir: 'desc' }
+      ]"
+    >
+      <ngx-datatable-column name="Key (identifier)" prop="key" [width]="300">
+      </ngx-datatable-column>
+      <ngx-datatable-column name="provider" prop="provider">
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Key (usually OPC UA Node ID)" prop="k">
+      </ngx-datatable-column>
+      <ngx-datatable-column name="source" prop="s"> </ngx-datatable-column>
+      <ngx-datatable-column name="severity" prop="sv" [width]="50">
+      </ngx-datatable-column>
+      <ngx-datatable-column name="duration" prop="duration">
+      </ngx-datatable-column>
+      <ngx-datatable-column name="source time stamp" prop="sts">
+      </ngx-datatable-column>
+      <ngx-datatable-column
+        name="quality"
+        prop="rts_utc_end_quality"
+        [width]="50"
+      >
+      </ngx-datatable-column>
+      <ngx-datatable-column name="localized message" prop="lm.en">
+      </ngx-datatable-column>
+    </ngx-datatable>
   </div>
 </app-scenario>

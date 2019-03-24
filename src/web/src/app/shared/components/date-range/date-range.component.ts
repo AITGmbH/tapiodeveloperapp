@@ -37,7 +37,8 @@ export class DateRangeComponent implements OnInit {
     this.change.emit({ dateStart: this.dateStart, dateEnd: this.dateEnd });
   }
   ngOnInit(): void {
-
+    // trigger initial change 
+    this.dateTimeChanged();
   }
 
 }

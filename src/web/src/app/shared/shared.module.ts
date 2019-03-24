@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
+import { CommonModule, DecimalPipe } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
@@ -25,7 +25,7 @@ library.add(faGithub);
     declarations: [ScenarioComponent, SelectMachineComponent, DateRangeComponent],
     imports: [CommonModule, FontAwesomeModule, NgxDatatableModule, NgSelectModule, FormsModule, OwlDateTimeModule, OwlNativeDateTimeModule],
     exports: [ScenarioComponent, FontAwesomeModule, NgxDatatableModule, SelectMachineComponent, NgSelectModule, FormsModule, DateRangeComponent],
-    providers: [HistoricalDataService, MachineOverviewService, ScenarioNavigationService]
+    providers: [HistoricalDataService, MachineOverviewService, ScenarioNavigationService, DecimalPipe]
 })
 export class SharedModule {
     faGitHub = faGithub;
