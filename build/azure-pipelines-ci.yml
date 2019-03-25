@@ -16,6 +16,8 @@ steps:
       SonarCloud: 'sonarcloud.io - AITGmbH'
       organization: 'aitowner-github'
       projectKey: 'AITGmbH_tapiodeveloperapp'
+      extraProperties: |
+        sonar.coverage.exclusions=**/*spec.ts
   - task: PowerShell@2
     displayName: 'Run fake build'
     inputs:
