@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { BehaviorSubject, concat, Subject, of } from "rxjs";
+import { BehaviorSubject, of } from "rxjs";
 import { filter, concatMap, tap, map, catchError } from "rxjs/operators";
 import {
     HistoricconditionsService,

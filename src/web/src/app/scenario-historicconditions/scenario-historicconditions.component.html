@@ -1,4 +1,8 @@
-<app-scenario title="Historic Conditions" id="historic-conditions-scenario" class="has-text-left">
+<app-scenario
+  title="Historic Conditions"
+  id="historic-conditions-scenario"
+  class="has-text-left"
+>
   <div>
     <app-select-machine
       (change)="selectedMachineChanged($event)"
@@ -12,16 +16,22 @@
     {{ rows$ | async | json }}
   </pre>
 -->
-<div class="modal is-active" *ngIf="modalContent">
-  <div class="modal-background"></div>
-  <div class="modal-content">
-    <pre>{{ modalContent }}</pre>
-    
+  <div class="modal is-active" *ngIf="modalContent">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      <pre>{{ modalContent }}</pre>
+    </div>
+    <button
+      class="modal-close is-large"
+      aria-label="close"
+      (click)="modalContent = ''"
+    ></button>
   </div>
-  <button class="modal-close is-large" aria-label="close" (click)="modalContent = ''"></button>
-</div>
 
-  <div *ngIf="!(loading$ | async ) && !(error$ | async ) && (rows$ | async); else loadingOrError">
+  <div
+    *ngIf="
+      !(loading$ | async) && !(error$ | async) && (rows$ | async);
+      else loadingOrError">
     <ngx-datatable
       class="material datatable"
       [columnMode]="'force'"
@@ -36,45 +46,69 @@
         { prop: 'sts', dir: 'desc' }
       ]"
       [selectionType]="'single'"
-      (select)="onElementSelected($event)"
-    > 
-
-      <ngx-datatable-column name="Key (identifier)" prop="key" [width]="300">
-      </ngx-datatable-column>
-      <ngx-datatable-column name="provider" prop="provider">
-      </ngx-datatable-column>
-      <ngx-datatable-column name="Key (usually OPC UA Node ID)" prop="k">
-      </ngx-datatable-column>
-      <ngx-datatable-column name="source" prop="s"> </ngx-datatable-column>
-      <ngx-datatable-column name="severity" prop="sv" [width]="50">
-      </ngx-datatable-column>
-      <ngx-datatable-column name="duration" prop="duration">
-      </ngx-datatable-column>
-      <ngx-datatable-column name="source time stamp" prop="sts">
+      (select)="onElementSelected($event)">
+      <ngx-datatable-column
+        [resizeable]="false"
+        name="Key (identifier)"
+        prop="key"
+        [width]="300">
       </ngx-datatable-column>
       <ngx-datatable-column
+        [resizeable]="false"
+        name="provider"
+        prop="provider">
+      </ngx-datatable-column>
+      <ngx-datatable-column
+        [resizeable]="false"
+        name="Key (usually OPC UA Node ID)"
+        prop="k">
+      </ngx-datatable-column>
+      <ngx-datatable-column
+        [resizeable]="false"
+        name="source"
+        prop="s">
+      </ngx-datatable-column>
+      <ngx-datatable-column
+        [resizeable]="false"
+        name="severity"
+        prop="sv"
+        [width]="50">
+      </ngx-datatable-column>
+      <ngx-datatable-column
+        [resizeable]="false"
+        name="duration"
+        prop="duration">
+      </ngx-datatable-column>
+      <ngx-datatable-column
+        [resizeable]="false"
+        name="source time stamp"
+        prop="sts">
+      </ngx-datatable-column>
+      <ngx-datatable-column
+        [resizeable]="false"
         name="quality"
         prop="rts_utc_end_quality"
-        [width]="50"
-      >
+        [width]="50">
       </ngx-datatable-column>
-      <ngx-datatable-column name="localized message" prop="lm.en">
+      <ngx-datatable-column
+        [resizeable]="false"
+        name="localized message"
+        prop="lm.en">
       </ngx-datatable-column>
     </ngx-datatable>
   </div>
 </app-scenario>
 
 <ng-template #loadingOrError>
-    <div *ngIf="error$ | async" class="errorMessage">
-      <div>
-        No data available for this machine
-      </div>
-    </div>
+  <div *ngIf="(error$ | async)" class="errorMessage">
     <div>
-      <div *ngIf="loading$ | async" class="spinner">
-        <div class="double-bounce1"></div>
-        <div class="double-bounce2"></div>
-      </div>
+      No data available for this machine
     </div>
-  </ng-template>
-  
+  </div>
+  <div>
+    <div *ngIf="(loading$ | async)" class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+    </div>
+  </div>
+</ng-template>

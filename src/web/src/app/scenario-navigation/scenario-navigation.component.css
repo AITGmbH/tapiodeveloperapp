@@ -6,6 +6,6 @@ a:active {
   color: #0092b4;
 }
 
-li {
-  padding-left: 14px;
+ul {
+  padding: 14px;
 }
