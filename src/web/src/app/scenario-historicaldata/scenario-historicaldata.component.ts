@@ -13,7 +13,7 @@ export class ScenarioHistoricaldataComponent implements OnInit {
     error$ = new Subject<boolean>();
     loading$ = new Subject<boolean>();
 
-    constructor(private historicalDataService: HistoricalDataService) {
+    constructor(private readonly historicalDataService: HistoricalDataService) {
         this.error$.next(false);
         this.loading$.next(false);
     }
