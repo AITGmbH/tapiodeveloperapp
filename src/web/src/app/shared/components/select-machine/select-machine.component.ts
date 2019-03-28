@@ -10,7 +10,7 @@ import { HistoricalDataService } from 'src/app/scenario-historicaldata/scenario-
 })
 
 export class SelectMachineComponent implements OnInit {
-    private assignedMachines: Observable<AssignedMachine[]>;
+    public assignedMachines: Observable<AssignedMachine[]>;
 
   @Output() public change: EventEmitter<string> = new EventEmitter<string>();
 

@@ -16,7 +16,6 @@ body {
 .spinner {
   width: 40px;
   height: 40px;
-
   position: relative;
   margin: 100px auto;
 }
@@ -58,9 +57,8 @@ body {
 /**
   End Spinner
 */
-
-ngx-datatable {
-  padding-top: 10px;
+.datatable[_ngcontent-c3] {
+  height: 35rem;
 }
 
 ngx-datatable datatable-body datatable-row-wrapper:not(:last-of-type) {
