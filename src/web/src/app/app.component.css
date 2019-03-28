@@ -7,11 +7,17 @@
 
 .main-content, .main-content .box {
   background: rgb(7, 19, 26);
+  max-width: 97%;
+}
+
+.box {
+  padding: 14px 28px 14px 14px;
 }
 
 .main-nav {
   background: rgb(14, 31, 41);
   font-family: audimat;
+  width: 15%;
 }
 
 .logo {

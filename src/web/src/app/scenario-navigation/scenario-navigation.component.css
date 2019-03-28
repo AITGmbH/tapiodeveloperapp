@@ -9,3 +9,7 @@ a:active {
 ul {
   padding: 14px;
 }
+
+li {
+  height: 30px;
+}

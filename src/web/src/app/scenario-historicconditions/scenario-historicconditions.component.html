@@ -34,10 +34,10 @@
       else loadingOrError">
     <ngx-datatable
       class="material datatable"
-      [columnMode]="'force'"
-      [headerHeight]="50"
-      [footerHeight]="50"
-      [rowHeight]="50"
+      [columnMode]="'flex'"
+      [headerHeight]="30"
+      [rowHeight]="40"
+      [footerHeight]="35"
       [scrollbarV]="true"
       [scrollbarH]="true"
       [rows]="rows$ | async"
@@ -48,49 +48,58 @@
       [selectionType]="'single'"
       (select)="onElementSelected($event)">
       <ngx-datatable-column
+        [flexGrow]="4"
         [resizeable]="false"
         name="Key (identifier)"
         prop="key"
         [width]="300">
       </ngx-datatable-column>
       <ngx-datatable-column
+        [flexGrow]="2"
         [resizeable]="false"
         name="provider"
         prop="provider">
       </ngx-datatable-column>
       <ngx-datatable-column
+        [flexGrow]="4"
         [resizeable]="false"
         name="Key (usually OPC UA Node ID)"
         prop="k">
       </ngx-datatable-column>
       <ngx-datatable-column
+        [flexGrow]="1"
         [resizeable]="false"
         name="source"
         prop="s">
       </ngx-datatable-column>
       <ngx-datatable-column
+        [flexGrow]="1"
         [resizeable]="false"
         name="severity"
         prop="sv"
         [width]="50">
       </ngx-datatable-column>
       <ngx-datatable-column
+        [flexGrow]="2"
         [resizeable]="false"
         name="duration"
         prop="duration">
       </ngx-datatable-column>
       <ngx-datatable-column
+        [flexGrow]="2"
         [resizeable]="false"
         name="source time stamp"
         prop="sts">
       </ngx-datatable-column>
       <ngx-datatable-column
+        [flexGrow]="1"
         [resizeable]="false"
         name="quality"
         prop="rts_utc_end_quality"
         [width]="50">
       </ngx-datatable-column>
       <ngx-datatable-column
+        [flexGrow]="3"
         [resizeable]="false"
         name="localized message"
         prop="lm.en">
