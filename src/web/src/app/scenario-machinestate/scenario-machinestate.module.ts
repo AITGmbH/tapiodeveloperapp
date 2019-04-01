@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { CommonModule } from "@angular/common";
 
 import { ScenarioMachinestateRoutingModule } from './scenario-machinestate-routing.module';
 import { ScenarioMachinestateComponent } from './scenario-machinestate.component';
@@ -14,7 +15,8 @@ import { DetailComponent } from './detail/detail.component';
   imports: [
     ScenarioMachinestateRoutingModule,
     SharedModule,
-    NgxDatatableModule
+    NgxDatatableModule,
+    CommonModule
   ]
 })
 export class ScenarioMachinestateModule { }

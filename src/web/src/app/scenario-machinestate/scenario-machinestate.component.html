@@ -1,7 +1,6 @@
-<app-scenario title="Machine State" id="machine-state-scenario">
-  <p>
-    All the assigned subscriptions with its assigned machines
-  </p>
+<app-scenario 
+  title="Machine State" 
+  id="machine-state-scenario">
   <ul *ngIf="machines$ | async; else loading">
     <li *ngFor="let machine of machines$ | async">
       <a routerLink="./{{machine.tmid}}">{{machine.displayName}}</a>

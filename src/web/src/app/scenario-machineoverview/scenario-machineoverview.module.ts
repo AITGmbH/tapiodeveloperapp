@@ -9,7 +9,8 @@ import { SharedModule } from "../shared/shared.module";
   declarations: [ScenarioMachineoverviewComponent],
   imports: [
     ScenarioMachineoverviewRoutingModule,
-    SharedModule
+    SharedModule,
+    CommonModule
   ]
 })
 export class ScenarioMachineoverviewModule { }
