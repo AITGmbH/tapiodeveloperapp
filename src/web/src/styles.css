@@ -1,9 +1,64 @@
+
 html {
   overflow-y: auto;
 }
 
 body {
   background: rgb(7, 19, 26);
+}
+
+/**
+  Start Spinner
+  Source: https://github.com/tobiasahlin/SpinKit
+  License: The MIT License (MIT) Copyright (c) 2015 Tobias Ahlin
+*/
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  margin: 100px auto;
+}
+
+.double-bounce1, .double-bounce2 {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #FFF;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+  animation: sk-bounce 2.0s infinite ease-in-out;
+}
+
+.double-bounce2 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+@-webkit-keyframes sk-bounce {
+  0%, 100% { -webkit-transform: scale(0.0) }
+  50% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bounce {
+  0%, 100% {
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 50% {
+      transform: scale(1.0);
+      -webkit-transform: scale(1.0);
+    }
+}
+
+/**
+  End Spinner
+*/
+.datatable[_ngcontent-c3] {
+  height: 35rem;
 }
 
 ngx-datatable datatable-body datatable-row-wrapper:not(:last-of-type) {
@@ -16,6 +71,16 @@ ngx-datatable .datatable-header-cell {
 
 ngx-datatable .datatable-header {
   border-bottom: thin solid gray;
+  margin-right: 15px;
+}
+
+ngx-datatable .datatable-footer {
+  border-top: thin solid gray;
+}
+
+ngx-datatable datatable-pager .pages a {
+  color: white;
+  margin-left: 1rem;
 }
 
 .ngx-datatable .datatable-body .progress-linear {
@@ -52,16 +117,29 @@ ngx-datatable .datatable-header {
   height: 5px;
 }
 
+.ngx-datatable datatable-body-cell.datatable-body-cell {
+  line-height: 2.5;
+  margin-right: 15px;
+}
+
+.ngx-datatable datatable-header-cell.datatable-header-cell {
+  margin-right: 15px;
+}
+
+div.empty-row {
+  padding-top: 10px;
+}
+
 /**
  * Progress bar animations
  */
- @keyframes query {
-  0% {
-    opacity: 1;
-    transform: translateX(35%) scale(0.3, 1);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(-50%) scale(0, 1);
-  }
+@keyframes query {
+    0% {
+        opacity: 1;
+        transform: translateX(35%) scale(0.3, 1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-50%) scale(0, 1);
+    }
 }

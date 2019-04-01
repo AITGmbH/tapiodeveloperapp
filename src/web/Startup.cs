@@ -3,6 +3,8 @@ using System.IO;
 
 using Aitgmbh.Tapio.Developerapp.Web.Configurations;
 using Aitgmbh.Tapio.Developerapp.Web.Repositories;
+using Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricalData;
+using Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricConditions;
 using Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineOverview;
 using Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineState;
 using Aitgmbh.Tapio.Developerapp.Web.Services;
@@ -46,6 +48,10 @@ namespace Aitgmbh.Tapio.Developerapp.Web
                 .AddHttpClient<IMachineOverviewService, MachineOverviewService>();
             services
                 .AddHttpClient<IMachineStateService, MachineStateService>();
+            services
+                .AddHttpClient<IHistoricalDataService, HistoricalDataService>();
+            services
+                .AddHttpClient<IHistoricConditionsService, HistoricConditionsService>();
             services
                 .AddOptions<TapioCloudCredentials>()
                 .Bind(Configuration.GetSection("TapioCloud"))

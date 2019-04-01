@@ -1,11 +1,11 @@
-import { Observable } from 'rxjs';
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Observable } from "rxjs";
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 
 /**
  * Provides access to the documentation URLs of a scenario.
  */
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: "root" })
 export class ScenarioDocumentationService {
 
     constructor(private readonly http: HttpClient) { }

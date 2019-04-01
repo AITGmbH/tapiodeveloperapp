@@ -1,0 +1,123 @@
+<app-scenario
+  title="Historic Conditions"
+  id="historic-conditions-scenario"
+  class="has-text-left"
+>
+  <div>
+    <app-select-machine
+      (change)="selectedMachineChanged($event)"
+    ></app-select-machine>
+  </div>
+  <div>
+    <app-date-range (change)="dateRangeChanged($event)"> </app-date-range>
+  </div>
+  <!--
+  <pre>
+    {{ rows$ | async | json }}
+  </pre>
+-->
+  <div class="modal is-active" *ngIf="modalContent">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      <pre>{{ modalContent }}</pre>
+    </div>
+    <button
+      class="modal-close is-large"
+      aria-label="close"
+      (click)="modalContent = ''"
+    ></button>
+  </div>
+
+  <div
+    *ngIf="
+      !(loading$ | async) && !(error$ | async) && (rows$ | async);
+      else loadingOrError">
+    <ngx-datatable
+      class="material datatable"
+      [columnMode]="'flex'"
+      [headerHeight]="30"
+      [rowHeight]="40"
+      [footerHeight]="35"
+      [scrollbarV]="true"
+      [scrollbarH]="true"
+      [rows]="rows$ | async"
+      [sorts]="[
+        { prop: 'duration', dir: 'desc' },
+        { prop: 'sts', dir: 'desc' }
+      ]"
+      [selectionType]="'single'"
+      (select)="onElementSelected($event)">
+      <ngx-datatable-column
+        [flexGrow]="4"
+        [resizeable]="false"
+        name="Key (identifier)"
+        prop="key"
+        [width]="300">
+      </ngx-datatable-column>
+      <ngx-datatable-column
+        [flexGrow]="2"
+        [resizeable]="false"
+        name="provider"
+        prop="provider">
+      </ngx-datatable-column>
+      <ngx-datatable-column
+        [flexGrow]="4"
+        [resizeable]="false"
+        name="Key (usually OPC UA Node ID)"
+        prop="k">
+      </ngx-datatable-column>
+      <ngx-datatable-column
+        [flexGrow]="1"
+        [resizeable]="false"
+        name="source"
+        prop="s">
+      </ngx-datatable-column>
+      <ngx-datatable-column
+        [flexGrow]="1"
+        [resizeable]="false"
+        name="severity"
+        prop="sv"
+        [width]="50">
+      </ngx-datatable-column>
+      <ngx-datatable-column
+        [flexGrow]="1.5"
+        [resizeable]="false"
+        name="duration"
+        prop="duration">
+      </ngx-datatable-column>
+      <ngx-datatable-column
+        [flexGrow]="2"
+        [resizeable]="false"
+        name="source time stamp"
+        prop="sts">
+      </ngx-datatable-column>
+      <ngx-datatable-column
+        [flexGrow]="1"
+        [resizeable]="false"
+        name="quality"
+        prop="rts_utc_end_quality"
+        [width]="50">
+      </ngx-datatable-column>
+      <ngx-datatable-column
+        [flexGrow]="3"
+        [resizeable]="false"
+        name="localized message"
+        prop="lm.en">
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+</app-scenario>
+
+<ng-template #loadingOrError>
+  <div *ngIf="(error$ | async)" class="errorMessage">
+    <div>
+      No data available for this machine
+    </div>
+  </div>
+  <div>
+    <div *ngIf="(loading$ | async)" class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+    </div>
+  </div>
+</ng-template>

@@ -7,11 +7,17 @@
 
 .main-content, .main-content .box {
   background: rgb(7, 19, 26);
+  max-width: 97%;
+}
+
+.box {
+  padding: 14px 28px 14px 14px;
 }
 
 .main-nav {
   background: rgb(14, 31, 41);
   font-family: audimat;
+  width: 15%;
 }
 
 .logo {
@@ -26,7 +32,7 @@
 .columns {
   margin-top: 0;
   margin-bottom: 0;
-  min-height: 50rem;
+  min-height: 53rem;
 }
 
 @media only screen and (max-device-width: 768px) {
@@ -35,10 +41,10 @@
   }
 }
 
-.footer {
-  padding: 1rem 1.5rem 2rem;
+footer.footer {
+  padding: 2rem 1rem 3rem 1rem;
 }
 
 .is-single-line {
-  white-space: nowrap;
+    white-space: nowrap;
 }

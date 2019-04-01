@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 /***
  * Displays the developer links in a hamburger menu.
  */
 @Component({
-  selector: 'app-hamburgermenu',
-  templateUrl: './hamburgermenu.component.html',
-  styleUrls: ['./hamburgermenu.component.css']
+  selector: "app-hamburgermenu",
+  templateUrl: "./hamburgermenu.component.html",
+  styleUrls: ["./hamburgermenu.component.css"]
 })
 export class HamburgermenuComponent {
   isHamburgerMenuActive = false;
