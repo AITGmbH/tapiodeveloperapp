@@ -10,7 +10,7 @@ const routes: Routes = [
     },
     {
         path: ':tmid',
-        component: DetailComponent
+        component: ScenarioMachinestateComponent
     }
 ];
 

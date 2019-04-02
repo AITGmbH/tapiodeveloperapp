@@ -1,11 +1,11 @@
 <app-scenario 
   title="Machine State" 
   id="machine-state-scenario">
-  <ul *ngIf="machines$ | async; else loading">
-    <li *ngFor="let machine of machines$ | async">
-      <a routerLink="./{{machine.tmid}}">{{machine.displayName}}</a>
-    </li>
-  </ul>
+  <app-select-machine (change)="selectedMachineChanged($event)">
+  </app-select-machine>
+
+  <app-scenario-machinestate-detail>
+  </app-scenario-machinestate-detail>
 </app-scenario>
 
 <ng-template #loading>

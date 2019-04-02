@@ -1,5 +1,4 @@
-<app-scenario [title]="breadCrumb" id="machine-state-scenario">
-<h1 class="title is-1">State of machine {{id$ | async}}</h1>
+<h1 class="title is-1" >State of machine {{id$ | async}}</h1>
 <div>
   <h2 class="title is-2">Item Data</h2>
   <ngx-datatable [rows]="itemData$ | async" [columnMode]="'flex'" [loadingIndicator]="isLoading" [scrollbarH]="true" #itemData>
@@ -150,16 +149,6 @@
   <ng-container  *ngTemplateOutlet="showError">
   </ng-container>
 </div>
-</app-scenario>
-
-<ng-template #breadCrumb>
-  <nav class="breadcrumb" aria-label="breadcrumbs">
-    <ul>
-      <li><a routerLink="../">Machine State</a></li>
-      <li class="is-active"><a routerLink="/{{id$ | async}}" aria-current="page">{{ id$ | async }}</a></li>
-    </ul>
-  </nav>
-</ng-template>
 
 <ng-template #showError>
   <div *ngIf="hasError" class="message is-danger is-small">
