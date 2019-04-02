@@ -13,7 +13,7 @@ import { DatatableComponent } from "@swimlane/ngx-datatable";
     templateUrl: "./detail.component.html",
     styleUrls: ["./detail.component.css"]
 })
-export class DetailComponent implements OnInit {
+export class ScenarioMachinestateDetailComponent implements OnInit {
     id$: BehaviorSubject<string> = new BehaviorSubject<string>(null);
     itemData$: Observable<ItemData[]>;
     conditions$: Observable<Condition[]>;

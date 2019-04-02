@@ -7,6 +7,7 @@ import { of } from 'rxjs';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SharedModule } from '../shared/shared.module';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ScenarioMachinestateDetailComponent } from './detail/detail.component';
 
 describe('ScenarioMachinestateComponent', () => {
     let component: ScenarioMachinestateComponent;
@@ -21,7 +22,7 @@ describe('ScenarioMachinestateComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [ RouterTestingModule, SharedModule, HttpClientTestingModule ],
-            declarations: [ ScenarioMachinestateComponent ],
+            declarations: [ ScenarioMachinestateComponent, ScenarioMachinestateDetailComponent ],
             providers: [
                 { provide: MachineStateService, useFactory: () => machineStateServiceMock.object }
             ]
