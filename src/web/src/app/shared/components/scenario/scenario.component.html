@@ -7,13 +7,11 @@
   </ng-container>
 </ng-container>
 
-<div>
-  <div class="developer-links">
-    <a href="{{tapioDocumentationUrl}}" class="has-text-light" target="_blank" rel="noopener">Tapio</a>&nbsp;
-    <a href="{{frontendUrl}}" class="has-text-light" target="_blank" rel="noopener"><fa-icon [icon]="['fab', 'github']"></fa-icon> Frontend</a>&nbsp;
-    <a href="{{backendUrl}}" class="has-text-light" target="_blank" rel="noopener" *ngIf="hasBackendUrl"><fa-icon [icon]="['fab', 'github']"></fa-icon> Backend</a>
-  </div>
-  <div class="actual-content has-text-light">
-    <ng-content></ng-content>
-  </div>
+<div class="developer-links">
+  <a [attr.href]="tapioDocumentationUrl" class="has-text-light" target="_blank" rel="noopener">Tapio</a>
+  <a [attr.href]="frontendUrl" class="has-text-light" target="_blank" rel="noopener"><fa-icon [icon]="['fab', 'github']"></fa-icon>Frontend</a>
+  <a [attr.href]="backendUrl" class="has-text-light" target="_blank" rel="noopener" *ngIf="hasBackendUrl"><fa-icon [icon]="['fab', 'github']"></fa-icon>Backend</a>
+</div>
+<div class="actual-content has-text-light">
+  <ng-content></ng-content>
 </div>
