@@ -85,7 +85,7 @@ Target.create "Test.Frontend" (fun _ ->
     if npmPath.IsNone then failwith "npm could not be found"
 
     let npmTestCodeCoverage =
-        ["test-codecoverage"; "--watch=false"]
+        ["run"; "test-codecoverage"]
         |> CreateProcess.fromRawCommand npmPath.Value
         |> CreateProcess.withWorkingDirectory "./src/web"
         |> Proc.run
