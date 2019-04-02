@@ -18,6 +18,7 @@ steps:
       projectKey: 'AITGmbH_tapiodeveloperapp'
       extraProperties: |
         sonar.coverage.exclusions=**/*spec.ts
+        sonar.typescript.lcov.reportPaths=$(Build.Repository.LocalPath)/src/web/coverage/developerapp/lcov.info
   - task: PowerShell@2
     displayName: 'Run fake build'
     inputs:

@@ -81,15 +81,15 @@ Target.create "DeployArtifacts" (fun _ ->
 )
 
 Target.create "Test.Frontend" (fun _ ->
-    let angular = ProcessUtils.tryFindFileOnPath  "ng"
-    if angular.IsNone then failwith "angular cli could not be found"
+    let npmPath = ProcessUtils.tryFindFileOnPath "npm"
+    if npmPath.IsNone then failwith "npm could not be found"
 
-    let ngRunTests =
-        ["test"; "--watch=false"]
-        |> CreateProcess.fromRawCommand angular.Value
+    let npmTestCodeCoverage =
+        ["test-codecoverage"; "--watch=false"]
+        |> CreateProcess.fromRawCommand npmPath.Value
         |> CreateProcess.withWorkingDirectory "./src/web"
         |> Proc.run
-    if ngRunTests.ExitCode <> 0 then failwith "There was at least one failing test, or the tests couldn't be executed at all"
+    if npmTestCodeCoverage.ExitCode <> 0 then failwith "There was at least one failing test, or the tests couldn't be executed at all"
 )
 
 Target.create "All" ignore
