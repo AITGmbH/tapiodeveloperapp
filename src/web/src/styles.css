@@ -114,21 +114,6 @@ ngx-datatable datatable-pager .pages a {
   transform: translate(0, 0) scale(1, 1);
 }
 
-.ngx-datatable .datatable-body .progress-linear .container .bar {
-  transition: all .2s linear;
-  -webkit-animation: query 0.8s infinite cubic-bezier(0.39, 0.575, 0.565, 1);
-  animation: query 0.8s infinite cubic-bezier(0.39, 0.575, 0.565, 1);
-  transition: -webkit-transform .2s linear;
-  transition: transform .2s linear;
-  background-color: gray;
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  height: 5px;
-}
-
 .ngx-datatable datatable-body-cell.datatable-body-cell {
   line-height: 2.5;
   margin-right: 15px;
@@ -140,18 +125,4 @@ ngx-datatable datatable-pager .pages a {
 
 div.empty-row {
   padding-top: 10px;
-}
-
-/**
- * Progress bar animations
- */
-@keyframes query {
-    0% {
-        opacity: 1;
-        transform: translateX(35%) scale(0.3, 1);
-    }
-    100% {
-        opacity: 0;
-        transform: translateX(-50%) scale(0, 1);
-    }
 }
