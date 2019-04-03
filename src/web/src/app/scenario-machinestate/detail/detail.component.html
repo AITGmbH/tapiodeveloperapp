@@ -1,6 +1,5 @@
-<h1 class="title is-1" >State of machine {{id$ | async}}</h1>
 <div>
-  <h2 class="title is-2">Item Data</h2>
+  <h3 class="title is-3">Item Data</h3>
   <ngx-datatable [rows]="itemData$ | async" [columnMode]="'flex'" [loadingIndicator]="isLoading" [scrollbarH]="true" #itemData>
     <ngx-datatable-column name="k" [flexGrow]="2" [resizeable]="false">
         <ng-template let-column="column" ngx-datatable-header-template>
@@ -63,7 +62,7 @@
   </ng-container>
 </div>
 <div>
-  <h2 class="title is-2">Conditions</h2>
+  <h3 class="title is-3">Conditions</h3>
   <ngx-datatable [rows]="conditions$ | async" [columnMode]="'flex'" [loadingIndicator]="isLoading" [scrollbarH]="true" #conditions>
       <ngx-datatable-column name="k" [flexGrow]="2" [resizeable]="false">
           <ng-template let-column="column" ngx-datatable-header-template>

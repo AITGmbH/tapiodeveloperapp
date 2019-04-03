@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MachineStateService, AssignedMachine } from './scenario-machinestate-service';
 import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-scenario-machinestate',
@@ -10,15 +10,19 @@ import { Router } from '@angular/router';
 })
 export class ScenarioMachinestateComponent implements OnInit {
     machines$: Observable<AssignedMachine[]>;
+    initialMachineId: string;
 
-    constructor(private machineStateService: MachineStateService, private readonly router: Router) { }
+    constructor(private machineStateService: MachineStateService, 
+      private readonly router: Router, 
+      private readonly route: ActivatedRoute) { }
 
     ngOnInit() {
         this.machines$ = this.machineStateService.getMachines();
+
+        this.initialMachineId = this.route.snapshot.params.tmid;
     }
 
     selectedMachineChanged(machineId: string) {
       this.router.navigate(['scenario-machinestate', machineId])
     }
-
 }

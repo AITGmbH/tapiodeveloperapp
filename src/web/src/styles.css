@@ -7,6 +7,18 @@ body {
   background: rgb(7, 19, 26);
 }
 
+h1.title {
+  text-align: left;
+  color: #fff;
+}
+
+h3.title.is-3 {
+  text-align: left;
+  color: #fff;
+  font-size: 35px;
+  margin: 15px 0;
+}
+
 /**
   Start Spinner
   Source: https://github.com/tobiasahlin/SpinKit

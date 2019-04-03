@@ -1,7 +1,7 @@
 <app-scenario 
   title="Machine State" 
   id="machine-state-scenario">
-  <app-select-machine (change)="selectedMachineChanged($event)">
+  <app-select-machine (change)="selectedMachineChanged($event)" [initialMachineId]="initialMachineId">
   </app-select-machine>
 
   <app-scenario-machinestate-detail>

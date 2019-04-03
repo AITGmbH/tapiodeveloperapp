@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ScenarioMachinestateComponent } from './scenario-machinestate.component';
-import { ScenarioMachinestateDetailComponent } from './detail/detail.component';
 
 const routes: Routes = [
     {

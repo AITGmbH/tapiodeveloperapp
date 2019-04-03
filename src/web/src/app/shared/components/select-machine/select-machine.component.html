@@ -1,6 +1,6 @@
 <div class="row">
     <div class="tile">
-        <ng-select class="tile dropdown" [items]="assignedMachines | async" [bindLabel]="'displayName'"
+        <ng-select class="tile dropdown" [items]="assignedMachines | async" [bindLabel]="'displayName'" [(ngModel)]="selectedMachine"
             placeholder="please select a machine" [clearable]="false" [searchable]="false" [dropdownPosition]="'bottom'"
             (change)="selectedMachineChanged($event)"></ng-select>
     </div>
