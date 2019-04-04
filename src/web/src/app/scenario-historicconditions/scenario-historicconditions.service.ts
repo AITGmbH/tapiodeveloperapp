@@ -38,67 +38,45 @@ export class HistoricConditionsResponse {
 export class ConditionData {
     key: string;
     provider: string;
-
     values: Entry[];
 }
 
 export class Entry {
     sts: Date;
-
     rts_utc_start?: Date;
-
     rts_start?: Date;
-
     rts_utc_end?: Date;
-
     rts_end?: Date;
-
     rts_utc_end_quality: string;
-
     p: string;
-
     k: string;
-
     s: string;
-
     sv: string;
-
-    ls: any;
-
-    lm: any;
-
+    ls: LM;
+    lm: LM;
     vls: any;
 }
 
 export class FlatConditionDataEntry {
     key: string;
     provider: string;
-
     sts: Date;
-
     rts_utc_start?: Date;
-
     rts_start?: Date;
-
     rts_utc_end?: Date;
-
     rts_end?: Date;
-
     rts_utc_end_quality: string;
-
     p: string;
-
     k: string;
-
     s: string;
-
     sv: string;
-
-    ls: any;
-
-    lm: any;
-
+    ls: LM;
+    lm: LM;
     vls: any;
-
     duration?: string;
+}
+
+export class LM {
+    de: string;
+    en: string;
 }

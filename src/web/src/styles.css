@@ -90,9 +90,8 @@ ngx-datatable .datatable-footer {
   border-top: thin solid gray;
 }
 
-ngx-datatable datatable-pager .pages a {
-  color: white;
-  margin-left: 1rem;
+ngx-datatable .datatable-footer datatable-pager {
+  display: none;
 }
 
 .ngx-datatable .datatable-body .progress-linear {

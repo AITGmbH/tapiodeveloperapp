@@ -17,7 +17,6 @@ export class ScenarioMachinestateDetailComponent implements OnInit {
     id$: BehaviorSubject<string> = new BehaviorSubject<string>(null);
     itemData$: Observable<ItemData[]>;
     conditions$: Observable<Condition[]>;
-    isLoading = true;
     hasError: boolean;
     @ViewChild("itemData") itemData: DatatableComponent;
     @ViewChild("conditions") conditions: DatatableComponent;
@@ -41,10 +40,8 @@ export class ScenarioMachinestateDetailComponent implements OnInit {
                     this.conditions$ = of(lastKnownState.conds);
                     this.itemData.messages.emptyMessage = defaultMessage;
                     this.conditions.messages.emptyMessage = defaultMessage;
-                    this.isLoading = false;
                 },
                 _ => {
-                    this.isLoading = false;
                     this.hasError = true;
                     this.itemData.messages.emptyMessage = "";
                     this.conditions.messages.emptyMessage = "";
@@ -53,7 +50,6 @@ export class ScenarioMachinestateDetailComponent implements OnInit {
         });
 
         this.route.params.subscribe(params => {
-            this.isLoading = true;
             this.id$.next(params.tmid as string);
         });
     }

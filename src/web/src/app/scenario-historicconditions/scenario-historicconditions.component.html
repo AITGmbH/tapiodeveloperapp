@@ -91,12 +91,17 @@
         prop="rts_utc_end_quality"
         [width]="50">
       </ngx-datatable-column>
-      <ngx-datatable-column
-        [flexGrow]="3"
-        [resizeable]="false"
-        name="localized message"
-        prop="lm.en">
-      </ngx-datatable-column>
+      <ngx-datatable-column  
+      [flexGrow]="3" 
+      [resizeable]="false"
+      name="lm">
+        <ng-template let-column="column" ngx-datatable-header-template>
+          <span>localized message ({{column.name}})</span>
+        </ng-template>
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          {{value | json}}
+        </ng-template>
+    </ngx-datatable-column>
     </ngx-datatable>
   </div>
 </app-scenario>

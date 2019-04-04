@@ -1,6 +1,6 @@
 .actual-content {
   background: #010305;
-  height: 43rem;
+  min-height: 43rem;
   padding: 1rem; 
 }
 
