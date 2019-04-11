@@ -37,11 +37,11 @@ export class ScenarioHistoricaldataComponent implements OnInit {
         );
     }
 
-    public selectedMachineChanged(tmid: string) {
+    public selectedMachineChanged(machine: AssignedMachine) {
         this.loading$.next(true);
         this.error$.next(false);
         this.sourceKeys = null;
-        this.historicalDataService.getSourceKeys(tmid).subscribe(
+        this.historicalDataService.getSourceKeys(machine.tmid).subscribe(
             sourceKeys => {
                 this.sourceKeys = sourceKeys;
                 this.loading$.next(false);

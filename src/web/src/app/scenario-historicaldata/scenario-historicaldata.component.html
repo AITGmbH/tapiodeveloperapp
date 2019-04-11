@@ -8,10 +8,10 @@
           [clearable]="false" [searchable]="false" [dropdownPosition]="'bottom'" [loading]="loadingMachines$ | async"
           (change)="selectedMachineChanged($event)"></ng-select>
       </div>
-      <div class="sourceKeyList" *ngIf="sourceKeys | async; else loadingOrError">
+      <div class="sourceKeyList" *ngIf="sourceKeys; else loadingOrError">
         <h1 class="sourceKeyHeader">Source Keys:</h1>
         <ul>
-          <li *ngFor="let key of sourceKeys | async">
+          <li *ngFor="let key of sourceKeys.keys">
             {{key}}
           </li>
         </ul>
