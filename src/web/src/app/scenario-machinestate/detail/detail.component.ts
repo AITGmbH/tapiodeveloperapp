@@ -7,6 +7,7 @@ import {
 import { ActivatedRoute } from "@angular/router";
 import { Observable, of, Subject, BehaviorSubject } from "rxjs";
 import { DatatableComponent } from "@swimlane/ngx-datatable";
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
     selector: "app-scenario-machinestate-detail",
@@ -23,7 +24,8 @@ export class ScenarioMachinestateDetailComponent implements OnInit {
 
     constructor(
         private readonly machineStateService: MachineStateService,
-        private readonly route: ActivatedRoute
+        private readonly route: ActivatedRoute,
+        public readonly domSanitizerService: DomSanitizer
     ) {}
 
     ngOnInit(): void {

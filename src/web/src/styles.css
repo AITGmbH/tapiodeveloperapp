@@ -70,10 +70,6 @@ h3.title.is-3 {
   End Spinner
 */
 
-.datatable[_ngcontent-c3] {
-  height: 35rem;
-}
-
 ngx-datatable datatable-body datatable-row-wrapper:not(:last-of-type) {
   border-bottom: thin solid gray;
 }
@@ -82,9 +78,12 @@ ngx-datatable .datatable-header-cell {
   font-weight: 700;
 }
 
+.ngx-datatable datatable-header-cell.datatable-header-cell {
+  margin-right: 15px;
+}
+
 ngx-datatable .datatable-header {
   border-bottom: thin solid gray;
-  margin-right: 15px;
 }
 
 ngx-datatable .datatable-footer {
@@ -95,14 +94,8 @@ ngx-datatable .datatable-footer datatable-pager {
   display: none;
 }
 
-
 .ngx-datatable datatable-body-cell.datatable-body-cell {
-  line-height: 2.5;
-  margin-right: 15px;
-}
-
-.ngx-datatable datatable-header-cell.datatable-header-cell {
-  margin-right: 15px;
+  margin: 5px 15px 5px 0;
 }
 
 div.empty-row {
