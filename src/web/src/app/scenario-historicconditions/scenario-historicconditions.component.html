@@ -99,7 +99,7 @@
           <span>localized message ({{column.name}})</span>
         </ng-template>
         <ng-template let-value="value" ngx-datatable-cell-template>
-          {{value | json}}
+          <span style="white-space:pre-wrap" >{{value | json}}</span>
         </ng-template>
     </ngx-datatable-column>
     </ngx-datatable>

@@ -51,7 +51,7 @@ export interface ItemData {
     p: string;
     k: string;
     vt: string;
-    v: number;
+    v: any;
     u: string;
     q: string;
     sts: string;
