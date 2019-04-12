@@ -1,11 +1,11 @@
 .dateTimePicker {
   text-align: left;
   margin: 10px 0;
-  font-family: audimat;
+  font-family: audimat, sans-serif;
 }
 
 .dateTimePicker input {
-  font-family: audimat;
+  font-family: audimat, sans-serif;
   font-size: 1rem;
   padding: 6px 10px 6px 10px;
 }
@@ -18,7 +18,7 @@
 owl-date-time-container.owl-dt-popup-container, 
 owl-date-time-container.owl-dt-popup-container input,
 owl-date-time-container.owl-dt-popup-container button  {
-  font-family: audimat;
+  font-family: audimat, sans-serif;
 }
 .owl-dt-calendar-table span.owl-dt-calendar-cell-selected {
   background-color: #aaaaaa;

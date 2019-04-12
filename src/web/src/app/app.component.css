@@ -1,7 +1,7 @@
 .main-header {
   background: #FFF;
   color: #000;
-  font-family: audimat;
+  font-family: audimat, sans-serif;
   margin-bottom: 0;
 }
 
@@ -16,7 +16,7 @@
 
 .main-nav {
   background: rgb(14, 31, 41);
-  font-family: audimat;
+  font-family: audimat, sans-serif;
   width: 15%;
 }
 
