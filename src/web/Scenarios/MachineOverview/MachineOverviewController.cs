@@ -21,7 +21,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineOverview
         [HttpGet]
         public async Task<ActionResult<SubscriptionOverview>> GetAllSubscriptionsAsync(CancellationToken cancellationToken)
         {
-            var subscriptions = await _machineOverviewService.GetSubscriptionAsync(cancellationToken);
+            var subscriptions = await _machineOverviewService.GetSubscriptionsAsync(cancellationToken);
             return Ok(subscriptions);
         }
     }

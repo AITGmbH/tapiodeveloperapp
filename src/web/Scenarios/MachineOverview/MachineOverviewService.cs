@@ -23,7 +23,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineOverview
             _tokenProvider = tokenProvider ?? throw new ArgumentNullException(nameof(tokenProvider));
         }
 
-        public async Task<SubscriptionOverview> GetSubscriptionAsync(CancellationToken cancellationToken)
+        public async Task<SubscriptionOverview> GetSubscriptionsAsync(CancellationToken cancellationToken)
         {
             var token = await _tokenProvider.ReceiveTokenAsync(TapioScope.GlobalDiscovery);
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, GlobalDiscoSubscriptionOverviewRequest);
@@ -38,6 +38,6 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineOverview
 
     public interface IMachineOverviewService
     {
-        Task<SubscriptionOverview> GetSubscriptionAsync(CancellationToken cancellationToken);
+        Task<SubscriptionOverview> GetSubscriptionsAsync(CancellationToken cancellationToken);
     }
 }
