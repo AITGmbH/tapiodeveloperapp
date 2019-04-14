@@ -8,7 +8,7 @@ import { map } from "rxjs/operators";
  */
 @Injectable()
 export class HistoricconditionsService {
-    constructor(private http: HttpClient) {}
+    constructor(private readonly http: HttpClient) {}
 
     public getHistoricConditions(
         machineId: string,

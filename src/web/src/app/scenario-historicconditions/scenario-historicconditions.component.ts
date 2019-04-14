@@ -17,11 +17,11 @@ import { DecimalPipe } from "@angular/common";
 })
 export class ScenarioHistoricconditionsComponent implements OnInit {
     constructor(
-        private historicconditionsService: HistoricconditionsService,
-        private decimalPipe: DecimalPipe
+        private readonly historicconditionsService: HistoricconditionsService,
+        private readonly decimalPipe: DecimalPipe
     ) {}
 
-    private dataChanged$ = new BehaviorSubject<{
+    private readonly dataChanged$ = new BehaviorSubject<{
         tmid?: string;
         dateStart?: Date;
         dateEnd?: Date;
@@ -29,7 +29,7 @@ export class ScenarioHistoricconditionsComponent implements OnInit {
     public error$ = new BehaviorSubject<boolean>(false);
     public loading$ = new BehaviorSubject<boolean>(false);
     public rows$ = new BehaviorSubject<FlatConditionDataEntry[]>([]);
-    public modalContent: string = "";
+    public modalContent = "";
     ngOnInit() {
         this.dataChanged$
             .pipe(
@@ -149,7 +149,7 @@ export class ScenarioHistoricconditionsComponent implements OnInit {
     }
     public selectedMachineChanged(tmid: string) {
         this.dataChanged$.next({
-            tmid: tmid,
+            tmid,
             dateStart: this.dataChanged$.value.dateStart,
             dateEnd: this.dataChanged$.value.dateEnd
         });
