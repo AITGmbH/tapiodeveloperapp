@@ -22,7 +22,7 @@
         <span>Value ({{column.name}})</span>
       </ng-template>
       <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
-        <img class="datatable-cell-value" *ngIf="(row.vt === 'b')" [src]="domSanitizerService.bypassSecurityTrustUrl('data:image/jpeg;charset=utf-8;base64, ' + value)" />
+        <img class="datatable-cell-value" *ngIf="(row.vt === 'b')" alt="base64 encoded image" [src]="domSanitizerService.bypassSecurityTrustUrl('data:image/jpeg;charset=utf-8;base64, ' + value)" />
         <div class="datatable-cell-value" *ngIf="row.vt === 'dss'"  style="white-space:pre-wrap" >{{value | json}}</div>
         <div class="datatable-cell-value" *ngIf="row.vt !== 'b' && row.vt !== 'dss'">{{value}}</div>
       </ng-template>
