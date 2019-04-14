@@ -35,11 +35,6 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineState
 
         public async Task<JToken> ReceiveStateOfSingleMachineAsync(string machineId, CancellationToken cancellationToken)
         {
-            if (machineId == null)
-            {
-                throw new ArgumentNullException(nameof(machineId));
-            }
-
             if (string.IsNullOrWhiteSpace(machineId))
             {
                 throw new ArgumentException("Value cannot be null or whitespace.", nameof(machineId));
