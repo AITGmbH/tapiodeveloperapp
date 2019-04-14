@@ -19,12 +19,19 @@ steps:
       extraProperties: |
         sonar.exclusions=**/*spec.ts,**/coverage/**/*,**/e2e/**/*
         sonar.typescript.lcov.reportPaths=$(Build.Repository.LocalPath)/src/web/coverage/developerapp/lcov.info
+        sonar.cs.vscoveragexml.reportsPaths=$(Build.Repository.LocalPath)/**/*.coveragexml
   - task: PowerShell@2
     displayName: 'Run fake build'
     inputs:
       targetType: filePath
       workingDirectory: $(Build.Repository.LocalPath)
       filePath: build.ps1
+  - task: PowerShell@2
+    displayName: 'dotnet code coverage'
+    inputs:
+      targetType: filePath
+      workingDirectory: $(Build.Repository.LocalPath)
+      filePath: codecoverage.ps1
   - task: SonarSource.sonarcloud.ce096e50-6155-4de8-8800-4221aaeed4a1.SonarCloudAnalyze@1
     displayName: 'Run Code Analysis'
   - task: SonarSource.sonarcloud.38b27399-a642-40af-bb7d-9971f69712e8.SonarCloudPublish@1
