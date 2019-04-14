@@ -66,7 +66,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit
             {
                 var cut = new MachineOverviewService(httpClient, _standardTokenProviderMock.Object);
 
-                Func<Task<SubscriptionOverview>> action = () => cut.GetSubscriptionAsync(CancellationToken.None);
+                Func<Task<SubscriptionOverview>> action = () => cut.GetSubscriptionsAsync(CancellationToken.None);
                 await action.Should().NotThrowAsync();
             }
         }
@@ -81,7 +81,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit
             {
                 var cut = new MachineOverviewService(httpClient, _standardTokenProviderMock.Object);
 
-                await cut.GetSubscriptionAsync(CancellationToken.None);
+                await cut.GetSubscriptionsAsync(CancellationToken.None);
 
                 messageHandlerMock.VerifySendAsyncWasInvokedExactlyOnce();
             }
@@ -97,7 +97,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit
             {
                 var cut = new MachineOverviewService(httpClient, _standardTokenProviderMock.Object);
 
-                Func<Task<SubscriptionOverview>> action = () => cut.GetSubscriptionAsync(CancellationToken.None);
+                Func<Task<SubscriptionOverview>> action = () => cut.GetSubscriptionsAsync(CancellationToken.None);
                 await action.Should().ThrowAsync<HttpRequestException>();
             }
         }
