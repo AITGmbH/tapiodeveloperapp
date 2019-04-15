@@ -15,9 +15,9 @@
   padding-left: 10px;
 }
 
-owl-date-time-container.owl-dt-popup-container, 
-owl-date-time-container.owl-dt-popup-container input,
-owl-date-time-container.owl-dt-popup-container button  {
+.owl-dt-popup-container, 
+.owl-dt-popup-container input,
+.owl-dt-popup-container button  {
   font-family: audimat, sans-serif;
 }
 .owl-dt-calendar-table span.owl-dt-calendar-cell-selected {
