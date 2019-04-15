@@ -83,9 +83,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web
                 if (!path.StartsWithSegments("/api", StringComparison.Ordinal) && !path.StartsWithSegments("/hubs", StringComparison.Ordinal) && !Path.HasExtension(path))
                 {
                     context.Request.Path = "/index.html";
-#pragma warning disable S4055 // Literals should not be passed as localized parameters
                     _logger.LogInformation("Rerouting from {SourceRoute} to {DestinationRoute}", path, context.Request.Path);
-#pragma warning restore S4055 // Literals should not be passed as localized parameters
                 }
 
                 await next();
