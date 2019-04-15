@@ -14,8 +14,8 @@
   margin-right: 6px;
 }
 
-.developer-links > a fa-icon {
-  margin-right: 3px;
+.developer-links > a .ng-fa-icon {
+  margin-right: 5px;
 }
 
 * {
