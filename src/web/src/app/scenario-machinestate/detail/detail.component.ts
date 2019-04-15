@@ -11,8 +11,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
     selector: "app-scenario-machinestate-detail",
-    templateUrl: "./detail.component.html",
-    styleUrls: ["./detail.component.css"]
+    templateUrl: "./detail.component.html"
 })
 export class ScenarioMachinestateDetailComponent implements OnInit {
     id$: BehaviorSubject<string> = new BehaviorSubject<string>(null);

@@ -5,8 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-scenario-machinestate',
-  templateUrl: './scenario-machinestate.component.html',
-  styleUrls: ['./scenario-machinestate.component.css']
+  templateUrl: './scenario-machinestate.component.html'
 })
 export class ScenarioMachinestateComponent implements OnInit {
     machines$: Observable<AssignedMachine[]>;
