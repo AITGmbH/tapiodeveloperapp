@@ -17,3 +17,15 @@
   text-align: left;
   color: red;
 }
+
+input[type='radio'] { 
+  transform: scale(1.2); 
+}
+
+li > label:hover { 
+  cursor: pointer; 
+}
+
+li > input:hover { 
+  cursor: pointer; 
+}
