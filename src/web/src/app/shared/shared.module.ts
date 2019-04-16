@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
 
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -10,6 +11,8 @@ import { NgxDatatableModule } from "@swimlane/ngx-datatable";
 import { SelectMachineComponent } from "./components/select-machine/select-machine.component";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { AvailableMachinesService } from "./services/available-machines.service";
+import { DateRangeComponent } from "./components/date-range/date-range.component";
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 library.add(faGithub);
 
@@ -17,19 +20,24 @@ library.add(faGithub);
  * Provides access to shared functionality.
  */
 @NgModule({
-    declarations: [ScenarioComponent, SelectMachineComponent],
+    declarations: [ScenarioComponent, SelectMachineComponent, DateRangeComponent],
     imports: [
         CommonModule,
         FontAwesomeModule,
         NgxDatatableModule,
-        NgSelectModule
+        NgSelectModule,
+        FormsModule,
+        OwlDateTimeModule,
+        OwlNativeDateTimeModule
     ],
     exports: [
         ScenarioComponent,
         FontAwesomeModule,
         NgxDatatableModule,
         SelectMachineComponent,
-        NgSelectModule
+        NgSelectModule,
+        FormsModule,
+        DateRangeComponent
     ],
     providers: [AvailableMachinesService]
 })

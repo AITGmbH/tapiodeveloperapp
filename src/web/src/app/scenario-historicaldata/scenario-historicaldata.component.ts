@@ -36,4 +36,8 @@ export class ScenarioHistoricaldataComponent implements OnInit {
             }
         );
     }
+
+    public dateRangeChanged(dateRange: {dateStart: Date, dateEnd: Date}){
+        console.log('date range changed', dateRange);
+      }
 }
