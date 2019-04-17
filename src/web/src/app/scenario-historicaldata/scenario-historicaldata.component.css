@@ -1,11 +1,45 @@
-.sourceKeyList {
-    margin-top: 1rem;
-    text-align: left;
+.sourceKeyHeader {
+  font-size: x-large;
+  font-weight: bold;
 }
 
-.sourceKeyHeader {
-    font-size: x-large;
-    font-weight: bold;
+.flex-container {
+  display: flex;
+  flex-direction: row;
+}
+
+div.sourceKeyList {
+  margin-top: 1rem;
+  margin-right: 25px;
+  text-align: left;
+  min-width: 35%;
+  max-width: 45%;
+  clear: both;
+}
+
+input[type='radio'] { 
+  transform: scale(1.2); 
+  margin: 5px 4px 0 2px;
+  position: absolute;
+}
+
+li {
+  margin-top: 5px;
+}
+
+li > label {
+  margin-left: 20px;
+}
+
+li > label:hover,
+li > input:hover { 
+  cursor: pointer; 
+}
+
+div.sourceKeyData {
+  margin-top: 1rem;
+  margin-left: 5px;
+  max-width: 45%;
 }
 
 .errorMessage {
@@ -16,16 +50,4 @@
   padding: 3px 3px 3px 10px;
   text-align: left;
   color: red;
-}
-
-input[type='radio'] { 
-  transform: scale(1.2); 
-}
-
-li > label:hover { 
-  cursor: pointer; 
-}
-
-li > input:hover { 
-  cursor: pointer; 
 }
