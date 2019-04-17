@@ -334,5 +334,5 @@ ASALocalRun/
 .buildpackages/
 
 src/web/dist/
-
+src/web/coverage
 src/web/src/environments/version.ts
