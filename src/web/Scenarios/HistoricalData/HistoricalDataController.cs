@@ -22,12 +22,31 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricalData
         }
 
         [HttpGet("{machineId}")]
-        public async Task<ActionResult<SubscriptionOverview>> GetSourceKeys(CancellationToken cancellationToken, string machineId)
+        public async Task<ActionResult<SourceKeyResponse>> GetSourceKeys(CancellationToken cancellationToken, string machineId)
         {
             try
             {
                 var keys = await _historicalDataService.ReadSourceKeysAsync(cancellationToken, machineId);
 
+                return Ok(keys);
+            }
+            catch (HttpException ex)
+            {
+                switch (ex.StatusCode)
+                {
+                    case HttpStatusCode.NotFound:
+                        return NotFound();
+                    default:
+                        throw ex;
+                }
+            }
+        }
+        [HttpPost("{machineId}")]
+        public async Task<ActionResult<HistoricalDataResponse>> GetHistoricalData(CancellationToken cancellationToken, string machineId, [FromBody] HistoricalDataRequest request) 
+        {
+            try
+            {
+                var keys = await _historicalDataService.GetHistoricalDataAsync(cancellationToken, machineId, request);
                 return Ok(keys);
             }
             catch (HttpException ex)
