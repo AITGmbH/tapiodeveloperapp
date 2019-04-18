@@ -2,13 +2,13 @@
   <div>
     <app-select-machine (change)="selectedMachineChanged($event)"></app-select-machine>
     <app-date-range (change)="dateRangeChanged($event)"></app-date-range>
-    <div class="flex-container">
-      <div class="sourceKeyList row" *ngIf="(sourceKeys$ | async); else loadingOrError">
+    <div class="flex-container" *ngIf="(sourceKeys$ | async); else loadingOrError">
+      <div class="sourceKeyList row" >
         <h1 class="sourceKeyHeader">Source Keys:</h1>
         <ul>
           <li *ngFor="let key of (sourceKeys$ | async).keys; let i = index">
-            <input type="radio" name="sourceKeysList" [id]="i+'-'+key">
-            <label [for]="i+'-'+key">{{key}}</label>
+            <input type="radio" name="sourceKeysList" [id]="key" (change)="radioChanged($event)">
+            <label [for]="key">{{key}}</label>
           </li>
         </ul>
       </div>
