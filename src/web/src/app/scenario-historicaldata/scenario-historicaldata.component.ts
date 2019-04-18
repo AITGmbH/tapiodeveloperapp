@@ -1,8 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { Observable, of, Subject } from "rxjs";
+import { Observable, of, Subject, Subscription } from "rxjs";
 import { SourceKeys } from "./source-keys.model";
 import { AssignedMachine } from "../shared/models/assigned-machine.model";
-import { HistoricalDataService } from './scenario-historicaldata.service';
+import { HistoricalDataService } from "./scenario-historicaldata.service";
+import { catchError, tap } from "rxjs/operators";
 
 @Component({
     selector: "app-scenario-historicaldata",
@@ -13,44 +14,39 @@ export class ScenarioHistoricaldataComponent implements OnInit {
     assignedMachines$: Observable<AssignedMachine[]>;
     sourceKeys: SourceKeys;
     error$ = new Subject<boolean>();
-    loading$ = new Subject<boolean>();
     loadingMachines$ = new Subject<boolean>();
+    sourceKeys$: Observable<SourceKeys>;
 
     constructor(private historicalDataService: HistoricalDataService) {
         this.error$.next(false);
-        this.loading$.next(false);
         this.loadingMachines$.next(false);
     }
 
     ngOnInit() {
         this.loadingMachines$.next(true);
-        this.historicalDataService.getMachines().subscribe(
-            machines => {
-                this.assignedMachines$ = of(machines);
+        this.assignedMachines$ = this.historicalDataService.getMachines().pipe(
+            tap(() => {
                 this.loadingMachines$.next(false);
-            },
-            error => {
+            }),
+            catchError(error => {
                 console.error("could not load machines", error);
-                this.loadingMachines$.next(false);
                 this.error$.next(true);
-            }
+                return of([]);
+            })
         );
     }
-
-    public selectedMachineChanged(tmid: string) {
-        this.loading$.next(true);
-        this.error$.next(false);
-        this.sourceKeys = null;
-        this.historicalDataService.getSourceKeys(tmid).subscribe(
-            sourceKeys => {
-                this.sourceKeys = sourceKeys;
-                this.loading$.next(false);
-            },
-            error => {
-                console.error("could not load sourceKeys", error);
-                this.loading$.next(false);
-                this.error$.next(true);
-            }
-        );
+    public selectedMachineChanged(machine: AssignedMachine) {
+        if (machine && machine.tmid) {
+            this.error$.next(false);
+            this.sourceKeys = null;
+            console.log(machine.tmid);
+            this.sourceKeys$ = this.historicalDataService.getSourceKeys(machine.tmid).pipe(
+                catchError(error => {
+                    console.error("could not load sourceKeys", error);
+                    this.error$.next(true);
+                    return of(null);
+                })
+            );
+        }
     }
 }

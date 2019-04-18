@@ -129,3 +129,13 @@ ngx-datatable datatable-pager .pages a {
 div.empty-row {
   padding-top: 10px;
 }
+
+.errorMessage {
+  margin-top: 2rem;
+  background-color: white;
+  display: block;
+  max-width: 35%;
+  padding: 3px 3px 3px 10px;
+  text-align: left;
+  color: red;
+}

@@ -13,7 +13,8 @@ export class MachineOverviewService {
     constructor(private http: HttpClient) { }
 
     public getSubscriptions(): Observable<Subscription[]> {
-         return this.http.get<SubscriptionsOverview>("/api/machineOverview").pipe(map(r => r.subscriptions));
+         return this.http.get<SubscriptionsOverview>("/api/machineOverview")
+         .pipe(map(r => r.subscriptions));
     }
 }
 

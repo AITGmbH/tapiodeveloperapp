@@ -56,7 +56,6 @@ namespace web.Tests.Unit
         public MachineOverviewServiceTests()
         {
             _standardTokenProviderMock = new Mock<ITokenProvider>();
-            //_standardTokenProviderMock.Setup(tk => tk.ReceiveTokenAsync(It.IsAny<CancellationToken>())).ReturnsAsync("");
         }
 
         [Fact]

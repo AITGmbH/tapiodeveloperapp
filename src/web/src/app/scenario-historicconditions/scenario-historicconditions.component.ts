@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { BehaviorSubject, of } from "rxjs";
 import { filter, concatMap, tap, map, catchError } from "rxjs/operators";
 import {
-    HistoricconditionsService,
+    HistoricConditionsService,
     ConditionData,
     FlatConditionDataEntry
 } from "./scenario-historicconditions.service";
@@ -16,12 +16,9 @@ import { DecimalPipe } from "@angular/common";
     styleUrls: ["./scenario-historicconditions.component.css"]
 })
 export class ScenarioHistoricconditionsComponent implements OnInit {
-    constructor(
-        private historicconditionsService: HistoricconditionsService,
-        private decimalPipe: DecimalPipe
-    ) {}
+    constructor(private historicconditionsService: HistoricConditionsService, private decimalPipe: DecimalPipe) {}
 
-    private dataChanged$ = new BehaviorSubject<{
+    private searchCriteria$ = new BehaviorSubject<{
         tmid?: string;
         dateStart?: Date;
         dateEnd?: Date;
@@ -31,97 +28,94 @@ export class ScenarioHistoricconditionsComponent implements OnInit {
     public rows$ = new BehaviorSubject<FlatConditionDataEntry[]>([]);
     public modalContent: string = "";
     ngOnInit() {
-        this.dataChanged$
+        this.searchCriteria$
             .pipe(
-                filter(obj => {
-                    return !!(obj && obj.tmid && obj.dateStart && obj.dateEnd);
-                }),
-                tap(obj => {
-                    this.loading$.next(true);
-                    this.error$.next(false);
-                }),
-                concatMap(data => {
-                    return this.historicconditionsService
-                        .getHistoricConditions(data.tmid, {
-                            from: data.dateStart,
-                            to: data.dateEnd
-                        })
-                        .pipe(
-                            catchError((err, caught) => {
-                                console.warn(
-                                    "error occured while fetching data: ",
-                                    err
-                                );
-                                this.error$.next(true);
-                                return of([]);
-                            })
-                        );
-                }),
-                map((condDataArr: ConditionData[]) => {
-                    return [
-                        ...condDataArr.map(condData => {
-                            return condData.values.map(
-                                value =>
-                                    Object.assign(
-                                        {
-                                            key: condData.key,
-                                            provider: condData.provider
-                                        },
-                                        value
-                                    ) as FlatConditionDataEntry
-                            );
-                        })
-                    ].reduce((arr, curr) => {
-                        // flatten
-                        return [...arr, ...curr];
-                    }, []);
-                }),
-                map((flattenedArray: FlatConditionDataEntry[]) => {
-                    return flattenedArray.map(flatCondition => {
-                        if (flatCondition.rts_end && flatCondition.rts_start) {
-                            const duration = moment.duration(
-                                moment(flatCondition.rts_end).diff(
-                                    moment(flatCondition.rts_start)
-                                )
-                            );
-                            flatCondition.duration = `${this.decimalPipe.transform(
-                                duration.asHours(),
-                                "2.0-0"
-                            )}:${this.decimalPipe.transform(
-                                duration.minutes(),
-                                "2.0-0"
-                            )}:${this.decimalPipe.transform(
-                                duration.seconds(),
-                                "2.0-0"
-                            )} h`;
-                        }
-                        return flatCondition;
-                    });
-                })
+                filter(this.filterIncompleteSearchCriteria),
+                tap(this.setLoadingFlags),
+                concatMap(this.getHistoricConditionsBySearchCriteria),
+                map(this.flattenHistoricConditions),
+                map(this.patchDurationInFlatHistoricConditionData)
             )
             .subscribe({
                 next: data => {
-                    console.log('got data');
+                    console.log("got data");
                     this.loading$.next(false);
                     this.rows$.next(data);
                 },
                 error: err => {
                     this.error$.next(true);
                     this.loading$.next(false);
-                    console.warn(
-                        "hard error occured while fetching data: ",
-                        err
-                    );
+                    console.warn("hard error occured while fetching data: ", err);
                 }
             });
     }
+    
+    private patchDurationInFlatHistoricConditionData(
+        flattenedArray: FlatConditionDataEntry[]
+    ): FlatConditionDataEntry[] {
+        return flattenedArray.map(flatCondition => {
+            // calculate duration if start and end date are known.
+            if (flatCondition.rts_end && flatCondition.rts_start) {
+                const duration = moment.duration(moment(flatCondition.rts_end).diff(moment(flatCondition.rts_start)));
+                // format as HH:mm:ss
+                flatCondition.duration = `${this.decimalPipe.transform(
+                    duration.asHours(),
+                    "2.0-0"
+                )}:${this.decimalPipe.transform(duration.minutes(), "2.0-0")}:${this.decimalPipe.transform(
+                    duration.seconds(),
+                    "2.0-0"
+                )} h`;
+            }
+            return flatCondition;
+        });
+    }
+
+    private flattenHistoricConditions(condDataArr: ConditionData[]): FlatConditionDataEntry[] {
+        return [
+            ...condDataArr.map(condData => {
+                return condData.values.map(
+                    value =>
+                        Object.assign(
+                            {
+                                key: condData.key,
+                                provider: condData.provider
+                            },
+                            value
+                        ) as FlatConditionDataEntry
+                );
+            })
+        ].reduce((arr, curr) => {
+            // flatten
+            return [...arr, ...curr];
+        }, []);
+    }
+
+    private getHistoricConditionsBySearchCriteria(data: { tmid: string; dateStart: Date; dateEnd: Date }) {
+        return this.historicconditionsService
+            .getHistoricConditions(data.tmid, {
+                from: data.dateStart,
+                to: data.dateEnd
+            })
+            .pipe(
+                catchError((err, caught) => {
+                    console.warn("error occured while fetching data: ", err);
+                    this.error$.next(true);
+                    return of([]);
+                })
+            );
+    }
+
+    private setLoadingFlags() {
+        this.loading$.next(true);
+        this.error$.next(false);
+    }
+
+    private filterIncompleteSearchCriteria(obj: { tmid?: string; dateStart?: Date; dateEnd?: Date }): boolean {
+        return !!(obj && obj.tmid && obj.dateStart && obj.dateEnd);
+    }
+
     public onElementSelected($event: { selected: FlatConditionDataEntry[] }) {
-        console.log($event);
-        const data =
-            $event &&
-            $event.selected &&
-            $event.selected.length > 0 &&
-            $event.selected[0];
+        const data = $event && $event.selected && $event.selected.length > 0 && $event.selected[0];
         if (data) {
             const origElement: ConditionData = {
                 key: data.key,
@@ -148,16 +142,16 @@ export class ScenarioHistoricconditionsComponent implements OnInit {
         }
     }
     public selectedMachineChanged(tmid: string) {
-        this.dataChanged$.next({
+        this.searchCriteria$.next({
             tmid: tmid,
-            dateStart: this.dataChanged$.value.dateStart,
-            dateEnd: this.dataChanged$.value.dateEnd
+            dateStart: this.searchCriteria$.value.dateStart,
+            dateEnd: this.searchCriteria$.value.dateEnd
         });
     }
 
     public dateRangeChanged(dateRange: { dateStart: Date; dateEnd: Date }) {
-        this.dataChanged$.next({
-            tmid: this.dataChanged$.value.tmid,
+        this.searchCriteria$.next({
+            tmid: this.searchCriteria$.value.tmid,
             dateStart: dateRange.dateStart,
             dateEnd: dateRange.dateEnd
         });

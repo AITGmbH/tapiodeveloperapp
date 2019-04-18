@@ -1,21 +1,15 @@
 <app-scenario
   title="Historic Conditions"
   id="historic-conditions-scenario"
-  class="has-text-left"
->
+  class="has-text-left">
   <div>
     <app-select-machine
-      (change)="selectedMachineChanged($event)"
-    ></app-select-machine>
+      (change)="selectedMachineChanged($event)">
+    </app-select-machine>
   </div>
   <div>
     <app-date-range (change)="dateRangeChanged($event)"> </app-date-range>
   </div>
-  <!--
-  <pre>
-    {{ rows$ | async | json }}
-  </pre>
--->
   <div class="modal is-active" *ngIf="modalContent">
     <div class="modal-background"></div>
     <div class="modal-content">
@@ -24,8 +18,8 @@
     <button
       class="modal-close is-large"
       aria-label="close"
-      (click)="modalContent = ''"
-    ></button>
+      (click)="modalContent = ''">
+    </button>
   </div>
 
   <div

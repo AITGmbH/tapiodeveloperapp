@@ -6,16 +6,6 @@ div.modal-content {
     text-align: left;
 }
 
-.errorMessage {
-    margin-top: 2rem;
-    background-color: white;
-    display: block;
-    max-width: 35%;
-    padding: 3px 3px 3px 10px;
-    text-align: left;
-    color: red;
-  }
-
 .actual-content[_ngcontent-c4] {
     width: 100%;
 }
