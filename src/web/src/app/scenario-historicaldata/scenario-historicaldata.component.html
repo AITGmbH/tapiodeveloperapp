@@ -10,8 +10,8 @@
         [searchable]="false"
         [dropdownPosition]="'bottom'"
         [loading]="loadingMachines$ | async"
-        (change)="selectedMachineChanged($event)"
-      ></ng-select>
+        (change)="selectedMachineChanged($event)">
+      </ng-select>
     </div>
     <div class="sourceKeyList" *ngIf="!(loadingMachines$ | async) && sourceKeys$ | async as sourceKeys; else loadingOrError">
       <h1 class="sourceKeyHeader">Source Keys:</h1>
