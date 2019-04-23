@@ -15,8 +15,8 @@ import { DecimalPipe } from "@angular/common";
     templateUrl: "./scenario-historicconditions.component.html",
     styleUrls: ["./scenario-historicconditions.component.css"]
 })
-export class ScenarioHistoricconditionsComponent implements OnInit {
-    constructor(private historicconditionsService: HistoricConditionsService, private decimalPipe: DecimalPipe) {}
+export class ScenarioHistoricConditionsComponent implements OnInit {
+    constructor(private historicConditionsService: HistoricConditionsService, private decimalPipe: DecimalPipe) {}
 
     private searchCriteria$ = new BehaviorSubject<{
         tmid?: string;
@@ -101,7 +101,7 @@ export class ScenarioHistoricconditionsComponent implements OnInit {
         dateEnd: Date;
     }) => Observable<ConditionData[]> {
         return (data: { tmid: string; dateStart: Date; dateEnd: Date }) => {
-            return this.historicconditionsService
+            return this.historicConditionsService
                 .getHistoricConditions(data.tmid, {
                     from: data.dateStart,
                     to: data.dateEnd

@@ -1,14 +1,16 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { ScenarioHistoricconditionsComponent } from "./scenario-historicconditions.component";
+import { ScenarioHistoricConditionsComponent } from "./scenario-historicconditions.component";
 
-const routes: Routes = [{
+const routes: Routes = [
+    {
         path: "",
-    component: ScenarioHistoricconditionsComponent
-               }];
+        component: ScenarioHistoricConditionsComponent
+    }
+];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
 })
-export class ScenarioHistoricconditionsRoutingModule { }
+export class ScenarioHistoricconditionsRoutingModule {}
