@@ -18,7 +18,7 @@
 .owl-dt-popup-container, 
 .owl-dt-popup-container input,
 .owl-dt-popup-container button  {
-  font-family: audimat;
+  font-family: audimat, sans-serif;
 }
 .owl-dt-calendar-table span.owl-dt-calendar-cell-selected {
   background-color: #aaaaaa;
