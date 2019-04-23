@@ -2,7 +2,7 @@
   background: #FFF;
   color: #000;
   height: 50px;
-  font-family: audimat;
+  font-family: audimat, sans-serif;
 }
 
 .main-content, .main-content .box {
@@ -16,7 +16,7 @@
 
 .main-nav {
   background: rgb(14, 31, 41);
-  font-family: audimat;
+  font-family: audimat, sans-serif;
   width: 15%;
 }
 

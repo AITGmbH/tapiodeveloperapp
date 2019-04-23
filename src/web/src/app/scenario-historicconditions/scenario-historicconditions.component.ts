@@ -16,9 +16,9 @@ import { DecimalPipe } from "@angular/common";
     styleUrls: ["./scenario-historicconditions.component.css"]
 })
 export class ScenarioHistoricConditionsComponent implements OnInit {
-    constructor(private historicConditionsService: HistoricConditionsService, private decimalPipe: DecimalPipe) {}
+    constructor(private readonly historicConditionsService: HistoricConditionsService, private readonly decimalPipe: DecimalPipe) {}
 
-    private searchCriteria$ = new BehaviorSubject<{
+    private readonly searchCriteria$ = new BehaviorSubject<{
         tmid?: string;
         dateStart?: Date;
         dateEnd?: Date;
@@ -26,7 +26,7 @@ export class ScenarioHistoricConditionsComponent implements OnInit {
     public error$ = new BehaviorSubject<boolean>(false);
     public loading$ = new BehaviorSubject<boolean>(false);
     public rows$ = new BehaviorSubject<FlatConditionDataEntry[]>([]);
-    public modalContent: string = "";
+    public modalContent = "";
     ngOnInit() {
         this.searchCriteria$
             .pipe(
@@ -158,7 +158,7 @@ export class ScenarioHistoricConditionsComponent implements OnInit {
     }
     public selectedMachineChanged(tmid: string) {
         this.searchCriteria$.next({
-            tmid: tmid,
+            tmid,
             dateStart: this.searchCriteria$.value.dateStart,
             dateEnd: this.searchCriteria$.value.dateEnd
         });

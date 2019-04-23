@@ -17,7 +17,7 @@ export class ScenarioHistoricaldataComponent implements OnInit {
     loadingMachines$ = new Subject<boolean>();
     sourceKeys$: Observable<SourceKeys>;
 
-    constructor(private historicalDataService: HistoricalDataService) {
+    constructor(private readonly historicalDataService: HistoricalDataService) {
         this.error$.next(false);
         this.loadingMachines$.next(false);
     }

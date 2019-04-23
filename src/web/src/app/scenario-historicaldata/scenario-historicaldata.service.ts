@@ -11,7 +11,7 @@ import { SubscriptionsOverview } from '../shared/models/subscription-overview.mo
  */
 @Injectable()
 export class HistoricalDataService {
-    constructor(private http: HttpClient) {}
+    constructor(private readonly http: HttpClient) {}
 
     public getSourceKeys(machineId: string): Observable<SourceKeys> {
         return this.http
