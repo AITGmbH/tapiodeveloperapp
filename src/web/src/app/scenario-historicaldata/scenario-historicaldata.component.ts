@@ -39,7 +39,6 @@ export class ScenarioHistoricaldataComponent implements OnInit {
         if (machine && machine.tmid) {
             this.error$.next(false);
             this.sourceKeys = null;
-            console.log(machine.tmid);
             this.sourceKeys$ = this.historicalDataService.getSourceKeys(machine.tmid).pipe(
                 catchError(error => {
                     console.error("could not load sourceKeys", error);

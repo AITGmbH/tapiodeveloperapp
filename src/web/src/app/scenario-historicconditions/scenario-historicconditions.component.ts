@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { BehaviorSubject, of } from "rxjs";
+import { BehaviorSubject, of, Observable } from "rxjs";
 import { filter, concatMap, tap, map, catchError } from "rxjs/operators";
 import {
     HistoricConditionsService,
@@ -30,15 +30,14 @@ export class ScenarioHistoricconditionsComponent implements OnInit {
     ngOnInit() {
         this.searchCriteria$
             .pipe(
-                filter(this.filterIncompleteSearchCriteria),
-                tap(this.setLoadingFlags),
-                concatMap(this.getHistoricConditionsBySearchCriteria),
-                map(this.flattenHistoricConditions),
-                map(this.patchDurationInFlatHistoricConditionData)
+                filter(this.filterIncompleteSearchCriteria()),
+                tap(this.setLoadingFlags()),
+                concatMap(this.getHistoricConditionsBySearchCriteria()),
+                map(this.flattenHistoricConditions()),
+                map(this.patchDurationInFlatHistoricConditionData())
             )
             .subscribe({
                 next: data => {
-                    console.log("got data");
                     this.loading$.next(false);
                     this.rows$.next(data);
                 },
@@ -49,69 +48,85 @@ export class ScenarioHistoricconditionsComponent implements OnInit {
                 }
             });
     }
-    
-    private patchDurationInFlatHistoricConditionData(
+
+    private patchDurationInFlatHistoricConditionData(): (
         flattenedArray: FlatConditionDataEntry[]
-    ): FlatConditionDataEntry[] {
-        return flattenedArray.map(flatCondition => {
-            // calculate duration if start and end date are known.
-            if (flatCondition.rts_end && flatCondition.rts_start) {
-                const duration = moment.duration(moment(flatCondition.rts_end).diff(moment(flatCondition.rts_start)));
-                // format as HH:mm:ss
-                flatCondition.duration = `${this.decimalPipe.transform(
-                    duration.asHours(),
-                    "2.0-0"
-                )}:${this.decimalPipe.transform(duration.minutes(), "2.0-0")}:${this.decimalPipe.transform(
-                    duration.seconds(),
-                    "2.0-0"
-                )} h`;
-            }
-            return flatCondition;
-        });
+    ) => FlatConditionDataEntry[] {
+        return (flattenedArray: FlatConditionDataEntry[]) => {
+            return flattenedArray.map(flatCondition => {
+                // calculate duration if start and end date are known.
+                if (flatCondition.rts_end && flatCondition.rts_start) {
+                    const duration = moment.duration(
+                        moment(flatCondition.rts_end).diff(moment(flatCondition.rts_start))
+                    );
+                    // format as HH:mm:ss
+                    flatCondition.duration = `${this.decimalPipe.transform(
+                        duration.asHours(),
+                        "2.0-0"
+                    )}:${this.decimalPipe.transform(duration.minutes(), "2.0-0")}:${this.decimalPipe.transform(
+                        duration.seconds(),
+                        "2.0-0"
+                    )} h`;
+                }
+                return flatCondition;
+            });
+        };
     }
 
-    private flattenHistoricConditions(condDataArr: ConditionData[]): FlatConditionDataEntry[] {
-        return [
-            ...condDataArr.map(condData => {
-                return condData.values.map(
-                    value =>
-                        Object.assign(
-                            {
-                                key: condData.key,
-                                provider: condData.provider
-                            },
-                            value
-                        ) as FlatConditionDataEntry
-                );
-            })
-        ].reduce((arr, curr) => {
-            // flatten
-            return [...arr, ...curr];
-        }, []);
-    }
-
-    private getHistoricConditionsBySearchCriteria(data: { tmid: string; dateStart: Date; dateEnd: Date }) {
-        return this.historicconditionsService
-            .getHistoricConditions(data.tmid, {
-                from: data.dateStart,
-                to: data.dateEnd
-            })
-            .pipe(
-                catchError((err, caught) => {
-                    console.warn("error occured while fetching data: ", err);
-                    this.error$.next(true);
-                    return of([]);
+    private flattenHistoricConditions(): (condDataArr: ConditionData[]) => FlatConditionDataEntry[] {
+        return (condDataArr: ConditionData[]) => {
+            return [
+                ...condDataArr.map(condData => {
+                    return condData.values.map(
+                        value =>
+                            Object.assign(
+                                {
+                                    key: condData.key,
+                                    provider: condData.provider
+                                },
+                                value
+                            ) as FlatConditionDataEntry
+                    );
                 })
-            );
+            ].reduce((arr, curr) => {
+                // flatten
+                return [...arr, ...curr];
+            }, []);
+        };
     }
 
-    private setLoadingFlags() {
-        this.loading$.next(true);
-        this.error$.next(false);
+    private getHistoricConditionsBySearchCriteria(): (data: {
+        tmid: string;
+        dateStart: Date;
+        dateEnd: Date;
+    }) => Observable<ConditionData[]> {
+        return (data: { tmid: string; dateStart: Date; dateEnd: Date }) => {
+            return this.historicconditionsService
+                .getHistoricConditions(data.tmid, {
+                    from: data.dateStart,
+                    to: data.dateEnd
+                })
+                .pipe(
+                    catchError((err, caught) => {
+                        console.warn("error occured while fetching data: ", err);
+                        this.error$.next(true);
+                        return of([]);
+                    })
+                );
+        };
     }
 
-    private filterIncompleteSearchCriteria(obj: { tmid?: string; dateStart?: Date; dateEnd?: Date }): boolean {
-        return !!(obj && obj.tmid && obj.dateStart && obj.dateEnd);
+    private setLoadingFlags(): () => void {
+        return () => {
+            this.loading$.next(true);
+            this.error$.next(false);
+        };
+    }
+
+    private filterIncompleteSearchCriteria(): (obj: { tmid?: string; dateStart?: Date; dateEnd?: Date }) => boolean {
+        return (obj: { tmid?: string; dateStart?: Date; dateEnd?: Date }) => {
+            return !!(obj && obj.tmid && obj.dateStart && obj.dateEnd);
+        };
     }
 
     public onElementSelected($event: { selected: FlatConditionDataEntry[] }) {
