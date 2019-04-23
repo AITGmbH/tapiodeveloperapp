@@ -1,4 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RuleSet Name="SonarQube - Tapio.DeveloperApp Tapio.Developerapp" ToolsVersion="15.0">
-  <Include Path="..\.sonarlint\tapio.developerappcsharp.ruleset" Action="Default" />
+  <Include Path="..\.sonarlint\aitgmbh_tapiodeveloperappcsharp.ruleset" Action="Default" />
 </RuleSet>

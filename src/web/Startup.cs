@@ -41,9 +41,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web
                 .AddOptions<TapioCloudCredentials>()
                 .Bind(Configuration.GetSection("TapioCloud"))
                 .ValidateDataAnnotations()
-#pragma warning disable S4055 // Literals should not be passed as localized parameters
                 .Validate(c => Guid.TryParse(c.ClientId, out _), @"The client secret must be a valid Guid");
-#pragma warning restore S4055 // Literals should not be passed as localized parameters
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
