@@ -7,6 +7,7 @@ import { HistoricalDataService } from "./scenario-historicaldata.service";
 import { DebugElement } from "@angular/core";
 import { of } from "rxjs";
 import { SourceKeys } from "./source-keys.model";
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 const sourceKeysMock: SourceKeys = {
     tmid: "1",
@@ -23,7 +24,7 @@ describe("ScenarioHistoricaldataComponent", () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [ScenarioHistoricaldataComponent],
-            imports: [SharedModule, HttpClientTestingModule],
+            imports: [SharedModule, HttpClientTestingModule, NgxChartsModule],
             providers: [HistoricalDataService]
         }).compileComponents();
     }));
