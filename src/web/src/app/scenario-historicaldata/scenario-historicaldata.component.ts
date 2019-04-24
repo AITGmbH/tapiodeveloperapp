@@ -4,7 +4,7 @@ import { SourceKeys } from "./source-keys.model";
 import { HistoricalDataService } from "./scenario-historicaldata.service";
 import { HistoricalDataResponseElement, HistoricItemData } from "./historical-data.model";
 import { filter, concatMap, tap, map, catchError } from "rxjs/operators";
-import * as moment from 'moment';
+import * as moment from "moment";
 @Component({
     selector: "app-scenario-historicaldata",
     templateUrl: "./scenario-historicaldata.component.html",
@@ -38,7 +38,16 @@ export class ScenarioHistoricaldataComponent implements OnInit {
             .subscribe({
                 next: (data: LineSeriesData[]) => {
                     this.loading$.next(false);
-                    this.lineSeriesData = data;
+                    const entryCount = data.reduce((count, val) => {
+                        return count + val.series.length;
+                    }, 0);
+                    if (entryCount > 0) {
+                        this.error$.next(false);
+                        this.lineSeriesData = data;
+                    } else {
+                        this.error$.next(true);
+                        this.lineSeriesData = null;
+                    }
                 },
                 error: err => {
                     this.error$.next(true);

@@ -12,7 +12,7 @@
           </li>
         </ul>
       </div>
-      <div class="sourceKeyData" *ngIf="lineSeriesData">
+      <div class="sourceKeyData" *ngIf="lineSeriesData; else loadingOrError">
         <ngx-charts-line-chart
         class="historicalDataChart"
         [xAxis]="true"

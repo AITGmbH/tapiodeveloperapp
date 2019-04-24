@@ -41,19 +41,19 @@ div.sourceKeyData {
   margin-left: 5px;
   flex: 1;
   display: grid;
+}
+
+div > .historicalDataChart {
   background-color: white;
 }
 
-ngx-charts-line-chart.historicalDataChart text {
-  background-color: blue;
-  color: white !important;
-}
 .errorMessage {
   margin-top: 2rem;
   background-color: white;
   display: block;
   max-width: 35%;
-  padding: 3px 3px 3px 10px;
+  height: fit-content;
+  padding: 5px;
   text-align: left;
   color: red;
 }
