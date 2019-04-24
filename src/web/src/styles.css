@@ -57,9 +57,6 @@ body {
 /**
   End Spinner
 */
-.datatable[_ngcontent-c3] {
-  height: 35rem;
-}
 
 .ngx-datatable .datatable-body .datatable-row-wrapper:not(:last-of-type) {
   border-bottom: thin solid gray;

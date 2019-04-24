@@ -21,7 +21,6 @@
       (click)="modalContent = ''">
     </button>
   </div>
-
   <div
     *ngIf="
       !(loading$ | async) && !(error$ | async) && (rows$ | async);
