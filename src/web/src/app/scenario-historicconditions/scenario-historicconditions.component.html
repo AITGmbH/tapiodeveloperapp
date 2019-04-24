@@ -25,77 +25,82 @@
     *ngIf="
       !(loading$ | async) && !(error$ | async) && (rows$ | async);
       else loadingOrError">
-    <ngx-datatable
+      <ngx-datatable
       class="material datatable"
-      [columnMode]="'flex'"
+      [columnMode]="'force'"
       [headerHeight]="30"
-      [rowHeight]="40"
+      [rowHeight]="'auto'"
       [footerHeight]="35"
-      [scrollbarV]="true"
       [scrollbarH]="true"
       [rows]="rows$ | async"
-      [sorts]="[
-        { prop: 'duration', dir: 'desc' },
-        { prop: 'sts', dir: 'desc' }
-      ]"
+      [sorts]="[{ prop: 'duration', dir: 'desc' }, { prop: 'sts', dir: 'desc' }]"
       [selectionType]="'single'"
       (select)="onElementSelected($event)">
-      <ngx-datatable-column
-        [flexGrow]="4"
-        [resizeable]="false"
-        name="Key (identifier)"
-        prop="key"
-        [width]="300">
+      <ngx-datatable-column name="key" [resizeable]="false" [width]="250">
+        <ng-template let-column="column" ngx-datatable-header-template>
+          <span>Key (identifier)</span>
+        </ng-template>
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          <div class="datatable-cell-value" style="word-wrap:break-word">
+            {{ value }}
+          </div>
+        </ng-template>
       </ngx-datatable-column>
       <ngx-datatable-column
-        [flexGrow]="2"
+        [width]="150"
         [resizeable]="false"
         name="provider"
         prop="provider">
       </ngx-datatable-column>
-      <ngx-datatable-column
-        [flexGrow]="4"
-        [resizeable]="false"
-        name="Key (usually OPC UA Node ID)"
-        prop="k">
+      <ngx-datatable-column name="key" [resizeable]="false" [width]="300">
+        <ng-template let-column="column" ngx-datatable-header-template>
+          <span>key (usually OPC UA Node ID)</span>
+        </ng-template>
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          <div class="datatable-cell-value" style="word-wrap:break-word">
+            {{ value }}
+          </div>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="s" [resizeable]="false" [width]="200">
+        <ng-template let-column="column" ngx-datatable-header-template>
+          <span>source</span>
+        </ng-template>
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          <div class="datatable-cell-value" style="word-wrap:break-word">
+            {{ value }}
+          </div>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column [width]="120" [resizeable]="false" name="severity" prop="sv">
       </ngx-datatable-column>
       <ngx-datatable-column
-        [flexGrow]="1"
-        [resizeable]="false"
-        name="source"
-        prop="s">
-      </ngx-datatable-column>
-      <ngx-datatable-column
-        [flexGrow]="1"
-        [resizeable]="false"
-        name="severity"
-        prop="sv"
-        [width]="50">
-      </ngx-datatable-column>
-      <ngx-datatable-column
-        [flexGrow]="1.5"
+        [width]="120"
         [resizeable]="false"
         name="duration"
         prop="duration">
       </ngx-datatable-column>
-      <ngx-datatable-column
-        [flexGrow]="2"
-        [resizeable]="false"
-        name="source time stamp"
-        prop="sts">
+      <ngx-datatable-column name="sts" [resizeable]="false" [width]="250">
+        <ng-template let-column="column" ngx-datatable-header-template>
+          <span>source time stamp ({{ column.name }})</span>
+        </ng-template>
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          <div class="datatable-cell-value">{{ value | date: "medium" }}</div>
+        </ng-template>
       </ngx-datatable-column>
       <ngx-datatable-column
-        [flexGrow]="1"
+        [width]="120"
         [resizeable]="false"
         name="quality"
-        prop="rts_utc_end_quality"
-        [width]="50">
+        prop="rts_utc_end_quality">
       </ngx-datatable-column>
-      <ngx-datatable-column
-        [flexGrow]="3"
-        [resizeable]="false"
-        name="localized message"
-        prop="lm.en">
+      <ngx-datatable-column [width]="200" [resizeable]="false" name="lm">
+        <ng-template let-column="column" ngx-datatable-header-template>
+          <span>localized message ({{ column.name }})</span>
+        </ng-template>
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          <div style="white-space:pre-wrap">{{ value | json }}</div>
+        </ng-template>
       </ngx-datatable-column>
     </ngx-datatable>
   </div>
