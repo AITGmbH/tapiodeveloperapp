@@ -17,8 +17,6 @@ namespace web.Tests.Unit
     {
         private readonly Mock<ITokenProvider> _standardTokenProviderMock;
 
-        
-
         private const string Content = @"{
             ""totalCount"": 2,
             ""subscriptions"": [
@@ -85,6 +83,34 @@ namespace web.Tests.Unit
             {
                 var service = new HistoricalDataService(httpClient, _standardTokenProviderMock.Object);
                 Func<Task<SourceKeyResponse>> action = () => service.ReadSourceKeysAsync(CancellationToken.None, sourceKeyResponseMock.Object.MachineId);
+                await action.Should().ThrowAsync<HttpException>();
+            }
+        }
+
+        [Fact]
+        public async Task GetHistoricalDataAsync_ThrowNoException()
+        {
+            var messageHandlerMock = new Mock<HttpMessageHandler>()
+                .SetupSendAsyncMethod(HttpStatusCode.OK, Content);
+            var sourceKeyResponseMock = new Mock<SourceKeyResponse>();
+            using (var httpClient = new HttpClient(messageHandlerMock.Object))
+            {
+                var service = new HistoricalDataService(httpClient, _standardTokenProviderMock.Object);
+                Func<Task<HistoricalDataResponse>> action = () => service.GetHistoricalDataAsync(CancellationToken.None, sourceKeyResponseMock.Object.MachineId, new HistoricalDataRequest());
+                await action.Should().NotThrowAsync();
+            }
+        }
+
+        [Fact]
+        public async Task GetHistoricalDataAsync_ThrowHttpExceptionBecauseOfUnauthorized()
+        {
+            var messageHandlerMock = new Mock<HttpMessageHandler>()
+                .SetupSendAsyncMethod(HttpStatusCode.Unauthorized, "{}");
+            var sourceKeyResponseMock = new Mock<SourceKeyResponse>();
+            using (var httpClient = new HttpClient(messageHandlerMock.Object))
+            {
+                var service = new HistoricalDataService(httpClient, _standardTokenProviderMock.Object);
+                Func<Task<HistoricalDataResponse>> action = () => service.GetHistoricalDataAsync(CancellationToken.None, sourceKeyResponseMock.Object.MachineId, new HistoricalDataRequest());
                 await action.Should().ThrowAsync<HttpException>();
             }
         }
