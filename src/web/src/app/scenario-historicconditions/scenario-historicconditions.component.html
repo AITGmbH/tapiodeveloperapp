@@ -3,7 +3,9 @@
   id="historic-conditions-scenario"
   class="has-text-left">
   <div>
-    <app-select-machine (change)="selectedMachineChanged($event)"> </app-select-machine>
+    <app-select-machine
+      (change)="selectedMachineChanged($event)">
+    </app-select-machine>
   </div>
   <div>
     <app-date-range (change)="dateRangeChanged($event)"> </app-date-range>
@@ -16,13 +18,13 @@
     <button
       class="modal-close is-large"
       aria-label="close"
-      (click)="modalContent = ''"
-    ></button>
+      (click)="modalContent = ''">
+    </button>
   </div>
   <div
     *ngIf="!(loading$ | async) && !(error$ | async) && (rows$ | async);
       else loadingOrError">
-    <ngx-datatable
+      <ngx-datatable
       class="material datatable"
       [columnMode]="'force'"
       [headerHeight]="30"

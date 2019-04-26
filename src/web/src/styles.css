@@ -78,26 +78,47 @@ h3.title.is-3 {
   font-weight: 700;
 }
 
-.ngx-datatable .datatable-header-cell {
+.datatable-header {
+  border-bottom: thin solid gray;
   margin-right: 15px;
 }
 
-.datatable-header {
-  border-bottom: thin solid gray;
+ngx-datatable .datatable-footer {
+  border-top: thin solid gray;
 }
 
 .datatable-footer {
   border-top: thin solid gray;
 }
 
+.ngx-datatable .pages a {
+  color: white;
+  margin-left: 1rem;
+}
+
+.ngx-datatable .datatable-body-cell {
+  line-height: 2.5;
+  margin-right: 15px;
+}
+
 .datatable-footer .datatable-pager {
   display: none;
 }
 
-.ngx-datatable .datatable-body-cell {
-  margin: 5px 15px 5px 0;
+.ngx-datatable .datatable-header-cell {
+  margin-right: 15px;
 }
 
 div.empty-row {
   padding-top: 10px;
+}
+
+.errorMessage {
+  margin-top: 2rem;
+  background-color: white;
+  display: block;
+  max-width: 35%;
+  padding: 3px 3px 3px 10px;
+  text-align: left;
+  color: red;
 }

@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Aitgmbh.Tapio.Developerapp.Web.Models;
 using Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricalData;
 using Aitgmbh.Tapio.Developerapp.Web.Services;
-using Aitgmbh.Tapio.Developerapp.Web.Tests.Unit;
 using FluentAssertions;
 using Moq;
 using Moq.Protected;
@@ -18,7 +17,7 @@ namespace web.Tests.Unit
     {
         private readonly Mock<ITokenProvider> _standardTokenProviderMock;
 
-
+        
 
         private const string Content = @"{
             ""totalCount"": 2,
@@ -86,7 +85,7 @@ namespace web.Tests.Unit
             {
                 var service = new HistoricalDataService(httpClient, _standardTokenProviderMock.Object);
                 Func<Task<SourceKeyResponse>> action = () => service.ReadSourceKeysAsync(CancellationToken.None, sourceKeyResponseMock.Object.MachineId);
-                await action.Should().ThrowAsync<Exception>();
+                await action.Should().ThrowAsync<HttpException>();
             }
         }
     }

@@ -7,7 +7,7 @@ import { map } from "rxjs/operators";
  * Provides access to the tapio subscriptions.
  */
 @Injectable()
-export class HistoricconditionsService {
+export class HistoricConditionsService {
     constructor(private readonly http: HttpClient) {}
 
     public getHistoricConditions(

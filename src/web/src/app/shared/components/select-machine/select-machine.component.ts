@@ -1,5 +1,5 @@
-import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
-import { Observable, of } from "rxjs";
+import { Component, OnInit, Output, EventEmitter, OnDestroy, Input } from "@angular/core";
+import { Observable, of, Subscription } from "rxjs";
 import { AssignedMachine } from "../../models/assigned-machine.model";
 import { HistoricalDataService } from "src/app/scenario-historicaldata/scenario-historicaldata.service";
 
@@ -8,8 +8,9 @@ import { HistoricalDataService } from "src/app/scenario-historicaldata/scenario-
     templateUrl: "select-machine.component.html",
     styleUrls: ["./select-machine.component.css"]
 })
-export class SelectMachineComponent implements OnInit {
-    assignedMachines: Observable<AssignedMachine[]>;
+export class SelectMachineComponent implements OnInit, OnDestroy {
+    public assignedMachines: Observable<AssignedMachine[]>;
+    private machineSubscription: Subscription;
     selectedMachine: AssignedMachine;
     @Input() initialMachineId: string;
 
@@ -18,7 +19,7 @@ export class SelectMachineComponent implements OnInit {
     constructor(private historicalDataService: HistoricalDataService) {}
 
     ngOnInit() {
-        this.historicalDataService.getMachines().subscribe(
+        this.machineSubscription = this.historicalDataService.getMachines().subscribe(
             machines => {
                 this.assignedMachines = of(machines);
                 this.selectedMachine = machines.find((machine) => machine.tmid === this.initialMachineId)
@@ -29,13 +30,15 @@ export class SelectMachineComponent implements OnInit {
         );
     }
 
+    ngOnDestroy(): void {
+        if(this.machineSubscription) {
+            this.machineSubscription.unsubscribe();
+        }
+    }
+
     public selectedMachineChanged(machine: AssignedMachine) {
-        if (!machine) {
-            return;
+        if(machine && machine.tmid) {
+            this.change.emit(machine.tmid);
         }
-        if (!machine.tmid) {
-            return;
-        }
-        this.change.emit(machine.tmid);
     }
 }

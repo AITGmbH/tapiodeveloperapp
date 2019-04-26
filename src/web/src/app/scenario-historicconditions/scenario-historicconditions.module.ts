@@ -4,17 +4,17 @@ import { NgxDatatableModule } from "@swimlane/ngx-datatable";
 
 import { SharedModule } from "../shared/shared.module";
 import { ScenarioHistoricconditionsRoutingModule } from "./scenario-historicconditions-routing.module";
-import { ScenarioHistoricconditionsComponent } from "./scenario-historicconditions.component";
-import { HistoricconditionsService } from "./scenario-historicconditions.service";
+import { ScenarioHistoricConditionsComponent } from "./scenario-historicconditions.component";
+import { HistoricConditionsService } from "./scenario-historicconditions.service";
 
 @NgModule({
-  declarations: [ScenarioHistoricconditionsComponent],
+  declarations: [ScenarioHistoricConditionsComponent],
   imports: [
     CommonModule,
     ScenarioHistoricconditionsRoutingModule,
     SharedModule,
     NgxDatatableModule
   ],
-  providers: [HistoricconditionsService]
+  providers: [HistoricConditionsService]
 })
 export class ScenarioHistoricconditionsModule { }

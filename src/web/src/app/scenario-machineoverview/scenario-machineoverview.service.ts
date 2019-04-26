@@ -10,10 +10,11 @@ import { SubscriptionsOverview } from "../shared/models/subscription-overview.mo
  */
 @Injectable()
 export class MachineOverviewService {
-    constructor(private http: HttpClient) { }
+    constructor(private readonly http: HttpClient) { }
 
     public getSubscriptions(): Observable<Subscription[]> {
-         return this.http.get<SubscriptionsOverview>("/api/machineOverview").pipe(map(r => r.subscriptions));
+         return this.http.get<SubscriptionsOverview>("/api/machineOverview")
+         .pipe(map(r => r.subscriptions));
     }
 }
 
