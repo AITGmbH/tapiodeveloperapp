@@ -58,6 +58,12 @@ body {
   End Spinner
 */
 
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-disabled span.ng-option-label {
+  color: #777;
+  font-style: bold;
+  font-size: 1.2rem;
+}
+
 .ngx-datatable .datatable-body .datatable-row-wrapper:not(:last-of-type) {
   border-bottom: thin solid gray;
 }
