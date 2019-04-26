@@ -1,10 +1,10 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 
-import { ScenarioSampleComponent } from './scenario-sample.component';
-import { SharedModule } from '../shared/shared.module';
+import { ScenarioSampleComponent } from "./scenario-sample.component";
+import { SharedModule } from "../shared/shared.module";
 
-describe('ScenarioSampleComponent', () => {
+describe("ScenarioSampleComponent", () => {
   let component: ScenarioSampleComponent;
   let fixture: ComponentFixture<ScenarioSampleComponent>;
 
@@ -22,7 +22,7 @@ describe('ScenarioSampleComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

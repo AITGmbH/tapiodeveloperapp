@@ -6,6 +6,10 @@ a:active {
   color: #0092b4;
 }
 
+ul {
+  padding: 14px;
+}
+
 li {
-  padding-left: 14px;
+  height: 30px;
 }

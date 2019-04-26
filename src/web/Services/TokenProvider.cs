@@ -1,5 +1,4 @@
 using System;
-using System.Threading;
 using System.Threading.Tasks;
 
 using Aitgmbh.Tapio.Developerapp.Web.Configurations;
@@ -12,8 +11,8 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Services
     {
 #pragma warning disable S1075 // URIs should not be hardcoded
         private const string RedirectUri = "http://example.com";
-        private const string TapioGlobalDiscoveryScope = "https://tapiousers.onmicrosoft.com/GlobalDiscoveryService/.default";
 #pragma warning restore S1075 // URIs should not be hardcoded
+
         private readonly ConfidentialClientApplication _application;
 
         public TokenProvider(IOptions<TapioCloudCredentials> options)
@@ -27,9 +26,22 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Services
             _application = new ConfidentialClientApplication(options.Value.ClientId, RedirectUri, clientCredential, null, new TokenCache());
         }
 
-        public async Task<string> ReceiveTokenAsync(CancellationToken cancellationToken)
+        public Task<string> ReceiveTokenAsync<TScope>(TScope scope)
+            where TScope : TapioScope
         {
-            var authenticationResult = await _application.AcquireTokenForClientAsync(new[] { TapioGlobalDiscoveryScope });
+            if (scope == null)
+            {
+                throw new ArgumentNullException(nameof(scope));
+            }
+
+            return ReceiveTokenInternalAsync(scope);
+        }
+
+        private async Task<string> ReceiveTokenInternalAsync<TScope>(TScope scope)
+            where TScope : TapioScope
+        {
+            var scopeValue = scope.Value;
+            var authenticationResult = await _application.AcquireTokenForClientAsync(new[] { scopeValue });
 
             return authenticationResult.AccessToken;
         }
