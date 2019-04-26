@@ -59,9 +59,13 @@ body {
 */
 
 .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-disabled span.ng-option-label {
-  color: #777;
-  font-style: bold;
+  color: black;
+  font-weight: bold;
   font-size: 1.2rem;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-disabled {
+  cursor: default;
 }
 
 .ngx-datatable .datatable-body .datatable-row-wrapper:not(:last-of-type) {
