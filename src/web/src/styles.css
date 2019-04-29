@@ -83,7 +83,7 @@ h3.title.is-3 {
   margin-right: 15px;
 }
 
-ngx-datatable .datatable-footer {
+.ngx-datatable .datatable-footer {
   border-top: thin solid gray;
 }
 
