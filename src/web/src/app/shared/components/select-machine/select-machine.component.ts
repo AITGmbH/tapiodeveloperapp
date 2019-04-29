@@ -8,7 +8,6 @@ import { AvailableMachinesService } from "../../services/available-machines.serv
     templateUrl: "select-machine.component.html",
     styleUrls: ["./select-machine.component.css"]
 })
-
 export class SelectMachineComponent implements OnInit {
     public assignedMachines$: Observable<AssignedMachine[]>;
 
@@ -19,7 +18,7 @@ export class SelectMachineComponent implements OnInit {
     ngOnInit() {
         this.availableMachinesService.getMachines().subscribe(
             machines => {
-
+                this.assignedMachines$ = of(machines);
             },
             error => {
                 console.error("could not load machines", error);
@@ -27,11 +26,9 @@ export class SelectMachineComponent implements OnInit {
         );
     }
 
-    public selectedMachineChanged(machine: AssignedMachine)
-{
-
-    if (machine && machine.tmid) {
-        this.change.emit(machine.tmid);
+    public selectedMachineChanged(machine: AssignedMachine) {
+        if (machine && machine.tmid) {
+            this.change.emit(machine.tmid);
+        }
     }
-}
 }
