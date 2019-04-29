@@ -12,7 +12,7 @@ import { NgOption } from "@ng-select/ng-select";
     styleUrls: ["./select-machine.component.css"]
 })
 export class SelectMachineComponent implements OnInit {
-    public items$: Observable<AssignedMachine | NgOption[]>;
+    public items$: Observable<Array<AssignedMachine | NgOption>>;
 
     @Output() public change: EventEmitter<string> = new EventEmitter<string>();
 
