@@ -8,7 +8,7 @@ import { SourceKeys } from "./source-keys.model";
  */
 @Injectable()
 export class HistoricalDataService {
-    constructor(private http: HttpClient) {}
+    constructor(private readonly http: HttpClient) {}
 
     public getSourceKeys(machineId: string): Observable<SourceKeys> {
         return this.http.get<SourceKeys>(`/api/historicalData/${machineId}`);

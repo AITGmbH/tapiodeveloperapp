@@ -1,0 +1,28 @@
+.dateTimePicker {
+  text-align: left;
+  margin: 10px 0;
+  font-family: audimat, sans-serif;
+}
+
+.dateTimePicker input {
+  font-family: audimat, sans-serif;
+  font-size: 1rem;
+  padding: 6px 10px 6px 10px;
+}
+
+.dateTimePickerInput {
+  width: 30rem;
+  padding-left: 10px;
+}
+
+.owl-dt-popup-container, 
+.owl-dt-popup-container input,
+.owl-dt-popup-container button  {
+  font-family: audimat, sans-serif;
+}
+.owl-dt-calendar-table span.owl-dt-calendar-cell-selected {
+  background-color: #aaaaaa;
+}
+.owl-dt-calendar-table td.owl-dt-calendar-cell-in-range {
+  background-color: #cccccc;
+}

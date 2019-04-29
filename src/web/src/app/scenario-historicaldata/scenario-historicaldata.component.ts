@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Observable, of, Subject } from "rxjs";
+import { Observable, of, Subject, Subscription } from "rxjs";
 import { SourceKeys } from "./source-keys.model";
 import { HistoricalDataService } from "./scenario-historicaldata.service";
 

@@ -1,5 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from "@angular/core";
-import { Observable, of } from "rxjs";
+import { Component, OnInit, Output, EventEmitter, OnDestroy } from "@angular/core";
+import { Observable, of, Subscription } from "rxjs";
 import { AssignedMachine } from "../../models/assigned-machine.model";
 import { AvailableMachinesService } from "../../services/available-machines.service";
 
@@ -8,6 +8,7 @@ import { AvailableMachinesService } from "../../services/available-machines.serv
     templateUrl: "select-machine.component.html",
     styleUrls: ["./select-machine.component.css"]
 })
+
 export class SelectMachineComponent implements OnInit {
     public assignedMachines$: Observable<AssignedMachine[]>;
 
@@ -18,7 +19,7 @@ export class SelectMachineComponent implements OnInit {
     ngOnInit() {
         this.availableMachinesService.getMachines().subscribe(
             machines => {
-                this.assignedMachines$ = of(machines);
+
             },
             error => {
                 console.error("could not load machines", error);
@@ -26,13 +27,11 @@ export class SelectMachineComponent implements OnInit {
         );
     }
 
-    public selectedMachineChanged(machine: AssignedMachine) {
-        if (!machine) {
-            return;
-        }
-        if (!machine.tmid) {
-            return;
-        }
+    public selectedMachineChanged(machine: AssignedMachine)
+{
+
+    if (machine && machine.tmid) {
         this.change.emit(machine.tmid);
     }
+}
 }
