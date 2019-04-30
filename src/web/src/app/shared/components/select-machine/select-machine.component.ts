@@ -1,7 +1,8 @@
-import { Component, OnInit, Output, EventEmitter, OnDestroy } from "@angular/core";
-import { Observable, of, Subscription } from "rxjs";
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { Observable, of } from "rxjs";
 import { AssignedMachine } from "../../models/assigned-machine.model";
 import { AvailableMachinesService } from "../../services/available-machines.service";
+import { catchError } from "rxjs/operators";
 
 @Component({
     selector: "app-select-machine",
@@ -16,13 +17,11 @@ export class SelectMachineComponent implements OnInit {
     constructor(private availableMachinesService: AvailableMachinesService) {}
 
     ngOnInit() {
-        this.availableMachinesService.getMachines().subscribe(
-            machines => {
-                this.assignedMachines$ = of(machines);
-            },
-            error => {
-                console.error("could not load machines", error);
-            }
+        this.assignedMachines$ = this.availableMachinesService.getMachines().pipe(
+            catchError(err => {
+                console.error("could not load machines", err);
+                return of([]);
+            })
         );
     }
 
