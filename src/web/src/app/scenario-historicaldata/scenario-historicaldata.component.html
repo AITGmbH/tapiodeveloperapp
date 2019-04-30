@@ -1,11 +1,11 @@
 <app-scenario title="Historical Data" id="historical-data-scenario">
   <div>
     <app-select-machine (change)="selectedMachineChanged($event)"></app-select-machine>
-    <div class="row">
-      <div class="sourceKeyList" *ngIf="(sourceKeys$ | async); else loadingOrError">
+    <div class="row" *ngIf="sourceKeys$">
+      <div class="sourceKeyList" *ngIf="(sourceKeys$ | async) as sourceKeys; else loadingOrError">
         <h1 class="sourceKeyHeader">Source Keys:</h1>
         <ul>
-          <li *ngFor="let key of (sourceKeys$ | async).keys">
+          <li *ngFor="let key of sourceKeys.keys">
             {{key}}
           </li>
         </ul>
@@ -22,7 +22,7 @@
   </div>
 
   <ng-template #loading>
-    <div *ngIf="loading$ | async" class="spinner">
+    <div class="spinner">
       <div class="double-bounce1"></div>
       <div class="double-bounce2"></div>
     </div>
