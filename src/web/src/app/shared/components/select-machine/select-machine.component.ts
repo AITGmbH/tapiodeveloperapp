@@ -1,40 +1,51 @@
 import { Component, OnInit, Output, EventEmitter, OnDestroy } from "@angular/core";
-import { Observable, of, Subscription } from "rxjs";
+import { Observable, of, Subscription as rxSubscription } from "rxjs";
 import { AssignedMachine } from "../../models/assigned-machine.model";
-import { HistoricalDataService } from "src/app/scenario-historicaldata/scenario-historicaldata.service";
+import { MachineOverviewService } from "src/app/scenario-machineoverview/scenario-machineoverview.service";
+import { map, catchError } from "rxjs/operators";
+import { Subscription } from "../../models/subscription.model";
+import { NgOption } from "@ng-select/ng-select";
 
 @Component({
     selector: "app-select-machine",
     templateUrl: "select-machine.component.html",
     styleUrls: ["./select-machine.component.css"]
 })
-export class SelectMachineComponent implements OnInit, OnDestroy {
-    public assignedMachines: Observable<AssignedMachine[]>;
-    private machineSubscription: Subscription;
+export class SelectMachineComponent implements OnInit {
+    public items$: Observable<Array<AssignedMachine | NgOption>>;
 
     @Output() public change: EventEmitter<string> = new EventEmitter<string>();
 
-    constructor(private historicalDataService: HistoricalDataService) {}
+    constructor(private machineOverviewService: MachineOverviewService) {}
 
     ngOnInit() {
-        this.machineSubscription = this.historicalDataService.getMachines().subscribe(
-            machines => {
-                this.assignedMachines = of(machines);
-            },
-            error => {
-                console.error("could not load machines", error);
-            }
+        this.items$ = this.machineOverviewService.getSubscriptions().pipe(
+            map((subs: Subscription[]) => {
+                return subs.reduce((output: (AssignedMachine | NgOption)[], sub) => {
+                    return (
+                        output
+                            // add disabled Element describing the Subscription
+                            .concat({ displayName: sub.name, disabled: true })
+                            // and add its Machines
+                            .concat(
+                                ...sub.assignedMachines.map(machine => ({
+                                    // prefix displayName of machine to visualize that is is part of a subscription
+                                    displayName: "↳ " + machine.displayName,
+                                    tmid: machine.tmid
+                                }))
+                            )
+                    );
+                }, []);
+            }),
+            catchError(err => {
+                console.log("could not load machines", err);
+                return of([]);
+            })
         );
     }
 
-    ngOnDestroy(): void {
-        if(this.machineSubscription) {
-            this.machineSubscription.unsubscribe();
-        }
-    }
-
     public selectedMachineChanged(machine: AssignedMachine) {
-        if(machine && machine.tmid) {
+        if (machine && machine.tmid) {
             this.change.emit(machine.tmid);
         }
     }
