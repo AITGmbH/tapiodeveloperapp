@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { LicenseOverviewComponent } from "./scenario-licenseoverview.component";
+import { SharedModule } from "../shared/shared.module";
+import { LicenseOverviewService } from './scenario-licenseoverview.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe("ScenarioLicenseoverviewComponent", () => {
     let component: LicenseOverviewComponent;
@@ -8,7 +11,9 @@ describe("ScenarioLicenseoverviewComponent", () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [LicenseOverviewComponent]
+            declarations: [LicenseOverviewComponent],
+            providers: [LicenseOverviewService],
+            imports: [SharedModule, HttpClientTestingModule]
         }).compileComponents();
     }));
 
