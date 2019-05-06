@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Observable, of, Subject } from "rxjs";
+import { Observable, of, Subject, BehaviorSubject } from "rxjs";
 import { SourceKeys } from "./source-keys.model";
 import { HistoricalDataService } from "./scenario-historicaldata.service";
 import { catchError } from 'rxjs/operators';
@@ -11,7 +11,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class ScenarioHistoricaldataComponent implements OnInit {
     sourceKeys$: Observable<SourceKeys>;
-    error$ = new Subject<boolean>();
+    error$ = new BehaviorSubject<boolean>(false);
 
     constructor(private readonly historicalDataService: HistoricalDataService) {
         this.error$.next(false);
