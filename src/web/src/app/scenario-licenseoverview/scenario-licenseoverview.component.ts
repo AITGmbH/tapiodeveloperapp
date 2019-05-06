@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Observable, Subject, of } from "rxjs";
+import { Observable, of, BehaviorSubject } from "rxjs";
 import { Subscription } from "../shared/models/subscription.model";
 import { LicenseOverviewService } from "./scenario-licenseoverview.service";
 import { catchError } from "rxjs/operators";
@@ -11,18 +11,16 @@ import { catchError } from "rxjs/operators";
 })
 export class LicenseOverviewComponent implements OnInit {
     subscriptions$: Observable<Subscription[]>;
-    error$ = new Subject<boolean>();
+    error$ = new BehaviorSubject<boolean>(false);
 
-    constructor(private licenseOverviewService: LicenseOverviewService) {
-        this.error$.next(false);
-    }
+    constructor(private licenseOverviewService: LicenseOverviewService) {}
 
     ngOnInit() {
         this.subscriptions$ = this.licenseOverviewService.getSubscriptions().pipe(
             catchError(error => {
                 console.error("could not load subscriptions", error);
                 this.error$.next(true);
-                return of([]);
+                return of(null);
             })
         );
     }
