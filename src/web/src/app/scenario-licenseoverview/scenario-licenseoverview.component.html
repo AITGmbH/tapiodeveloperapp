@@ -1,0 +1,43 @@
+<app-scenario title="License Overview" id="license-overview-scenario">
+  <h2>
+    Here you can find all the subscriptions with its licenses.
+  </h2>
+  <div class="tile is-ancestor" *ngIf="subscriptions$ | async; else loadingOrError">  
+    <div class="tile is-parent is-4" *ngFor="let subscription of subscriptions$ | async">
+      <div class="card">
+        <header class="card-header">
+          <h1 class="card-header-title">{{ subscription.name }}</h1>
+        </header>
+        <div class="card-content">
+          <ul class="license-list">
+            <li *ngFor="let license of subscription.licenses">
+              <div class="license-div">
+                <p><span class="license-content-name">License Id:</span>{{ license.licenseId }}</p>
+                <p><span class="license-content-name">Application Id:</span>{{ license.applicationId }}</p>
+                <p><span class="license-content-name">Created date:</span>{{ license.createdDate | date: "medium" }}</p>
+                <p><span class="license-content-name">Billing start date:</span>{{ license.billingStartDate | date: "medium" }}</p>
+                <p><span class="license-content-name">Billing interval:</span>{{ license.billingInterval }}</p>
+                <p><span class="license-content-name">License count:</span>{{ license.licenseCount }}</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-scenario>
+
+<ng-template #loadingOrError>
+    <div *ngIf="error$ | async; else loading" class="errorMessage">
+        <div>
+            No data available for this subscription
+        </div>
+    </div>
+
+    <ng-template #loading>
+        <div #loading class="spinner">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+        </div>
+    </ng-template>
+</ng-template>
