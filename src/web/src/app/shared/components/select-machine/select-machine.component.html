@@ -2,7 +2,7 @@
   <div class="tile">
     <ng-select 
       class="tile dropdown selectmachine-ngselect" 
-      [items]="assignedMachines$ | async" 
+      [items]="items$ | async" 
       [bindLabel]="'displayName'"
       placeholder="please select a machine" 
       [clearable]="false" 

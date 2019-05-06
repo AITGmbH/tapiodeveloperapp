@@ -1,14 +1,29 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 
-import { of } from 'rxjs';
-import { DebugElement } from '@angular/core';
-import { SelectMachineComponent } from './select-machine.component';
-import { AvailableMachinesService } from '../../services/available-machines.service';
-import { AssignedMachine } from '../../models/assigned-machine.model';
-import { NgSelectModule } from '@ng-select/ng-select';
+import { SelectMachineComponent } from "./select-machine.component";
+import { MachineOverviewService } from "src/app/scenario-machineoverview/scenario-machineoverview.service";
+import { NgSelectModule, NgOption } from "@ng-select/ng-select";
+import { Subscription } from "../../models/subscription.model";
+import { DebugElement } from "@angular/core";
+import { of } from "rxjs";
 
-const mockAssignedMachines: AssignedMachine[] = [
+const mockSubscriptions: Subscription[] = [
+    {
+        licenses: [
+            {
+                licenseId: "00000000-0000-0000-0000-000000000000",
+                applicationId: "1",
+                createdDate: "2019-02-21T14:19:25.2428038+00:00",
+                billingStartDate: "2019-03-21T14:19:25.2428038+00:00",
+                billingInterval: "P1M",
+                licenseCount: 999
+            }
+        ],
+        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        name: "name",
+        tapioId: "name",
+        assignedMachines: [
             {
                 tmid: "c2241cdc59034d11b9fcc9b325e67f79",
                 displayName: "Testmachine1"
@@ -17,20 +32,49 @@ const mockAssignedMachines: AssignedMachine[] = [
                 tmid: "c2241cdc59034d11b9fcc9b325e67f71",
                 displayName: "Testmachine2"
             }
-        ];
+        ],
+        subscriptionTypes: ["Developer", "Customer", "Manufacturer"]
+    },
+    {
+        licenses: [
+            {
+                licenseId: "55555555-0000-0000-0000-000000000001",
+                applicationId: "1",
+                createdDate: "2019-04-27T14:19:25.2428038+00:00",
+                billingStartDate: "2019-04-29T14:19:25.2428038+00:00",
+                billingInterval: "P1M",
+                licenseCount: 999
+            }
+        ],
+        subscriptionId: "55555555-0000-0000-0000-000000000000",
+        name: "subscriptionName",
+        tapioId: "tapioId",
+        assignedMachines: [
+            {
+                tmid: "c2241cdc59034d11b9fcc9b325e67f79",
+                displayName: "Another testmachine"
+            },
+            {
+                tmid: "c2241cdc59034d11b9fcc9b325e67f71",
+                displayName: "The second testmachine"
+            }
+        ],
+        subscriptionTypes: ["Developer", "Customer", "Manufacturer"]
+    }
+];
 
 describe("SelectMachineComponent", () => {
     let component: SelectMachineComponent;
     let fixture: ComponentFixture<SelectMachineComponent>;
-    let availableMachinesService: AvailableMachinesService;
-    let getMachinesSpy: jasmine.Spy;
+    let machineOverviewService: MachineOverviewService;
+    let getSubscriptionsSpy: jasmine.Spy;
     let element: DebugElement;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [SelectMachineComponent],
-            imports: [NgSelectModule, HttpClientTestingModule],
-            providers: [AvailableMachinesService]
+            providers: [MachineOverviewService],
+            imports: [HttpClientTestingModule, NgSelectModule]
         }).compileComponents();
     }));
 
@@ -38,10 +82,8 @@ describe("SelectMachineComponent", () => {
         fixture = TestBed.createComponent(SelectMachineComponent);
         component = fixture.componentInstance;
         element = fixture.debugElement;
-        availableMachinesService = element.injector.get(
-            AvailableMachinesService
-        );
-        getMachinesSpy = spyOn(availableMachinesService, "getMachines").and.returnValue(of(mockAssignedMachines));
+        machineOverviewService = element.injector.get(MachineOverviewService);
+        getSubscriptionsSpy = spyOn(machineOverviewService, "getSubscriptions").and.returnValue(of(mockSubscriptions));
         fixture.detectChanges();
     });
 
@@ -49,10 +91,16 @@ describe("SelectMachineComponent", () => {
         expect(component).toBeTruthy();
     });
 
-    it("should fetch data and display it", async () => {
-        expect(getMachinesSpy).toHaveBeenCalledTimes(1);
-        const assignedMachines = await component.assignedMachines$.toPromise();
-        expect(assignedMachines.length).toEqual(2);
-        
-    });
+    it("should fetch data and display it"),
+        async () => {
+            expect(getSubscriptionsSpy).toHaveBeenCalledTimes(1);
+            const items = await component.items$.toPromise();
+            expect(items.length).toEqual(6);
+            expect(items[0].displayName).toEqual(mockSubscriptions[0].name);
+            expect(items[0].tmid).toBeUndefined();
+            expect((items[0] as NgOption).disabled).toBe(true);
+            expect(items[1].displayName).toEqual(mockSubscriptions[0].assignedMachines[0].displayName);
+            expect(items[1].tmid).not.toBeUndefined();
+            expect((items[1] as NgOption).disabled).toBeUndefined();
+        };
 });
