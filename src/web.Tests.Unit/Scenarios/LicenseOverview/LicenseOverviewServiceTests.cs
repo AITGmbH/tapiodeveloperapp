@@ -10,7 +10,7 @@ using Moq;
 using Moq.Protected;
 using Xunit;
 
-namespace web.Tests.Unit
+namespace web.Tests.Unit.Scenarios.LicenseOverview
 {
     public class LicenseOverviewServiceTests
     {
@@ -28,8 +28,8 @@ namespace web.Tests.Unit
                     ""licenseCount"": 999
                 },
                 {
-                    ""licenseId"": ""ffffffff-gggg-hhhh-iiii-jjjjjjjjjjjj"",
-                    ""applicationId"": ""ffffffff-gggg-hhhh-iiii-jjjjjjjjjjjj"",
+                    ""licenseId"": ""ffffffff-1111-2222-3333-444444444444"",
+                    ""applicationId"": ""ffffffff-1111-2222-3333-444444444444"",
                     ""createdDate"": ""2018-06-29T12:25:02.8346154+00:00"",
                     ""billingStartDate"": ""2018-11-29T12:25:02.8346154+00:00"",
                     ""billingInterval"": ""P1M"",
