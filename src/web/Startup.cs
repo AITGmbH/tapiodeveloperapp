@@ -32,6 +32,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web
                 .AddSingleton<IScenarioRepository, ScenarioRepository>()
                 .AddSingleton<ITokenProvider, TokenProvider>()
                 .AddSingleton<OptionsValidator>()
+                .AddSingleton<IEvenHubCredentialProvider, EventHubCredentialProvider>()
                 .AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddHttpClient<IMachineOverviewService, MachineOverviewService>();
@@ -42,6 +43,10 @@ namespace Aitgmbh.Tapio.Developerapp.Web
                 .Bind(Configuration.GetSection("TapioCloud"))
                 .ValidateDataAnnotations()
                 .Validate(c => Guid.TryParse(c.ClientId, out _), @"The client secret must be a valid Guid");
+            services
+                .AddOptions<EventHubCredentials>()
+                .Bind(Configuration.GetSection("EventHub"))
+                .ValidateDataAnnotations();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

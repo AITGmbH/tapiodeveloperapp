@@ -15,8 +15,12 @@ const routes: Routes = [
         loadChildren: "./scenario-historicaldata/scenario-historicaldata.module#ScenarioHistoricaldataModule"
     },
     {
-        path: 'scenario-historicconditions',
-        loadChildren: './scenario-historicconditions/scenario-historicconditions.module#ScenarioHistoricconditionsModule'
+        path: "scenario-historicconditions",
+        loadChildren: "./scenario-historicconditions/scenario-historicconditions.module#ScenarioHistoricconditionsModule"
+    },
+    {
+        path: "scenario-machinelivedata",
+        loadChildren: "./scenario-machinelivedata/scenario-machinelivedata.module#ScenarioMachineLiveDataModule"
     }
 ];
 
