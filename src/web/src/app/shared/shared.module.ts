@@ -5,6 +5,7 @@ import { FormsModule } from "@angular/forms";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { fas } from "@fortawesome/free-solid-svg-icons";
 
 import { ScenarioComponent } from "./components/scenario/scenario.component";
 import { NgxDatatableModule } from "@swimlane/ngx-datatable";
@@ -16,7 +17,7 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { MachineOverviewService } from '../scenario-machineoverview/scenario-machineoverview.service';
 import { ScenarioNavigationService } from '../scenario-navigation/scenario-navigation.service';
 
-library.add(faGithub);
+library.add(faGithub, fas);
 
 /**
  * Provides access to shared functionality.
