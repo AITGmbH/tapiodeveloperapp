@@ -10,7 +10,7 @@ variables:
   BuildConfiguration: Release
 
 steps:
-  - task: whitesource.ws-bolt.bolt.wss.WhiteSource Bolt@1
+  - task: whitesource.ws-bolt.bolt.wss.WhiteSource Bolt@19
     displayName: 'WhiteSource Bolt'
     inputs:
       cwd: angular
