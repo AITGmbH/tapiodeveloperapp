@@ -10,6 +10,10 @@ variables:
   BuildConfiguration: Release
 
 steps:
+  - task: whitesource.ws-bolt.bolt.wss.WhiteSource Bolt@19
+    displayName: 'WhiteSource Bolt'
+    inputs:
+      cwd: angular
   - task: SonarSource.sonarcloud.14d9cde6-c1da-4d55-aa01-2965cd301255.SonarCloudPrepare@1
     displayName: 'Prepare analysis on SonarCloud'
     inputs:
