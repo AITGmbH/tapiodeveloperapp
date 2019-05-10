@@ -5,6 +5,7 @@ using Aitgmbh.Tapio.Developerapp.Web.Configurations;
 using Aitgmbh.Tapio.Developerapp.Web.Repositories;
 using Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricalData;
 using Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricConditions;
+using Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData;
 using Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineOverview;
 using Aitgmbh.Tapio.Developerapp.Web.Services;
 using Microsoft.AspNetCore.Builder;
@@ -38,6 +39,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web
             services.AddHttpClient<IMachineOverviewService, MachineOverviewService>();
             services.AddHttpClient<IHistoricalDataService, HistoricalDataService>();
             services.AddHttpClient<IHistoricConditionsService, HistoricConditionsService>();
+            services.AddScoped<IMachineLiveDataService, MachineLiveDataService>();
             services
                 .AddOptions<TapioCloudCredentials>()
                 .Bind(Configuration.GetSection("TapioCloud"))
@@ -47,6 +49,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web
                 .AddOptions<EventHubCredentials>()
                 .Bind(Configuration.GetSection("EventHub"))
                 .ValidateDataAnnotations();
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -85,6 +88,10 @@ namespace Aitgmbh.Tapio.Developerapp.Web
             app.UseStaticFiles();
 
             app.UseHttpsRedirection();
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<MachineLiveDataHub>("/hubs/machineLiveData");
+            });
             app.UseMvc();
         }
     }
