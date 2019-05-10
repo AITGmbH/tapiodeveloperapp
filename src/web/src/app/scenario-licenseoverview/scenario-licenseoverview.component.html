@@ -29,9 +29,7 @@
 
 <ng-template #loadingOrError>
     <div *ngIf="error$ | async; else loading" class="errorMessage">
-        <div>
-            No data available
-        </div>
+      No data available
     </div>
 
     <ng-template #loading>

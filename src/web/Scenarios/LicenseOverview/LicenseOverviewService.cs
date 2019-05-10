@@ -25,7 +25,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.LicenseOverview
         public async Task<SubscriptionOverview> GetSubscriptionsAsync(CancellationToken cancellationToken)
         {
             var token = await _tokenProvider.ReceiveTokenAsync(TapioScope.GlobalDiscovery);
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, _globalDiscoSubscriptionOverviewRequest);
+            var request = new HttpRequestMessage(HttpMethod.Get, _globalDiscoSubscriptionOverviewRequest);
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var responseMessage = await _httpClient.SendAsync(request, cancellationToken);
             responseMessage.EnsureSuccessStatusCode();
