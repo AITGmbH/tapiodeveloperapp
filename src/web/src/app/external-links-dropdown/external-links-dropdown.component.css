@@ -1,0 +1,30 @@
+.button.is-white.is-active, .button.is-white {
+  font-family: audimat, sans-serif;
+}
+
+.button.is-white.is-active, .button.is-white:active, .button:hover {
+  background-color: #FFF;
+  border-color: transparent;
+  color: #0a0a0a;
+}
+
+.dropdown-menu {
+  padding-top: 7px;
+}
+
+div.dropdown{
+  margin-right: 53px;
+}
+
+hr.dropdown-divider {
+  margin: 0;
+}
+
+div.dropdown-content {
+  padding: 0;
+  border-radius: 0;
+}
+
+a.dropdown-item {
+  padding: 14px 28px 14px 14px;
+}

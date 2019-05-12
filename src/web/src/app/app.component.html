@@ -1,6 +1,5 @@
 <header
-  class="main-header has-text-centered level">
-
+  class="main-header level">
   <div class="level-left">
     <div class="level-item">
       <a href="https://tapio.one/" target="_blank" rel="noopener"><img src="assets/img/logo/tapio.svg" class="logo"></a>
@@ -11,22 +10,22 @@
 
   <div class="level-right">
       <div class="level-item">
-          <app-hamburgermenu></app-hamburgermenu>
+          <app-external-links-dropdown></app-external-links-dropdown>
       </div>
   </div>
 </header>
 
 <div class="columns">
-  <div class="column is-one-quarter main-nav">
+  <div class="column is-narrow main-nav">
     <app-scenario-navigation></app-scenario-navigation>
   </div>
-  <div class="column is-paddingless main-content">
+  <div class="column main-content">
     <main
-      class="box has-text-centered is-radiusless">
-        <router-outlet></router-outlet>
+      class="box is-radiusless">
+      <router-outlet></router-outlet>
     </main>
   </div>
-</div>
+  </div>
 
 <footer class="footer">
     <div class="content has-text-centered">

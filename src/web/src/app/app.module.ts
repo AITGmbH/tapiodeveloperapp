@@ -7,13 +7,13 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { ScenarioNavigationComponent } from "./scenario-navigation/scenario-navigation.component";
 import { SharedModule } from "./shared/shared.module";
-import { HamburgermenuComponent } from "./hamburgermenu/hamburgermenu.component";
+import { ExternalLinksDropdownComponent } from "./external-links-dropdown/external-links-dropdown.component";
 
 @NgModule({
     declarations: [
         AppComponent,
         ScenarioNavigationComponent,
-        HamburgermenuComponent
+        ExternalLinksDropdownComponent
     ],
     imports: [
         BrowserModule,

@@ -28,7 +28,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricalData
         public async Task<SourceKeyResponse> ReadSourceKeysAsync(CancellationToken cancellationToken, string machineId)
         {
             var token = await _tokenProvider.ReceiveTokenAsync(TapioScope.CoreApi);
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, new Uri(String.Format(GetMachineSourceKeys, machineId)));
+            var request = new HttpRequestMessage(HttpMethod.Get, new Uri(String.Format(GetMachineSourceKeys, machineId)));
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var responseMessage = await _httpClient.SendAsync(request, cancellationToken);
             if (!responseMessage.IsSuccessStatusCode)
