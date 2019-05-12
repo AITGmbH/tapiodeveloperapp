@@ -7,6 +7,18 @@ body {
   background: rgb(7, 19, 26);
 }
 
+h1.title {
+  text-align: left;
+  color: #fff;
+}
+
+h3.title.is-3 {
+  text-align: left;
+  color: #fff;
+  font-size: 35px;
+  margin: 15px 0;
+}
+
 /**
   Start Spinner
   Source: https://github.com/tobiasahlin/SpinKit
@@ -81,6 +93,10 @@ body {
   margin-right: 15px;
 }
 
+.ngx-datatable .datatable-footer {
+  border-top: thin solid gray;
+}
+
 .datatable-footer {
   border-top: thin solid gray;
 }
@@ -93,6 +109,10 @@ body {
 .ngx-datatable .datatable-body-cell {
   line-height: 2.5;
   margin-right: 15px;
+}
+
+.datatable-footer .datatable-pager {
+  display: none;
 }
 
 .ngx-datatable .datatable-header-cell {

@@ -1,8 +1,8 @@
-import { Component, OnInit, Output, EventEmitter, OnDestroy } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
 import { Observable, of, Subscription as rxSubscription } from "rxjs";
 import { AssignedMachine } from "../../models/assigned-machine.model";
 import { MachineOverviewService } from "src/app/scenario-machineoverview/scenario-machineoverview.service";
-import { map, catchError } from "rxjs/operators";
+import { map, catchError, tap } from "rxjs/operators";
 import { Subscription } from "../../models/subscription.model";
 import { NgOption } from "@ng-select/ng-select";
 
@@ -13,6 +13,8 @@ import { NgOption } from "@ng-select/ng-select";
 })
 export class SelectMachineComponent implements OnInit {
     public items$: Observable<Array<AssignedMachine | NgOption>>;
+    selectedMachine: AssignedMachine;
+    @Input() initialMachineId: string;
 
     @Output() public change: EventEmitter<string> = new EventEmitter<string>();
 
@@ -34,8 +36,16 @@ export class SelectMachineComponent implements OnInit {
                                     tmid: machine.tmid
                                 }))
                             )
+                            .concat(
+                            )
                     );
                 }, []);
+            }),
+            tap((items: (AssignedMachine | NgOption)[]) => {
+                // filter items by assignedMachines
+                const allMachines = items.filter((object) => object.tmid) as AssignedMachine[];
+                this.selectedMachine = allMachines.find((machine) =>  machine.tmid === this.initialMachineId)
+
             }),
             catchError(err => {
                 console.log("could not load machines", err);

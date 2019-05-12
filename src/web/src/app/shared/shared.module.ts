@@ -16,6 +16,7 @@ import { DateRangeComponent } from "./components/date-range/date-range.component
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { MachineOverviewService } from '../scenario-machineoverview/scenario-machineoverview.service';
 import { ScenarioNavigationService } from '../scenario-navigation/scenario-navigation.service';
+import { AvailableMachinesService } from "./services/available-machines.service";
 
 library.add(faGithub, fas);
 
@@ -26,7 +27,7 @@ library.add(faGithub, fas);
     declarations: [ScenarioComponent, SelectMachineComponent, DateRangeComponent],
     imports: [CommonModule, FontAwesomeModule, NgxDatatableModule, NgSelectModule, FormsModule, OwlDateTimeModule, OwlNativeDateTimeModule],
     exports: [ScenarioComponent, FontAwesomeModule, NgxDatatableModule, SelectMachineComponent, NgSelectModule, FormsModule, DateRangeComponent],
-    providers: [HistoricalDataService, MachineOverviewService, ScenarioNavigationService, DecimalPipe]
+    providers: [HistoricalDataService, MachineOverviewService, ScenarioNavigationService, DecimalPipe, AvailableMachinesService]
 })
 export class SharedModule {
     faGitHub = faGithub;
