@@ -24,7 +24,6 @@ export class ScenarioHistoricaldataComponent implements OnInit {
 
     constructor(private readonly historicalDataService: HistoricalDataService) {
         this.error$.next(false);
-        this.loading$.next(false);
     }
 
     ngOnInit() {
@@ -99,7 +98,6 @@ export class ScenarioHistoricaldataComponent implements OnInit {
     }
 
     public selectedMachineChanged(tmid: string) {
-        this.loading$.next(true);
         this.error$.next(false);
         this.sourceKeys$ = null;
         this.searchCriteria$.next({

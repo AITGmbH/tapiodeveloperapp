@@ -3,7 +3,7 @@ import { ScenarioDocumentationService } from "./scenario-documentation-service";
 import { VERSION } from "src/environments/version";
 
 /**
- * Represents an absctract scenario. Scenario using this will automatically get the look & feel and behavior they want.
+ * Represents an abstract scenario. Scenario using this will automatically get the look & feel and behavior they want.
  */
 @Component({
     selector: "app-scenario",

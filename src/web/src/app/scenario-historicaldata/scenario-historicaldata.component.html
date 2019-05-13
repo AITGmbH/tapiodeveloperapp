@@ -28,15 +28,16 @@
 </app-scenario>
 
 <ng-template #loadingOrError>
-  <div *ngIf="error$ | async" class="errorMessage">
+  <div *ngIf="(error$ | async); else loading" class="errorMessage">
     <div>
       No data available for this machine
     </div>
   </div>
-  <div>
-    <div *ngIf="loading$ | async" class="spinner">
+
+  <ng-template #loading>
+    <div class="spinner">
       <div class="double-bounce1"></div>
       <div class="double-bounce2"></div>
     </div>
-  </div>
+  </ng-template>
 </ng-template>

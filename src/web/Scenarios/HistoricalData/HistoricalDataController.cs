@@ -30,15 +30,9 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricalData
 
                 return Ok(keys);
             }
-            catch (HttpException ex)
+            catch (HttpException ex) when (ex.StatusCode == HttpStatusCode.NotFound)
             {
-                switch (ex.StatusCode)
-                {
-                    case HttpStatusCode.NotFound:
-                        return NotFound();
-                    default:
-                        throw ex;
-                }
+                return NotFound();
             }
         }
         [HttpPost("{machineId}")]

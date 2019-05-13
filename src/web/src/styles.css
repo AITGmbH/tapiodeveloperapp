@@ -1,9 +1,22 @@
+
 html {
   overflow-y: auto;
 }
 
 body {
   background: rgb(7, 19, 26);
+}
+
+h1.title {
+  text-align: left;
+  color: #fff;
+}
+
+h3.title.is-3 {
+  text-align: left;
+  color: #fff;
+  font-size: 35px;
+  margin: 15px 0;
 }
 
 /**
@@ -15,7 +28,6 @@ body {
 .spinner {
   width: 40px;
   height: 40px;
-
   position: relative;
   margin: 100px auto;
 }
@@ -57,3 +69,66 @@ body {
 /**
   End Spinner
 */
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-disabled span.ng-option-label {
+  color: black;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-disabled {
+  cursor: default;
+}
+
+.ngx-datatable .datatable-body .datatable-row-wrapper:not(:last-of-type) {
+  border-bottom: thin solid gray;
+}
+
+.datatable-header-cell {
+  font-weight: 700;
+}
+
+.datatable-header {
+  border-bottom: thin solid gray;
+  margin-right: 15px;
+}
+
+.ngx-datatable .datatable-footer {
+  border-top: thin solid gray;
+}
+
+.datatable-footer {
+  border-top: thin solid gray;
+}
+
+.ngx-datatable .pages a {
+  color: white;
+  margin-left: 1rem;
+}
+
+.ngx-datatable .datatable-body-cell {
+  line-height: 2.5;
+  margin-right: 15px;
+}
+
+.datatable-footer .datatable-pager {
+  display: none;
+}
+
+.ngx-datatable .datatable-header-cell {
+  margin-right: 15px;
+}
+
+div.empty-row {
+  padding-top: 10px;
+}
+
+.errorMessage {
+  margin-top: 2rem;
+  background-color: white;
+  display: block;
+  max-width: 35%;
+  padding: 3px 3px 3px 10px;
+  text-align: left;
+  color: red;
+}

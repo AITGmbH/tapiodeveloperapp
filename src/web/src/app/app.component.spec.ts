@@ -12,10 +12,10 @@ import { SharedModule } from "./shared/shared.module";
 class MockModuleNavigationComponent {}
 
 @Component({
-    selector: "app-hamburgermenu",
+    selector: "app-external-links-dropdown",
     template: "<ul></ul>"
 })
-class MockHamburgerComponent {}
+class MockExternalLinksDropdownComponent {}
 
 @Component({
     selector: "app-scenario-navigation",
@@ -40,7 +40,7 @@ describe("AppComponent", () => {
         declarations: [
             AppComponent,
             MockModuleNavigationComponent,
-            MockHamburgerComponent,
+            MockExternalLinksDropdownComponent,
             MockNavigationComponent,
             MockScenarioComponent
         ],
@@ -53,7 +53,7 @@ describe("AppComponent", () => {
         expect(app).toBeTruthy();
     });
 
-    it(`should have as title 'developerapp'`, () => {
+    it(`should have 'developerapp' as title`, () => {
         const fixture = TestBed.createComponent(AppComponent);
         const app = fixture.debugElement.componentInstance;
         expect(app.title).toEqual("developerapp");
