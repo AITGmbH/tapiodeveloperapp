@@ -17,8 +17,6 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { MachineOverviewService } from '../scenario-machineoverview/scenario-machineoverview.service';
 import { ScenarioNavigationService } from '../scenario-navigation/scenario-navigation.service';
 import { AvailableMachinesService } from "./services/available-machines.service";
-import { DateRangeComponent } from "./components/date-range/date-range.component";
-import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 library.add(faGithub, fas);
 
