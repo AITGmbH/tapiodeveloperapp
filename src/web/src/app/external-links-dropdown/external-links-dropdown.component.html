@@ -1,0 +1,33 @@
+<div class="dropdown is-right is-hoverable">
+    <div class="dropdown-trigger">
+        <button
+            class="button is-white"
+            aria-haspopup="true"
+            aria-controls="dropdown-menu">
+            <span class="icon is-small">
+                <fa-icon [icon]="['fas', 'angle-down']"></fa-icon>
+            </span>
+            <span>links</span>
+        </button>
+    </div>
+    <div class="dropdown-menu" id="dropdown-menu" role="menu">
+        <div class="dropdown-content">
+            <a
+                href="https://github.com/AITGmbH/tapiodeveloperapp/"
+                class="dropdown-item"
+                target="_blank"
+                rel="noopener">
+                <fa-icon [icon]="['fab', 'github']"></fa-icon>
+                AITGmbH/tapiodeveloperapp
+            </a>
+            <hr class="dropdown-divider" />
+            <a href="https://developer.tapio.one/" class="dropdown-item" target="_blank" rel="noopener">
+                tapio Developer Portal
+            </a>
+            <hr class="dropdown-divider" />
+            <a href="https://admin.tapio.one/" class="dropdown-item" target="_blank" rel="noopener">
+                tapio Management Portal
+            </a>
+        </div>
+    </div>
+</div>
