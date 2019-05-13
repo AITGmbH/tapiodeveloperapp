@@ -26,7 +26,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricalData
         {
             try
             {
-                var keys = await _historicalDataService.ReadSourceKeysAsync(cancellationToken, machineId);
+                var keys = await _historicalDataService.GetSourceKeysAsync(cancellationToken, machineId);
 
                 return Ok(keys);
             }

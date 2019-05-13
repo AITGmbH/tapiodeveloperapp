@@ -25,7 +25,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricalData
             _tokenProvider = tokenProvider ?? throw new ArgumentNullException(nameof(tokenProvider));
         }
 
-        public async Task<SourceKeyResponse> ReadSourceKeysAsync(CancellationToken cancellationToken, string machineId)
+        public async Task<SourceKeyResponse> GetSourceKeysAsync(CancellationToken cancellationToken, string machineId)
         {
             var token = await _tokenProvider.ReceiveTokenAsync(TapioScope.CoreApi);
             var request = new HttpRequestMessage(HttpMethod.Get, new Uri(String.Format(GetMachineSourceKeys, machineId)));
@@ -45,7 +45,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricalData
         {
 
             var token = await _tokenProvider.ReceiveTokenAsync(TapioScope.CoreApi);
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, new Uri(String.Format(GetHistoricalData, machineId)));
+            var request = new HttpRequestMessage(HttpMethod.Post, new Uri(String.Format(GetHistoricalData, machineId)));
             request.Content = new StringContent(HistoricalDataReqeuestExtension.ToJson(historicalDataRequest), Encoding.UTF8, "application/json");
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var responseMessage = await _httpClient.SendAsync(request, cancellationToken);
@@ -55,7 +55,6 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricalData
                 throw new HttpException(responseMessage.StatusCode);
             }
             var content = await responseMessage.Content.ReadAsStringAsync();
-            Console.WriteLine(content);
             var result = HistoricalDataResponseExtension.FromJson(content);
             return result;
         }
@@ -64,6 +63,6 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricalData
     public interface IHistoricalDataService
     {
         Task<HistoricalDataResponse> GetHistoricalDataAsync(CancellationToken cancellationToken, string machineId, HistoricalDataRequest request);
-        Task<SourceKeyResponse> ReadSourceKeysAsync(CancellationToken cancellationToken, string machineId);
+        Task<SourceKeyResponse> GetSourceKeysAsync(CancellationToken cancellationToken, string machineId);
     }
 }

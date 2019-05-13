@@ -22,7 +22,6 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricalData
         
         [JsonProperty("key")]
         public string Key { get; set; }
-        // TODO: clarify why and if doc is wrong - it specifies "value"
         [JsonProperty("values")]
         public HistoricalItemData[] Values { get; set; }
         [JsonProperty("moreDataAvailable")]
