@@ -5,8 +5,7 @@ import { Subscription } from "../shared/models/subscription.model";
 
 @Component({
   selector: "app-scenario-machineoverview",
-  templateUrl: "./scenario-machineoverview.component.html",
-  styleUrls: ["./scenario-machineoverview.component.css"]
+  templateUrl: "./scenario-machineoverview.component.html"
 })
 export class ScenarioMachineoverviewComponent implements OnInit {
     subscriptions$: Observable<Subscription[]>;
