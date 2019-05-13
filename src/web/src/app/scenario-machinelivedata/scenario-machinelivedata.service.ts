@@ -3,17 +3,26 @@ import { SignalRService } from "../shared/services/signalr.service";
 
 @Injectable()
 export class ScenarioMachineLiveDataService extends SignalRService {
-    public async joinGroup(machineId: string): Promise<void> {
-        return this.hubConnection.send("JoinGroup", machineId);
+    private hasActiveDataListener = false;
+
+    public async joinGroupAsync(machineId: string): Promise<void> {
+        return this.hubConnection.send("joinGroup", machineId);
     }
 
-    public async leaveGroup(machineId: string): Promise<void> {
-        return this.hubConnection.send("LeaveGroup", machineId);
+    public async leaveGroupAsync(machineId: string): Promise<void> {
+        return this.hubConnection.send("leaveGroup", machineId);
     }
 
-    public addDataListener() {
-        this.hubConnection.on("transferdata", data => {
-            console.log(data);
-        });
+    public addDataListener(func: (data: string) => void) {
+        if (this.hasActiveDataListener) {
+            this.removeDataListener(func);
+        }
+        this.hubConnection.on("streamMachineData", func);
+        this.hasActiveDataListener = true;
+    }
+
+    public removeDataListener(func: (data) => void) {
+        this.hubConnection.off("streamMachineData", func);
+        this.hasActiveDataListener = false;
     }
 }

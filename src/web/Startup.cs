@@ -39,7 +39,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web
             services.AddHttpClient<IMachineOverviewService, MachineOverviewService>();
             services.AddHttpClient<IHistoricalDataService, HistoricalDataService>();
             services.AddHttpClient<IHistoricConditionsService, HistoricConditionsService>();
-            services.AddScoped<IMachineLiveDataService, MachineLiveDataService>();
+            services.AddSingleton<IMachineLiveDataService, MachineLiveDataService>();
             services
                 .AddOptions<TapioCloudCredentials>()
                 .Bind(Configuration.GetSection("TapioCloud"))

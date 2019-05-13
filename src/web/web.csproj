@@ -27,7 +27,6 @@
     <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.0" />
     <PackageReference Include="Microsoft.Azure.EventHubs" Version="3.0.0" />
     <PackageReference Include="Microsoft.Azure.EventHubs.Processor" Version="3.0.0" />
-    <PackageReference Include="Microsoft.Azure.ServiceBus.EventProcessorHost" Version="4.0.0" />
   </ItemGroup>
 
   <Import Project="..\..\.paket\Paket.Restore.targets" />

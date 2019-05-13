@@ -17,18 +17,18 @@ export class ScenarioMachineLiveDataComponent implements OnInit {
     }
 
     public async selectedMachineChanged(machineId: string) {
-        if (machineId != null && machineId !== "") {
-            if (this.selectedMachine != null) {
-                await this.liveDataService.leaveGroup(this.selectedMachine);
-            }
-            this.selectedMachine = machineId;
-            await this.liveDataService.joinGroup(this.selectedMachine);
-            this.liveDataService.addDataListener();
-            this.startRequest();
-        }
+        // if (machineId != null && machineId !== "") {
+        this.selectedMachine = machineId;
+        this.liveDataService.addDataListener(this.onStreamData);
+        this.startRequest();
+        // }
+    }
+
+    public onStreamData(data: string) {
+        console.log(data);
     }
 
     private startRequest() {
-        this.http.get(`/api/machinelivedata/${this.selectedMachine}`).subscribe(res => console.log(res));
+        this.http.get(`/api/machinelivedata`).subscribe(res => console.log(res));
     }
 }

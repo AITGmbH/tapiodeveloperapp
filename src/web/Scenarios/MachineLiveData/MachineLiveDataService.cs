@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Aitgmbh.Tapio.Developerapp.Web.Services;
@@ -14,11 +12,15 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
     public class MachineLiveDataService : IMachineLiveDataService
     {
         private readonly IEvenHubCredentialProvider _credentialProvider;
+        private readonly MachineLiveDataEventProcessorFactory _dataEventProcessorFactory;
         private EventProcessorHost _processorHost;
+        private bool _readerEnabled;
 
         public MachineLiveDataService(IEvenHubCredentialProvider credentialProvider)
         {
             _credentialProvider = credentialProvider;
+            _dataEventProcessorFactory = new MachineLiveDataEventProcessorFactory();
+
         }
         private void CreateProcessorHostConnection()
         {
@@ -31,58 +33,49 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
                 );
         }
 
-        public async Task ReadHubAsync()
+        public async Task ReadHubAsync(Func<string, Task> func)
         {
+            if (_readerEnabled)
+            {
+                return;
+            }
+
             if (_processorHost == null)
             {
                 CreateProcessorHostConnection();
             }
 
-            var options = new EventProcessorOptions();
-            options.SetExceptionHandler((e) => { Console.WriteLine(e.Exception); });
-            await _processorHost.RegisterEventProcessorAsync<Processor>();
+            try
+            {
+                _dataEventProcessorFactory.SetCallback(func);
+
+                var options = new EventProcessorOptions();
+                options.SetExceptionHandler(e =>
+                {
+                    Console.WriteLine(e.Exception);
+                });
+                await _processorHost.RegisterEventProcessorFactoryAsync(_dataEventProcessorFactory, options);
+                _readerEnabled = true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
         }
 
         public async Task UnregisterHubAsync()
         {
             await _processorHost.UnregisterEventProcessorAsync();
+            _readerEnabled = false;
         }
     }
 
     public interface IMachineLiveDataService
     {
-        Task ReadHubAsync();
+        Task ReadHubAsync(Func<string, Task> func);
 
         Task UnregisterHubAsync();
     }
 
-    public class Processor : IEventProcessor
-    {
-        public Task CloseAsync(PartitionContext context, CloseReason reason)
-        {
-            return Task.CompletedTask;
-        }
-
-        public Task OpenAsync(PartitionContext context)
-        {
-            return Task.CompletedTask;
-        }
-
-        public Task ProcessEventsAsync(PartitionContext context, IEnumerable<EventData> messages)
-        {
-            foreach (var eventData in messages)
-            {
-                var data = Encoding.UTF8.GetString(eventData.Body.Array, eventData.Body.Offset, eventData.Body.Count);
-                Trace.TraceInformation($"Partition Id: {context.PartitionId}; Message: {data}");
-            }
-
-            return context.CheckpointAsync();
-        }
-
-        public Task ProcessErrorAsync(PartitionContext context, Exception error)
-        {
-            Trace.TraceError(error.Message);
-            return Task.CompletedTask;
-        }
-    }
 }

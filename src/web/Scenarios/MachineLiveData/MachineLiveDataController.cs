@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.SignalR;
 namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
 {
     [Scenario("machine-live-data-scenario", "Machine Live Data", "/scenario-machinelivedata",
-        "src/web/src/app/scenario-machinelivedata", "src/web/Scenarios/MachineLiveData", "https://developer.tapio.one/docs/HistoricalData.html")]
+        "src/web/src/app/scenario-machinelivedata", "src/web/Scenarios/MachineLiveData", "https://developer.tapio.one/docs/TapioDataCategories.html#streaming-data")]
     [Produces("application/json")]
     [Route("api/[controller]")]
     public class MachineLiveDataController: Controller
@@ -23,11 +23,16 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
             _machineLiveDataService = machineLiveDataService;
         }
 
-        [HttpGet("{machineId}")]
-        public OkResult Get(string machineId)
+        [HttpGet]
+        public async Task<ActionResult> Get()
         {
-            _hub.Clients.All.SendAsync("transferdata", "Test");
+            await _machineLiveDataService.ReadHubAsync(SendAsync);
             return Ok();
+        }
+
+        private async Task SendAsync(string data)
+        {
+            await _hub.Clients.All.SendAsync("streamMachineData", data);
         }
     }
 }
