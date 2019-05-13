@@ -60,7 +60,7 @@ namespace web.Tests.Unit
         }
 
         [Fact]
-        public async Task ReadSourceKeysAsync_ThrowNoException()
+        public async Task GetSourceKeysAsync_ThrowNoException()
         {
             var messageHandlerMock = new Mock<HttpMessageHandler>()
                 .SetupSendAsyncMethod(HttpStatusCode.OK, Content);
@@ -68,13 +68,13 @@ namespace web.Tests.Unit
             using (var httpClient = new HttpClient(messageHandlerMock.Object))
             {
                 var service = new HistoricalDataService(httpClient, _standardTokenProviderMock.Object);
-                Func<Task<SourceKeyResponse>> action = () => service.ReadSourceKeysAsync(CancellationToken.None, sourceKeyResponseMock.Object.MachineId);
+                Func<Task<SourceKeyResponse>> action = () => service.GetSourceKeysAsync(CancellationToken.None, sourceKeyResponseMock.Object.MachineId);
                 await action.Should().NotThrowAsync();
             }
         }
 
         [Fact]
-        public async Task ReadSourceKeysAsync_ThrowHttpExceptionBecauseOfUnauthorized()
+        public async Task GetSourceKeysAsync_ThrowHttpExceptionBecauseOfUnauthorized()
         {
             var messageHandlerMock = new Mock<HttpMessageHandler>()
                 .SetupSendAsyncMethod(HttpStatusCode.Unauthorized, "{}");
@@ -82,7 +82,7 @@ namespace web.Tests.Unit
             using (var httpClient = new HttpClient(messageHandlerMock.Object))
             {
                 var service = new HistoricalDataService(httpClient, _standardTokenProviderMock.Object);
-                Func<Task<SourceKeyResponse>> action = () => service.ReadSourceKeysAsync(CancellationToken.None, sourceKeyResponseMock.Object.MachineId);
+                Func<Task<SourceKeyResponse>> action = () => service.GetSourceKeysAsync(CancellationToken.None, sourceKeyResponseMock.Object.MachineId);
                 await action.Should().ThrowAsync<HttpException>();
             }
         }
