@@ -33,7 +33,7 @@
   </div>
 
   <ng-template #loading>
-    <div class="spinner">
+    <div *ngIf="loading$ | async" class="spinner">
       <div class="double-bounce1"></div>
       <div class="double-bounce2"></div>
     </div>
