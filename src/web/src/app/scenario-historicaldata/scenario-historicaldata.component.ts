@@ -24,6 +24,7 @@ export class ScenarioHistoricaldataComponent implements OnInit {
 
     constructor(private readonly historicalDataService: HistoricalDataService) {
         this.error$.next(false);
+        this.loading$.next(false);
     }
 
     ngOnInit() {
@@ -99,6 +100,7 @@ export class ScenarioHistoricaldataComponent implements OnInit {
 
     public selectedMachineChanged(tmid: string) {
         this.error$.next(false);
+        this.loading$.next(true);
         this.sourceKeys$ = null;
         this.searchCriteria$.next({
             // set new key
@@ -125,12 +127,10 @@ export class ScenarioHistoricaldataComponent implements OnInit {
     }
 
     public dateRangeChanged(dateRange: { dateStart: Date; dateEnd: Date }) {
-        console.log("date range changed", dateRange);
         this.searchCriteria$.next({
             machineId: this.searchCriteria$.value.machineId,
             data: {
                 key: this.searchCriteria$.value.data.key,
-                // TODO: change to Date type
                 from: dateRange.dateStart.toISOString(),
                 to: dateRange.dateEnd.toISOString(),
                 limit: this.searchCriteria$.value.data.limit
@@ -141,7 +141,6 @@ export class ScenarioHistoricaldataComponent implements OnInit {
     public radioChanged(event: Event) {
         if (event && event.target instanceof HTMLInputElement) {
             const ele = event.target as HTMLInputElement;
-            console.log(ele.id, ele.value);
             this.sourceKeySelected(ele.id);
         }
     }

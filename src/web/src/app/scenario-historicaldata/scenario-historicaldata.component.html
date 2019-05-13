@@ -2,11 +2,11 @@
   <div>
     <app-select-machine (change)="selectedMachineChanged($event)"></app-select-machine>
     <app-date-range (change)="dateRangeChanged($event)"></app-date-range>
-    <div class="flex-container" *ngIf="(sourceKeys$ | async); else loadingOrError">
-      <div class="sourceKeyList row" >
+    <div class="flex-container" *ngIf="(sourceKeys$ | async) as sourceKeys; else loadingOrError">
+      <div class="sourceKeyList row">
         <h1 class="sourceKeyHeader">Source Keys:</h1>
         <ul>
-          <li *ngFor="let key of (sourceKeys$ | async).keys; let i = index">
+          <li *ngFor="let key of sourceKeys.keys; let i = index">
             <input type="radio" name="sourceKeysList" [id]="key" (change)="radioChanged($event)">
             <label [for]="key">{{key}}</label>
           </li>
@@ -29,9 +29,7 @@
 
 <ng-template #loadingOrError>
   <div *ngIf="(error$ | async); else loading" class="errorMessage">
-    <div>
-      No data available for this machine
-    </div>
+    No data available for this machine
   </div>
 
   <ng-template #loading>
