@@ -10,7 +10,7 @@ import { Subscription } from "../shared/models/subscription.model";
 })
 export class ScenarioMachineoverviewComponent implements OnInit {
     subscriptions$: Observable<Subscription[]>;
-    errorLoading$ = new Subject<boolean>();
+    error$ = new Subject<boolean>();
 
     constructor(private readonly machineOverviewService: MachineOverviewService) { }
 
@@ -19,7 +19,7 @@ export class ScenarioMachineoverviewComponent implements OnInit {
             this.subscriptions$ = of(subscriptions);
         }, error => {
             console.error("could not load machine overview", error);
-            this.errorLoading$.next(true);
+            this.error$.next(true);
         });
     }
 }

@@ -1,17 +1,11 @@
-<ng-container [ngSwitch]="true">
-  <ng-container *ngSwitchCase="isString(title)">
+  <div class="content-header">
     <h1 class="title is-1">{{title}}</h1>
-  </ng-container>
-  <ng-container *ngSwitchCase="isTemplateRef(title)">
-    <ng-container *ngTemplateOutlet="title"></ng-container>
-  </ng-container>
-</ng-container>
-
-<div class="developer-links">
-  <a [attr.href]="tapioDocumentationUrl" class="has-text-light" target="_blank" rel="noopener">Tapio</a>
-  <a [attr.href]="frontendUrl" class="has-text-light" target="_blank" rel="noopener"><fa-icon [icon]="['fab', 'github']"></fa-icon>Frontend</a>
-  <a [attr.href]="backendUrl" class="has-text-light" target="_blank" rel="noopener" *ngIf="hasBackendUrl"><fa-icon [icon]="['fab', 'github']"></fa-icon>Backend</a>
-</div>
-<div class="actual-content has-text-light">
-  <ng-content></ng-content>
-</div>
+    <div class="developer-links">
+      <a href="{{tapioDocumentationUrl}}" class="" target="_blank" rel="noopener">Tapio</a>&nbsp;
+      <a href="{{frontendUrl}}" class="" target="_blank" rel="noopener"><fa-icon [icon]="['fab', 'github']"></fa-icon>Frontend</a>&nbsp;
+      <a href="{{backendUrl}}" class="" target="_blank" rel="noopener" *ngIf="hasBackendUrl"><fa-icon [icon]="['fab', 'github']"></fa-icon>Backend</a>
+    </div>
+  </div>
+    <div class="actual-content has-text-light">
+      <ng-content></ng-content>
+    </div>

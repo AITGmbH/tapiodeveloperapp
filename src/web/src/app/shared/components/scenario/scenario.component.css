@@ -1,10 +1,18 @@
-.actual-content {
-  background: #010305;
-  min-height: 43rem;
-  padding: 1rem; 
+div.content-header {
+  height: 4rem;
+  margin-bottom: 3rem;
+}
+
+h1.title {
+  float: left;
+  text-align: left;
+  color: #fff;
+  max-width: 80%;
+  margin-block-end: 0px;
 }
 
 .developer-links {
+  float: right;
   display: flex;
   justify-content: flex-end;
   margin-bottom: 8px;
@@ -16,6 +24,19 @@
 
 .developer-links > a .ng-fa-icon {
   margin-right: 5px;
+}
+
+div.developer-links > a {
+  color: white;
+}
+
+div.developer-links > a:hover {
+  color: #00ff8c;
+}
+
+.actual-content {
+  background: #000;
+  min-height: 43rem;
 }
 
 * {

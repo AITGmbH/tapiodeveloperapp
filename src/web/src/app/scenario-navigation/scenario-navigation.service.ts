@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { ScenarioEntry } from '../shared/models/scenario-entity.model';
+import { ScenarioEntry } from "../shared/models/scenario-entity.model";
 
 /**
  * Provides access to the scenario navigation entries.
@@ -15,5 +15,3 @@ export class ScenarioNavigationService {
         return this.http.get<ScenarioEntry[]>("/api/scenario");
     }
 }
-
-
