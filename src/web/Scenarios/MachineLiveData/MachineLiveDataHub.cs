@@ -16,6 +16,16 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
             _machineLiveDataService = machineLiveDataService;
         }
 
+        public async Task JoinGroup(string groupName)
+        {
+            await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
+        }
+
+        public async Task LeaveGroup(string groupName)
+        {
+            await Groups.RemoveFromGroupAsync(Context.ConnectionId, groupName);
+        }
+
         public override async Task OnConnectedAsync()
         {
             _clients.Add(Context.ConnectionId);
@@ -27,7 +37,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
             _clients.Remove(Context.ConnectionId);
             if (!_clients.Any())
             {
-                //await _machineLiveDataService.UnregisterHubAsync();
+                await _machineLiveDataService.UnregisterHubAsync();
             }
             await base.OnDisconnectedAsync(exception);
         }

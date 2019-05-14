@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Aitgmbh.Tapio.Developerapp.Web.Services;
 using Microsoft.Azure.EventHubs;
@@ -10,7 +11,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
     {
         private readonly IEvenHubCredentialProvider _credentialProvider;
         private readonly MachineLiveDataEventProcessorFactory _dataEventProcessorFactory;
-        private Func<dynamic, Task> _func;
+        private Func<string, dynamic, Task> _func;
         private EventProcessorHost _processorHost;
         private bool _readerEnabled;
 
@@ -33,26 +34,18 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
                 CreateProcessorHostConnection();
             }
 
-            try
-            {
-                _dataEventProcessorFactory.SetCallback(HandleProcessEventsAsync);
+            _dataEventProcessorFactory.SetCallback(HandleProcessEventsAsync);
 
-                var options = new EventProcessorOptions();
-                options.SetExceptionHandler(e =>
-                {
-                    Console.WriteLine(e.Exception);
-                });
-                await _processorHost.RegisterEventProcessorFactoryAsync(_dataEventProcessorFactory, options);
-                _readerEnabled = true;
-            }
-            catch (Exception e)
+            var options = new EventProcessorOptions();
+            options.SetExceptionHandler(e =>
             {
-                Console.WriteLine(e);
-            }
-
+                Trace.TraceError(e.Exception.Message);
+            });
+            await _processorHost.RegisterEventProcessorFactoryAsync(_dataEventProcessorFactory, options);
+            _readerEnabled = true;
         }
 
-        public void SetCallback(Func<dynamic, Task> func)
+        public void SetCallback(Func<string, dynamic, Task> func)
         {
             _func = func;
         }
@@ -77,7 +70,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
         private async Task HandleProcessEventsAsync(string data)
         {
             var result = MaterialLiveDataContainerExtension.FromJson(data);
-            await _func(result);
+            await _func(result.MachineId, result);
         }
     }
 
@@ -85,7 +78,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
     {
         Task ReadHubAsync();
 
-        void SetCallback(Func<dynamic, Task> func);
+        void SetCallback(Func<string, dynamic, Task> func);
 
         Task UnregisterHubAsync();
     }

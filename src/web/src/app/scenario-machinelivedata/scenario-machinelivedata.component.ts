@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, DoCheck } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import {
     ScenarioMachineLiveDataService,
@@ -6,7 +6,6 @@ import {
     MessageTypes
 } from "./scenario-machinelivedata.service";
 import { BehaviorSubject, Subscription, Subject } from "rxjs";
-import { map } from "rxjs/operators";
 
 @Component({
     selector: "app-scenario-machinelivedata",
@@ -30,11 +29,14 @@ export class ScenarioMachineLiveDataComponent implements OnInit, OnDestroy {
     }
 
     public async selectedMachineChanged(machineId: string) {
-        // if (machineId != null && machineId !== "") {
-        this.selectedMachine = machineId;
-        this.startDataListener();
-        this.startRequest();
-        // }
+        if (machineId != null && machineId !== "" && machineId !== this.selectedMachine) {
+            this.itemData$.next([]);
+            this.conditionData$.next([]);
+            this.selectedMachine = machineId;
+            await this.liveDataService.joinGroupAsync(this.selectedMachine);
+            this.startDataListener();
+            this.startRequest();
+        }
     }
 
     private startDataListener(): void {
@@ -53,7 +55,9 @@ export class ScenarioMachineLiveDataComponent implements OnInit, OnDestroy {
     }
 
     private onStreamData(data: MachineLiveDataContainer): void {
-        console.log(data);
+        if (data.tmid !== this.selectedMachine) {
+            return;
+        }
         switch (data.msgt) {
             case MessageTypes.ItemData:
                 this.itemData$.next([data]);

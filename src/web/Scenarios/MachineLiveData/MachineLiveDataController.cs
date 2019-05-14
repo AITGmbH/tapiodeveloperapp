@@ -1,3 +1,5 @@
+using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Aitgmbh.Tapio.Developerapp.Web.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -23,13 +25,21 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
         [HttpGet]
         public async Task<ActionResult> Get()
         {
-            await _machineLiveDataService.ReadHubAsync();
-            return Ok();
+            try
+            {
+                await _machineLiveDataService.ReadHubAsync();
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                Trace.TraceError(e.Message);
+                throw;
+            }
         }
 
-        private async Task SendAsync(object data)
+        private async Task SendAsync(string machineId, object data)
         {
-            await _hub.Clients.All.SendAsync("streamMachineData", data);
+            await _hub.Clients.Group(machineId).SendAsync("streamMachineData", data);
         }
     }
 }

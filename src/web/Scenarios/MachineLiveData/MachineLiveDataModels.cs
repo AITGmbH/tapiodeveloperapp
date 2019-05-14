@@ -20,85 +20,85 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
         public string MessageType { get; set; }
 
         [JsonProperty("msg")]
-        public Message Message { get; set; }
+        public dynamic Message { get; set; }
     }
 
-    public class Message
-    {
-        [JsonProperty("p")]
-        public string Provider { get; set; }
+    //public class Message
+    //{
+    //    [JsonProperty("p")]
+    //    public string Provider { get; set; }
 
-        [JsonProperty("sts")]
-        public DateTime SourceTimeStamp { get; set; }
+    //    [JsonProperty("sts")]
+    //    public DateTime SourceTimeStamp { get; set; }
 
-        [JsonProperty("rts")]
-        public DateTime ReceiveTimeStamp { get; set; }
-    }
+    //    [JsonProperty("rts")]
+    //    public DateTime ReceiveTimeStamp { get; set; }
+    //}
 
-    public class ItemDataMessage : Message
-    {
+    //public class ItemDataMessage : Message
+    //{
 
-        [JsonProperty("k")]
-        public string KeyName { get; set; }
+    //    [JsonProperty("k")]
+    //    public string KeyName { get; set; }
 
-        [JsonProperty("vt")]
-        public string ValueType { get; set; }
+    //    [JsonProperty("vt")]
+    //    public string ValueType { get; set; }
 
-        [JsonProperty("v")]
-        public dynamic Value { get; set; }
+    //    [JsonProperty("v")]
+    //    public dynamic Value { get; set; }
 
-        [JsonProperty("u")]
-        public string Unit { get; set; }
+    //    [JsonProperty("u")]
+    //    public string Unit { get; set; }
 
-        [JsonProperty("q")]
-        public string Quantity { get; set; }
+    //    [JsonProperty("q")]
+    //    public string Quantity { get; set; }
 
-    }
+    //}
 
-    public class ConditionMessage : Message
-    {
+    //public class ConditionMessage : Message
+    //{
 
-        [JsonProperty("k")]
-        public string KeyName { get; set; }
+    //    [JsonProperty("k")]
+    //    public string KeyName { get; set; }
 
-        [JsonProperty("s")]
-        public string Source { get; set; }
+    //    [JsonProperty("s")]
+    //    public string Source { get; set; }
 
-        [JsonProperty("as")]
-        public int Status { get; set; }
+    //    [JsonProperty("as")]
+    //    public int Status { get; set; }
 
-        [JsonProperty("sv")]
-        public int Severity { get; set; }
+    //    [JsonProperty("sv")]
+    //    public int Severity { get; set; }
 
-        [JsonProperty("ls")]
-        public dynamic SourceText { get; set; }
+    //    [JsonProperty("ls")]
+    //    public dynamic SourceText { get; set; }
 
-        [JsonProperty("lm")]
-        public dynamic SourceMessage { get; set; }
+    //    [JsonProperty("lm")]
+    //    public dynamic SourceMessage { get; set; }
 
-        [JsonProperty("vls")]
-        public dynamic AdditionalValueList { get; set; }
-    }
+    //    [JsonProperty("vls")]
+    //    public dynamic AdditionalValueList { get; set; }
+    //}
 
-    public class ConditionRefreshMessage: Message { }
+    //public class ConditionRefreshMessage: Message { }
 
-    public class EventDataMessage : Message
-    {
-        [JsonProperty("k")]
-        public string KeyName { get; set; }
+    //public class EventDataMessage : Message
+    //{
+    //    [JsonProperty("k")]
+    //    public string KeyName { get; set; }
 
-        [JsonProperty("s")]
-        public string Source { get; set; }
+    //    [JsonProperty("s")]
+    //    public string Source { get; set; }
 
-        [JsonProperty("vls")]
-        public dynamic AdditionalValueList { get; set; }
-    }
+    //    [JsonProperty("vls")]
+    //    public dynamic AdditionalValueList { get; set; }
+    //}
 
     public static class MaterialLiveDataContainerExtension
     {
-        public static dynamic FromJson(string json)
+        public static MachineLiveDataContainer FromJson(string json)
         {
-            return JsonConvert.DeserializeObject(json, Converter.Settings);
+            return JsonConvert.DeserializeObject<MachineLiveDataContainer>(json, Converter.Settings);
         }
     }
 

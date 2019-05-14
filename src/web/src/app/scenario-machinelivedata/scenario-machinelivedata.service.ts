@@ -7,9 +7,17 @@ import * as moment from "moment";
 export class ScenarioMachineLiveDataService extends SignalRService {
     private hasActiveDataListener = false;
     private data$ = new Subject<MachineLiveDataContainer>();
+    private currentGroupName: string;
 
     public async joinGroupAsync(machineId: string): Promise<void> {
-        return this.hubConnection.send("joinGroup", machineId);
+        if (this.currentGroupName) {
+            if (this.currentGroupName === machineId) {
+                return;
+            }
+            await this.leaveGroupAsync(this.currentGroupName);
+        }
+        await this.hubConnection.send("joinGroup", machineId);
+        this.currentGroupName = machineId;
     }
 
     public async leaveGroupAsync(machineId: string): Promise<void> {
@@ -34,7 +42,6 @@ export class ScenarioMachineLiveDataService extends SignalRService {
     }
 
     private invokeNewData(data: MachineLiveDataContainer): void {
-        console.log(data);
         this.data$.next(data);
     }
 }
