@@ -5,9 +5,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Aitgmbh.Tapio.Developerapp.Web.Scenarios.LicenseOverview;
 using Aitgmbh.Tapio.Developerapp.Web.Services;
+using web.Tests.Unit.HelperClasses;
 using FluentAssertions;
 using Moq;
-using Moq.Protected;
 using Xunit;
 
 namespace web.Tests.Unit.Scenarios.LicenseOverview
@@ -66,7 +66,7 @@ namespace web.Tests.Unit.Scenarios.LicenseOverview
         }
 
         [Fact]
-        public async Task GetSubscriptionsAsync_ThrowNoException()
+        public async Task GetSubscriptionsAsync_ReturnsMockedSubscriptions()
         {
             var messageHandlerMock = new Mock<HttpMessageHandler>()
                 .SetupSendAsyncMethod(HttpStatusCode.OK, TestSubscriptions);
@@ -74,29 +74,15 @@ namespace web.Tests.Unit.Scenarios.LicenseOverview
             {
                 var cut = new LicenseOverviewService(httpClient, _standardTokenProviderMock.Object);
 
-                Func<Task<SubscriptionOverview>> action = () => cut.GetSubscriptionsAsync(CancellationToken.None);
-                await action.Should().NotThrowAsync();
-            }
-        }
+                var mockedSubscriptionOverview = await cut.GetSubscriptionsAsync(CancellationToken.None);
 
-        [Fact]
-        public async Task GetSubscriptionsAsync_CallSendAsyncOnce()
-        {
-            var messageHandlerMock = new Mock<HttpMessageHandler>()
-                .SetupSendAsyncMethod(HttpStatusCode.OK, TestSubscriptions);
-
-            using (var httpClient = new HttpClient(messageHandlerMock.Object))
-            {
-                var cut = new LicenseOverviewService(httpClient, _standardTokenProviderMock.Object);
-
-                await cut.GetSubscriptionsAsync(CancellationToken.None);
-
+                mockedSubscriptionOverview.Should().BeOfType(typeof(SubscriptionOverview));
                 messageHandlerMock.VerifySendAsyncWasInvokedExactlyOnce();
             }
         }
 
         [Fact]
-        public async Task GetSubscriptionsAsync_ThrowException()
+        public async Task GetSubscriptionsAsync_ThrowsExceptionWhenTapioReturnsErrorCode()
         {
 
             var messageHandlerMock = new Mock<HttpMessageHandler>()
@@ -108,37 +94,6 @@ namespace web.Tests.Unit.Scenarios.LicenseOverview
                 Func<Task<SubscriptionOverview>> action = () => cut.GetSubscriptionsAsync(CancellationToken.None);
                 await action.Should().ThrowAsync<HttpRequestException>();
             }
-        }
-    }
-
-    public static class MoqExtensions
-    {
-        private const string SendAsyncMethodName = "SendAsync";
-
-        public static void VerifySendAsyncWasInvokedExactlyOnce(this Mock<HttpMessageHandler> instance)
-        {
-            instance.Protected().Verify(
-                SendAsyncMethodName,
-                Times.Exactly(1),
-                ItExpr.IsAny<HttpRequestMessage>(),
-                ItExpr.IsAny<CancellationToken>()
-            );
-        }
-
-        public static Mock<HttpMessageHandler> SetupSendAsyncMethod(this Mock<HttpMessageHandler> instance, HttpStatusCode statusCode, string content)
-        {
-            instance.Protected()
-                .Setup<Task<HttpResponseMessage>>(
-                    SendAsyncMethodName,
-                    ItExpr.IsAny<HttpRequestMessage>(),
-                    ItExpr.IsAny<CancellationToken>()
-                )
-                .ReturnsAsync(new HttpResponseMessage {
-                    StatusCode = statusCode,
-                    Content = new StringContent(content)
-                })
-                .Verifiable();
-            return instance;
         }
     }
 }

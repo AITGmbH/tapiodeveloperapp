@@ -8,7 +8,7 @@ using Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricalData;
 using Aitgmbh.Tapio.Developerapp.Web.Services;
 using FluentAssertions;
 using Moq;
-using Moq.Protected;
+using web.Tests.Unit.HelperClasses;
 using Xunit;
 
 namespace web.Tests.Unit
@@ -85,7 +85,7 @@ namespace web.Tests.Unit
             {
                 var service = new HistoricalDataService(httpClient, _standardTokenProviderMock.Object);
                 Func<Task<SourceKeyResponse>> action = () => service.ReadSourceKeysAsync(CancellationToken.None, sourceKeyResponseMock.Object.MachineId);
-                await action.Should().ThrowAsync<HttpException>();
+                await action.Should().ThrowAsync<HttpRequestException>();
             }
         }
     }
