@@ -1,0 +1,54 @@
+.datatable:not(:last-child) {
+    margin-bottom: 2rem;
+}
+
+@-webkit-keyframes updated {
+    from {
+        background-color: yellow;
+    }
+
+    to {
+        background-color: inherit;
+    }
+}
+
+@-moz-keyframes updated {
+    from {
+        background-color: yellow;
+    }
+
+    to {
+        background-color: inherit;
+    }
+}
+
+@-o-keyframes updated {
+    from {
+        background-color: yellow;
+    }
+
+    to {
+        background-color: inherit;
+    }
+}
+
+@keyframes updated {
+    from {
+        background-color: yellow;
+    }
+
+    to {
+        background-color: inherit;
+    }
+}
+
+.updated {
+    -webkit-animation: updated 5s;
+    /* Safari 4+ */
+    -moz-animation: updated 5s;
+    /* Fx 5+ */
+    -o-animation: updated 5s;
+    /* Opera 12+ */
+    animation: updated 5s;
+    /* IE 10+ */
+}

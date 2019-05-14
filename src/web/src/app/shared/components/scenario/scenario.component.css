@@ -1,28 +1,23 @@
-h1.title {
-  text-align: left;
-  color: #fff;
-}
-
 .actual-content {
-  background: #010305;
-  min-height: 43rem;
-  padding: 1rem; 
+    background: #010305;
+    min-height: 43rem;
+    padding: 1rem;
 }
 
 .developer-links {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 8px;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 8px;
 }
 
-.developer-links > a:not(:last-child){
-  margin-right: 6px;
+.developer-links>a:not(:last-child) {
+    margin-right: 6px;
 }
 
-.developer-links > a .ng-fa-icon {
-  margin-right: 5px;
+.developer-links>a .ng-fa-icon {
+    margin-right: 5px;
 }
 
 * {
-  font-family: audimat, sans-serif;
+    font-family: audimat, sans-serif;
 }

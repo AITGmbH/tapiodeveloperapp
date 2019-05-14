@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
 using System.Threading.Tasks;
 using Aitgmbh.Tapio.Developerapp.Web.Services;
 using Microsoft.Azure.EventHubs;
@@ -13,6 +10,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
     {
         private readonly IEvenHubCredentialProvider _credentialProvider;
         private readonly MachineLiveDataEventProcessorFactory _dataEventProcessorFactory;
+        private Func<dynamic, Task> _func;
         private EventProcessorHost _processorHost;
         private bool _readerEnabled;
 
@@ -20,20 +18,10 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
         {
             _credentialProvider = credentialProvider;
             _dataEventProcessorFactory = new MachineLiveDataEventProcessorFactory();
-
-        }
-        private void CreateProcessorHostConnection()
-        {
-            _processorHost = new EventProcessorHost(
-                _credentialProvider.GetEventHubEntityPath(),
-                PartitionReceiver.DefaultConsumerGroupName,
-                _credentialProvider.GetEventHubConnectionString(),
-                _credentialProvider.GetStorageConnectionString(),
-                _credentialProvider.GetStorageContainerName()
-                );
         }
 
-        public async Task ReadHubAsync(Func<string, Task> func)
+
+        public async Task ReadHubAsync()
         {
             if (_readerEnabled)
             {
@@ -47,7 +35,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
 
             try
             {
-                _dataEventProcessorFactory.SetCallback(func);
+                _dataEventProcessorFactory.SetCallback(HandleProcessEventsAsync);
 
                 var options = new EventProcessorOptions();
                 options.SetExceptionHandler(e =>
@@ -64,16 +52,40 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
 
         }
 
+        public void SetCallback(Func<dynamic, Task> func)
+        {
+            _func = func;
+        }
+
         public async Task UnregisterHubAsync()
         {
             await _processorHost.UnregisterEventProcessorAsync();
             _readerEnabled = false;
         }
+
+        private void CreateProcessorHostConnection()
+        {
+            _processorHost = new EventProcessorHost(
+                _credentialProvider.GetEventHubEntityPath(),
+                PartitionReceiver.DefaultConsumerGroupName,
+                _credentialProvider.GetEventHubConnectionString(),
+                _credentialProvider.GetStorageConnectionString(),
+                _credentialProvider.GetStorageContainerName()
+            );
+        }
+
+        private async Task HandleProcessEventsAsync(string data)
+        {
+            var result = MaterialLiveDataContainerExtension.FromJson(data);
+            await _func(result);
+        }
     }
 
     public interface IMachineLiveDataService
     {
-        Task ReadHubAsync(Func<string, Task> func);
+        Task ReadHubAsync();
+
+        void SetCallback(Func<dynamic, Task> func);
 
         Task UnregisterHubAsync();
     }

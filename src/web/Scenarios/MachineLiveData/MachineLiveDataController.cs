@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using Aitgmbh.Tapio.Developerapp.Web.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -21,16 +17,17 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
         {
             _hub = hub;
             _machineLiveDataService = machineLiveDataService;
+            _machineLiveDataService.SetCallback(SendAsync);
         }
 
         [HttpGet]
         public async Task<ActionResult> Get()
         {
-            await _machineLiveDataService.ReadHubAsync(SendAsync);
+            await _machineLiveDataService.ReadHubAsync();
             return Ok();
         }
 
-        private async Task SendAsync(string data)
+        private async Task SendAsync(object data)
         {
             await _hub.Clients.All.SendAsync("streamMachineData", data);
         }
