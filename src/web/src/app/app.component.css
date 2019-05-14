@@ -7,23 +7,30 @@
 }
 
 .main-content, .main-content .box {
-  background: rgb(7, 19, 26);
-  max-width: 97%;
+  background: #000;
+  padding-right: 30px;
+  max-width: 99%;
 }
 
 .box {
-  padding: 14px 28px 14px 14px;
+  padding: 14px 30px 14px 14px;
 }
 
 .main-nav {
-  background: rgb(14, 31, 41);
+  background: #000;
   font-family: audimat, sans-serif;
   width: 15%;
+  border-right: 1px solid #333;
+}
+
+.level-item {
+  max-height: 50px;
 }
 
 .logo {
-  margin: 26px;
+  margin: 12px 26px 12px 20px;
   height: 26px;
+  vertical-align: middle;
 }
 
 .is-unstyled-list {
