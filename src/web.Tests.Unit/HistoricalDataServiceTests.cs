@@ -110,8 +110,8 @@ namespace web.Tests.Unit
             using (var httpClient = new HttpClient(messageHandlerMock.Object))
             {
                 var service = new HistoricalDataService(httpClient, _standardTokenProviderMock.Object);
-                Func<Task<SourceKeyResponse>> action = () => service.ReadSourceKeysAsync(CancellationToken.None, sourceKeyResponseMock.Object.MachineId);
-                await action.Should().ThrowAsync<HttpRequestException>();
+                Func<Task<HistoricalDataResponse>> action = () => service.GetHistoricalDataAsync(CancellationToken.None, sourceKeyResponseMock.Object.MachineId, new HistoricalDataRequest());
+                await action.Should().ThrowAsync<HttpException>();
             }
         }
     }
