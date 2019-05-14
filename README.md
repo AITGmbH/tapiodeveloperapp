@@ -8,7 +8,6 @@
 
 [Production Website](https://tapiodeveloperapp.aitgmbh.de)
 
-
 ## Developement
 
 Run the `Ensure-Prerequisites.ps1` PowerShell script to install the prerequisites.
@@ -49,6 +48,16 @@ dotnet user-secrets set "TapioCloud:ClientID" "XYZ"
 dotnet user-secrets set "TapioCloud:ClientSecret" "XYZ"
 ```
 
+If you tend to use streaming data you need to configure your [azure event hub](https://azure.microsoft.com/de-de/services/event-hubs/) instance and provide the according connection strings also. A way for local offline usage will be provided later on
+
+```PowerShell
+cd .\src\web\
+dotnet user-secrets set "EventHub:EventHubEntityPath" "XYZ"
+dotnet user-secrets set "EventHub:EventHubConnectionString" "XYZ"
+dotnet user-secrets set "EventHub:StorageContainerName" "XYZ"
+dotnet user-secrets set "EventHub:StorageConnectionString" "XYZ"
+```
+
 #### Run
 
 Execute the following commands in one shell
@@ -85,10 +94,12 @@ The result can be found in the directory `src\web\bin\Debug\netcoreapp2.2\publis
 Provide access to the client id and secret via [App Settings](https://docs.microsoft.com/en-us/azure/app-service/web-sites-configure#app-settings).
 Settings
 
-
-* TapioCloud:ClientID XYZ
-* TapioCloud:ClientSecret XYZ
-
+- TapioCloud:ClientID XYZ
+- TapioCloud:ClientSecret XYZ
+- EventHub:EventHubEntityPath XYZ
+- EventHub:EventHubConnectionString XYZ
+- EventHub:StorageContainerName XYZ
+- EventHub:StorageConnectionString XYZ
 
 ## License
 
