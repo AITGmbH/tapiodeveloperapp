@@ -5,7 +5,7 @@ import {
     Condition
 } from "../scenario-machinestate-service";
 import { ActivatedRoute } from "@angular/router";
-import { Observable, of, Subject, BehaviorSubject } from "rxjs";
+import { Observable, of, BehaviorSubject, Subject, Subscription } from "rxjs";
 import { DatatableComponent } from "@swimlane/ngx-datatable";
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -14,12 +14,13 @@ import { DomSanitizer } from '@angular/platform-browser';
     templateUrl: "./detail.component.html"
 })
 export class ScenarioMachinestateDetailComponent implements OnInit {
-    id$: BehaviorSubject<string> = new BehaviorSubject<string>(null);
+    id$: Subject<string> = new Subject<string>();
     itemData$: Observable<ItemData[]>;
     conditions$: Observable<Condition[]>;
     hasError: boolean;
     @ViewChild("itemData") itemData: DatatableComponent;
     @ViewChild("conditions") conditions: DatatableComponent;
+    private subscription: Subscription;
 
     constructor(
         private readonly machineStateService: MachineStateService,
@@ -29,13 +30,13 @@ export class ScenarioMachinestateDetailComponent implements OnInit {
 
     ngOnInit(): void {
         const defaultMessage = "No data to display";
+        const errorMessage = "Error - No data to display";
 
         this.id$.subscribe(id => {
-            if (!id){
-                return;
+            if (this.subscription) {
+                this.subscription.unsubscribe();
             }
-
-            this.machineStateService.getLastKnownStateFromMachine(id).subscribe(
+            this.subscription = this.machineStateService.getLastKnownStateFromMachine(id).subscribe(
                 lastKnownState => {
                     this.itemData$ = of(lastKnownState.itds);
                     this.conditions$ = of(lastKnownState.conds);
@@ -44,8 +45,8 @@ export class ScenarioMachinestateDetailComponent implements OnInit {
                 },
                 _ => {
                     this.hasError = true;
-                    this.itemData.messages.emptyMessage = "";
-                    this.conditions.messages.emptyMessage = "";
+                    this.itemData.messages.emptyMessage = errorMessage;
+                    this.conditions.messages.emptyMessage = errorMessage;
                 }
             );
         });

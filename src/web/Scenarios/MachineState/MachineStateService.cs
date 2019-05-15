@@ -33,7 +33,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineState
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public async Task<JToken> ReceiveStateOfSingleMachineAsync(string machineId, CancellationToken cancellationToken)
+        public async Task<JToken> GetMachineStateAsync(string machineId, CancellationToken cancellationToken)
         {
             if (string.IsNullOrWhiteSpace(machineId))
             {
@@ -44,7 +44,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineState
             {
                 _logger.LogInformation("Receiving states");
                 var token = await _tokenProvider.ReceiveTokenAsync(TapioScope.CoreApi);
-                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, MachineStateRequest);
+                var request = new HttpRequestMessage(HttpMethod.Post, MachineStateRequest);
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
                 var configuration = new MachineStateConfiguration

@@ -36,7 +36,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.Scenarios.MachineState
             var cut = new MachineStateService(httpClient, tokenProviderMock.Object, Mock.Of<ILogger<MachineStateService>>());
 
             // When
-            var result = await cut.ReceiveStateOfSingleMachineAsync("2f5b690df6c0406982d49fd9b7a8835b", CancellationToken.None);
+            var result = await cut.GetMachineStateAsync("2f5b690df6c0406982d49fd9b7a8835b", CancellationToken.None);
 
             // Then
             result.Should().BeEmpty();
@@ -62,7 +62,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.Scenarios.MachineState
             var cut = new MachineStateService(httpClient, tokenProviderMock.Object, Mock.Of<ILogger<MachineStateService>>());
 
             // When
-            _ = await cut.ReceiveStateOfSingleMachineAsync("2f5b690df6c0406982d49fd9b7a8835b", CancellationToken.None);
+            _ = await cut.GetMachineStateAsync("2f5b690df6c0406982d49fd9b7a8835b", CancellationToken.None);
 
             // Then
             handler.VerifyAnyRequest(Times.Once());
@@ -90,7 +90,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.Scenarios.MachineState
             var cut = new MachineStateService(httpClient, tokenProviderMock.Object, Mock.Of<ILogger<MachineStateService>>());
 
             // When
-            var result = await cut.ReceiveStateOfSingleMachineAsync("2f5b690df6c0406982d49fd9b7a8835b", CancellationToken.None);
+            var result = await cut.GetMachineStateAsync("2f5b690df6c0406982d49fd9b7a8835b", CancellationToken.None);
 
             // Then
             result.Children().Should().HaveCount(3);

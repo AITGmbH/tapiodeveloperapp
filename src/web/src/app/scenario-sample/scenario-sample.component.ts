@@ -16,8 +16,6 @@ export class ScenarioSampleComponent implements OnInit {
     constructor(private readonly helloWorldService: HelloWorldService) { }
 
     ngOnInit(): void {
-        this.helloWorldService.getWelcome().subscribe(welcome => {
-            this.Welcome$ = of(welcome);
-        });
+        this.Welcome$ = this.helloWorldService.getWelcome();
     }
 }

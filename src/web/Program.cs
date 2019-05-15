@@ -14,9 +14,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web
 {
     public static class Program
     {
-#pragma warning disable S1075 // URIs should not be hardcoded
-        private const string AzureLogFilePath = @"D:\home\LogFiles\Application\developerapp.txt";
-#pragma warning restore S1075 // URIs should not be hardcoded
+        private const string AzureLogFilePath = "log.txt";
 
         private const int MaxSingleLogFileSize = 1_000_000;
 
