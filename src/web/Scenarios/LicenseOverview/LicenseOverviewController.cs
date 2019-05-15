@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Aitgmbh.Tapio.Developerapp.Web.Models;
@@ -15,7 +16,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.LicenseOverview
 
         public LicenseOverviewController(ILicenseOverviewService licenseOverviewService)
         {
-            _licenseOverviewService = licenseOverviewService;
+            _licenseOverviewService = licenseOverviewService ?? throw new ArgumentNullException(nameof(licenseOverviewService));
         }
 
         [HttpGet]
