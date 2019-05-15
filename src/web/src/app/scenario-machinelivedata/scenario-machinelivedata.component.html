@@ -5,7 +5,7 @@
     <h1 class="title is-4">Item data</h1>
 
     <ngx-datatable class="material datatable" [columnMode]="'force'" [headerHeight]="30" [rowHeight]="'auto'"
-        [footerHeight]="0" [scrollbarH]="true" [rows]="itemData$ | async">
+        [footerHeight]="35" [scrollbarH]="true" [rows]="itemData$ | async">
         <ngx-datatable-column [width]="150" [resizeable]="true" name="key (k)" prop="msg.k">
             <ng-template let-value="value" ngx-datatable-cell-template>
                 <div live-data-update [liveDataValue]="value" class="datatable-cell-value" style="word-wrap:break-word">
@@ -60,7 +60,7 @@
     <h1 class="title is-4">Condition</h1>
 
     <ngx-datatable class="material datatable" [columnMode]="'force'" [headerHeight]="30" [rowHeight]="'auto'"
-        [footerHeight]="0" [scrollbarH]="true" [rows]="conditionData$ | async">
+        [footerHeight]="35" [scrollbarH]="true" [rows]="conditionData$ | async">
         <ngx-datatable-column [width]="150" [resizeable]="true" name="key (k)" prop="msg.k">
             <ng-template let-value="value" ngx-datatable-cell-template>
                 <div live-data-update [liveDataValue]="value" class="datatable-cell-value" style="word-wrap:break-word">

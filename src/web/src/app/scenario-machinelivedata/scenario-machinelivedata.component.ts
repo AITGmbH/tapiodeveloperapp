@@ -6,6 +6,8 @@ import {
     MessageTypes
 } from "./scenario-machinelivedata.service";
 import { BehaviorSubject, Subscription, Subject } from "rxjs";
+import { take } from "rxjs/internal/operators/take";
+import { some } from "lodash";
 
 @Component({
     selector: "app-scenario-machinelivedata",
@@ -60,14 +62,32 @@ export class ScenarioMachineLiveDataComponent implements OnInit, OnDestroy {
         }
         switch (data.msgt) {
             case MessageTypes.ItemData:
-                this.itemData$.next([data]);
+                this.addElement(this.itemData$, data);
                 break;
             case MessageTypes.Condition:
-                this.conditionData$.next([data]);
+                this.addElement(this.conditionData$, data);
                 break;
             default:
                 break;
         }
+    }
+
+    private addElement(subject: BehaviorSubject<any>, element: MachineLiveDataContainer) {
+        subject.pipe(take(1)).subscribe((values: MachineLiveDataContainer[]) => {
+            console.log(values);
+            const newValues = [];
+            if (values.some(el => el.msg.k === element.msg.k)) {
+                for (let value of values) {
+                    if (value.msg.k === element.msg.k) {
+                        value = element;
+                    }
+                    newValues.push(value);
+                }
+            } else {
+                newValues.push(...values, element);
+            }
+            subject.next(newValues);
+        });
     }
 
     private startRequest(): Subscription {

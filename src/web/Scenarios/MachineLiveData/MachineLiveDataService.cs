@@ -52,8 +52,11 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
 
         public async Task UnregisterHubAsync()
         {
-            await _processorHost.UnregisterEventProcessorAsync();
-            _readerEnabled = false;
+            if (_readerEnabled)
+            {
+                await _processorHost.UnregisterEventProcessorAsync();
+                _readerEnabled = false;
+            }
         }
 
         private void CreateProcessorHostConnection()

@@ -63,5 +63,10 @@ export class MachineLiveDataContainer {
 
     public msgt: string;
 
-    public msg: string;
+    public msg: Message;
+}
+
+export class Message {
+    public k: string;
+    public s: string;
 }
