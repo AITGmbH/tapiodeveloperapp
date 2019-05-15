@@ -5,18 +5,9 @@ import {
     KeyValueDiffers,
     Input,
     ElementRef,
-    DoCheck,
-    Renderer2
+    DoCheck
 } from "@angular/core";
-import {
-    AnimationPlayer,
-    AnimationBuilder,
-    AnimationMetadata,
-    style,
-    state,
-    transition,
-    animate
-} from "@angular/animations";
+import { AnimationPlayer, AnimationBuilder, AnimationMetadata, style, animate } from "@angular/animations";
 import { isEqual } from "lodash";
 
 @Directive({
@@ -24,13 +15,13 @@ import { isEqual } from "lodash";
 })
 export class LiveDataUpdateDirective implements DoCheck {
     @Input() liveDataValue = {};
-    private differ: KeyValueDiffer<any, any>;
+    private readonly differ: KeyValueDiffer<any, any>;
     private animationPlayer: AnimationPlayer;
 
     constructor(
-        private differs: KeyValueDiffers,
-        private host: ElementRef,
-        private animationBuilder: AnimationBuilder
+        private readonly differs: KeyValueDiffers,
+        private readonly host: ElementRef,
+        private readonly animationBuilder: AnimationBuilder
     ) {
         this.differ = this.differs.find(this.liveDataValue).create();
         this.setupPlayer();

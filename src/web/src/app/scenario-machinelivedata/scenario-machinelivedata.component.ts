@@ -18,7 +18,7 @@ export class ScenarioMachineLiveDataComponent implements OnInit, OnDestroy {
     public itemData$ = new BehaviorSubject<MachineLiveDataContainer[]>([]);
     public conditionData$ = new BehaviorSubject<MachineLiveDataContainer[]>([]);
 
-    constructor(private liveDataService: ScenarioMachineLiveDataService, private http: HttpClient) {}
+    constructor(private readonly liveDataService: ScenarioMachineLiveDataService, private readonly http: HttpClient) {}
 
     public async ngOnInit() {
         await this.liveDataService.startConnectionAsync("/hubs/machinelivedata");
