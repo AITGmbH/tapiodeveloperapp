@@ -1,11 +1,50 @@
-.sourceKeyList {
-    margin-top: 1rem;
-    text-align: left;
+.sourceKeyHeader {
+  font-size: x-large;
+  font-weight: bold;
 }
 
-.sourceKeyHeader {
-    font-size: x-large;
-    font-weight: bold;
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  min-height: 35rem;
+}
+
+div.sourceKeyList {
+  margin-top: 1rem;
+  margin-right: 25px;
+  text-align: left;
+  min-width: 30%;
+  clear: both;
+}
+
+input[type='radio'] { 
+  transform: scale(1.2); 
+  margin: 5px 4px 0 2px;
+  position: absolute;
+}
+
+li {
+  margin-top: 5px;
+}
+
+li > label {
+  margin-left: 20px;
+}
+
+li > label:hover,
+li > input:hover { 
+  cursor: pointer; 
+}
+
+div.sourceKeyData {
+  margin-top: 1rem;
+  margin-left: 5px;
+  flex: 1;
+  display: grid;
+}
+
+div > .historicalDataChart {
+  background-color: white;
 }
 
 .errorMessage {
@@ -13,7 +52,8 @@
   background-color: white;
   display: block;
   max-width: 35%;
-  padding: 3px 3px 3px 10px;
+  height: fit-content;
+  padding: 5px;
   text-align: left;
   color: red;
 }
