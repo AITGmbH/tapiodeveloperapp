@@ -1,4 +1,8 @@
-<app-scenario title="Historical Data" id="historical-data-scenario">
+<app-scenario 
+  title="Historical Data" 
+  id="historical-data-scenario"
+  description="This scenario lists the different data sources of the selected machine, for which data is available in the historical database and can be accessed via the historic data API.
+  Clicking on a data source that can be visualized will trigger the visualization diagram. Please note that currently only 'Testmaschine 02' will deliver data.">
   <div>
     <app-select-machine (change)="selectedMachineChanged($event)"></app-select-machine>
     <app-date-range (change)="dateRangeChanged($event)"></app-date-range>

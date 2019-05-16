@@ -1,6 +1,9 @@
 <app-scenario 
   title="Machine State" 
-  id="machine-state-scenario">
+  id="machine-state-scenario"
+  description="This scenario demonstrates the usage of the State API of the tapio core system to receive the current state of a tapio-connected machine. 
+  It is connected to the digital device twin of a machine inside a tapio subscription. The scenario provides a snapshot view on the machine data and will not refresh automatically when the data changes. 
+  Please note that currently only 'Testmaschine 02' will deliver data.">
   <app-select-machine (change)="selectedMachineChanged($event)" [initialMachineId]="initialMachineId">
   </app-select-machine>
 
