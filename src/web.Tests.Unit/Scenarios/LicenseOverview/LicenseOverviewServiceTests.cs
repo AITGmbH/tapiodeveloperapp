@@ -1,17 +1,16 @@
 using System;
 using System.Net;
 using System.Net.Http;
-using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using Aitgmbh.Tapio.Developerapp.Web.Scenarios.LicenseOverview;
 using Aitgmbh.Tapio.Developerapp.Web.Services;
-using web.Tests.Unit.HelperClasses;
+using Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.HelperClasses;
 using FluentAssertions;
 using Moq;
 using Xunit;
 
-namespace web.Tests.Unit.Scenarios.LicenseOverview
+namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.Scenarios.LicenseOverview
 {
     public class LicenseOverviewServiceTests
     {
