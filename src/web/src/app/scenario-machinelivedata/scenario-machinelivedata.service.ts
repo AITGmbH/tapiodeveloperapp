@@ -1,13 +1,18 @@
 import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 import { SignalRService } from "../shared/services/signalr.service";
-import { Subject } from "rxjs";
+import { Subject, Subscription } from "rxjs";
 import * as moment from "moment";
 
 @Injectable()
-export class ScenarioMachineLiveDataService extends SignalRService {
+export class MachineLiveDataService extends SignalRService {
     private hasActiveDataListener = false;
     private data$ = new Subject<MachineLiveDataContainer>();
     private currentGroupName: string;
+
+    constructor(private readonly http: HttpClient) {
+        super();
+    }
 
     public async joinGroupAsync(machineId: string): Promise<void> {
         if (this.currentGroupName) {
@@ -41,6 +46,10 @@ export class ScenarioMachineLiveDataService extends SignalRService {
         this.hasActiveDataListener = false;
     }
 
+    public startRequest(): Subscription {
+        return this.http.get(`/api/machinelivedata`).subscribe(() => console.log("Event hub invoked"));
+    }
+
     private invokeNewData(data: MachineLiveDataContainer): void {
         this.data$.next(data);
     }
@@ -56,13 +65,9 @@ export enum MessageTypes {
 
 export class MachineLiveDataContainer {
     public tmid: string;
-
     public msgid: string;
-
     public msgts: moment.Moment | string;
-
     public msgt: string;
-
     public msg: Message;
 }
 

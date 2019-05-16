@@ -1,13 +1,7 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import {
-    ScenarioMachineLiveDataService,
-    MachineLiveDataContainer,
-    MessageTypes
-} from "./scenario-machinelivedata.service";
-import { BehaviorSubject, Subscription, Subject } from "rxjs";
+import { MachineLiveDataService, MachineLiveDataContainer, MessageTypes } from "./scenario-machinelivedata.service";
+import { BehaviorSubject, Subject } from "rxjs";
 import { take } from "rxjs/internal/operators/take";
-import { some } from "lodash";
 
 @Component({
     selector: "app-scenario-machinelivedata",
@@ -20,24 +14,24 @@ export class ScenarioMachineLiveDataComponent implements OnInit, OnDestroy {
     public itemData$ = new BehaviorSubject<MachineLiveDataContainer[]>([]);
     public conditionData$ = new BehaviorSubject<MachineLiveDataContainer[]>([]);
 
-    constructor(private readonly liveDataService: ScenarioMachineLiveDataService, private readonly http: HttpClient) {}
+    constructor(private readonly machineLiveDataService: MachineLiveDataService) {}
 
     public async ngOnInit() {
-        await this.liveDataService.startConnectionAsync("/hubs/machinelivedata");
+        await this.machineLiveDataService.startConnectionAsync("/hubs/machinelivedata");
     }
 
     public ngOnDestroy() {
         this.unsibscribeDataListener();
     }
 
-    public async selectedMachineChanged(machineId: string) {
+    public async selectedMachineChanged(machineId: string): Promise<void> {
         if (machineId != null && machineId !== "" && machineId !== this.selectedMachine) {
             this.itemData$.next([]);
             this.conditionData$.next([]);
             this.selectedMachine = machineId;
-            await this.liveDataService.joinGroupAsync(this.selectedMachine);
+            await this.machineLiveDataService.joinGroupAsync(this.selectedMachine);
             this.startDataListener();
-            this.startRequest();
+            this.machineLiveDataService.startRequest();
         }
     }
 
@@ -45,7 +39,7 @@ export class ScenarioMachineLiveDataComponent implements OnInit, OnDestroy {
         if (this.streamDataSubject != null && !this.streamDataSubject.isStopped) {
             this.unsibscribeDataListener();
         }
-        this.streamDataSubject = this.liveDataService.addDataListener();
+        this.streamDataSubject = this.machineLiveDataService.addDataListener();
         this.streamDataSubject.subscribe(data => this.onStreamData(data));
     }
 
@@ -60,6 +54,7 @@ export class ScenarioMachineLiveDataComponent implements OnInit, OnDestroy {
         if (data.tmid !== this.selectedMachine) {
             return;
         }
+
         switch (data.msgt) {
             case MessageTypes.ItemData:
                 this.addElement(this.itemData$, data);
@@ -67,14 +62,11 @@ export class ScenarioMachineLiveDataComponent implements OnInit, OnDestroy {
             case MessageTypes.Condition:
                 this.addElement(this.conditionData$, data);
                 break;
-            default:
-                break;
         }
     }
 
     private addElement(subject: BehaviorSubject<any>, element: MachineLiveDataContainer) {
         subject.pipe(take(1)).subscribe((values: MachineLiveDataContainer[]) => {
-            console.log(values);
             const newValues = [];
             if (values.some(el => el.msg.k === element.msg.k)) {
                 for (let value of values) {
@@ -88,9 +80,5 @@ export class ScenarioMachineLiveDataComponent implements OnInit, OnDestroy {
             }
             subject.next(newValues);
         });
-    }
-
-    private startRequest(): Subscription {
-        return this.http.get(`/api/machinelivedata`).subscribe(() => console.log("Event hub invoked"));
     }
 }
