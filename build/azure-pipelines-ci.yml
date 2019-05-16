@@ -18,7 +18,7 @@ steps:
       projectKey: 'AITGmbH_tapiodeveloperapp'
       extraProperties: |
         sonar.exclusions=**/*spec.ts,**/coverage/**/*,**/e2e/**/*
-        sonar.coverage.exclusions=$(Build.Repository.LocalPath)/src/web/Startup.cs
+        sonar.coverage.exclusions=**/Startup.cs
         sonar.cpd.exclusions=**/*.html
         sonar.typescript.lcov.reportPaths=$(Build.Repository.LocalPath)/src/web/coverage/developerapp/lcov.info
         sonar.cs.vscoveragexml.reportsPaths=$(Build.Repository.LocalPath)/**/*.coveragexml
