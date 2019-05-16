@@ -10,15 +10,15 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
     public class MachineLiveDataService : IMachineLiveDataService
     {
         private readonly IEvenHubCredentialProvider _credentialProvider;
-        private readonly MachineLiveDataEventProcessorFactory _dataEventProcessorFactory;
+        private readonly IMachineLiveDataEventProcessorFactory _dataEventProcessorFactory;
         private Func<string, dynamic, Task> _func;
         private EventProcessorHost _processorHost;
         private bool _readerEnabled;
 
-        public MachineLiveDataService(IEvenHubCredentialProvider credentialProvider)
+        public MachineLiveDataService(IEvenHubCredentialProvider credentialProvider, IMachineLiveDataEventProcessorFactory dataEventProcessorFactory)
         {
-            _credentialProvider = credentialProvider;
-            _dataEventProcessorFactory = new MachineLiveDataEventProcessorFactory();
+            _credentialProvider = credentialProvider ?? throw new ArgumentNullException(nameof(credentialProvider));
+            _dataEventProcessorFactory = dataEventProcessorFactory ?? throw new ArgumentNullException(nameof(dataEventProcessorFactory));
         }
 
 

@@ -9,7 +9,7 @@ using Microsoft.Azure.EventHubs.Processor;
 
 namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
 {
-    public class MachineLiveDataEventProcessorFactory: IEventProcessorFactory
+    public class MachineLiveDataEventProcessorFactory: IMachineLiveDataEventProcessorFactory
     {
         private Func<string, Task> _func;
 
@@ -58,5 +58,10 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
             Trace.TraceError(error.Message);
             return Task.CompletedTask;
         }
+    }
+
+    public interface IMachineLiveDataEventProcessorFactory : IEventProcessorFactory
+    {
+        void SetCallback(Func<string, Task> func);
     }
 }

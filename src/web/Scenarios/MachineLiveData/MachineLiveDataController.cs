@@ -1,5 +1,7 @@
 using System;
 using System.Diagnostics;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Aitgmbh.Tapio.Developerapp.Web.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -17,23 +19,23 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
         private readonly IMachineLiveDataService _machineLiveDataService;
         public MachineLiveDataController(IHubContext<MachineLiveDataHub> hub, IMachineLiveDataService machineLiveDataService)
         {
-            _hub = hub;
-            _machineLiveDataService = machineLiveDataService;
+            _hub = hub ?? throw new ArgumentNullException(nameof(hub));
+            _machineLiveDataService = machineLiveDataService ?? throw new ArgumentNullException(nameof(machineLiveDataService));
             _machineLiveDataService.SetCallback(SendAsync);
         }
 
         [HttpGet]
-        public async Task<ActionResult> Get()
+        public async Task<HttpResponseMessage> Get()
         {
             try
             {
                 await _machineLiveDataService.ReadHubAsync();
-                return Ok();
+                return new HttpResponseMessage(HttpStatusCode.OK);
             }
             catch (Exception e)
             {
                 Trace.TraceError(e.Message);
-                throw;
+                return new HttpResponseMessage(HttpStatusCode.InternalServerError);
             }
         }
 

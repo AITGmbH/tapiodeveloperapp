@@ -44,6 +44,8 @@ namespace Aitgmbh.Tapio.Developerapp.Web
                 .AddSingleton<ITokenProvider, TokenProvider>()
                 .AddSingleton<OptionsValidator>()
                 .AddSingleton<IMachineLiveDataService, MachineLiveDataService>()
+                .AddSingleton<IEvenHubCredentialProvider, EventHubCredentialProvider>()
+                .AddSingleton<IMachineLiveDataEventProcessorFactory, MachineLiveDataEventProcessorFactory>()
                 .AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services
