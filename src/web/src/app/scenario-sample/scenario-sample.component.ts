@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { HelloWorldService } from "./scenario-sample.service";
+import { Observable, of } from "rxjs";
 
 /**
  * Represents the official sample scenario.
@@ -10,13 +11,11 @@ import { HelloWorldService } from "./scenario-sample.service";
   styleUrls: ["./scenario-sample.component.css"]
 })
 export class ScenarioSampleComponent implements OnInit {
-    public Welcome: string;
+    public Welcome$: Observable<string>;
 
-    constructor(private helloWorldService: HelloWorldService) { }
+    constructor(private readonly helloWorldService: HelloWorldService) { }
 
     ngOnInit(): void {
-        this.helloWorldService.getWelcome().subscribe(welcome => {
-            this.Welcome = welcome;
-        });
+        this.Welcome$ = this.helloWorldService.getWelcome();
     }
 }

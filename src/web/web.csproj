@@ -11,11 +11,7 @@
     <UserSecretsId>7b5c89fb-85dd-4955-878c-14e91ece3687</UserSecretsId>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <CodeAnalysisRuleSet>web.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+  <PropertyGroup>
     <CodeAnalysisRuleSet>web.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 

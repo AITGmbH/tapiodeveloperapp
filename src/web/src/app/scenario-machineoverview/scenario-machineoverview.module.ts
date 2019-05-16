@@ -8,7 +8,11 @@ import { MachineOverviewService } from "./scenario-machineoverview.service";
 
 @NgModule({
     declarations: [ScenarioMachineoverviewComponent],
-    imports: [CommonModule, ScenarioMachineoverviewRoutingModule, SharedModule],
+    imports: [
+        CommonModule,
+        ScenarioMachineoverviewRoutingModule,
+        SharedModule
+    ],
     providers: [MachineOverviewService]
 })
 export class ScenarioMachineoverviewModule {}

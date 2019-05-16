@@ -3,15 +3,14 @@ using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-
 using Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineOverview;
 using Aitgmbh.Tapio.Developerapp.Web.Services;
+using Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.HelperClasses;
 using FluentAssertions;
 using Moq;
-using Moq.Protected;
 using Xunit;
 
-namespace web.Tests.Unit
+namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit
 {
     public class MachineOverviewServiceTests
     {
@@ -67,7 +66,7 @@ namespace web.Tests.Unit
             {
                 var cut = new MachineOverviewService(httpClient, _standardTokenProviderMock.Object);
 
-                Func<Task<SubscriptionOverview>> action = () => cut.GetSubscriptionAsync(CancellationToken.None);
+                Func<Task<SubscriptionOverview>> action = () => cut.GetSubscriptionsAsync(CancellationToken.None);
                 await action.Should().NotThrowAsync();
             }
         }
@@ -82,7 +81,7 @@ namespace web.Tests.Unit
             {
                 var cut = new MachineOverviewService(httpClient, _standardTokenProviderMock.Object);
 
-                await cut.GetSubscriptionAsync(CancellationToken.None);
+                await cut.GetSubscriptionsAsync(CancellationToken.None);
 
                 messageHandlerMock.VerifySendAsyncWasInvokedExactlyOnce();
             }
@@ -98,40 +97,9 @@ namespace web.Tests.Unit
             {
                 var cut = new MachineOverviewService(httpClient, _standardTokenProviderMock.Object);
 
-                Func<Task<SubscriptionOverview>> action = () => cut.GetSubscriptionAsync(CancellationToken.None);
+                Func<Task<SubscriptionOverview>> action = () => cut.GetSubscriptionsAsync(CancellationToken.None);
                 await action.Should().ThrowAsync<HttpRequestException>();
             }
-        }
-    }
-
-    public static class MoqExtensions
-    {
-        private const string SendAsyncMethodName = "SendAsync";
-
-        public static void VerifySendAsyncWasInvokedExactlyOnce(this Mock<HttpMessageHandler> instance)
-        {
-            instance.Protected().Verify(
-                SendAsyncMethodName,
-                Times.Exactly(1),
-                ItExpr.IsAny<HttpRequestMessage>(),
-                ItExpr.IsAny<CancellationToken>()
-            );
-        }
-
-        public static Mock<HttpMessageHandler> SetupSendAsyncMethod(this Mock<HttpMessageHandler> instance, HttpStatusCode statusCode, string content)
-        {
-            instance.Protected()
-                .Setup<Task<HttpResponseMessage>>(
-                    SendAsyncMethodName,
-                    ItExpr.IsAny<HttpRequestMessage>(),
-                    ItExpr.IsAny<CancellationToken>()
-                )
-                .ReturnsAsync(new HttpResponseMessage {
-                    StatusCode = statusCode,
-                    Content = new StringContent(content)
-                })
-                .Verifiable();
-            return instance;
         }
     }
 }
