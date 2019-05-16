@@ -5,12 +5,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineOverview;
 using Aitgmbh.Tapio.Developerapp.Web.Services;
+using Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.HelperClasses;
 using FluentAssertions;
 using Moq;
-using web.Tests.Unit.HelperClasses;
 using Xunit;
 
-namespace web.Tests.Unit
+namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit
 {
     public class MachineOverviewServiceTests
     {
@@ -66,7 +66,7 @@ namespace web.Tests.Unit
             {
                 var cut = new MachineOverviewService(httpClient, _standardTokenProviderMock.Object);
 
-                Func<Task<SubscriptionOverview>> action = () => cut.GetSubscriptionAsync(CancellationToken.None);
+                Func<Task<SubscriptionOverview>> action = () => cut.GetSubscriptionsAsync(CancellationToken.None);
                 await action.Should().NotThrowAsync();
             }
         }
@@ -81,7 +81,7 @@ namespace web.Tests.Unit
             {
                 var cut = new MachineOverviewService(httpClient, _standardTokenProviderMock.Object);
 
-                await cut.GetSubscriptionAsync(CancellationToken.None);
+                await cut.GetSubscriptionsAsync(CancellationToken.None);
 
                 messageHandlerMock.VerifySendAsyncWasInvokedExactlyOnce();
             }
@@ -97,7 +97,7 @@ namespace web.Tests.Unit
             {
                 var cut = new MachineOverviewService(httpClient, _standardTokenProviderMock.Object);
 
-                Func<Task<SubscriptionOverview>> action = () => cut.GetSubscriptionAsync(CancellationToken.None);
+                Func<Task<SubscriptionOverview>> action = () => cut.GetSubscriptionsAsync(CancellationToken.None);
                 await action.Should().ThrowAsync<HttpRequestException>();
             }
         }

@@ -1,0 +1,282 @@
+[
+    {
+        "tmid": "2f5b690df6c0406982d49fd9b7a8835b",
+        "itds": [
+            {
+                "v": 1,
+                "k": "DigitalTwin!AliveState",
+                "vt": "f",
+                "u": null,
+                "q": "g",
+                "p": null,
+                "sts": "2019-03-22T13:22:26.0963081+00:00",
+                "rts": "2019-03-22T13:22:26.0963081+00:00"
+            },
+            {
+                "v": 3.3878548403702129,
+                "k": "Energy!AirPressure",
+                "vt": "f",
+                "u": null,
+                "q": "g",
+                "p": "Simu2",
+                "sts": "2019-03-22T13:22:25.7149084+00:00",
+                "rts": "2019-03-22T13:22:25.9821307+00:00"
+            },
+            {
+                "v": 9015.3648616835126,
+                "k": "Energy!ElectricPower",
+                "vt": "f",
+                "u": null,
+                "q": "g",
+                "p": "Simu2",
+                "sts": "2019-03-22T13:22:25.7149084+00:00",
+                "rts": "2019-03-22T13:22:25.9821307+00:00"
+            },
+            {
+                "v": 0,
+                "k": "Kante!Heizung01.Value",
+                "vt": "f",
+                "u": null,
+                "q": "g",
+                "p": null,
+                "sts": "2019-03-19T08:55:08.0080989+00:00",
+                "rts": "2019-03-22T13:15:22.2948739+00:00"
+            },
+            {
+                "v": 41,
+                "k": "RemainingTime.RemainingTimeInSec",
+                "vt": "i",
+                "u": null,
+                "q": "g",
+                "p": "Simu2",
+                "sts": "2019-03-22T13:22:17.2582577+00:00",
+                "rts": "2019-03-22T13:22:18.0603439+00:00"
+            },
+            {
+                "k": "LeftPanelStates.000.Value",
+                "vt": "n",
+                "u": null,
+                "q": "b",
+                "p": null,
+                "sts": "2019-03-19T08:55:08.0080989+00:00",
+                "rts": "2019-03-22T13:15:22.2948739+00:00"
+            },
+            {
+                "v": "s_mainusage",
+                "k": "State.CurrentStateGroup",
+                "vt": "s",
+                "u": null,
+                "q": "g",
+                "p": "Simu2",
+                "sts": "2019-03-22T13:22:03.3484763+00:00",
+                "rts": "2019-03-22T13:22:03.9937655+00:00"
+            },
+            {
+                "v": 416.13372111195133,
+                "k": "Energy!AirVolumeFlow",
+                "vt": "f",
+                "u": null,
+                "q": "g",
+                "p": "Simu2",
+                "sts": "2019-03-22T13:22:25.7149084+00:00",
+                "rts": "2019-03-22T13:22:25.9821307+00:00"
+            },
+            {
+                "v": {
+                    "de": "Machine wartet auf Produktion",
+                    "en": "Machine is waiting for production"
+                },
+                "k": "State.CurrentStateDescription",
+                "vt": "dss",
+                "u": null,
+                "q": "g",
+                "p": "Simu2",
+                "sts": "2019-03-22T13:20:29.0502146+00:00",
+                "rts": "2019-03-22T13:20:30.0095945+00:00"
+            },
+            {
+                "v": 1,
+                "k": "LeftPanelStates.000.IsVisible",
+                "vt": "i",
+                "u": null,
+                "q": "g",
+                "p": null,
+                "sts": "2019-03-19T08:55:08.0080989+00:00",
+                "rts": "2019-03-22T13:15:22.2948739+00:00"
+            },
+            {
+                "v": "iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAApsAAAKbABedOqSQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAOaSURBVHic7dtNjI1XHMfx/+nQjrcqZiwqqTZE1GYQ0YiGkFZFoisiXZilJYmNhY0lSzu2iMWIRLRpMkFDWGDR2pSF9/cUNd6JYb5dPM/EmePtvpx5zn2e/j7Le8/5n/+9v2fu/869M2YiIiIiIiIiIiIiIiIiIiIiIiISlWtkE9BmZlMj91J2V51zr+vd1GgAHWZ2t5G9FdbpnLtX76ZPhqMTqd2IyPWem9nvZjYQuW6raDOzFWbWHqtg7ABGmdlEM+t2zt2IXDsp4Csz220Rn/yGAR288QewBXjt3fYA+CV1n7EAq4B/vcc3AGwHjnq3dRTZkB9Ab37bUuAGQ+0CxhbWWGTAOGBn8JhuA8vz+3tbJgDv9gNBw5eABYU1FwkwHzgfPJb9wCRvTWsF4N3fDTzx1vSTvUy1/LsuoA3YBLz0+n8GbHjH2tYMIF8zE/gzuIKOAFMKa7ROwFTgWNDzaWDGe9a3bgD5us+ArQwd0H3AmsKarRGwGrjv9Tk4aD/9wJ7WDsBb/wNwM7iydgFjiuj3I719nvfiuwosrmFvOQLI93QCB4MHeg6YO9z9fqCn74ALQU/7gIk17i9PAN7ebuCpt/8lBQ9oYARvD9pHwLo665QvgHz/t8BfwZV3mAIGNPA1cDw4+xQwvYFa5Qwgr9HO2wP6LvBz7H69M1eTvQkY9CrvYWSD9cobgFfrR+BWcEVGHdDAeGBPcMYVYFGTdcsfQF6vE/g1eILOAnMi1F4AXAxq9wATItSuRgB5TQesY+iAfkE2LOse0GSDdgvZy8ygh8DaGP3mZ1QnAK/2LOBMcMUeAr6so8Y3wImgxklgWuReqxdAXr+d7LfQAe+cO8DKGvZ2A4+9ff00MWg/clY1A/DOWcbQAT1A9vHw6HesHQ/sDa76y8D3w9hftQPIz5oM/BY8sX8Ds701S4DrwZoe4Ith7q36AeTnOWAj2VAe9BxYD2wj0Yd9/5sAvHNnk709fZ9jZN/dFtVP0wG0/BckPufcGTObZ2Y7grv6zWyzmS11zl0rvLGipfoJCHr4iez72UvAwkQ9NP0TEPvPUgrjnOslG8RPnXNPUvfTqNIGYGbmnPsndQ/NKtUMqCIFkJgCSEwBJKYAElMAiSmAxBRAYgogMQWQmAJITAEkpgASi/FpaBfQE6FOGXU1W0D/KR+P/lO+jBp9Ceozs6h/ZVYBfakbEBERERERERERERERERERERERETP7D+ADk6Pg02SKAAAAAElFTkSuQmCC",
+                "k": "LeftPanelStates.000.Image",
+                "vt": "b",
+                "u": null,
+                "q": "g",
+                "p": null,
+                "sts": "2019-03-19T08:55:08.0080989+00:00",
+                "rts": "2019-03-22T13:15:22.2948739+00:00"
+            },
+            {
+                "v": 0,
+                "k": "Kante!Heizung01.State",
+                "vt": "f",
+                "u": null,
+                "q": "g",
+                "p": null,
+                "sts": "2019-03-19T08:55:08.0080989+00:00",
+                "rts": "2019-03-22T13:15:22.2948739+00:00"
+            },
+            {
+                "v": "4028091944.png",
+                "k": "LeftPanelStates.000.ImageId",
+                "vt": "s",
+                "u": null,
+                "q": "g",
+                "p": null,
+                "sts": "2019-03-19T08:55:08.0080989+00:00",
+                "rts": "2019-03-22T13:15:22.2948739+00:00"
+            },
+            {
+                "v": 41,
+                "k": "0001-PC87!RestlaufzeitRemainingTimeInSec",
+                "vt": "i",
+                "u": null,
+                "q": "g",
+                "p": "Simu2",
+                "sts": "2019-03-22T13:22:17.2582577+00:00",
+                "rts": "2019-03-22T13:22:18.0603439+00:00"
+            },
+            {
+                "v": 600,
+                "k": "0001-PC87!RestlaufzeitTotalTimeInSec",
+                "vt": "i",
+                "u": null,
+                "q": "g",
+                "p": null,
+                "sts": "2019-03-22T13:12:53.7902683+00:00",
+                "rts": "2019-03-22T13:15:22.2948739+00:00"
+            },
+            {
+                "v": {
+                    "de": "Ein",
+                    "en": "Off"
+                },
+                "k": "LeftPanelStates.000.Text",
+                "vt": "dss",
+                "u": null,
+                "q": "g",
+                "p": null,
+                "sts": "2019-03-19T08:55:08.0080989+00:00",
+                "rts": "2019-03-22T13:15:22.2948739+00:00"
+            },
+            {
+                "v": {
+                    "de": "Nachlegen",
+                    "en": "Reloading"
+                },
+                "k": "PC87!NextInteraction",
+                "vt": "dss",
+                "u": null,
+                "q": "g",
+                "p": "Simu2",
+                "sts": "2019-03-22T13:20:00.6182107+00:00",
+                "rts": "2019-03-22T13:20:01.0063646+00:00"
+            },
+            {
+                "v": 600,
+                "k": "RemainingTime.TotalTimeInSec",
+                "vt": "i",
+                "u": null,
+                "q": "g",
+                "p": null,
+                "sts": "2019-03-22T13:12:53.7902683+00:00",
+                "rts": "2019-03-22T13:15:22.2948739+00:00"
+            },
+            {
+                "v": 1,
+                "k": "LeftPanelStates.000.State",
+                "vt": "i",
+                "u": null,
+                "q": "g",
+                "p": null,
+                "sts": "2019-03-19T08:55:08.0080989+00:00",
+                "rts": "2019-03-22T13:15:22.2948739+00:00"
+            },
+            {
+                "v": 0,
+                "k": "RemainingTime.TimePaused",
+                "vt": "i",
+                "u": null,
+                "q": "g",
+                "p": null,
+                "sts": "2019-03-19T08:55:08.0237221+00:00",
+                "rts": "2019-03-22T13:15:22.2948739+00:00"
+            },
+            {
+                "v": 0,
+                "k": "0001-PC87!RestlaufzeitTimePaused",
+                "vt": "i",
+                "u": null,
+                "q": "g",
+                "p": null,
+                "sts": "2019-03-19T08:55:08.0237221+00:00",
+                "rts": "2019-03-22T13:15:22.2948739+00:00"
+            }
+        ],
+        "conds": [
+            {
+                "p": "AlarmsAndErrors",
+                "k": "ns=2;s=Simu.2f5b690df6c0406982d49fd9b7a8835b.0001-ConditionMaintenance01",
+                "s": "ns=2;s=Simu.2f5b690df6c0406982d49fd9b7a8835b",
+                "as": 1,
+                "sv": 200,
+                "ls": {
+                    "de": "Source german 03",
+                    "en": "Source english 03"
+                },
+                "lm": {
+                    "de": "Dies ist eine Wartung",
+                    "en": "This is a maintenance"
+                },
+                "vls": {
+                    "BrowseName": {
+                        "t": "n"
+                    },
+                    "SourceNode": {
+                        "t": "n"
+                    },
+                    "AckedState/Id": {
+                        "v": 0,
+                        "t": "i"
+                    }
+                },
+                "sts": "2019-03-22T13:21:20.6245505+00:00",
+                "rts": "2019-03-22T13:22:00.0818149+00:00"
+            },
+            {
+                "p": "AlarmsAndErrors",
+                "k": "ns=2;s=Simu.2f5b690df6c0406982d49fd9b7a8835b.0001-ConditionError01",
+                "s": "ns=2;s=Simu.2f5b690df6c0406982d49fd9b7a8835b",
+                "as": 1,
+                "sv": 1000,
+                "ls": {
+                    "de": "Source german",
+                    "en": "Source english"
+                },
+                "lm": {
+                    "de": "Dies ist ein Fehler",
+                    "en": "This is an error"
+                },
+                "vls": {
+                    "SourceNode": {
+                        "t": "n"
+                    },
+                    "AckedState/Id": {
+                        "v": 0,
+                        "t": "i"
+                    }
+                },
+                "sts": "2019-03-22T13:22:03.3484763+00:00",
+                "rts": "2019-03-22T13:22:04.1031328+00:00"
+            }
+        ]
+    }
+]

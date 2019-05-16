@@ -1,4 +1,3 @@
-
 using System.Net;
 using System.Net.Http;
 using System.Threading;
@@ -6,7 +5,7 @@ using System.Threading.Tasks;
 using Moq;
 using Moq.Protected;
 
-namespace web.Tests.Unit.HelperClasses
+namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.HelperClasses
 {
 
     public static class MoqExtensions

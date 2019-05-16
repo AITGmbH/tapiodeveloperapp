@@ -8,7 +8,6 @@
 
 [Production Website](https://tapiodeveloperapp.aitgmbh.de)
 
-
 ## Developement
 
 Run the `Ensure-Prerequisites.ps1` PowerShell script to install the prerequisites.
@@ -85,10 +84,8 @@ The result can be found in the directory `src\web\bin\Debug\netcoreapp2.2\publis
 Provide access to the client id and secret via [App Settings](https://docs.microsoft.com/en-us/azure/app-service/web-sites-configure#app-settings).
 Settings
 
-
 * TapioCloud:ClientID XYZ
 * TapioCloud:ClientSecret XYZ
-
 
 ## License
 

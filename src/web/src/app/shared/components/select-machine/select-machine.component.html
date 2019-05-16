@@ -8,7 +8,8 @@
       [clearable]="false" 
       [searchable]="false" 
       [dropdownPosition]="'bottom'"
-      (change)="selectedMachineChanged($event)">
+      (change)="selectedMachineChanged($event)"
+      [(ngModel)]="selectedMachine">
     </ng-select>
   </div>
 </div>
