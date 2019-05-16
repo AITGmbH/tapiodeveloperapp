@@ -1,5 +1,6 @@
 div.content-header {
-  height: 4rem;
+  width: 100%;
+  float: left;
   margin-bottom: 3rem;
 }
 
@@ -9,6 +10,15 @@ h1.title {
   color: #fff;
   max-width: 80%;
   margin-block-end: 0px;
+}
+
+div.scenario-description {
+  margin-top: 5px;
+  clear: both;
+  float: left;
+  text-align: left;
+  color: #fff;
+  max-width: 85%;
 }
 
 .developer-links {
@@ -37,6 +47,8 @@ div.developer-links > a:hover {
 .actual-content {
   background: #000;
   min-height: 43rem;
+  width: 100%;
+  float: left;
 }
 
 * {

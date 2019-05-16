@@ -1,7 +1,7 @@
-<app-scenario title="License Overview" id="license-overview-scenario">
-  <h2>
-    Here you can find all the subscriptions with its licenses.
-  </h2>
+<app-scenario 
+title="License Overview" 
+id="license-overview-scenario"
+description="This scenario shows all the information on subscriptions containing licenses of the tapio developer app by using the GlobalDiscoveryService API.">
   <div class="tile is-ancestor" *ngIf="subscriptions$ | async; else loadingOrError">  
     <div class="tile is-parent is-4" *ngFor="let subscription of subscriptions$ | async">
       <div class="card">
