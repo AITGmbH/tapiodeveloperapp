@@ -86,6 +86,9 @@ StyleCopReport.xml
 *.svclog
 *.scc
 
+# Files built by Visual Studio Code
+**/.vscode
+
 # Chutzpah Test files
 _Chutzpah*
 
@@ -336,3 +339,5 @@ ASALocalRun/
 src/web/dist/
 src/web/coverage
 src/web/src/environments/version.ts
+
+src/web/log.txt

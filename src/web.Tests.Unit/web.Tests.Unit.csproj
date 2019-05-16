@@ -1,9 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <IsPackable>false</IsPackable>
+    <AssemblyName>Aitgmbh.Tapio.Developerapp.Web.Tests.Unit</AssemblyName>
+    <RootNamespace>Aitgmbh.Tapio.Developerapp.Web.Tests.Unit</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Scenarios\MachineState\Data\SingleMachineWithSomeData.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scenarios\MachineState\Data\SingleMachineWithSomeData.json" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\web\web.csproj" />

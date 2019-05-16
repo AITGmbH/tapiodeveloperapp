@@ -8,7 +8,7 @@ import { Observable } from "rxjs";
 @Injectable({ providedIn: "root" })
 export class HelloWorldService {
 
-    constructor(private http: HttpClient) { }
+    constructor(private readonly http: HttpClient) { }
 
     getWelcome(): Observable<string> {
         return this.http.get<string>("/api/helloWorld");

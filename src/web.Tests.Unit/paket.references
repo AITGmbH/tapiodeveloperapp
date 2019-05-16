@@ -1,7 +1,8 @@
 group development
-
-  FluentAssertions
-  Microsoft.NET.Test.Sdk
-  xunit
-  xunit.runner.visualstudio
-  Moq
+FluentAssertions
+Microsoft.NET.Test.Sdk
+xunit
+xunit.runner.visualstudio
+Moq
+MaxKagamine.Moq.HttpClient
+FluentAssertions.Json

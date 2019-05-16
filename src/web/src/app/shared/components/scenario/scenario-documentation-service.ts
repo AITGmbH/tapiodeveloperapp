@@ -8,7 +8,7 @@ import { HttpClient } from "@angular/common/http";
 @Injectable({ providedIn: "root" })
 export class ScenarioDocumentationService {
 
-    constructor(private http: HttpClient) { }
+    constructor(private readonly http: HttpClient) { }
 
     getUrls(id: string): Observable<DocumentationPaths> {
         return this.http.get<DocumentationPaths>(`/api/documentationPath/${id}`);

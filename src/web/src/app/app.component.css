@@ -52,3 +52,7 @@
 footer.footer {
   padding: 2rem 1rem 3rem 1rem;
 }
+
+.is-single-line {
+    white-space: nowrap;
+}

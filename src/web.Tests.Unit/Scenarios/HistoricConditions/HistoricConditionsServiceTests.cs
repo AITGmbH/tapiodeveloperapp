@@ -5,9 +5,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricConditions;
 using Aitgmbh.Tapio.Developerapp.Web.Services;
+using Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.HelperClasses;
 using FluentAssertions;
 using Moq;
-using web.Tests.Unit;
 using Xunit;
 
 namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.Scenarios.HistoricConditions
@@ -47,7 +47,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.Scenarios.HistoricConditions
                 var service = new HistoricConditionsService(httpClient, _standardTokenProviderMock.Object);
                 Func<Task<HistoricConditionsResponse>> action = () =>
                     service.ReadConditionsAsync(CancellationToken.None, testMachineId);
-                await action.Should().ThrowAsync<Exception>();
+                await action.Should().ThrowAsync<HttpRequestException>();
             }
         }
     }

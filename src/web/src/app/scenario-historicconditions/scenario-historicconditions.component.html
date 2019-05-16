@@ -22,8 +22,7 @@
     </button>
   </div>
   <div
-    *ngIf="
-      !(loading$ | async) && !(error$ | async) && (rows$ | async);
+    *ngIf="!(loading$ | async) && !(error$ | async) && (rows$ | async);
       else loadingOrError">
       <ngx-datatable
       class="material datatable"
@@ -108,9 +107,7 @@
 
 <ng-template #loadingOrError>
   <div *ngIf="(error$ | async)" class="errorMessage">
-    <div>
-      No data available for this machine
-    </div>
+    No data available for this machine
   </div>
   <div>
     <div *ngIf="(loading$ | async)" class="spinner">

@@ -25,7 +25,11 @@ library.add(faGithub, fas);
  * Provides access to shared functionality.
  */
 @NgModule({
-    declarations: [ScenarioComponent, SelectMachineComponent, DateRangeComponent],
+    declarations: [
+        ScenarioComponent,
+        SelectMachineComponent,
+        DateRangeComponent
+    ],
     imports: [
         CommonModule,
         FontAwesomeModule,
@@ -49,8 +53,7 @@ library.add(faGithub, fas);
         MachineOverviewService,
         ScenarioNavigationService,
         DecimalPipe,
-        AvailableMachinesService,
-        SignalRService
+        AvailableMachinesService
     ]
 })
 export class SharedModule {
