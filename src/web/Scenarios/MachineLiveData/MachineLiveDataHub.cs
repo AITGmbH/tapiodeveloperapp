@@ -5,10 +5,8 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
 {
-    public class MachineLiveDataHub: Hub
+    public class MachineLiveDataHub : Hub, IMachineLiveDataHub
     {
-        private static readonly IList<string> Connections = new List<string>();
-
         public async Task JoinGroup(string groupName)
         {
             await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
@@ -21,14 +19,27 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
 
         public override async Task OnConnectedAsync()
         {
-            Connections.Add(Context.ConnectionId);
+            MachineLiveDataConnectionHandler.Connections.Add(Context.ConnectionId);
             await base.OnConnectedAsync();
         }
 
         public override async Task OnDisconnectedAsync(Exception exception)
         {
-            Connections.Remove(Context.ConnectionId);
+            MachineLiveDataConnectionHandler.Connections.Remove(Context.ConnectionId);
             await base.OnDisconnectedAsync(exception);
         }
+    }
+
+    public interface IMachineLiveDataHub
+    {
+        Task JoinGroup(string groupName);
+        Task LeaveGroup(string groupName);
+        Task OnConnectedAsync();
+        Task OnDisconnectedAsync(Exception exception);
+    }
+
+    public static class MachineLiveDataConnectionHandler
+    {
+        public static HashSet<string> Connections { get; } = new HashSet<string>();
     }
 }
