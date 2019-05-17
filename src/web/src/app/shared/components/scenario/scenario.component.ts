@@ -22,6 +22,14 @@ export class ScenarioComponent implements OnInit {
     @Input()
     public title: string | TemplateRef<any>;
 
+
+    /**
+     * The description of the actual scenario.
+     */
+    @Input()
+    public description: string;
+
+
     /**
      * The id of the actual scenario.
      */
