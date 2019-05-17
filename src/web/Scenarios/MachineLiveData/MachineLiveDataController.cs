@@ -13,7 +13,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
         "src/web/src/app/scenario-machinelivedata", "src/web/Scenarios/MachineLiveData", "https://developer.tapio.one/docs/TapioDataCategories.html#streaming-data")]
     [Produces("application/json")]
     [Route("api/[controller]")]
-    public class MachineLiveDataController: Controller
+    public class MachineLiveDataController : Controller
     {
         private readonly IHubContext<MachineLiveDataHub> _hub;
         private readonly IMachineLiveDataService _machineLiveDataService;
@@ -29,7 +29,10 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
         {
             try
             {
-                await _machineLiveDataService.ReadHubAsync();
+                if (!_machineLiveDataService.IsReaderEnabled())
+                {
+                    await _machineLiveDataService.ReadHubAsync();
+                }
                 return new HttpResponseMessage(HttpStatusCode.OK);
             }
             catch (Exception e)

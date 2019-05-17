@@ -9,29 +9,30 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
 {
     public class MachineLiveDataService : IMachineLiveDataService
     {
-        private readonly IEvenHubCredentialProvider _credentialProvider;
         private readonly IMachineLiveDataEventProcessorFactory _dataEventProcessorFactory;
         private Func<string, dynamic, Task> _func;
-        private EventProcessorHost _processorHost;
+        private IEventProcessorHostInterface _processorHost;
         private bool _readerEnabled;
 
-        public MachineLiveDataService(IEvenHubCredentialProvider credentialProvider, IMachineLiveDataEventProcessorFactory dataEventProcessorFactory)
+
+        public MachineLiveDataService(IMachineLiveDataEventProcessorFactory dataEventProcessorFactory)
         {
-            _credentialProvider = credentialProvider ?? throw new ArgumentNullException(nameof(credentialProvider));
             _dataEventProcessorFactory = dataEventProcessorFactory ?? throw new ArgumentNullException(nameof(dataEventProcessorFactory));
         }
+
+        public bool IsReaderEnabled() => _readerEnabled;
 
 
         public async Task ReadHubAsync()
         {
-            if (_readerEnabled)
+            if (IsReaderEnabled())
             {
                 return;
             }
 
             if (_processorHost == null)
             {
-                CreateProcessorHostConnection();
+                _processorHost = _dataEventProcessorFactory.CreateEventProcessorHost();
             }
 
             _dataEventProcessorFactory.SetCallback(HandleProcessEventsAsync);
@@ -52,22 +53,11 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
 
         public async Task UnregisterHubAsync()
         {
-            if (_readerEnabled)
+            if (IsReaderEnabled())
             {
                 await _processorHost.UnregisterEventProcessorAsync();
                 _readerEnabled = false;
             }
-        }
-
-        private void CreateProcessorHostConnection()
-        {
-            _processorHost = new EventProcessorHost(
-                _credentialProvider.GetEventHubEntityPath(),
-                PartitionReceiver.DefaultConsumerGroupName,
-                _credentialProvider.GetEventHubConnectionString(),
-                _credentialProvider.GetStorageConnectionString(),
-                _credentialProvider.GetStorageContainerName()
-            );
         }
 
         private async Task HandleProcessEventsAsync(string data)
@@ -81,9 +71,13 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
     {
         Task ReadHubAsync();
 
+        bool IsReaderEnabled();
+
         void SetCallback(Func<string, dynamic, Task> func);
 
         Task UnregisterHubAsync();
     }
+
+
 
 }
