@@ -20,15 +20,15 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricConditions
             _tokenProvider = tokenProvider ?? throw new ArgumentNullException(nameof(tokenProvider));
         }
         
-        public Task<HistoricConditionsResponse> ReadConditionsAsync(CancellationToken cancellationToken, string machineId)
+        public Task<HistoricConditionsResponse> GetConditionsAsync(CancellationToken cancellationToken, string machineId)
         {
-            return ReadConditionsAsync(cancellationToken, machineId, new HistoricConditionsRequest
+            return GetConditionsAsync(cancellationToken, machineId, new HistoricConditionsRequest
             {
                 From = DateTime.Now.AddDays(-3)
             });
         }
         
-        public async Task<HistoricConditionsResponse> ReadConditionsAsync(CancellationToken cancellationToken, string machineId, HistoricConditionsRequest requestData)
+        public async Task<HistoricConditionsResponse> GetConditionsAsync(CancellationToken cancellationToken, string machineId, HistoricConditionsRequest requestData)
         {
             var token = await _tokenProvider.ReceiveTokenAsync(TapioScope.CoreApi);
             var request = new HttpRequestMessage(HttpMethod.Post, new Uri(String.Format(GetData, machineId)));
@@ -45,7 +45,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricConditions
 
     public interface IHistoricConditionsService
     {
-        Task<HistoricConditionsResponse> ReadConditionsAsync(CancellationToken cancellationToken, string machineId);
-        Task<HistoricConditionsResponse> ReadConditionsAsync(CancellationToken cancellationToken, string machineId, HistoricConditionsRequest requestData);
+        Task<HistoricConditionsResponse> GetConditionsAsync(CancellationToken cancellationToken, string machineId);
+        Task<HistoricConditionsResponse> GetConditionsAsync(CancellationToken cancellationToken, string machineId, HistoricConditionsRequest requestData);
     }
 }

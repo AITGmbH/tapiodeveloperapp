@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Aitgmbh.Tapio.Developerapp.Web.Models;
@@ -25,15 +23,15 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricConditions
         [HttpGet("{machineId}")]
         public async Task<ActionResult<SubscriptionOverview>> GetConditions(CancellationToken cancellationToken, string machineId)
         {
-            var resp = await _historicConditionsService.ReadConditionsAsync(cancellationToken, machineId);
-            return Ok(resp);
+            var conditionsResponse = await _historicConditionsService.GetConditionsAsync(cancellationToken, machineId);
+            return Ok(conditionsResponse);
         }
 
         [HttpPost("{machineId}")]
         public async Task<ActionResult<SubscriptionOverview>> GetConditionByDate(CancellationToken cancellationToken, string machineId, [FromBody] HistoricConditionsRequest historicConditionsRequest)
         {
-            var resp = await _historicConditionsService.ReadConditionsAsync(cancellationToken, machineId, historicConditionsRequest);
-            return Ok(resp);
+            var conditionsResponse = await _historicConditionsService.GetConditionsAsync(cancellationToken, machineId, historicConditionsRequest);
+            return Ok(conditionsResponse);
         }
     }
 }
