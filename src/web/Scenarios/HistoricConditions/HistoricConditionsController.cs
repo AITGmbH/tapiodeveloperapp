@@ -19,7 +19,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricConditions
 
         public HistoricConditionsController(IHistoricConditionsService historicConditionsService)
         {
-            _historicConditionsService = historicConditionsService;
+            _historicConditionsService = historicConditionsService ?? throw new ArgumentNullException(nameof(historicConditionsService));
         }
 
         [HttpGet("{machineId}")]

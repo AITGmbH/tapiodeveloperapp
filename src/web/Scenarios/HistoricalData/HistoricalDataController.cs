@@ -1,3 +1,4 @@
+using System;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
@@ -18,7 +19,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricalData
 
         public HistoricalDataController(IHistoricalDataService historicalDataService)
         {
-            _historicalDataService = historicalDataService;
+            _historicalDataService = historicalDataService ?? throw new ArgumentNullException(nameof(historicalDataService));
         }
 
         [HttpGet("{machineId}")]

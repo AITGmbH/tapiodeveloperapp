@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Aitgmbh.Tapio.Developerapp.Web.Models;
@@ -15,7 +16,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineOverview
 
         public MachineOverviewController(IMachineOverviewService machineOverviewService)
         {
-            _machineOverviewService = machineOverviewService;
+            _machineOverviewService = machineOverviewService ?? throw new ArgumentNullException(nameof(machineOverviewService));
         }
 
         [HttpGet]
