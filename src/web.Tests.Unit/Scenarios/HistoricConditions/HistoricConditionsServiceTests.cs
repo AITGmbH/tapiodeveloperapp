@@ -10,7 +10,7 @@ using FluentAssertions;
 using Moq;
 using Xunit;
 
-namespace web.Tests.Unit.Scenarios.HistoricConditions
+namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.Scenarios.HistoricConditions
 {
     public class HistoricConditionsServiceTests
     {
