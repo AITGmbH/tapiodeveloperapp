@@ -5,6 +5,7 @@ using Aitgmbh.Tapio.Developerapp.Web.Configurations;
 using Aitgmbh.Tapio.Developerapp.Web.Repositories;
 using Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricalData;
 using Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricConditions;
+using Aitgmbh.Tapio.Developerapp.Web.Scenarios.LicenseOverview;
 using Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineOverview;
 using Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineState;
 using Aitgmbh.Tapio.Developerapp.Web.Services;
@@ -48,6 +49,8 @@ namespace Aitgmbh.Tapio.Developerapp.Web
                 .AddHttpClient<IMachineOverviewService, MachineOverviewService>();
             services
                 .AddHttpClient<IMachineStateService, MachineStateService>();
+            services
+                .AddHttpClient<ILicenseOverviewService, LicenseOverviewService>();
             services
                 .AddHttpClient<IHistoricalDataService, HistoricalDataService>();
             services

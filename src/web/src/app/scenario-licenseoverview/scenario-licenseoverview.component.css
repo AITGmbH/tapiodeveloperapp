@@ -1,0 +1,16 @@
+h2 {
+    padding-bottom: 1rem;
+}
+
+.license-list li {
+    padding-bottom: 25px;
+}
+
+.license-list li:last-child {
+    padding-bottom: 0px;
+}
+
+span.license-content-name {
+    display: inline-block;
+    width: 12rem;
+}
