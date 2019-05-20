@@ -5,9 +5,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricConditions;
 using Aitgmbh.Tapio.Developerapp.Web.Services;
+using Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.HelperClasses;
 using FluentAssertions;
 using Moq;
-using web.Tests.Unit;
 using Xunit;
 
 namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.Scenarios.HistoricConditions
@@ -22,7 +22,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.Scenarios.HistoricConditions
         }
 
         [Fact]
-        public async Task ReadConditionsAsync_ThrowNoException()
+        public async Task GetConditionsAsync_ThrowsNoException()
         {
             var messageHandlerMock = new Mock<HttpMessageHandler>()
                 .SetupSendAsyncMethod(HttpStatusCode.OK, "{}");
@@ -31,13 +31,13 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.Scenarios.HistoricConditions
             {
                 var service = new HistoricConditionsService(httpClient, _standardTokenProviderMock.Object);
                 Func<Task<HistoricConditionsResponse>> action = () =>
-                    service.ReadConditionsAsync(CancellationToken.None, testMachineId);
+                    service.GetConditionsAsync(CancellationToken.None, testMachineId);
                 await action.Should().NotThrowAsync();
             }
         }
 
         [Fact]
-        public async Task ReadConditionsAsync_ThrowHttpExceptionBecauseOfUnauthorized()
+        public async Task GetConditionsAsync_ThrowsExceptionWhenTapioReturnsErrorCode()
         {
             var messageHandlerMock = new Mock<HttpMessageHandler>()
                 .SetupSendAsyncMethod(HttpStatusCode.Unauthorized, "{}");
@@ -46,8 +46,8 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.Scenarios.HistoricConditions
             {
                 var service = new HistoricConditionsService(httpClient, _standardTokenProviderMock.Object);
                 Func<Task<HistoricConditionsResponse>> action = () =>
-                    service.ReadConditionsAsync(CancellationToken.None, testMachineId);
-                await action.Should().ThrowAsync<Exception>();
+                    service.GetConditionsAsync(CancellationToken.None, testMachineId);
+                await action.Should().ThrowAsync<HttpRequestException>();
             }
         }
     }

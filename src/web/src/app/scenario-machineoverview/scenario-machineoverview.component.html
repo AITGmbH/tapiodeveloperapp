@@ -23,16 +23,14 @@
 </app-scenario>
 
 <ng-template #loadingOrError>
-    <div *ngIf="errorLoading$ | async; else loading" class="message is-danger">
-      <div class="message-body">
-        An Error encountered in loading the subscriptions. Please try again later.
-        <p class="is-size-7">Consult the developer console for more information</p>
-      </div>
+  <div *ngIf="(error$ | async); else loading" class="errorMessage">
+    No data available for this machine
+  </div>
+
+  <ng-template #loading>
+    <div *ngIf="(loading$ | async)" class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
     </div>
-    <ng-template #loading>
-      <div class="spinner">
-        <div class="double-bounce1"></div>
-        <div class="double-bounce2"></div>
-      </div>
-    </ng-template>
+  </ng-template>
 </ng-template>

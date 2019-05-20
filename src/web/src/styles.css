@@ -7,6 +7,18 @@ body {
   background: rgb(7, 19, 26);
 }
 
+h1.title {
+  text-align: left;
+  color: #fff;
+}
+
+h3.title.is-3 {
+  text-align: left;
+  color: #fff;
+  font-size: 35px;
+  margin: 15px 0;
+}
+
 /**
   Start Spinner
   Source: https://github.com/tobiasahlin/SpinKit
@@ -58,6 +70,10 @@ body {
   End Spinner
 */
 
+/**
+  Start machine select dropdown
+*/
+
 .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-disabled span.ng-option-label {
   color: black;
   font-weight: bold;
@@ -67,6 +83,14 @@ body {
 .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-disabled {
   cursor: default;
 }
+
+/**
+  End machine select dropdown
+*/
+
+/**
+  Start ngx-datatable
+*/
 
 .ngx-datatable .datatable-body .datatable-row-wrapper:not(:last-of-type) {
   border-bottom: thin solid gray;
@@ -79,6 +103,10 @@ body {
 .datatable-header {
   border-bottom: thin solid gray;
   margin-right: 15px;
+}
+
+.ngx-datatable .datatable-footer {
+  border-top: thin solid gray;
 }
 
 .datatable-footer {
@@ -95,6 +123,10 @@ body {
   margin-right: 15px;
 }
 
+.datatable-footer .datatable-pager {
+  display: none;
+}
+
 .ngx-datatable .datatable-header-cell {
   margin-right: 15px;
 }
@@ -102,6 +134,30 @@ body {
 div.empty-row {
   padding-top: 10px;
 }
+
+/**
+  End ngx-datatable
+*/
+
+/**
+  Start card
+*/
+
+div.card {
+  background-color: #333;
+}
+
+header.card-header {
+  background-color: #eee;
+}
+
+div.card-content {
+  color: white;
+}
+
+/**
+  End card
+*/
 
 .errorMessage {
   margin-top: 2rem;

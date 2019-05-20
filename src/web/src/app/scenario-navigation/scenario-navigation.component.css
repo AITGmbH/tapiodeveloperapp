@@ -2,12 +2,17 @@ a {
   color: #FFF;
 }
 
-a:active {
-  color: #0092b4;
+a:hover {
+  color: #00ff8c;
 }
 
 ul {
-  padding: 14px;
+  padding: 20px 10px 20px 20px;
+}
+
+li > a {
+  display: inline-block;
+  padding: 6px 0;
 }
 
 li {

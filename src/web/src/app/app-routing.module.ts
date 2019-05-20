@@ -11,8 +11,16 @@ const routes: Routes = [
         loadChildren: "./scenario-machineoverview/scenario-machineoverview.module#ScenarioMachineoverviewModule"
     },
     {
+        path: "scenario-licenseoverview",
+        loadChildren: "./scenario-licenseoverview/scenario-licenseoverview.module#ScenarioLicenseOverviewModule"
+    },
+    {
         path: "scenario-historicaldata",
         loadChildren: "./scenario-historicaldata/scenario-historicaldata.module#ScenarioHistoricaldataModule"
+    },
+    {
+        path: 'scenario-machinestate',
+        loadChildren: './scenario-machinestate/scenario-machinestate.module#ScenarioMachinestateModule'
     },
     {
         path: 'scenario-historicconditions',

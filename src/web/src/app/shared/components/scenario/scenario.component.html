@@ -1,12 +1,12 @@
-<h1 class="title is-1">{{title}}</h1>
-
-<div>
-  <div class="developer-links">
-    <a href="{{tapioDocumentationUrl}}" class="has-text-light" target="_blank" rel="noopener">Tapio</a>&nbsp;
-    <a href="{{frontendUrl}}" class="has-text-light" target="_blank" rel="noopener"><fa-icon [icon]="['fab', 'github']"></fa-icon> Frontend</a>&nbsp;
-    <a href="{{backendUrl}}" class="has-text-light" target="_blank" rel="noopener" *ngIf="hasBackendUrl"><fa-icon [icon]="['fab', 'github']"></fa-icon> Backend</a>
-  </div>
-  <div class="actual-content has-text-light">
+<div class="content-header">
+    <h1 class="title is-1">{{ title }}</h1>
+    <div class="developer-links">
+        <a href="{{ tapioDocumentationUrl }}" class="" target="_blank" rel="noopener">Tapio</a>&nbsp;
+        <a href="{{ frontendUrl }}" class="" target="_blank" rel="noopener"><fa-icon [icon]="['fab', 'github']"></fa-icon>Frontend</a>&nbsp;
+        <a href="{{ backendUrl }}" class="" target="_blank" rel="noopener" *ngIf="hasBackendUrl"><fa-icon [icon]="['fab', 'github']"></fa-icon>Backend</a>
+    </div>
+    <div class="scenario-description" [innerHTML]="description">{{ description }}</div>
+</div>
+<div class="actual-content has-text-light">
     <ng-content></ng-content>
-  </div>
 </div>

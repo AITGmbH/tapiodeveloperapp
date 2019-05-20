@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit, TemplateRef } from "@angular/core";
 import { ScenarioDocumentationService } from "./scenario-documentation-service";
 import { VERSION } from "src/environments/version";
 
@@ -14,11 +14,21 @@ export class ScenarioComponent implements OnInit {
     private gitHubRepoUrl =
         "https://github.com/AITGmbH/tapiodeveloperapp/tree/";
 
+    private static readonly gitHubRepoUrl = 'https://github.com/AITGmbH/tapiodeveloperapp/tree/';
+
     /**
      * The title of the actual scenario.
      */
     @Input()
-    public title: string;
+    public title: string | TemplateRef<any>;
+
+
+    /**
+     * The description of the actual scenario.
+     */
+    @Input()
+    public description: string;
+
 
     /**
      * The id of the actual scenario.
@@ -48,9 +58,7 @@ export class ScenarioComponent implements OnInit {
 
     version: string;
 
-    constructor(
-        private scenarioDocumentationService: ScenarioDocumentationService
-    ) {
+    constructor(private readonly scenarioDocumentationService: ScenarioDocumentationService) {
         this.version = VERSION.hash;
     }
 
@@ -79,5 +87,13 @@ export class ScenarioComponent implements OnInit {
                     this.tapioDocumentationUrl = docPaths.tapio;
                 }
             });
+    }
+
+    isString(value: string | TemplateRef<any>): value is string {
+        return typeof value === 'string';
+    }
+
+    isTemplateRef(value: string | TemplateRef<any>): value is TemplateRef<any> {
+        return typeof value !== 'string';
     }
 }

@@ -6,18 +6,16 @@ using System.Threading.Tasks;
 using Aitgmbh.Tapio.Developerapp.Web.Models;
 using Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricalData;
 using Aitgmbh.Tapio.Developerapp.Web.Services;
+using Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.HelperClasses;
 using FluentAssertions;
 using Moq;
-using Moq.Protected;
 using Xunit;
 
-namespace web.Tests.Unit
+namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit
 {
     public class HistoricalDataServiceTests
     {
         private readonly Mock<ITokenProvider> _standardTokenProviderMock;
-
-        
 
         private const string Content = @"{
             ""totalCount"": 2,
@@ -62,21 +60,49 @@ namespace web.Tests.Unit
         }
 
         [Fact]
-        public async Task ReadSourceKeysAsync_ThrowNoException()
+        public async Task GetSourceKeysAsync_ThrowsNoException()
         {
             var messageHandlerMock = new Mock<HttpMessageHandler>()
                 .SetupSendAsyncMethod(HttpStatusCode.OK, Content);
             var sourceKeyResponseMock = new Mock<SourceKeyResponse>();
             using (var httpClient = new HttpClient(messageHandlerMock.Object))
             {
-                var service = new HistoricalDataService(httpClient, _standardTokenProviderMock.Object);
-                Func<Task<SourceKeyResponse>> action = () => service.ReadSourceKeysAsync(CancellationToken.None, sourceKeyResponseMock.Object.MachineId);
+                var historicalDataService = new HistoricalDataService(httpClient, _standardTokenProviderMock.Object);
+                Func<Task<SourceKeyResponse>> action = () => historicalDataService.GetSourceKeysAsync(CancellationToken.None, sourceKeyResponseMock.Object.MachineId);
                 await action.Should().NotThrowAsync();
             }
         }
 
         [Fact]
-        public async Task ReadSourceKeysAsync_ThrowHttpExceptionBecauseOfUnauthorized()
+        public async Task GetSourceKeysAsync_ThrowsExceptionWhenTapioReturnsErrorCode()
+        {
+            var messageHandlerMock = new Mock<HttpMessageHandler>()
+                .SetupSendAsyncMethod(HttpStatusCode.Unauthorized, "{}");
+            var sourceKeyResponseMock = new Mock<SourceKeyResponse>();
+            using (var httpClient = new HttpClient(messageHandlerMock.Object))
+            {
+                var historicalDataService = new HistoricalDataService(httpClient, _standardTokenProviderMock.Object);
+                Func<Task<SourceKeyResponse>> action = () => historicalDataService.GetSourceKeysAsync(CancellationToken.None, sourceKeyResponseMock.Object.MachineId);
+                await action.Should().ThrowAsync<HttpException>();
+            }
+        }
+
+        [Fact]
+        public async Task GetHistoricalDataAsync_ThrowsNoException()
+        {
+            var messageHandlerMock = new Mock<HttpMessageHandler>()
+                .SetupSendAsyncMethod(HttpStatusCode.OK, Content);
+            var sourceKeyResponseMock = new Mock<SourceKeyResponse>();
+            using (var httpClient = new HttpClient(messageHandlerMock.Object))
+            {
+                var historicalDataService = new HistoricalDataService(httpClient, _standardTokenProviderMock.Object);
+                Func<Task<HistoricalDataResponse>> action = () => historicalDataService.GetHistoricalDataAsync(CancellationToken.None, sourceKeyResponseMock.Object.MachineId, new HistoricalDataRequest());
+                await action.Should().NotThrowAsync();
+            }
+        }
+
+        [Fact]
+        public async Task GetHistoricalDataAsync_ThrowsExceptionWhenTapioReturnsErrorCode()
         {
             var messageHandlerMock = new Mock<HttpMessageHandler>()
                 .SetupSendAsyncMethod(HttpStatusCode.Unauthorized, "{}");
@@ -84,7 +110,7 @@ namespace web.Tests.Unit
             using (var httpClient = new HttpClient(messageHandlerMock.Object))
             {
                 var service = new HistoricalDataService(httpClient, _standardTokenProviderMock.Object);
-                Func<Task<SourceKeyResponse>> action = () => service.ReadSourceKeysAsync(CancellationToken.None, sourceKeyResponseMock.Object.MachineId);
+                Func<Task<HistoricalDataResponse>> action = () => service.GetHistoricalDataAsync(CancellationToken.None, sourceKeyResponseMock.Object.MachineId, new HistoricalDataRequest());
                 await action.Should().ThrowAsync<HttpException>();
             }
         }

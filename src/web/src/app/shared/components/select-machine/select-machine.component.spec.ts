@@ -7,6 +7,7 @@ import { NgSelectModule, NgOption } from "@ng-select/ng-select";
 import { Subscription } from "../../models/subscription.model";
 import { DebugElement } from "@angular/core";
 import { of } from "rxjs";
+import { FormsModule } from "@angular/forms";
 
 const mockSubscriptions: Subscription[] = [
     {
@@ -63,6 +64,8 @@ const mockSubscriptions: Subscription[] = [
     }
 ];
 
+const machineDisplayNamePrefix = "↳ ";
+
 describe("SelectMachineComponent", () => {
     let component: SelectMachineComponent;
     let fixture: ComponentFixture<SelectMachineComponent>;
@@ -74,7 +77,7 @@ describe("SelectMachineComponent", () => {
         TestBed.configureTestingModule({
             declarations: [SelectMachineComponent],
             providers: [MachineOverviewService],
-            imports: [HttpClientTestingModule, NgSelectModule]
+            imports: [HttpClientTestingModule, NgSelectModule, FormsModule]
         }).compileComponents();
     }));
 
@@ -84,23 +87,37 @@ describe("SelectMachineComponent", () => {
         element = fixture.debugElement;
         machineOverviewService = element.injector.get(MachineOverviewService);
         getSubscriptionsSpy = spyOn(machineOverviewService, "getSubscriptions").and.returnValue(of(mockSubscriptions));
-        fixture.detectChanges();
     });
 
     it("should create", () => {
         expect(component).toBeTruthy();
     });
 
-    it("should fetch data and display it"),
-        async () => {
-            expect(getSubscriptionsSpy).toHaveBeenCalledTimes(1);
-            const items = await component.items$.toPromise();
-            expect(items.length).toEqual(6);
-            expect(items[0].displayName).toEqual(mockSubscriptions[0].name);
-            expect(items[0].tmid).toBeUndefined();
-            expect((items[0] as NgOption).disabled).toBe(true);
-            expect(items[1].displayName).toEqual(mockSubscriptions[0].assignedMachines[0].displayName);
-            expect(items[1].tmid).not.toBeUndefined();
-            expect((items[1] as NgOption).disabled).toBeUndefined();
-        };
+    it("should fetch data and display it", async () => {
+        fixture.detectChanges();
+        expect(getSubscriptionsSpy).toHaveBeenCalledTimes(1);
+        const items = await component.items$.toPromise();
+        expect(items.length).toEqual(6);
+        expect(items[0].displayName).toEqual(mockSubscriptions[0].name);
+        expect(items[0].tmid).toBeUndefined();
+        expect((items[0] as NgOption).disabled).toBe(true);
+        expect(items[1].displayName).toEqual(
+            machineDisplayNamePrefix + mockSubscriptions[0].assignedMachines[0].displayName
+        );
+        expect(items[1].tmid).not.toBeUndefined();
+        expect((items[1] as NgOption).disabled).toBeUndefined();
+        expect(component.selectedMachine).toBeUndefined();
+    });
+    it("should select the initialMachineId", async () => {
+        expect(getSubscriptionsSpy).toHaveBeenCalledTimes(0);
+        component.initialMachineId = mockSubscriptions[0].assignedMachines[1].tmid;
+        fixture.detectChanges();
+
+        expect(getSubscriptionsSpy).toHaveBeenCalledTimes(1);
+
+        expect(component.selectedMachine.tmid).toEqual(mockSubscriptions[0].assignedMachines[1].tmid);
+        expect(component.selectedMachine.displayName).toEqual(
+            machineDisplayNamePrefix + mockSubscriptions[0].assignedMachines[1].displayName
+        );
+    });
 });

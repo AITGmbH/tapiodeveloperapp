@@ -11,11 +11,12 @@ import { ScenarioComponent } from "./components/scenario/scenario.component";
 import { NgxDatatableModule } from "@swimlane/ngx-datatable";
 import { SelectMachineComponent } from "./components/select-machine/select-machine.component";
 import { NgSelectModule } from "@ng-select/ng-select";
-import { HistoricalDataService } from '../scenario-historicaldata/scenario-historicaldata.service';
+import { HistoricalDataService } from "../scenario-historicaldata/scenario-historicaldata.service";
 import { DateRangeComponent } from "./components/date-range/date-range.component";
-import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
-import { MachineOverviewService } from '../scenario-machineoverview/scenario-machineoverview.service';
-import { ScenarioNavigationService } from '../scenario-navigation/scenario-navigation.service';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from "ng-pick-datetime";
+import { MachineOverviewService } from "../scenario-machineoverview/scenario-machineoverview.service";
+import { ScenarioNavigationService } from "../scenario-navigation/scenario-navigation.service";
+import { AvailableMachinesService } from "./services/available-machines.service";
 
 library.add(faGithub, fas);
 
@@ -24,9 +25,31 @@ library.add(faGithub, fas);
  */
 @NgModule({
     declarations: [ScenarioComponent, SelectMachineComponent, DateRangeComponent],
-    imports: [CommonModule, FontAwesomeModule, NgxDatatableModule, NgSelectModule, FormsModule, OwlDateTimeModule, OwlNativeDateTimeModule],
-    exports: [ScenarioComponent, FontAwesomeModule, NgxDatatableModule, SelectMachineComponent, NgSelectModule, FormsModule, DateRangeComponent],
-    providers: [HistoricalDataService, MachineOverviewService, ScenarioNavigationService, DecimalPipe]
+    imports: [
+        CommonModule,
+        FontAwesomeModule,
+        NgxDatatableModule,
+        NgSelectModule,
+        FormsModule,
+        OwlDateTimeModule,
+        OwlNativeDateTimeModule
+    ],
+    exports: [
+        ScenarioComponent,
+        FontAwesomeModule,
+        NgxDatatableModule,
+        SelectMachineComponent,
+        NgSelectModule,
+        FormsModule,
+        DateRangeComponent
+    ],
+    providers: [
+        HistoricalDataService,
+        MachineOverviewService,
+        ScenarioNavigationService,
+        DecimalPipe,
+        AvailableMachinesService
+    ]
 })
 export class SharedModule {
     faGitHub = faGithub;
