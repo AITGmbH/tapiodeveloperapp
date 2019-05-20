@@ -1,5 +1,20 @@
-<ul>
-  <li *ngFor="let scenarioEntry of scenarioEntries$ | async">
-    <a routerLink="{{scenarioEntry.url}}">{{scenarioEntry.caption}}</a>
-  </li>
+<div>
+<ul id="nav-scenarios">
+    <ng-container *ngFor="let scenarioEntry of scenarioEntries$ | async">
+        <ng-container *ngIf="!scenarioEntry.caption.includes('User')">
+            <li>
+                <a routerLink="{{ scenarioEntry.url }}">{{ scenarioEntry.caption }}</a>
+            </li>
+        </ng-container>
+    </ng-container>
 </ul>
+<ul id="nav-user">
+    <ng-container *ngFor="let scenarioEntry of scenarioEntries$ | async">
+        <ng-container *ngIf="scenarioEntry.caption.includes('User')">
+            <li>
+                <a routerLink="{{ scenarioEntry.url }}">{{ scenarioEntry.caption }}</a>
+            </li>
+        </ng-container>
+    </ng-container>
+</ul>
+</div>

@@ -13,3 +13,18 @@ ul {
 li {
   height: 30px;
 }
+
+div {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#nav-scenarios {
+  width: 100%;
+}
+
+#nav-user {
+  width: 100%;
+}
