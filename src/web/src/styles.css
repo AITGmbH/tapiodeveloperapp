@@ -70,6 +70,10 @@ h3.title.is-3 {
   End Spinner
 */
 
+/**
+  Start machine select dropdown
+*/
+
 .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-disabled span.ng-option-label {
   color: black;
   font-weight: bold;
@@ -79,6 +83,14 @@ h3.title.is-3 {
 .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-disabled {
   cursor: default;
 }
+
+/**
+  End machine select dropdown
+*/
+
+/**
+  Start ngx-datatable
+*/
 
 .ngx-datatable .datatable-body .datatable-row-wrapper:not(:last-of-type) {
   border-bottom: thin solid gray;
@@ -122,6 +134,30 @@ h3.title.is-3 {
 div.empty-row {
   padding-top: 10px;
 }
+
+/**
+  End ngx-datatable
+*/
+
+/**
+  Start card
+*/
+
+div.card {
+  background-color: #333;
+}
+
+header.card-header {
+  background-color: #eee;
+}
+
+div.card-content {
+  color: white;
+}
+
+/**
+  End card
+*/
 
 .errorMessage {
   margin-top: 2rem;
