@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineState
 {
     [Scenario("machine-state-scenario", "Machine State", "/scenario-machinestate",
-        "src/web/src/app/scenario-machinestate", "src/web/Scenarios/MachineSate", "https://developer.tapio.one/docs/StateApi.html")]
+        "src/web/src/app/scenario-machinestate", "src/web/Scenarios/MachineState", "https://developer.tapio.one/docs/StateApi.html")]
     [Produces("application/json")]
     [Route("api/[controller]")]
     public class MachineStateController : Controller
