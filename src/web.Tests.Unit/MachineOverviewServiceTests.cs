@@ -58,46 +58,46 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit
         }
 
         [Fact]
-        public async Task GivenOneSimpleCall_WhenInvoking_ThenNoException_ShouldBeThrown()
+        public async Task GGetSubscriptionsAsync_ThrowsNoException()
         {
             var messageHandlerMock = new Mock<HttpMessageHandler>()
                 .SetupSendAsyncMethod(HttpStatusCode.OK, Content);
             using (var httpClient = new HttpClient(messageHandlerMock.Object))
             {
-                var cut = new MachineOverviewService(httpClient, _standardTokenProviderMock.Object);
+                var machineOverviewService = new MachineOverviewService(httpClient, _standardTokenProviderMock.Object);
 
-                Func<Task<SubscriptionOverview>> action = () => cut.GetSubscriptionsAsync(CancellationToken.None);
+                Func<Task<SubscriptionOverview>> action = () => machineOverviewService.GetSubscriptionsAsync(CancellationToken.None);
                 await action.Should().NotThrowAsync();
             }
         }
 
         [Fact]
-        public async Task GivenOneSimpleCall_WhenInvoking_ThenTheServer_ShouldBeCalledExactlyOnce()
+        public async Task GetSubscriptionsAsync_CallsServerExactlyOnce()
         {
             var messageHandlerMock = new Mock<HttpMessageHandler>()
                 .SetupSendAsyncMethod(HttpStatusCode.OK, Content);
 
             using (var httpClient = new HttpClient(messageHandlerMock.Object))
             {
-                var cut = new MachineOverviewService(httpClient, _standardTokenProviderMock.Object);
+                var machineOverviewService = new MachineOverviewService(httpClient, _standardTokenProviderMock.Object);
 
-                await cut.GetSubscriptionsAsync(CancellationToken.None);
+                await machineOverviewService.GetSubscriptionsAsync(CancellationToken.None);
 
                 messageHandlerMock.VerifySendAsyncWasInvokedExactlyOnce();
             }
         }
 
         [Fact]
-        public async Task GivenOneUnauthorizedClient_WhenInvoking_ThenOneException_ShouldBeThrown()
+        public async Task GetSubscriptionsAsync_ThrowsExceptionWhenTapioReturnsErrorCode()
         {
 
             var messageHandlerMock = new Mock<HttpMessageHandler>()
                 .SetupSendAsyncMethod(HttpStatusCode.Unauthorized, "{}");
             using (var httpClient = new HttpClient(messageHandlerMock.Object))
             {
-                var cut = new MachineOverviewService(httpClient, _standardTokenProviderMock.Object);
+                var machineOverviewService = new MachineOverviewService(httpClient, _standardTokenProviderMock.Object);
 
-                Func<Task<SubscriptionOverview>> action = () => cut.GetSubscriptionsAsync(CancellationToken.None);
+                Func<Task<SubscriptionOverview>> action = () => machineOverviewService.GetSubscriptionsAsync(CancellationToken.None);
                 await action.Should().ThrowAsync<HttpRequestException>();
             }
         }
