@@ -340,4 +340,4 @@ src/web/dist/
 src/web/coverage
 src/web/src/environments/version.ts
 
-src/web/log.txt
+src/web/log*.txt
