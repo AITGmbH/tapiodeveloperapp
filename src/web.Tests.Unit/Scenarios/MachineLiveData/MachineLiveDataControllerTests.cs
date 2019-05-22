@@ -22,7 +22,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.Scenarios.MachineLiveData
         [Fact]
         public async Task Get_WhenCalled_ReturnsStatusCodeOk()
         {
-            _machineLiveDataServiceMock.Setup(e => e.ReadHubAsync()).Returns(Task.CompletedTask);
+            _machineLiveDataServiceMock.Setup(e => e.RegisterHubAsync()).Returns(Task.CompletedTask);
             _machineLiveDataServiceMock.Setup(e => e.SetCallback(It.IsAny<Func<string, dynamic, Task>>()));
             var controller = new MachineLiveDataController(_hubMock.Object, _machineLiveDataServiceMock.Object);
 
@@ -33,7 +33,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.Scenarios.MachineLiveData
         [Fact]
         public async Task Get_WhenCalled_ReturnsStatusCodeInternalServerError()
         {
-            _machineLiveDataServiceMock.Setup(e => e.ReadHubAsync()).Throws(new Exception("some-exception"));
+            _machineLiveDataServiceMock.Setup(e => e.RegisterHubAsync()).Throws(new Exception("some-exception"));
             _machineLiveDataServiceMock.Setup(e => e.SetCallback(It.IsAny<Func<string, dynamic, Task>>()));
             var controller = new MachineLiveDataController(_hubMock.Object, _machineLiveDataServiceMock.Object);
 

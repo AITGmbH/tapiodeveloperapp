@@ -6,6 +6,7 @@ using Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData;
 using Microsoft.Azure.Amqp.Serialization;
 using Microsoft.Azure.EventHubs;
 using Microsoft.Azure.EventHubs.Processor;
+using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
 
@@ -14,9 +15,11 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.Scenarios.MachineLiveData
     public class MachineLiveDataServiceTest
     {
         private readonly Mock<IMachineLiveDataEventProcessorFactory> _machineLiveDataEventProcessorFactoryMock;
+        private readonly  Mock<ILogger<MachineLiveDataService>> _loggerMock;
         public MachineLiveDataServiceTest()
         {
             _machineLiveDataEventProcessorFactoryMock = new Mock<IMachineLiveDataEventProcessorFactory>();
+            _loggerMock = new Mock<ILogger<MachineLiveDataService>>();
         }
 
 
@@ -27,9 +30,9 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.Scenarios.MachineLiveData
             eventProcessorHostMock.Setup(ep => ep.RegisterEventProcessorFactoryAsync(It.IsAny<IEventProcessorFactory>(), It.IsAny<EventProcessorOptions>())).Returns(Task.CompletedTask);
             _machineLiveDataEventProcessorFactoryMock.Setup(f => f.CreateEventProcessorHost()).Returns(eventProcessorHostMock.Object);
             _machineLiveDataEventProcessorFactoryMock.Setup(f => f.SetCallback(It.IsAny<Func<string, Task>>()));
-            var service = new MachineLiveDataService(_machineLiveDataEventProcessorFactoryMock.Object);
+            var service = new MachineLiveDataService(_machineLiveDataEventProcessorFactoryMock.Object, _loggerMock.Object);
 
-            await service.ReadHubAsync();
+            await service.RegisterHubAsync();
 
             Assert.True(service.IsReaderEnabled());
             eventProcessorHostMock.Verify(m => m.RegisterEventProcessorFactoryAsync(_machineLiveDataEventProcessorFactoryMock.Object, It.IsAny<EventProcessorOptions>()), Times.Once);
@@ -44,10 +47,10 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.Scenarios.MachineLiveData
             eventProcessorHostMock.Setup(ep => ep.RegisterEventProcessorFactoryAsync(It.IsAny<IEventProcessorFactory>(), It.IsAny<EventProcessorOptions>())).Returns(Task.CompletedTask);
             _machineLiveDataEventProcessorFactoryMock.Setup(f => f.CreateEventProcessorHost()).Returns(eventProcessorHostMock.Object);
             _machineLiveDataEventProcessorFactoryMock.Setup(f => f.SetCallback(It.IsAny<Func<string, Task>>()));
-            var service = new MachineLiveDataService(_machineLiveDataEventProcessorFactoryMock.Object);
+            var service = new MachineLiveDataService(_machineLiveDataEventProcessorFactoryMock.Object, _loggerMock.Object);
 
-            await service.ReadHubAsync();
-            await service.ReadHubAsync();
+            await service.RegisterHubAsync();
+            await service.RegisterHubAsync();
 
             Assert.True(service.IsReaderEnabled());
             eventProcessorHostMock.Verify(m => m.RegisterEventProcessorFactoryAsync(_machineLiveDataEventProcessorFactoryMock.Object, It.IsAny<EventProcessorOptions>()), Times.Once);
@@ -63,9 +66,9 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.Scenarios.MachineLiveData
             eventProcessorHostMock.Setup(ep => ep.UnregisterEventProcessorAsync()).Returns(Task.CompletedTask);
             _machineLiveDataEventProcessorFactoryMock.Setup(f => f.CreateEventProcessorHost()).Returns(eventProcessorHostMock.Object);
             _machineLiveDataEventProcessorFactoryMock.Setup(f => f.SetCallback(It.IsAny<Func<string, Task>>()));
-            var service = new MachineLiveDataService(_machineLiveDataEventProcessorFactoryMock.Object);
+            var service = new MachineLiveDataService(_machineLiveDataEventProcessorFactoryMock.Object, _loggerMock.Object);
 
-            await service.ReadHubAsync();
+            await service.RegisterHubAsync();
             await service.UnregisterHubAsync();
 
             Assert.False(service.IsReaderEnabled());
@@ -77,7 +80,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.Scenarios.MachineLiveData
         {
             var eventProcessorHostMock = new Mock<IEventProcessorHostInterface>();
             eventProcessorHostMock.Setup(ep => ep.UnregisterEventProcessorAsync()).Returns(Task.CompletedTask);
-            var service = new MachineLiveDataService(_machineLiveDataEventProcessorFactoryMock.Object);
+            var service = new MachineLiveDataService(_machineLiveDataEventProcessorFactoryMock.Object, _loggerMock.Object);
 
             await service.UnregisterHubAsync();
 

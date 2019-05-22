@@ -48,7 +48,7 @@ dotnet user-secrets set "TapioCloud:ClientID" "XYZ"
 dotnet user-secrets set "TapioCloud:ClientSecret" "XYZ"
 ```
 
-If you tend to use streaming data you need to configure your [azure event hub](https://azure.microsoft.com/de-de/services/event-hubs/) instance and provide the according connection strings also. A way for local offline usage will be provided later on
+If you want to use streaming data you need to configure your [azure event hub](https://azure.microsoft.com/de-de/services/event-hubs/) instance and provide the according connection strings. A service for local live data generation will be added later on
 
 ```PowerShell
 cd .\src\web\

@@ -1,29 +1,27 @@
 using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
-using Aitgmbh.Tapio.Developerapp.Web.Services;
-using Microsoft.Azure.EventHubs;
 using Microsoft.Azure.EventHubs.Processor;
+using Microsoft.Extensions.Logging;
 
 namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
 {
     public class MachineLiveDataService : IMachineLiveDataService
     {
         private readonly IMachineLiveDataEventProcessorFactory _dataEventProcessorFactory;
-        private Func<string, dynamic, Task> _func;
+        private readonly ILogger<MachineLiveDataService> _logger;
+        private Func<string, MachineLiveDataContainer, Task> _callback;
         private IEventProcessorHostInterface _processorHost;
         private bool _readerEnabled;
 
-
-        public MachineLiveDataService(IMachineLiveDataEventProcessorFactory dataEventProcessorFactory)
+        public MachineLiveDataService(IMachineLiveDataEventProcessorFactory dataEventProcessorFactory, ILogger<MachineLiveDataService> logger)
         {
             _dataEventProcessorFactory = dataEventProcessorFactory ?? throw new ArgumentNullException(nameof(dataEventProcessorFactory));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         public bool IsReaderEnabled() => _readerEnabled;
 
-
-        public async Task ReadHubAsync()
+        public async Task RegisterHubAsync()
         {
             if (IsReaderEnabled())
             {
@@ -32,6 +30,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
 
             if (_processorHost == null)
             {
+                _logger.LogInformation("Create event processor host");
                 _processorHost = _dataEventProcessorFactory.CreateEventProcessorHost();
             }
 
@@ -40,21 +39,24 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
             var options = new EventProcessorOptions();
             options.SetExceptionHandler(e =>
             {
-                Trace.TraceError(e.Exception.Message);
+                _logger.LogWarning(e.Exception, "Error received from event processor. Action: {0} Hostname: {1} PartitionId: {2}", e.Action, e.Hostname, e.PartitionId);
+
             });
+            _logger.LogInformation("Connect to azure event hub");
             await _processorHost.RegisterEventProcessorFactoryAsync(_dataEventProcessorFactory, options);
             _readerEnabled = true;
         }
 
-        public void SetCallback(Func<string, dynamic, Task> func)
+        public void SetCallback(Func<string, MachineLiveDataContainer, Task> callback)
         {
-            _func = func;
+            _callback = callback;
         }
 
         public async Task UnregisterHubAsync()
         {
             if (IsReaderEnabled())
             {
+                _logger.LogInformation("Disconnect from azure event hub");
                 await _processorHost.UnregisterEventProcessorAsync();
                 _readerEnabled = false;
             }
@@ -63,21 +65,18 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
         private async Task HandleProcessEventsAsync(string data)
         {
             var result = MaterialLiveDataContainerExtension.FromJson(data);
-            await _func(result.MachineId, result);
+            await _callback(result.MachineId, result);
         }
     }
 
     public interface IMachineLiveDataService
     {
-        Task ReadHubAsync();
+        Task RegisterHubAsync();
 
         bool IsReaderEnabled();
 
-        void SetCallback(Func<string, dynamic, Task> func);
+        void SetCallback(Func<string, MachineLiveDataContainer, Task> callback);
 
         Task UnregisterHubAsync();
     }
-
-
-
 }

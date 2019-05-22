@@ -31,7 +31,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
             {
                 if (!_machineLiveDataService.IsReaderEnabled())
                 {
-                    await _machineLiveDataService.ReadHubAsync();
+                    await _machineLiveDataService.RegisterHubAsync();
                 }
                 return new HttpResponseMessage(HttpStatusCode.OK);
             }
@@ -42,7 +42,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
             }
         }
 
-        private async Task SendAsync(string machineId, object data)
+        private async Task SendAsync(string machineId, MachineLiveDataContainer data)
         {
             await _hub.Clients.Group(machineId).SendAsync("streamMachineData", data);
         }

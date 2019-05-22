@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { SignalRService } from "../shared/services/signalr.service";
 import { Subject, Subscription } from "rxjs";
-import * as moment from "moment";
+import { MachineLiveDataContainer } from "./scenario-machinelivedata.models";
 
 @Injectable()
 export class MachineLiveDataService extends SignalRService {
@@ -36,7 +36,9 @@ export class MachineLiveDataService extends SignalRService {
         if (this.data$.isStopped) {
             this.data$ = new Subject<MachineLiveDataContainer>();
         }
-        this.hubConnection.on("streamMachineData", data => this.invokeNewData(data));
+        this.hubConnection.on("streamMachineData", data =>
+            this.invokeNewData(Object.assign(new MachineLiveDataContainer(), data))
+        );
         this.hasActiveDataListener = true;
         return this.data$;
     }
@@ -53,25 +55,4 @@ export class MachineLiveDataService extends SignalRService {
     private invokeNewData(data: MachineLiveDataContainer): void {
         this.data$.next(data);
     }
-}
-
-export enum MessageTypes {
-    ItemData = "itd",
-    Condition = "cond",
-    ConditionRefreshStart = "conds",
-    ConditionRefreshEnd = "conde",
-    OfflineMessage = "gooffline"
-}
-
-export class MachineLiveDataContainer {
-    public tmid: string;
-    public msgid: string;
-    public msgts: moment.Moment | string;
-    public msgt: string;
-    public msg: Message;
-}
-
-export class Message {
-    public k: string;
-    public s: string;
 }
