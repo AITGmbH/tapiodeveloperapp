@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
+import { NotFoundComponent } from './shared/components/not-found.component';
 
 const routes: Routes = [
     {
@@ -29,6 +30,10 @@ const routes: Routes = [
     {
         path: 'scenario-userdata',
         loadChildren: './scenario-userdata/scenario-userdata.module#ScenarioUserDataModule'
+    },
+    {
+        path: '**',
+        component: NotFoundComponent
     }
 ];
 

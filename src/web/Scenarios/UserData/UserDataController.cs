@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -16,7 +17,13 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.UserData
 
         public UserDataController(IUserDataService userDataService)
         {
-            _userDataService = userDataService;
+            _userDataService = userDataService ?? throw new ArgumentNullException(nameof(userDataService));
         }
+     
+        [HttpGet("clientId")]
+        public ActionResult<string> GetClientId()
+        {
+            return Ok(_userDataService.GetClientId());
+        }   
     }
 }
