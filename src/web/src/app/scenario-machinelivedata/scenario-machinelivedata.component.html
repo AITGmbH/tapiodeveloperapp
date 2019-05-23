@@ -1,4 +1,5 @@
-<app-scenario title="Machine Live Data" id="machine-live-data-scenario" class="has-text-left">
+<app-scenario title="Machine Live Data" id="machine-live-data-scenario" description="This scenario demonstrates displaying a data stream of live machine data coming from an Azure Eventhub. SignalR is used to push updates to the client/browser.
+    Please note that currently data is available only for 'Testmaschine 02'." class="has-text-left">
     <app-select-machine (change)="selectedMachineChanged($event)">
     </app-select-machine>
 
