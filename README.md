@@ -1,4 +1,4 @@
-# Tapio DeveloperApp
+# tapio DeveloperApp
 
 > A show case for [tapio](https://tapio.one/)
 
@@ -87,6 +87,11 @@ Settings
 * TapioCloud:ClientID XYZ
 * TapioCloud:ClientSecret XYZ
 
+## Legal Notice
+
+You can find the Legal Notice - Impressum on (https://www.aitgmbh.de/impressum/).
+
 ## License
 
 Licensed under [MIT License](LICENSE)
+
