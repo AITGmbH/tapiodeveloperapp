@@ -28,20 +28,16 @@ div.scenario-description {
     margin-bottom: 8px;
 }
 
-.developer-links>a:not(:last-child) {
+.developer-links > a:not(:last-child) {
     margin-right: 6px;
 }
 
-.developer-links>a .ng-fa-icon {
+.developer-links > a .ng-fa-icon {
     margin-right: 5px;
 }
 
-div.developer-links>a {
+div.developer-links > a {
     color: white;
-}
-
-div.developer-links>a:hover {
-    color: #00ff8c;
 }
 
 .actual-content {

@@ -1,4 +1,4 @@
-# Tapio DeveloperApp
+# tapio DeveloperApp
 
 > A show case for [tapio](https://tapio.one/)
 
@@ -100,6 +100,10 @@ Settings
 - EventHub:EventHubConnectionString XYZ
 - EventHub:StorageContainerName XYZ
 - EventHub:StorageConnectionString XYZ
+
+## Legal Notice
+
+You can find the Legal Notice - [Impressum](https://www.aitgmbh.de/impressum/).
 
 ## License
 

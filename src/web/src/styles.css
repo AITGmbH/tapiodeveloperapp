@@ -18,6 +18,10 @@ h3.title.is-3 {
     margin: 15px 0;
 }
 
+a.has-text-white:hover {
+    color: #00ff8c !important;
+}
+
 /**
   Start Spinner
   Source: https://github.com/tobiasahlin/SpinKit
