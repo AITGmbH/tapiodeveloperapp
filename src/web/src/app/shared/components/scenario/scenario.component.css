@@ -40,10 +40,6 @@ div.developer-links > a {
   color: white;
 }
 
-div.developer-links > a:hover {
-  color: #00ff8c;
-}
-
 .actual-content {
   background: #000;
   min-height: 43rem;

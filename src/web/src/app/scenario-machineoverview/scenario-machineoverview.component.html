@@ -1,8 +1,8 @@
-<app-scenario title="Machine Overview" id="machine-overview-scenario">
-  <p>
-    All the assigned subscriptions with its assigned machines
-  </p>
-  <div>
+<app-scenario 
+  title="Machine Overview"
+  id="machine-overview-scenario"
+  description="This scenario displays all the machines which are assigned to the tapio developer app application as well as their respective subscriptions.</br>
+  It uses the tapio SelfService GlobalDiscoveryService API.">
     <div class="tile is-ancestor" *ngIf="(subscriptions$ | async); else loadingOrError">
       <div class="tile is-parent is-3" *ngFor="let subscription of subscriptions$ | async">
         <div class="card">
@@ -19,7 +19,6 @@
         </div>
       </div>
     </div>
-  </div>
 </app-scenario>
 
 <ng-template #loadingOrError>
