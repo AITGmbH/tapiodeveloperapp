@@ -51,6 +51,9 @@
 
 footer.footer {
   padding: 2rem 1rem 3rem 1rem;
+  font-family: audimat, sans-serif;
+  background-color: #000;
+  color: #FFF;
 }
 
 .is-single-line {
