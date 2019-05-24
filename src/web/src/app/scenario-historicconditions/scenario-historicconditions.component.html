@@ -1,7 +1,10 @@
 <app-scenario
   title="Historic Conditions"
   id="historic-conditions-scenario"
-  class="has-text-left">
+  class="has-text-left"
+  description="This scenario uses the condition data API to receive the state of conditions over a specific time interval. 
+  The entries are ordered by duration, starting with the longest. By clicking on any row inside the table you can view the actual JSON resonse of the API. 
+  Please note that currently data is available only for 'Testmaschine 02'. Selecting a time interval larger than 1 day will cause a lot of data being transferred and processed, which can lead to your browser to being unresponsive.">
   <div>
     <app-select-machine
       (change)="selectedMachineChanged($event)">
