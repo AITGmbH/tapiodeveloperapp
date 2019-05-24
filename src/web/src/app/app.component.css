@@ -56,10 +56,6 @@ footer.footer {
   color: #FFF;
 }
 
-a.has-text-white:hover {
-  color: #00ff8c !important;
-}
-
 .is-single-line {
     white-space: nowrap;
 }
