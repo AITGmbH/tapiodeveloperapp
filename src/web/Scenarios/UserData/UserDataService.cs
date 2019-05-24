@@ -1,10 +1,5 @@
 using System;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading;
-using System.Threading.Tasks;
 using Aitgmbh.Tapio.Developerapp.Web.Configurations;
-using Aitgmbh.Tapio.Developerapp.Web.Services;
 using Microsoft.Extensions.Options;
 
 namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.UserData
@@ -17,7 +12,8 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.UserData
             _clientId = options?.Value?.ClientId ?? throw new ArgumentNullException(nameof(options));
         }
 
-        public string GetClientId() {
+        public string GetClientId()
+        {
             return _clientId;
         }
     }
