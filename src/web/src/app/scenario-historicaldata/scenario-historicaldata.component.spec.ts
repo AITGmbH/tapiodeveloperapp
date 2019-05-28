@@ -4,7 +4,7 @@ import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { ScenarioHistoricaldataComponent } from "./scenario-historicaldata.component";
 import { SharedModule } from "../shared/shared.module";
 import { HistoricalDataService } from "./scenario-historicaldata.service";
-import { DebugElement } from "@angular/core";
+import { DebugElement, Component, Directive } from "@angular/core";
 import { of, throwError } from "rxjs";
 import { SourceKeys } from "./source-keys.model";
 import { NgxChartsModule } from "@swimlane/ngx-charts";
@@ -14,16 +14,30 @@ const sourceKeysMock: SourceKeys = {
     keys: ["Energy!AirPressure", "Energy!ElectricPower"]
 };
 
+export function MockDirective(options: Component): Directive {
+    const metadata: Directive = {
+        selector: options.selector,
+        inputs: options.inputs,
+        outputs: options.outputs
+    };
+
+    return Directive(metadata)(class _ {}) as any;
+}
 describe("ScenarioHistoricaldataComponent", () => {
     let component: ScenarioHistoricaldataComponent;
     let fixture: ComponentFixture<ScenarioHistoricaldataComponent>;
     let historicalDataService: HistoricalDataService;
     let element: DebugElement;
-
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ScenarioHistoricaldataComponent],
-            imports: [SharedModule, HttpClientTestingModule, NgxChartsModule],
+            declarations: [
+                ScenarioHistoricaldataComponent,
+                MockDirective({
+                    selector: "ngx-charts-line-chart",
+                    inputs: ["xAxis", "yAxis", "showGridLines", "roundDomains", "autoScale", "results"]
+                })
+            ],
+            imports: [SharedModule, HttpClientTestingModule],
             providers: [HistoricalDataService]
         }).compileComponents();
     }));
@@ -55,7 +69,9 @@ describe("ScenarioHistoricaldataComponent", () => {
     });
 
     it("should show error on api-error", async () => {
-        const getSourceKeysSpy = spyOn(historicalDataService, "getSourceKeys").and.returnValue(throwError(new Error('test')));
+        const getSourceKeysSpy = spyOn(historicalDataService, "getSourceKeys").and.returnValue(
+            throwError(new Error("test"))
+        );
         fixture.detectChanges();
         expect(getSourceKeysSpy).toHaveBeenCalledTimes(0);
         const machineId = "1";
