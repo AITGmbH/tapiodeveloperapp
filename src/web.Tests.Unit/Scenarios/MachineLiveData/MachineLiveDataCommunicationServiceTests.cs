@@ -20,7 +20,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.Scenarios.MachineLiveData
         }
 
         [Fact]
-        public async Task RegisterCallback_WhenCalled_CallsThrough()
+        public void RegisterCallback_WhenCalled_CallsThrough()
         {
             _machineLiveDataServiceMock.Setup(e => e.RegisterHubAsync()).Returns(Task.CompletedTask);
             _machineLiveDataServiceMock.Setup(e => e.SetCallback(It.IsAny<Func<string, MachineLiveDataContainer, Task>>()));
