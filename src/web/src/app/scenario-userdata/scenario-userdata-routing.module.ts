@@ -1,11 +1,15 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { ScenarioUserDataComponent } from './scenario-userdata.component';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+import { ScenarioUserDataComponent } from "./scenario-userdata.component";
 
 const routes: Routes = [
   {
-      path: "",
-      component: ScenarioUserDataComponent
+    path: "",
+    component: ScenarioUserDataComponent
+  },
+  {
+    path: "logout",
+    loadChildren: "./userdata-logout/userdata-logout.module#LogoutModule"
   }
 ];
 
@@ -13,4 +17,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ScenarioUserDataRoutingModule { }
+export class ScenarioUserDataRoutingModule {}

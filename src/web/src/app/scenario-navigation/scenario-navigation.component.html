@@ -1,7 +1,7 @@
 <div *ngIf="scenarioEntries$ | async as scenarioEntries">
     <ul id="nav-scenarios">
         <ng-container *ngFor="let scenarioEntry of scenarioEntries">
-            <ng-container *ngIf="!scenarioEntry.caption.includes('User')">
+            <ng-container *ngIf="!bottomNavigationScenarioUrls.includes(scenarioEntry.url)">
                 <li>
                     <a routerLink="{{ scenarioEntry.url }}" class="has-text-white">{{ scenarioEntry.caption }}</a>
                 </li>
@@ -10,7 +10,7 @@
     </ul>
     <ul id="nav-user">
         <ng-container *ngFor="let scenarioEntry of scenarioEntries">
-            <ng-container *ngIf="scenarioEntry.caption.includes('User')">
+            <ng-container *ngIf="bottomNavigationScenarioUrls.includes(scenarioEntry.url)">
                 <li>
                     <a routerLink="{{ scenarioEntry.url }}" class="has-text-white">{{ scenarioEntry.caption }}</a>
                 </li>

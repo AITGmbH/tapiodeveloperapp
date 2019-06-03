@@ -13,7 +13,7 @@ import { ScenarioEntry } from "../shared/models/scenario-entity.model";
 })
 export class ScenarioNavigationComponent implements OnInit {
     scenarioEntries$: Observable<ScenarioEntry[]>;
-
+    public bottomNavigationScenarioUrls: string[] = ["/scenario-userdata", "/scenario-userdata/logout"];
     constructor(private readonly scenarioNavigationService: ScenarioNavigationService) {}
 
     ngOnInit() {

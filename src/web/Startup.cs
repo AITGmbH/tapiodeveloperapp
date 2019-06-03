@@ -44,6 +44,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web
                 .AddSingleton<IScenarioRepository, ScenarioRepository>()
                 .AddSingleton<ITokenProvider, TokenProvider>()
                 .AddSingleton<OptionsValidator>()
+                .AddSingleton<IUserDataService, UserDataService>()
                 .AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services
@@ -56,8 +57,8 @@ namespace Aitgmbh.Tapio.Developerapp.Web
                 .AddHttpClient<IHistoricalDataService, HistoricalDataService>();
             services
                 .AddHttpClient<IHistoricConditionsService, HistoricConditionsService>();
-            services
-                .AddHttpClient<IUserDataService, UserDataService>();
+            // services
+            //     .AddHttpClient<IUserDataService, UserDataService>();
             services
                 .AddOptions<TapioCloudCredentials>()
                 .Bind(Configuration.GetSection("TapioCloud"))
