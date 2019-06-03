@@ -45,6 +45,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web
                 .AddSingleton<ITokenProvider, TokenProvider>()
                 .AddSingleton<OptionsValidator>()
                 .AddSingleton<IMachineLiveDataService, MachineLiveDataService>()
+                .AddSingleton<IMachineLiveDataCommunicationService, MachineLiveDataCommunicationService>()
                 .AddSingleton<IEvenHubCredentialProvider, EventHubCredentialProvider>()
                 .AddSingleton<IMachineLiveDataEventProcessorFactory, MachineLiveDataEventProcessorFactory>()
                 .AddMvc()
@@ -71,7 +72,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web
             services.AddSignalR();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, OptionsValidator optionsValidator)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, OptionsValidator optionsValidator, IServiceProvider serviceProvider, IApplicationLifetime applicationLifetime)
         {
             if (optionsValidator == null)
             {
@@ -88,6 +89,10 @@ namespace Aitgmbh.Tapio.Developerapp.Web
             }
 
             optionsValidator.Validate();
+            serviceProvider.GetService<IMachineLiveDataService>().RegisterHubAsync();
+            serviceProvider.GetService<IMachineLiveDataCommunicationService>().RegisterCallback();
+
+            applicationLifetime.ApplicationStopping.Register(async () => await serviceProvider.GetService<IMachineLiveDataService>().UnregisterHubAsync());
 
             app.Use(async (context, next) =>
             {

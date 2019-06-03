@@ -15,36 +15,5 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
     [Route("api/[controller]")]
     public class MachineLiveDataController : Controller
     {
-        private readonly IHubContext<MachineLiveDataHub> _hub;
-        private readonly IMachineLiveDataService _machineLiveDataService;
-        public MachineLiveDataController(IHubContext<MachineLiveDataHub> hub, IMachineLiveDataService machineLiveDataService)
-        {
-            _hub = hub ?? throw new ArgumentNullException(nameof(hub));
-            _machineLiveDataService = machineLiveDataService ?? throw new ArgumentNullException(nameof(machineLiveDataService));
-            _machineLiveDataService.SetCallback(SendAsync);
-        }
-
-        [HttpGet]
-        public async Task<HttpResponseMessage> Get()
-        {
-            try
-            {
-                if (!_machineLiveDataService.IsReaderEnabled())
-                {
-                    await _machineLiveDataService.RegisterHubAsync();
-                }
-                return new HttpResponseMessage(HttpStatusCode.OK);
-            }
-            catch (Exception e)
-            {
-                Trace.TraceError(e.Message);
-                return new HttpResponseMessage(HttpStatusCode.InternalServerError);
-            }
-        }
-
-        private async Task SendAsync(string machineId, MachineLiveDataContainer data)
-        {
-            await _hub.Clients.Group(machineId).SendAsync("streamMachineData", data);
-        }
     }
 }

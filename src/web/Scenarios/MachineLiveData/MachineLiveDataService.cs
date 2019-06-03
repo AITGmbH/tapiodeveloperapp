@@ -10,7 +10,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
         private readonly IMachineLiveDataEventProcessorFactory _dataEventProcessorFactory;
         private readonly ILogger<MachineLiveDataService> _logger;
         private Func<string, MachineLiveDataContainer, Task> _callback;
-        private IEventProcessorHostInterface _processorHost;
+        private IEventProcessorHost _processorHost;
         private bool _readerEnabled;
 
         public MachineLiveDataService(IMachineLiveDataEventProcessorFactory dataEventProcessorFactory, ILogger<MachineLiveDataService> logger)
@@ -65,7 +65,10 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
         private async Task HandleProcessEventsAsync(string data)
         {
             var result = MaterialLiveDataContainerExtension.FromJson(data);
-            await _callback(result.MachineId, result);
+            if (_callback != null)
+            {
+                await _callback(result.MachineId, result);
+            }
         }
     }
 

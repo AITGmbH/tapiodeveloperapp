@@ -2,8 +2,8 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { BehaviorSubject, Subject } from "rxjs";
 import { take } from "rxjs/internal/operators/take";
 import { filter } from "rxjs/operators";
-import { MachineLiveDataContainer } from "./scenario-machinelivedata.models";
 import { MachineLiveDataService } from "./scenario-machinelivedata.service";
+import { MachineLiveDataContainer } from "./scenario-machinelivedata.models";
 
 @Component({
     selector: "app-scenario-machinelivedata",
@@ -34,7 +34,6 @@ export class ScenarioMachineLiveDataComponent implements OnInit, OnDestroy {
             this.selectedMachine = machineId;
             await this.machineLiveDataService.joinGroupAsync(this.selectedMachine);
             this.startDataListener();
-            this.machineLiveDataService.startRequest();
         }
     }
 

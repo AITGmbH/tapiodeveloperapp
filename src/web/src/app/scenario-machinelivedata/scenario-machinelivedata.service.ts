@@ -48,10 +48,6 @@ export class MachineLiveDataService extends SignalRService {
         this.hasActiveDataListener = false;
     }
 
-    public startRequest(): Subscription {
-        return this.http.get(`/api/machinelivedata`).subscribe(() => console.log("Event hub invoked"));
-    }
-
     private invokeNewData(data: MachineLiveDataContainer): void {
         this.data$.next(data);
     }

@@ -3,13 +3,12 @@ import { HttpClientTestingModule } from "@angular/common/http/testing";
 
 import { SharedModule } from "../shared/shared.module";
 import { DebugElement, Component, Directive } from "@angular/core";
-import { of, Subject, Subscription } from "rxjs";
+import { of, Subject } from "rxjs";
 import { ScenarioMachineLiveDataComponent } from "./scenario-machinelivedata.component";
 import { Message, MachineLiveDataContainer } from "./scenario-machinelivedata.models";
 import { MachineLiveDataService } from "./scenario-machinelivedata.service";
 
 const voidPromiseMock = Promise.resolve();
-const subcriptionMock = new Subscription();
 const machineLiveDataContainerMock = Object.assign(new MachineLiveDataContainer(), {
     msgid: "1234",
     msgt: "itd",
@@ -78,7 +77,6 @@ describe("ScenarioMachineLiveDataComponent", () => {
         const addDataListenerSpy = spyOn(machineLiveDataService, "addDataListener").and.callFake(
             () => dataContainerSubject
         );
-        const startRequestSpy = spyOn(machineLiveDataService, "startRequest").and.returnValue(of(subcriptionMock));
         const addElementSpy = spyOn<any>(component, "addElement").and.callThrough();
 
         fixture.detectChanges();
@@ -91,7 +89,6 @@ describe("ScenarioMachineLiveDataComponent", () => {
         expect(joinGroupAsyncSpy).toHaveBeenCalled();
         expect(joinGroupAsyncSpy).toHaveBeenCalledWith(machineId);
         expect(addDataListenerSpy).toHaveBeenCalled();
-        expect(startRequestSpy).toHaveBeenCalled();
         expect(addElementSpy).toHaveBeenCalled();
         expect(component.itemData$.getValue()).toContain(dataItemMock);
         expect(element.nativeElement.querySelectorAll("div.datatable-cell-value")[0].innerText).toEqual(keyName);
@@ -114,7 +111,6 @@ describe("ScenarioMachineLiveDataComponent", () => {
         const addDataListenerSpy = spyOn(machineLiveDataService, "addDataListener").and.callFake(
             () => dataContainerSubject
         );
-        const startRequestSpy = spyOn(machineLiveDataService, "startRequest").and.returnValue(of(subcriptionMock));
         const addElementSpy = spyOn<any>(component, "addElement").and.callThrough();
 
         fixture.detectChanges();
@@ -127,7 +123,6 @@ describe("ScenarioMachineLiveDataComponent", () => {
         expect(joinGroupAsyncSpy).toHaveBeenCalled();
         expect(joinGroupAsyncSpy).toHaveBeenCalledWith(machineId);
         expect(addDataListenerSpy).toHaveBeenCalled();
-        expect(startRequestSpy).toHaveBeenCalled();
         expect(addElementSpy).toHaveBeenCalled();
         expect(component.conditionData$.getValue()).toContain(dataItemMock);
         expect(element.nativeElement.querySelectorAll("div.datatable-cell-value")[0].innerText).toEqual(keyName);
@@ -141,7 +136,6 @@ describe("ScenarioMachineLiveDataComponent", () => {
         spyOn(machineLiveDataService, "addDataListener").and.callFake(() => {
             return new Subject<MachineLiveDataContainer>();
         });
-        spyOn(machineLiveDataService, "startRequest").and.returnValue(of(subcriptionMock));
         const joinGroupAsyncSpy = spyOn(machineLiveDataService, "joinGroupAsync").and.returnValue(of(voidPromiseMock));
 
         await component.selectedMachineChanged(machineId1);
@@ -175,7 +169,6 @@ describe("ScenarioMachineLiveDataComponent", () => {
         const addDataListenerSpy = spyOn(machineLiveDataService, "addDataListener").and.callFake(
             () => dataContainerSubject
         );
-        const startRequestSpy = spyOn(machineLiveDataService, "startRequest").and.returnValue(of(subcriptionMock));
         const addElementSpy = spyOn<any>(component, "addElement").and.callThrough();
 
         fixture.detectChanges();
@@ -185,7 +178,6 @@ describe("ScenarioMachineLiveDataComponent", () => {
         fixture.detectChanges();
 
         expect(addDataListenerSpy).toHaveBeenCalled();
-        expect(startRequestSpy).toHaveBeenCalled();
         expect(addElementSpy).toHaveBeenCalled();
         expect(component.conditionData$.getValue()).toContain(dataItemMock1);
         expect(
@@ -225,7 +217,6 @@ describe("ScenarioMachineLiveDataComponent", () => {
         const addDataListenerSpy = spyOn(machineLiveDataService, "addDataListener").and.callFake(
             () => dataContainerSubject
         );
-        const startRequestSpy = spyOn(machineLiveDataService, "startRequest").and.returnValue(of(subcriptionMock));
         const addElementSpy = spyOn<any>(component, "addElement").and.callThrough();
         fixture.detectChanges();
 
@@ -234,7 +225,6 @@ describe("ScenarioMachineLiveDataComponent", () => {
         fixture.detectChanges();
 
         expect(addDataListenerSpy).toHaveBeenCalled();
-        expect(startRequestSpy).toHaveBeenCalled();
         expect(addElementSpy).toHaveBeenCalled();
         expect(component.conditionData$.getValue()).toContain(dataItemMock);
 
@@ -259,7 +249,6 @@ describe("ScenarioMachineLiveDataComponent", () => {
         spyOn(machineLiveDataService, "startConnectionAsync").and.returnValue(of(voidPromiseMock));
         spyOn(machineLiveDataService, "joinGroupAsync").and.returnValue(of(voidPromiseMock));
         spyOn(machineLiveDataService, "addDataListener").and.callFake(() => dataContainerSubject);
-        spyOn(machineLiveDataService, "startRequest").and.returnValue(of(subcriptionMock));
         const addElementSpy = spyOn<any>(component, "addElement").and.callThrough();
         fixture.detectChanges();
 

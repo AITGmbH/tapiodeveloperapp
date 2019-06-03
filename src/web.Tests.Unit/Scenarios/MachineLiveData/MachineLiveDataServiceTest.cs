@@ -26,7 +26,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.Scenarios.MachineLiveData
         [Fact]
         public async Task Should_ReadHubAsync_WithoutAnyExceptions()
         {
-            var eventProcessorHostMock = new Mock<IEventProcessorHostInterface>();
+            var eventProcessorHostMock = new Mock<IEventProcessorHost>();
             eventProcessorHostMock.Setup(ep => ep.RegisterEventProcessorFactoryAsync(It.IsAny<IEventProcessorFactory>(), It.IsAny<EventProcessorOptions>())).Returns(Task.CompletedTask);
             _machineLiveDataEventProcessorFactoryMock.Setup(f => f.CreateEventProcessorHost()).Returns(eventProcessorHostMock.Object);
             _machineLiveDataEventProcessorFactoryMock.Setup(f => f.SetCallback(It.IsAny<Func<string, Task>>()));
@@ -43,7 +43,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.Scenarios.MachineLiveData
         [Fact]
         public async Task Should_ReadHubAsync_WithReaderEnabled()
         {
-            var eventProcessorHostMock = new Mock<IEventProcessorHostInterface>();
+            var eventProcessorHostMock = new Mock<IEventProcessorHost>();
             eventProcessorHostMock.Setup(ep => ep.RegisterEventProcessorFactoryAsync(It.IsAny<IEventProcessorFactory>(), It.IsAny<EventProcessorOptions>())).Returns(Task.CompletedTask);
             _machineLiveDataEventProcessorFactoryMock.Setup(f => f.CreateEventProcessorHost()).Returns(eventProcessorHostMock.Object);
             _machineLiveDataEventProcessorFactoryMock.Setup(f => f.SetCallback(It.IsAny<Func<string, Task>>()));
@@ -61,7 +61,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.Scenarios.MachineLiveData
         [Fact]
         public async Task Should_UnregisterHubAsync_WithReaderEnabled()
         {
-            var eventProcessorHostMock = new Mock<IEventProcessorHostInterface>();
+            var eventProcessorHostMock = new Mock<IEventProcessorHost>();
             eventProcessorHostMock.Setup(ep => ep.RegisterEventProcessorFactoryAsync(It.IsAny<IEventProcessorFactory>(), It.IsAny<EventProcessorOptions>())).Returns(Task.CompletedTask);
             eventProcessorHostMock.Setup(ep => ep.UnregisterEventProcessorAsync()).Returns(Task.CompletedTask);
             _machineLiveDataEventProcessorFactoryMock.Setup(f => f.CreateEventProcessorHost()).Returns(eventProcessorHostMock.Object);
@@ -78,7 +78,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.Scenarios.MachineLiveData
         [Fact]
         public async Task Should_UnregisterHubAsync_WithReaderDisabled()
         {
-            var eventProcessorHostMock = new Mock<IEventProcessorHostInterface>();
+            var eventProcessorHostMock = new Mock<IEventProcessorHost>();
             eventProcessorHostMock.Setup(ep => ep.UnregisterEventProcessorAsync()).Returns(Task.CompletedTask);
             var service = new MachineLiveDataService(_machineLiveDataEventProcessorFactoryMock.Object, _loggerMock.Object);
 
