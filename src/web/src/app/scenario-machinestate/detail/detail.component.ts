@@ -1,13 +1,9 @@
-import { Component, OnInit, ViewChild, Input } from "@angular/core";
-import {
-    MachineStateService,
-    ItemData,
-    Condition
-} from "../scenario-machinestate-service";
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { MachineStateService, ItemData, Condition } from "../scenario-machinestate-service";
 import { ActivatedRoute } from "@angular/router";
-import { Observable, of, BehaviorSubject, Subject, Subscription } from "rxjs";
+import { Observable, of, Subject, Subscription } from "rxjs";
 import { DatatableComponent } from "@swimlane/ngx-datatable";
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
     selector: "app-scenario-machinestate-detail",

@@ -1,6 +1,5 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
-import { NgxDatatableModule } from "@swimlane/ngx-datatable";
 
 import { SharedModule } from "../shared/shared.module";
 import { ScenarioMachineLiveDataComponent } from "./scenario-machinelivedata.component";
@@ -10,7 +9,7 @@ import { LiveDataUpdateDirective } from "./scenario-machinelivedata-differ.direc
 
 @NgModule({
     declarations: [ScenarioMachineLiveDataComponent, LiveDataUpdateDirective],
-    imports: [CommonModule, ScenarioMachineLiveDataRoutingModule, SharedModule, NgxDatatableModule],
+    imports: [CommonModule, ScenarioMachineLiveDataRoutingModule, SharedModule],
     providers: [MachineLiveDataService]
 })
 export class ScenarioMachineLiveDataModule {}

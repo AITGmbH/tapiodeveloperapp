@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Observable, of } from "rxjs";
+import { BehaviorSubject } from "rxjs";
 import { ScenarioNavigationService } from "./scenario-navigation.service";
 import { ScenarioEntry } from "../shared/models/scenario-entity.model";
 
@@ -12,13 +12,14 @@ import { ScenarioEntry } from "../shared/models/scenario-entity.model";
     styleUrls: ["./scenario-navigation.component.css"]
 })
 export class ScenarioNavigationComponent implements OnInit {
-    scenarioEntries$: Observable<ScenarioEntry[]>;
+    private scenarioEntries: BehaviorSubject<ScenarioEntry[]> = new BehaviorSubject<ScenarioEntry[]>([]);
+    scenarioEntries$ = this.scenarioEntries.asObservable();
 
-    constructor(private readonly scenarioNavigationService: ScenarioNavigationService) { }
+    constructor(private readonly scenarioNavigationService: ScenarioNavigationService) {}
 
     ngOnInit() {
-        this.scenarioNavigationService.getEntries().subscribe((data) => {
-            this.scenarioEntries$ = of(data);
+        this.scenarioNavigationService.getEntries().subscribe(data => {
+            this.scenarioEntries.next(data);
         });
     }
 }

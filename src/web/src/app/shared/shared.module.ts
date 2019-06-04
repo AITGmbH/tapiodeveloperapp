@@ -17,7 +17,7 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from "ng-pick-datetime";
 import { MachineOverviewService } from "../scenario-machineoverview/scenario-machineoverview.service";
 import { ScenarioNavigationService } from "../scenario-navigation/scenario-navigation.service";
 import { AvailableMachinesService } from "./services/available-machines.service";
-import { SignalRService } from "./services/signalr.service";
+import { NgxChartsModule } from "@swimlane/ngx-charts";
 
 library.add(faGithub, fas);
 
@@ -25,15 +25,12 @@ library.add(faGithub, fas);
  * Provides access to shared functionality.
  */
 @NgModule({
-    declarations: [
-        ScenarioComponent,
-        SelectMachineComponent,
-        DateRangeComponent
-    ],
+    declarations: [ScenarioComponent, SelectMachineComponent, DateRangeComponent],
     imports: [
         CommonModule,
         FontAwesomeModule,
         NgxDatatableModule,
+        NgxChartsModule,
         NgSelectModule,
         FormsModule,
         OwlDateTimeModule,
@@ -43,10 +40,13 @@ library.add(faGithub, fas);
         ScenarioComponent,
         FontAwesomeModule,
         NgxDatatableModule,
+        NgxChartsModule,
         SelectMachineComponent,
         NgSelectModule,
         FormsModule,
-        DateRangeComponent
+        DateRangeComponent,
+        OwlDateTimeModule,
+        OwlNativeDateTimeModule
     ],
     providers: [
         HistoricalDataService,

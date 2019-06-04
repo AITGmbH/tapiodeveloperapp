@@ -1,33 +1,44 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { ScenarioMachinestateComponent } from "./scenario-machinestate.component";
+import { MachineStateService } from "./scenario-machinestate-service";
+import { of } from "rxjs";
+import { SharedModule } from "../shared/shared.module";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { ScenarioMachinestateDetailComponent } from "./detail/detail.component";
+import { Router, ActivatedRoute } from "@angular/router";
 
-import { ScenarioMachinestateComponent } from './scenario-machinestate.component';
-import * as moq from 'typemoq';
-import { MachineStateService } from './scenario-machinestate-service';
-import { of } from 'rxjs';
-import { RouterTestingModule } from '@angular/router/testing';
-import { SharedModule } from '../shared/shared.module';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ScenarioMachinestateDetailComponent } from './detail/detail.component';
+const routerStub = {
+    navigate(value: any) {
+        return Promise.resolve(() => true);
+    }
+};
 
-describe('ScenarioMachinestateComponent', () => {
+const activatedRouteStub = {
+    params: of({
+        tmid: "ABC"
+    }),
+    snapshot: {
+        params: {
+            tmid: "ABC"
+        }
+    }
+};
+
+describe("ScenarioMachinestateComponent", () => {
     let component: ScenarioMachinestateComponent;
     let fixture: ComponentFixture<ScenarioMachinestateComponent>;
-    const machineStateServiceMock = moq.Mock.ofType<MachineStateService>();
-    machineStateServiceMock
-        .setup(mss => mss.getMachines())
-        .returns(
-            () => of([])
-        );
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [ RouterTestingModule, SharedModule, HttpClientTestingModule ],
-            declarations: [ ScenarioMachinestateComponent, ScenarioMachinestateDetailComponent ],
+            imports: [SharedModule, HttpClientTestingModule],
+            declarations: [ScenarioMachinestateComponent, ScenarioMachinestateDetailComponent],
+
             providers: [
-                { provide: MachineStateService, useFactory: () => machineStateServiceMock.object }
+                MachineStateService,
+                { provide: Router, useValue: routerStub },
+                { provide: ActivatedRoute, useValue: activatedRouteStub }
             ]
-        })
-        .compileComponents();
+        }).compileComponents();
     }));
 
     beforeEach(() => {
@@ -36,7 +47,7 @@ describe('ScenarioMachinestateComponent', () => {
         fixture.detectChanges();
     });
 
-    it('should create', () => {
+    it("should create", () => {
         expect(component).toBeTruthy();
     });
 });
