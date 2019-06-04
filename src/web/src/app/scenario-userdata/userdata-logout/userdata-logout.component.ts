@@ -28,11 +28,10 @@ export class LogoutComponent implements OnInit {
   }
 
   logout() {
-    const redirectUri = window.location.origin;
+    const redirectUri = window.location.origin + "/scenario-userdata/logout";
     const encodedRedirectUri = encodeURIComponent(redirectUri);
-    // should be handled inside notfoundcomponent, if post_logout_redirect_uri works.
     this.localStorageService.remove("OAuthToken");
 
-    window.location.href = `https://login.microsoftonline.com/tapiousers.onmicrosoft.com/oauth2/v2.0/logout?post_logout_redirect_uri=${encodedRedirectUri}`;
+    window.location.href = `https://login.microsoftonline.com/tapiousers.onmicrosoft.com/oauth2/v2.0/logout?post_logout_redirect_uri=${encodedRedirectUri}&p=B2C_1A_Tapio_Signin`;
   }
 }
