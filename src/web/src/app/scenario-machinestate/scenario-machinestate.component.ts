@@ -12,7 +12,7 @@ export class ScenarioMachinestateComponent implements OnInit {
     initialMachineId: string;
 
     constructor(
-        private machineStateService: MachineStateService,
+        private readonly machineStateService: MachineStateService,
         private readonly router: Router,
         private readonly route: ActivatedRoute
     ) {}
