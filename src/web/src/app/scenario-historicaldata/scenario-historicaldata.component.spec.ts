@@ -7,22 +7,13 @@ import { HistoricalDataService } from "./scenario-historicaldata.service";
 import { DebugElement, Component, Directive } from "@angular/core";
 import { of, throwError } from "rxjs";
 import { SourceKeys } from "./source-keys.model";
-import { NgxChartsModule } from "@swimlane/ngx-charts";
+import { RouterTestingModule } from "@angular/router/testing";
 
 const sourceKeysMock: SourceKeys = {
     tmid: "1",
     keys: ["Energy!AirPressure", "Energy!ElectricPower"]
 };
 
-export function MockDirective(options: Component): Directive {
-    const metadata: Directive = {
-        selector: options.selector,
-        inputs: options.inputs,
-        outputs: options.outputs
-    };
-
-    return Directive(metadata)(class _ {}) as any;
-}
 describe("ScenarioHistoricaldataComponent", () => {
     let component: ScenarioHistoricaldataComponent;
     let fixture: ComponentFixture<ScenarioHistoricaldataComponent>;
@@ -30,14 +21,8 @@ describe("ScenarioHistoricaldataComponent", () => {
     let element: DebugElement;
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [
-                ScenarioHistoricaldataComponent,
-                MockDirective({
-                    selector: "ngx-charts-line-chart",
-                    inputs: ["xAxis", "yAxis", "showGridLines", "roundDomains", "autoScale", "results"]
-                })
-            ],
-            imports: [SharedModule, HttpClientTestingModule],
+            declarations: [ScenarioHistoricaldataComponent],
+            imports: [SharedModule, HttpClientTestingModule, RouterTestingModule],
             providers: [HistoricalDataService]
         }).compileComponents();
     }));
