@@ -1,8 +1,4 @@
 import { TestBed, ComponentFixture } from "@angular/core/testing";
-<<<<<<< HEAD
-=======
-
->>>>>>> master
 import { ScenarioNavigationComponent } from "./scenario-navigation.component";
 import { of } from "rxjs";
 import { By } from "@angular/platform-browser";
