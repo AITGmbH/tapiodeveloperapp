@@ -37,6 +37,7 @@ library.add(faGithub, fas);
         OwlNativeDateTimeModule
     ],
     exports: [
+        CommonModule,
         ScenarioComponent,
         FontAwesomeModule,
         NgxDatatableModule,
