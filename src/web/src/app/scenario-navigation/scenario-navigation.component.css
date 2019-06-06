@@ -3,10 +3,20 @@ a {
 }
 
 ul {
-  padding: 20px 10px 20px 20px;
+  padding: 20px 10px 20px 0px;
+}
+
+li {
+  background-color: #0092B4;
+  color: #FFF;
+  border: #80C9DA;
+  border-style: solid;
+  border-width: 2px;
+  border-left: none;
+  margin-bottom: 10px;
 }
 
 li > a {
   display: inline-block;
-  padding: 6px 0;
+  padding: 14px;
 }
