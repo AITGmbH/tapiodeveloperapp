@@ -1,5 +1,5 @@
 a {
-  color: #FFF;
+  color: #303741;
 }
 
 ul {
@@ -7,12 +7,8 @@ ul {
 }
 
 li {
-  background-color: #0092B4;
-  color: #FFF;
-  border: #80C9DA;
-  border-style: solid;
-  border-width: 2px;
-  border-left: none;
+  background-color: #F3F4F4;
+  color: #303741;
   margin-bottom: 10px;
 }
 
