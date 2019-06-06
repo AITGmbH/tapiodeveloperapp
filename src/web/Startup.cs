@@ -25,13 +25,15 @@ namespace Aitgmbh.Tapio.Developerapp.Web
     {
         private readonly ILogger<Startup> _logger;
 
-        public Startup(IConfiguration configuration, ILogger<Startup> logger)
+        public Startup(IConfiguration configuration, IHostingEnvironment hostingEnvironment, ILogger<Startup> logger)
         {
             _logger = logger;
             Configuration = configuration;
+            HostingEnvironment = hostingEnvironment;
         }
 
         public IConfiguration Configuration { get; }
+        public IHostingEnvironment HostingEnvironment { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -44,12 +46,13 @@ namespace Aitgmbh.Tapio.Developerapp.Web
                 .AddSingleton<IScenarioRepository, ScenarioRepository>()
                 .AddSingleton<ITokenProvider, TokenProvider>()
                 .AddSingleton<OptionsValidator>()
-                .AddSingleton<IMachineLiveDataService, MachineLiveDataService>()
                 .AddSingleton<IMachineLiveDataCommunicationService, MachineLiveDataCommunicationService>()
                 .AddSingleton<IEvenHubCredentialProvider, EventHubCredentialProvider>()
-                .AddSingleton<IMachineLiveDataEventProcessorFactory, MachineLiveDataEventProcessorFactory>()
                 .AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            ConfigureApplicationLocalServices(services);
+
             services
                 .AddHttpClient<IMachineOverviewService, MachineOverviewService>();
             services
@@ -115,6 +118,20 @@ namespace Aitgmbh.Tapio.Developerapp.Web
                 routes.MapHub<MachineLiveDataHub>("/hubs/machineLiveData");
             });
             app.UseMvc();
+        }
+
+        private void ConfigureApplicationLocalServices(IServiceCollection services)
+        {
+            if (HostingEnvironment.IsDevelopment() && bool.Parse(Configuration["UseLocalLiveData"]))
+            {
+                services.AddSingleton<IMachineLiveDataService, MachineLiveDataLocalService>();
+
+            }
+            else
+            {
+                services.AddSingleton<IMachineLiveDataEventProcessorFactory, MachineLiveDataEventProcessorFactory>();
+                services.AddSingleton<IMachineLiveDataService, MachineLiveDataService>();
+            }
         }
     }
 

@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Microsoft.Azure.EventHubs.Processor;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData

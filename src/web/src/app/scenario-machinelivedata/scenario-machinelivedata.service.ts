@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { SignalRService } from "../shared/services/signalr.service";
-import { Subject, Subscription } from "rxjs";
+import { Subject, Observable } from "rxjs";
 import { MachineLiveDataContainer } from "./scenario-machinelivedata.models";
 
 @Injectable()
@@ -46,6 +46,10 @@ export class MachineLiveDataService extends SignalRService {
     public removeDataListener(): void {
         this.hubConnection.off("streamMachineData");
         this.hasActiveDataListener = false;
+    }
+
+    public getIsLiveDataLocalMode(): Observable<boolean> {
+        return this.http.get<boolean>("api/machinelivedata/isLocalMode");
     }
 
     private invokeNewData(data: MachineLiveDataContainer): void {

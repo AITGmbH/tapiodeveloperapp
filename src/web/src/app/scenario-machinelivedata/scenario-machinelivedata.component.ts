@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { BehaviorSubject, Subject } from "rxjs";
+import { BehaviorSubject, Subject, Observable } from "rxjs";
 import { take } from "rxjs/internal/operators/take";
-import { filter } from "rxjs/operators";
+import { filter, map } from "rxjs/operators";
 import { MachineLiveDataService } from "./scenario-machinelivedata.service";
 import { MachineLiveDataContainer } from "./scenario-machinelivedata.models";
 
@@ -15,12 +15,23 @@ export class ScenarioMachineLiveDataComponent implements OnInit, OnDestroy {
     private streamData$: Subject<MachineLiveDataContainer>;
     public itemData$ = new BehaviorSubject<MachineLiveDataContainer[]>([]);
     public conditionData$ = new BehaviorSubject<MachineLiveDataContainer[]>([]);
-    public;
-
+    public isLocalMode = true;
     constructor(private readonly machineLiveDataService: MachineLiveDataService) {}
 
     public async ngOnInit() {
         await this.machineLiveDataService.startConnectionAsync("/hubs/machinelivedata");
+
+        this.machineLiveDataService
+            .getIsLiveDataLocalMode()
+            .pipe(
+                map(isLocalMode => {
+                    if (isLocalMode) {
+                        this.selectedMachineChanged("TestMachine");
+                    }
+                    return isLocalMode;
+                })
+            )
+            .subscribe(isLocalMode => (this.isLocalMode = isLocalMode));
     }
 
     public ngOnDestroy() {
