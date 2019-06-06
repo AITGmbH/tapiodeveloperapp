@@ -1,4 +1,8 @@
 import { TestBed, ComponentFixture } from "@angular/core/testing";
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 import { ScenarioNavigationComponent } from "./scenario-navigation.component";
 import { of } from "rxjs";
 import { By } from "@angular/platform-browser";
@@ -74,7 +78,6 @@ describe("ScenarioNavigationComponent", () => {
         const firstAnchorElement = listElements[0].nativeElement as HTMLAnchorElement;
         expect(firstAnchorElement.innerText).toBe("one");
         expect(listElements[0].properties.href).toBe("/one1");
-
         const secondAnchorElement = listElements[1].nativeElement as HTMLAnchorElement;
         expect(secondAnchorElement.innerText).toBe("two");
         expect(listElements[1].properties.href).toBe("/two2");

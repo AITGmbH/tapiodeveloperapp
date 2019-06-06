@@ -4,8 +4,8 @@ import { AppComponent } from "./app.component";
 import { Component } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { SharedModule } from "./shared/shared.module";
-import { APP_BASE_HREF } from "@angular/common";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { APP_BASE_HREF } from "@angular/common";
 
 @Component({
     selector: "app-module-navigation",

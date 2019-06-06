@@ -32,7 +32,6 @@ describe("ScenarioMachinestateComponent", () => {
         TestBed.configureTestingModule({
             imports: [SharedModule, HttpClientTestingModule],
             declarations: [ScenarioMachinestateComponent, ScenarioMachinestateDetailComponent],
-
             providers: [
                 MachineStateService,
                 { provide: Router, useValue: routerStub },
