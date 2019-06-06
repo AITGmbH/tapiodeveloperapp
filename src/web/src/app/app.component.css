@@ -1,15 +1,22 @@
 .main-header {
-  background: #FFF;
-  color: #000;
-  height: 50px;
-  font-family: audimat, sans-serif;
+  background: #414753;
+  color: #FFF;
+  height: 80px;
+  font-family: "Open Sans", Helvetica, Arial, Verdana, sans-serif;
   margin-bottom: 0px;
+  padding: 0 50px;
+  text-align: center;
+}
+
+span {
+  margin-right: 20px;
 }
 
 .main-content, .main-content .box {
-  background: #000;
+  background: #FFF;
   padding-right: 30px;
   max-width: 99%;
+  padding-top: 20px;
 }
 
 .box {
@@ -17,10 +24,9 @@
 }
 
 .main-nav {
-  background: #000;
-  font-family: audimat, sans-serif;
-  width: 15%;
-  border-right: 1px solid #333;
+  background: #FFF;
+  font-family: "Open Sans", Helvetica, Arial, Verdana, sans-serif;
+  width: 12%;
 }
 
 .level-item {
@@ -29,7 +35,7 @@
 
 .logo {
   margin: 12px 26px 12px 20px;
-  height: 26px;
+  height: 55px;
   vertical-align: middle;
 }
 
@@ -50,12 +56,17 @@
 }
 
 footer.footer {
-  padding: 2rem 1rem 3rem 1rem;
-  font-family: audimat, sans-serif;
-  background-color: #000;
-  color: #FFF;
+  padding: 2.5rem 1rem 2rem 1rem;
+  font-family: "Open Sans", Helvetica, Arial, Verdana, sans-serif;
+  background-color: #303741;
+  color: #CFCFCF;
+  height: 100px;
 }
 
-.is-single-line {
-    white-space: nowrap;
+footer > p {
+  color: #CFCFCF !important;
+}
+
+.align-right {
+  margin-left: 50px;
 }

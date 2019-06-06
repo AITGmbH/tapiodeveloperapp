@@ -1,17 +1,9 @@
-<header
-  class="main-header level">
-  <div class="level-left">
-    <div class="level-item">
-      <a href="https://tapio.one/" target="_blank" rel="noopener"><img src="assets/img/logo/tapio.svg" class="logo" alt="tapio"></a>
-      <span>developer app by</span>
-      <a href="https://aitgmbh.de/" target="_blank" rel="noopener"><img src="assets/img/logo/ait.svg" class="logo" alt="AIT"></a>
-    </div>
-  </div>
-
-  <div class="level-right">
-      <div class="level-item">
-          <app-external-links-dropdown></app-external-links-dropdown>
-      </div>
+<header class="main-header is-centered">
+  <div>
+    <a href="https://aitgmbh.de/" target="_blank" rel="noopener"><img src="assets/img/logo/ait.svg" class="logo"
+        alt="AIT"></a>
+    <span>tapio developer app</span>
+    <app-external-links-dropdown></app-external-links-dropdown>
   </div>
 </header>
 
@@ -20,27 +12,19 @@
     <app-scenario-navigation></app-scenario-navigation>
   </div>
   <div class="column main-content">
-    <main
-      class="box is-radiusless">
+    <main>
       <router-outlet></router-outlet>
     </main>
   </div>
-  </div>
+</div>
 
 <footer class="footer">
-    <div class="content has-text-centered">
-      <ul class="is-unstyled-list">
-        <li>
-          tapio Developer App by <a href="https://aitgmbh.de/" class="is-single-line has-text-white" target="_blank" rel="noopener">AIT GmbH & Co. KG</a>
-        </li>
-        <li>
-            <a href="https://aitgmbh.de/impressum" class="is-single-line has-text-white" target="_blank" rel="noopener">Legal Notice - Impressum</a>
-          </li>
-        <li>
-          <a href="https://github.com/AITGmbH/tapiodeveloperapp/" class="is-single-line has-text-white" target="_blank" rel="noopener">
-            <fa-icon [icon]="['fab', 'github']"></fa-icon> AITGmbH/tapiodeveloperapp
-          </a>
-        </li>
-      </ul>
-    </div>
+  <div class="content has-text-centered">
+    <p>
+      © 2019 AIT GmbH & Co KG<a href="https://www.aitgmbh.de/impressum/" target="_blank" rel="noopener"
+        class="has-text-white align-right">
+        <fa-icon [icon]="['fas', 'info-circle']"></fa-icon> Legal Notice - Impressum
+      </a>
+    </p>
+  </div>
 </footer>
