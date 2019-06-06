@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Roboto&display=swap');
+
 html {
   overflow-y: auto;
 }
@@ -19,7 +21,7 @@ h3.title.is-3 {
 }
 
 a.has-text-white:hover {
-  color: #00ff8c !important;
+  color: #FFF !important;
 }
 
 /**
