@@ -81,7 +81,16 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
 
     public interface IMachineLiveDataEventProcessorFactory : IEventProcessorFactory
     {
+        /// <summary>
+        /// Sets the callback for the azure event hub.
+        /// </summary>
+        /// <param name="func">Callback method to receive json</param>
         void SetCallback(Func<string, Task> func);
+
+        /// <summary>
+        /// Creates and return the instance of <see cref="IEventProcessorHost"/>.
+        /// </summary>
+        /// <returns><see cref="IEventProcessorHost"/></returns>
         IEventProcessorHost CreateEventProcessorHost();
     }
 
@@ -90,7 +99,18 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
     /// </summary>
     public interface IEventProcessorHost
     {
+        /// <summary>
+        /// Registers the <see cref="IEventProcessorFactory"/> with its <see cref="EventProcessorOptions"/>.
+        /// </summary>
+        /// <param name="factory">The provided <see cref="IEventProcessorFactory"/></param>
+        /// <param name="options">The provided <see cref="EventProcessorOptions"/></param>
+        /// <returns>The completed task.</returns>
         Task RegisterEventProcessorFactoryAsync(IEventProcessorFactory factory, EventProcessorOptions options);
+
+        /// <summary>
+        /// Unregisters the event processor.
+        /// </summary>
+        /// <returns>The completed task.</returns>
         Task UnregisterEventProcessorAsync();
     }
 
