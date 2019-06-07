@@ -92,8 +92,6 @@ namespace Aitgmbh.Tapio.Developerapp.Web
             serviceProvider.GetService<IMachineLiveDataService>().RegisterHubAsync();
             serviceProvider.GetService<IMachineLiveDataCommunicationService>().RegisterCallback();
 
-            applicationLifetime.ApplicationStopping.Register(async () => await serviceProvider.GetService<IMachineLiveDataService>().UnregisterHubAsync());
-
             app.Use(async (context, next) =>
             {
                 var path = context.Request.Path;

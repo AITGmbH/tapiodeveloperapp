@@ -43,7 +43,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
 
             });
             _logger.LogInformation("Connect to azure event hub");
-            await _processorHost.RegisterEventProcessorFactoryAsync(_dataEventProcessorFactory, options);
+            await _processorHost.RegisterEventProcessorFactoryAsync(_dataEventProcessorFactory, options).ConfigureAwait(false);
             _readerEnabled = true;
         }
 
@@ -57,7 +57,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
             if (IsReaderEnabled())
             {
                 _logger.LogInformation("Disconnect from azure event hub");
-                await _processorHost.UnregisterEventProcessorAsync();
+                await _processorHost.UnregisterEventProcessorAsync().ConfigureAwait(false);
                 _readerEnabled = false;
             }
         }
@@ -67,19 +67,35 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
             var result = MaterialLiveDataContainerExtension.FromJson(data);
             if (_callback != null)
             {
-                await _callback(result.MachineId, result);
+                await _callback(result.MachineId, result).ConfigureAwait(false);
             }
         }
     }
 
     public interface IMachineLiveDataService
     {
+        /// <summary>
+        /// Creates a instance <see cref="IEventProcessorHost"/> to connect to azure resource using the provided instance of <see cref="IMachineLiveDataEventProcessorFactory"/>.
+        /// </summary>
+        /// <returns></returns>
         Task RegisterHubAsync();
 
+        /// <summary>
+        /// Gets the flage if the <see cref="MachineLiveDataService"/> is reading from the azure event hub.
+        /// </summary>
+        /// <returns></returns>
         bool IsReaderEnabled();
 
+        /// <summary>
+        /// Sets the callback for external useage of <see cref="IEventProcessor"/> ProcessEventsAsync callback method.
+        /// </summary>
+        /// <param name="callback">Callback function to be executed on reveiving new events.</param>
         void SetCallback(Func<string, MachineLiveDataContainer, Task> callback);
 
+        /// <summary>
+        /// Unregisters the <see cref="IEventProcessorHost"/>.
+        /// </summary>
+        /// <returns></returns>
         Task UnregisterHubAsync();
     }
 }

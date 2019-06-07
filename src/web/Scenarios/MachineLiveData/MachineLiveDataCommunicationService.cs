@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
 
@@ -30,6 +28,9 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
 
     public interface IMachineLiveDataCommunicationService
     {
+        /// <summary>
+        /// Registers the callback for communication service to publish events to signalr connections.
+        /// </summary>
         void RegisterCallback();
     }
 }
