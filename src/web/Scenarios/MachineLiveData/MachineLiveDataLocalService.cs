@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
-using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Timers;
@@ -37,7 +36,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
         }
     }
 
-    public class EventGenerator : IEventGenerator
+    public class EventGenerator
     {
         private Func<string, MachineLiveDataContainer, Task> _callback;
         private readonly Timer _timer;
@@ -152,10 +151,4 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
         }
     }
 
-    public interface IEventGenerator
-    {
-        void Start();
-        void Stop();
-        void SetCallback(Func<string, MachineLiveDataContainer, Task> callback);
-    }
 }
