@@ -72,7 +72,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web
             services.AddSignalR();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, OptionsValidator optionsValidator, IServiceProvider serviceProvider, IApplicationLifetime applicationLifetime)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, OptionsValidator optionsValidator, IServiceProvider serviceProvider)
         {
             if (optionsValidator == null)
             {
