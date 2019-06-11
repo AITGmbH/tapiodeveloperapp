@@ -3,5 +3,7 @@ div.modal-content {
 }
 
 .modal-content pre {
+    background-color: #F3F4F4;
+    color: #303741;
     text-align: left;
 }
