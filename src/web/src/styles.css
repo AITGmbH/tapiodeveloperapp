@@ -79,14 +79,6 @@ a.has-text-white:hover {
 */
 
 /**
-  Start machine select dropdown
-*/
-
-/**
-  End machine select dropdown
-*/
-
-/**
   Start ngx-datatable
 */
 
@@ -138,23 +130,32 @@ div.empty-row {
 */
 
 /**
-  Start card
+  Start machine cards
 */
 
 div.card {
-  background-color: #333;
+  background-color: #F3F4F4;
+  color: #303741;
 }
 
 header.card-header {
-  background-color: #eee;
+  background-color: #303741;
+  font-family: "Roboto", Helvetica, Arial, Verdana, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.card-header > h1 {
+  color: #F3F4F4;
 }
 
 div.card-content {
-  color: white;
+  color: #303741;
+  border: 2px solid #303741;
 }
 
 /**
-  End card
+  End machine cards
 */
 
 .errorMessage {
