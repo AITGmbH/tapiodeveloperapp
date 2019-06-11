@@ -1,12 +1,15 @@
 .dateTimePicker {
   text-align: left;
   margin: 10px 0;
-  font-family: audimat, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, Verdana, sans-serif;
 }
 
 .dateTimePicker input {
-  font-family: audimat, sans-serif;
-  font-size: 1rem;
+  background-color: #F3F4F4;
+  color: #303741;
+  border: 2px solid #303741;
+  font-size: 18px;
+  font-weight: 600;
   padding: 6px 10px 6px 10px;
 }
 
@@ -18,11 +21,14 @@
 .owl-dt-popup-container, 
 .owl-dt-popup-container input,
 .owl-dt-popup-container button  {
-  font-family: audimat, sans-serif;
+  color: #303741;
+  font-family: "Open Sans", Helvetica, Arial, Verdana, sans-serif;
 }
 .owl-dt-calendar-table span.owl-dt-calendar-cell-selected {
-  background-color: #aaaaaa;
+  background-color: #303741;
+  color: #F3F4F4;
 }
 .owl-dt-calendar-table td.owl-dt-calendar-cell-in-range {
-  background-color: #cccccc;
+  background-color: #F3F4F4;
+  color: #303741;
 }
