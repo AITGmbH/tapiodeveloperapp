@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600|Roboto:400,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,800|Roboto:400,700&display=swap');
 
 html {
   height: 100%;
@@ -81,16 +81,6 @@ a.has-text-white:hover {
 /**
   Start machine select dropdown
 */
-
-.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-disabled span.ng-option-label {
-  color: #303741;
-  font-weight: bold;
-  font-size: 1.2rem;
-}
-
-.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-disabled {
-  cursor: default;
-}
 
 /**
   End machine select dropdown

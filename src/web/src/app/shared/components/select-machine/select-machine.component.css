@@ -1,16 +1,16 @@
 div.row {
-    background-color: #F3F4F4;
+    background-color: #f3f4f4;
     color: #303741;
     font-family: "Open Sans", Helvetica, Arial, Verdana, sans-serif;
     font-size: 20px;
-    font-weight: 700;
+    font-weight: 600;
     line-height: 20px;
     height: 44px !important;
     width: 30rem;
 }
 
 div.ng-select-container {
-    background-color: #F3F4F4 !important;
+    background-color: #f3f4f4 !important;
     color: #303741 !important;
     border: #303741 2px solid !important;
     border-radius: 0px !important;
@@ -28,6 +28,7 @@ div.ng-select-container:hover {
 div.ng-dropdown-panel-items {
     border: #303741 2px solid;
     border-radius: 0px !important;
+    font-weight: 400;
     width: 30rem;
     right: 1px;
 }
@@ -43,7 +44,7 @@ div.ng-placeholder {
     border-width: 5px 5px 2.5px;
 }
 
-.ng-select.ng-select-opened>.ng-select-container .ng-arrow {
+.ng-select.ng-select-opened > .ng-select-container .ng-arrow {
     top: -2px;
     border-color: transparent transparent #303741;
     border-width: 0 5px 5px;
@@ -56,5 +57,14 @@ div.ng-placeholder {
 div.ng-option-selected,
 div.ng-option-marked {
     background-color: #303741 !important;
-    color: #F3F4F4 !important;
+    color: #f3f4f4 !important;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-disabled span.ng-option-label {
+    color: #303741;
+    font-weight: 600;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-disabled {
+    cursor: default;
 }
