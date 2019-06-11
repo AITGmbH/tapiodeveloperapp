@@ -19,6 +19,5 @@ export class NotFoundComponent implements OnInit {
             this.router.navigate(["/scenario-userdata"]);
             // successfully authenticated
         }
-        // todo: handle logout param
     }
 }

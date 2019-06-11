@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class ScenarioUserdataService {
+export class ScenarioUserDataService {
 
   constructor(private readonly http: HttpClient) { }
 

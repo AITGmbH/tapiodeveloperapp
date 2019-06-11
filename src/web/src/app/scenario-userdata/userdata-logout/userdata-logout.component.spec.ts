@@ -4,7 +4,7 @@ import { LogoutComponent } from "./userdata-logout.component";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { SharedModule } from "src/app/shared/shared.module";
 import { RouterTestingModule } from "@angular/router/testing";
-import { ScenarioUserdataService } from "../scenario-userdata.service";
+import { ScenarioUserDataService } from "../scenario-userdata.service";
 
 describe("UserdataLogoutComponent", () => {
   let component: LogoutComponent;
@@ -13,7 +13,7 @@ describe("UserdataLogoutComponent", () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, SharedModule, RouterTestingModule],
-      providers: [ScenarioUserdataService],
+      providers: [ScenarioUserDataService],
       declarations: [LogoutComponent]
     }).compileComponents();
   }));

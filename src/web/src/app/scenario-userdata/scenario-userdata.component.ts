@@ -1,21 +1,25 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { ScenarioUserdataService } from "./scenario-userdata.service";
+import { ScenarioUserDataService } from "./scenario-userdata.service";
 import { Subscription } from "rxjs";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { LocalStorageService } from "../shared/services/local-storage.service";
+import { Router } from '@angular/router';
 @Component({
   selector: "app-scenario-userdata",
   templateUrl: "./scenario-userdata.component.html"
 })
 export class ScenarioUserDataComponent implements OnInit, OnDestroy {
+  private subscription: Subscription;
+  public jwtToken: any;
+
   ngOnDestroy(): void {
     this.subscription && this.subscription.unsubscribe();
   }
-  private subscription: Subscription;
-  public jwtToken: any;
+
   constructor(
-    private readonly userDataService: ScenarioUserdataService,
-    private readonly localStorageService: LocalStorageService
+    private readonly userDataService: ScenarioUserDataService,
+    private readonly localStorageService: LocalStorageService,
+    private readonly router: Router
   ) {}
 
   ngOnInit() {
