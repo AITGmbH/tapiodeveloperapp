@@ -7,7 +7,7 @@
     <app-select-machine (change)="selectedMachineChanged($event)"></app-select-machine>
     <app-date-range (change)="dateRangeChanged($event)"></app-date-range>
     <div class="flex-container" *ngIf="(sourceKeys$ | async) as sourceKeys; else loadingOrError">
-      <div class="sourceKeyList row">
+      <div class="sourceKeyList">
         <h1 class="sourceKeyHeader">Source Keys:</h1>
         <ul>
           <li *ngFor="let key of sourceKeys.keys; let i = index">
