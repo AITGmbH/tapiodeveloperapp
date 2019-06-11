@@ -1,20 +1,24 @@
 div.row {
-    background-color: #FFF;
+    background-color: #F3F4F4;
     color: #303741;
-    font-family: "Roboto", Helvetica, Arial, Verdana, sans-serif;
+    font-family: "Open Sans", Helvetica, Arial, Verdana, sans-serif;
     font-size: 20px;
     font-weight: 700;
     line-height: 20px;
-    height: 50px;
+    height: 44px !important;
     width: 30rem;
 }
 
-ng-select > div.ng-select-container {
-    background: #E3000B !important;
-    color: #FFF !important;
-    border: #E3000B 2px solid !important;
+div.ng-select-container {
+    background-color: #F3F4F4 !important;
+    color: #303741 !important;
+    border: #303741 2px solid !important;
     border-radius: 0px !important;
-    padding: 25px 0;
+    padding: 20px 0;
+}
+
+div.ng-select-container:hover {
+    cursor: pointer;
 }
 
 .selectmachine-ngselect.dropdown {
@@ -22,28 +26,35 @@ ng-select > div.ng-select-container {
 }
 
 div.ng-dropdown-panel-items {
-    border: #E3000B 2px solid;
+    border: #303741 2px solid;
     border-radius: 0px !important;
     width: 30rem;
     right: 1px;
 }
 
 div.ng-placeholder {
-    color: #FFF !important;
+    font-style: italic;
+    color: #414753 !important;
 }
 
 .ng-select .ng-arrow-wrapper .ng-arrow {
-    border-color: #FFF transparent transparent;
+    border-color: #303741 transparent transparent;
     border-style: solid;
     border-width: 5px 5px 2.5px;
 }
 
 .ng-select.ng-select-opened>.ng-select-container .ng-arrow {
     top: -2px;
-    border-color: transparent transparent #FFF;
+    border-color: transparent transparent #303741;
     border-width: 0 5px 5px;
 }
 
 .ng-dropdown-panel.ng-select-bottom {
     border-radius: 0px !important;
+}
+
+div.ng-option-selected,
+div.ng-option-marked {
+    background-color: #303741 !important;
+    color: #F3F4F4 !important;
 }

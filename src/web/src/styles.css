@@ -1,21 +1,24 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans|Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600|Roboto:400,700&display=swap');
 
 html {
-  overflow-y: auto;
+  height: 100%;
+  overflow-y: hidden;
 }
 
 body {
-  background: rgb(7, 19, 26);
+  background: #FFF;
+  height: 100%;
+  width: 100%;
 }
 
 h1.title {
   text-align: left;
-  color: #fff;
+  color: #303741;
 }
 
 h3.title.is-3 {
   text-align: left;
-  color: #fff;
+  color: #303741;
   font-size: 35px;
   margin: 15px 0;
 }
@@ -80,7 +83,7 @@ a.has-text-white:hover {
 */
 
 .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-disabled span.ng-option-label {
-  color: black;
+  color: #303741;
   font-weight: bold;
   font-size: 1.2rem;
 }
@@ -98,7 +101,7 @@ a.has-text-white:hover {
 */
 
 .ngx-datatable .datatable-body .datatable-row-wrapper:not(:last-of-type) {
-  border-bottom: thin solid gray;
+  border-bottom: thin solid #303741;
 }
 
 .datatable-header-cell {
@@ -106,20 +109,20 @@ a.has-text-white:hover {
 }
 
 .datatable-header {
-  border-bottom: thin solid gray;
+  border-bottom: thin solid #303741;
   margin-right: 15px;
 }
 
 .ngx-datatable .datatable-footer {
-  border-top: thin solid gray;
+  border-top: thin solid #303741;
 }
 
 .datatable-footer {
-  border-top: thin solid gray;
+  border-top: thin solid #303741;
 }
 
 .ngx-datatable .pages a {
-  color: white;
+  color: #303741;
   margin-left: 1rem;
 }
 

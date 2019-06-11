@@ -1,3 +1,11 @@
+.main-header,
+.columns,
+footer.footer {
+  position: absolute;
+  right: 0;
+  left: 0;
+}
+
 .main-header {
   background: #414753;
   color: #FFF;
@@ -6,6 +14,7 @@
   margin-bottom: 0px;
   padding: 0 50px;
   text-align: center;
+  top: 0;
 }
 
 span {
@@ -14,9 +23,8 @@ span {
 
 .main-content, .main-content .box {
   background: #FFF;
-  padding-right: 30px;
   max-width: 99%;
-  padding-top: 20px;
+  overflow-y: auto;
 }
 
 .box {
@@ -26,7 +34,9 @@ span {
 .main-nav {
   background: #FFF;
   font-family: "Open Sans", Helvetica, Arial, Verdana, sans-serif;
-  width: 12%;
+  width: 13%;
+  overflow-y: auto;
+  padding-right: 25px;
 }
 
 .level-item {
@@ -44,9 +54,10 @@ span {
 }
 
 .columns {
-  margin-top: 0;
-  margin-bottom: 0;
-  min-height: 53rem;
+  top: 80px;
+  padding-top: 20px;
+  bottom: 100px;
+  margin: 0px;
 }
 
 @media only screen and (max-device-width: 768px) {
@@ -61,6 +72,7 @@ footer.footer {
   background-color: #303741;
   color: #CFCFCF;
   height: 100px;
+  bottom: 0;
 }
 
 footer > p {
