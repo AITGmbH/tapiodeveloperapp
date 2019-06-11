@@ -48,6 +48,12 @@ dotnet user-secrets set "TapioCloud:ClientID" "XYZ"
 dotnet user-secrets set "TapioCloud:ClientSecret" "XYZ"
 ```
 
+#### Streaming Data
+
+Tapio offers a way to stream live data from your machines using [microsoft azure event hubs](https://azure.microsoft.com/de-de/services/event-hubs/). If you do not have any appropriate ressources you can refer to the [Local Usage Section](#local-usage).
+
+##### Azure Event Hub
+
 If you want to use streaming data you need to configure your [azure event hub](https://azure.microsoft.com/de-de/services/event-hubs/) instance and provide the according connection strings. A service for local live data generation will be added later on
 
 ```PowerShell
@@ -57,6 +63,12 @@ dotnet user-secrets set "EventHub:EventHubConnectionString" "XYZ"
 dotnet user-secrets set "EventHub:StorageContainerName" "XYZ"
 dotnet user-secrets set "EventHub:StorageConnectionString" "XYZ"
 ```
+
+##### Local Usage
+
+To be able to use the live data locally without any azure ressources have a look within the `src\web\appsettings.json` and set the value of `UseLocalLiveData` to `true`.
+
+Running the application in development mode with the flag set, the data will be generated within the backend without any connection attempts to azure.
 
 #### Run
 
