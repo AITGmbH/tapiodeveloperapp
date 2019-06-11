@@ -59,30 +59,16 @@ describe("AppComponent", () => {
         expect(app.title).toEqual("developerapp");
     });
 
-    it(`should open the tapio website in a new tab`, () => {
-        const fixture = TestBed.createComponent(AppComponent);
-        const anchorTapio = fixture.debugElement.query(By.css(".level-left a[href='https://tapio.one/']"));
-        const realAnchor = anchorTapio.nativeElement as HTMLAnchorElement;
-        expect(realAnchor.target).toBe("_blank");
-    });
-
-    it(`should open the tapio website with relation noopener`, () => {
-        const fixture = TestBed.createComponent(AppComponent);
-        const anchorTapio = fixture.debugElement.query(By.css(".level-left a[href='https://tapio.one/']"));
-        const realAnchor = anchorTapio.nativeElement as HTMLAnchorElement;
-        expect(realAnchor.rel).toBe("noopener");
-    });
-
     it(`should open the ait website in a new tab`, () => {
         const fixture = TestBed.createComponent(AppComponent);
-        const anchorTapio = fixture.debugElement.query(By.css(".level-left a[href='https://aitgmbh.de/']"));
+        const anchorTapio = fixture.debugElement.query(By.css(".is-centered a[href='https://aitgmbh.de/']"));
         const realAnchor = anchorTapio.nativeElement as HTMLAnchorElement;
         expect(realAnchor.target).toBe("_blank");
     });
 
     it(`should open the ait website with relation noopener`, () => {
         const fixture = TestBed.createComponent(AppComponent);
-        const anchorTapio = fixture.debugElement.query(By.css(".level-left a[href='https://aitgmbh.de/']"));
+        const anchorTapio = fixture.debugElement.query(By.css(".is-centered a[href='https://aitgmbh.de/']"));
         const realAnchor = anchorTapio.nativeElement as HTMLAnchorElement;
         expect(realAnchor.rel).toBe("noopener");
     });
