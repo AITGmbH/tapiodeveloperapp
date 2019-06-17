@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Mime;
@@ -11,15 +9,14 @@ using System.Threading.Tasks;
 using Aitgmbh.Tapio.Developerapp.Web.Services;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineCommands
 {
     public class MachineCommandsService: IMachineCommandsService
     {
-        private const string TapioOneCommanding = "https://core.tapio.one/api/commanding";
+        private const string TapioOneCommandingEndpoint = "https://core.tapio.one/api/commanding";
 
-        private static readonly Uri TapioOneCommandingRequest = new Uri(TapioOneCommanding);
+        private static readonly Uri TapioOneCommandingRequest = new Uri(TapioOneCommandingEndpoint);
 
         private readonly HttpClient _httpClient;
         private readonly ITokenProvider _tokenProvider;
@@ -30,59 +27,57 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineCommands
             _tokenProvider = tokenProvider ?? throw new ArgumentNullException(nameof(tokenProvider));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
-        public async Task ExecuteItemReadAsync(CancellationToken cancellationToken)
+        public async Task<CommandResponse> ExecuteItemReadAsync(CommandItemRead command, CancellationToken cancellationToken)
         {
-            if (string.IsNullOrWhiteSpace(machineId))
+            if (string.IsNullOrWhiteSpace(command.Id))
             {
-                throw new ArgumentException("Value cannot be null or whitespace.", nameof(machineId));
+                throw new ArgumentException("Value cannot be null or whitespace.", nameof(command.Id));
             }
 
-            using (_logger.BeginScope(new Dictionary<string, object> { { "MachineId", machineId }, { "RequestEndpoint", TapioMachineStateEndpoint } }))
+            if (string.IsNullOrWhiteSpace(command.NodeId))
             {
-                _logger.LogInformation("Receiving states");
+                throw new ArgumentException("Value cannot be null or whitespace.", nameof(command.NodeId));
+            }
+
+            if (string.IsNullOrWhiteSpace(command.TapioMachineId))
+            {
+                throw new ArgumentException("Value cannot be null or whitespace.", nameof(command.TapioMachineId));
+            }
+
+            using (_logger.BeginScope(new Dictionary<string, object> { { "MachineId", command.TapioMachineId }, { "RequestEndpoint", TapioOneCommandingEndpoint } }))
+            {
                 var token = await _tokenProvider.ReceiveTokenAsync(TapioScope.CoreApi);
                 var request = new HttpRequestMessage(HttpMethod.Post, TapioOneCommandingRequest);
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-                var configuration = new MachineStateConfiguration
-                {
-                    MachineId = machineId
-                };
-                var requestContent = JsonConvert.SerializeObject(new[] { configuration }, Formatting.None);
+               
+                var requestContent = JsonConvert.SerializeObject(command, Formatting.None);
 
                 request.Content = new StringContent(requestContent, Encoding.UTF8, MediaTypeNames.Application.Json);
 
                 _logger.LogInformation("Sending request to tapio");
                 var responseMessage = await _httpClient.SendAsync(request, cancellationToken);
                 responseMessage.EnsureSuccessStatusCode();
-                using (var stream = await responseMessage.Content.ReadAsStreamAsync())
-                using (var streamReader = new StreamReader(stream))
-                using (var jsonReader = new JsonTextReader(streamReader))
-                {
-                    _logger.LogInformation("Converting content to JSON");
-                    var array = await JArray.LoadAsync(jsonReader, cancellationToken);
-                    var result = array.
-                    return result;
-                }
+                var content = await responseMessage.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<CommandResponse>(content);
             }
         }
 
-        public Task ExecuteItemWriteAsync()
+        public Task<CommandResponse> ExecuteItemWriteAsync(CommandItemWrite command, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task ExecuteMethodAsync()
+        public Task<CommandResponse> ExecuteMethodAsync(CommandMethod command, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
-
     }
 
     public interface IMachineCommandsService
     {
-        Task ExecuteItemReadAsync(CancellationToken cancellationToken);
-        Task ExecuteItemWriteAsync();
-        Task ExecuteMethodAsync();
+        Task<CommandResponse> ExecuteItemReadAsync(CommandItemRead command, CancellationToken cancellationToken);
+        Task<CommandResponse> ExecuteItemWriteAsync(CommandItemWrite command, CancellationToken cancellationToken);
+        Task<CommandResponse> ExecuteMethodAsync(CommandMethod command, CancellationToken cancellationToken);
     }
 }
