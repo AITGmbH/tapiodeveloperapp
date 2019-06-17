@@ -29,7 +29,7 @@ footer.footer {
 .main-nav {
   background: #FFF;
   font-family: "Open Sans", Helvetica, Arial, Verdana, sans-serif;
-  width: 13%;
+  /* width: 13%; */
   overflow-y: auto;
   padding-right: 25px;
 }
