@@ -22,7 +22,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
         }
         private async Task SendAsync(string machineId, MachineLiveDataContainer data)
         {
-            await _hub.Clients.Group(machineId).SendAsync("streamMachineData", data);
+            await _hub.Clients.Group(machineId).SendAsync("streamMachineData", data).ConfigureAwait(false);
         }
     }
 

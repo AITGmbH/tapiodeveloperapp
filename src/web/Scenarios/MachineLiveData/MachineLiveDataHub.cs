@@ -9,24 +9,24 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
     {
         public async Task JoinGroup(string groupName)
         {
-            await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
+            await Groups.AddToGroupAsync(Context.ConnectionId, groupName).ConfigureAwait(false);
         }
 
         public async Task LeaveGroup(string groupName)
         {
-            await Groups.RemoveFromGroupAsync(Context.ConnectionId, groupName);
+            await Groups.RemoveFromGroupAsync(Context.ConnectionId, groupName).ConfigureAwait(false);
         }
 
         public override async Task OnConnectedAsync()
         {
             MachineLiveDataConnectionHandler.Connections.Add(Context.ConnectionId);
-            await base.OnConnectedAsync();
+            await base.OnConnectedAsync().ConfigureAwait(false);
         }
 
         public override async Task OnDisconnectedAsync(Exception exception)
         {
             MachineLiveDataConnectionHandler.Connections.Remove(Context.ConnectionId);
-            await base.OnDisconnectedAsync(exception);
+            await base.OnDisconnectedAsync(exception).ConfigureAwait(false);
         }
     }
 
