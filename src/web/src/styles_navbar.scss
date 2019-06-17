@@ -1,5 +1,6 @@
-$navbar-background-color: #414753;
+@import "./styles_variables.scss";
 
+$navbar-background-color: $black;
 
 $navbar-item-hover-color: #FFF;
 
@@ -8,7 +9,5 @@ $navbar-item-color: white;
 
 $navbar-dropdown-background-color: $navbar-background-color;
 $navbar-dropdown-arrow: $navbar-item-color;
-$navbar-dropdown-item-hover-color: #414753;
+$navbar-dropdown-item-hover-color: $black;
 
-$navbar-dropdown-item-active-background-color: yellow;
-$navbar-dropdown-item-active-background-color: red;
