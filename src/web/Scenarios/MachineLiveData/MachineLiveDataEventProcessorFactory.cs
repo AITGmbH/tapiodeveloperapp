@@ -134,12 +134,12 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
 
         public async Task RegisterEventProcessorFactoryAsync(IEventProcessorFactory factory, EventProcessorOptions options)
         {
-            await _wrappedProcessorHost.RegisterEventProcessorFactoryAsync(factory, options);
+            await _wrappedProcessorHost.RegisterEventProcessorFactoryAsync(factory, options).ConfigureAwait(false);
         }
 
         public async Task UnregisterEventProcessorAsync()
         {
-            await _wrappedProcessorHost.UnregisterEventProcessorAsync();
+            await _wrappedProcessorHost.UnregisterEventProcessorAsync().ConfigureAwait(false);
         }
     }
 }
