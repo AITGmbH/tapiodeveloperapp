@@ -1,36 +1,36 @@
-<app-scenario 
-title="License Overview" 
-id="license-overview-scenario"
-description="This scenario shows all the information on subscriptions containing licenses of the tapio developer app by using the GlobalDiscoveryService API.">
-<div class="columns" *ngIf="subscriptions$ | async; else loadingOrError">
-  <div class="column is-5">
-    <div class="tile is-ancestor">  
-      <div class="tile is-vertical">
-        <div class="tile is-parent" *ngFor="let subscription of subscriptions$ | async">
-          <div class="tile card is-child is-vertical">
-            <header class="card-header">
-              <h1 class="card-header-title">{{ subscription.name }}</h1>
-            </header>
-            <div class="card-content">
-              <ul class="license-list">
-                <li *ngFor="let license of subscription.licenses">
-                  <div class="license-div">
-                    <p><span class="license-content-name">License Id:</span>{{ license.licenseId }}</p>
-                    <p><span class="license-content-name">Application Id:</span>{{ license.applicationId }}</p>
-                    <p><span class="license-content-name">Created date:</span>{{ license.createdDate | date: "medium" }}</p>
-                    <p><span class="license-content-name">Billing start date:</span>{{ license.billingStartDate | date: "medium" }}</p>
-                    <p><span class="license-content-name">Billing interval:</span>{{ license.billingInterval }}</p>
-                    <p><span class="license-content-name">License count:</span>{{ license.licenseCount }}</p>
-                  </div>
-                </li>
-              </ul>
+<app-scenario
+    scenarioTitle="License Overview"
+    id="license-overview-scenario"
+    description="This scenario shows all the information on subscriptions containing licenses of the tapio developer app by using the GlobalDiscoveryService API.">
+    <div class="columns" *ngIf="subscriptions$ | async; else loadingOrError">
+    <div class="column is-5">
+        <div class="tile is-ancestor">
+        <div class="tile is-vertical">
+            <div class="tile is-parent" *ngFor="let subscription of subscriptions$ | async">
+            <div class="tile card is-child is-vertical">
+                <header class="card-header">
+                <h1 class="card-header-title">{{ subscription.name }}</h1>
+                </header>
+                <div class="card-content">
+                <ul class="license-list">
+                    <li *ngFor="let license of subscription.licenses">
+                    <div class="license-div">
+                        <p><span class="license-content-name">License Id:</span>{{ license.licenseId }}</p>
+                        <p><span class="license-content-name">Application Id:</span>{{ license.applicationId }}</p>
+                        <p><span class="license-content-name">Created date:</span>{{ license.createdDate | date: "medium" }}</p>
+                        <p><span class="license-content-name">Billing start date:</span>{{ license.billingStartDate | date: "medium" }}</p>
+                        <p><span class="license-content-name">Billing interval:</span>{{ license.billingInterval }}</p>
+                        <p><span class="license-content-name">License count:</span>{{ license.licenseCount }}</p>
+                    </div>
+                    </li>
+                </ul>
+                </div>
             </div>
-          </div>
+            </div>
         </div>
-      </div>
+        </div>
     </div>
-  </div>
-</div>
+    </div>
 </app-scenario>
 
 <ng-template #loadingOrError>
