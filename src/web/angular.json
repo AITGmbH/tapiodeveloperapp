@@ -27,7 +27,7 @@
               "node_modules/@ng-select/ng-select/themes/default.theme.css",
               "node_modules/ng-pick-datetime/assets/style/picker.min.css",
               "src/assets/font/audimat/fonts.css",
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": [],
             "es5BrowserSupport": true
@@ -136,5 +136,10 @@
       }
     }
   },
-  "defaultProject": "developerapp"
+  "defaultProject": "developerapp",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }

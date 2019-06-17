@@ -1,9 +1,16 @@
 <header class="main-header is-centered">
   <div>
-    <a href="https://aitgmbh.de/" target="_blank" rel="noopener"><img src="assets/img/logo/ait.svg" class="logo"
-        alt="AIT"></a>
-    <span>tapio developer app</span>
-    <app-external-links-dropdown></app-external-links-dropdown>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="https://aitgmbh.de/" target="_blank" rel="noopener">
+                <img src="assets/img/logo/ait.svg" class="logo" alt="AIT">
+            </a>
+            <a class="navbar-item"><span>tapio developer app</span></a>
+        </div>
+        <div class="navbar-item has-dropdown  is-hoverable">
+            <app-external-links-dropdown></app-external-links-dropdown>
+        </div>
+    </nav>
   </div>
 </header>
 
