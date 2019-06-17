@@ -13,41 +13,16 @@ import { NgOption } from "@ng-select/ng-select";
     encapsulation: ViewEncapsulation.None
 })
 export class SelectMachineComponent implements OnInit {
-    public items$: Observable<Array<AssignedMachine | NgOption>>;
+    public items$: Observable<Array<Subscription>>;
     selectedMachine: AssignedMachine;
     @Input() initialMachineId: string;
 
     @Output() public change: EventEmitter<string> = new EventEmitter<string>();
 
-    constructor(private machineOverviewService: MachineOverviewService) {}
+    constructor(private readonly machineOverviewService: MachineOverviewService) {}
 
     ngOnInit() {
         this.items$ = this.machineOverviewService.getSubscriptions().pipe(
-            map((subs: Subscription[]) => {
-                return subs.reduce((output: (AssignedMachine | NgOption)[], sub) => {
-                    return (
-                        output
-                            // add disabled Element describing the Subscription
-                            .concat({ displayName: sub.name, disabled: true })
-                            // and add its Machines
-                            .concat(
-                                ...sub.assignedMachines.map(machine => ({
-                                    // prefix displayName of machine to visualize that is is part of a subscription
-                                    displayName: "↳ " + machine.displayName,
-                                    tmid: machine.tmid
-                                }))
-                            )
-                            .concat(
-                            )
-                    );
-                }, []);
-            }),
-            tap((items: (AssignedMachine | NgOption)[]) => {
-                // filter items by assignedMachines
-                const allMachines = items.filter((object) => object.tmid) as AssignedMachine[];
-                this.selectedMachine = allMachines.find((machine) =>  machine.tmid === this.initialMachineId)
-
-            }),
             catchError(err => {
                 console.log("could not load machines", err);
                 return of([]);

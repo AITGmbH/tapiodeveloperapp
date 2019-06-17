@@ -1,15 +1,22 @@
 <div class="row">
   <div class="tile">
-    <ng-select 
-      class="tile dropdown selectmachine-ngselect" 
-      [items]="items$ | async" 
-      [bindLabel]="'displayName'"
-      placeholder="Please select a machine" 
-      [clearable]="false" 
-      [searchable]="false" 
+    <ng-select
+      class="tile dropdown selectmachine-ngselect"
+      [items]="items$ | async"
+      groupBy="assignedMachines"
+      bindLabel="displayName"
+      placeholder="Please select a machine"
+      [clearable]="false"
+      [searchable]="false"
       [dropdownPosition]="'bottom'"
       (change)="selectedMachineChanged($event)"
       [(ngModel)]="selectedMachine">
+      <ng-template ng-optgroup-tmp let-item="item">
+        {{ item.name }}
+      </ng-template>
+      <ng-template ng-option-tmp let-item="item">
+        {{ item.displayName }}
+      </ng-template>
     </ng-select>
   </div>
 </div>

@@ -98,10 +98,10 @@ describe("SelectMachineComponent", () => {
         expect(getSubscriptionsSpy).toHaveBeenCalledTimes(1);
         const items = await component.items$.toPromise();
         expect(items.length).toEqual(6);
-        expect(items[0].displayName).toEqual(mockSubscriptions[0].name);
+        expect(items[0].name).toEqual(mockSubscriptions[0].name);
         expect(items[0].tmid).toBeUndefined();
         expect((items[0] as NgOption).disabled).toBe(true);
-        expect(items[1].displayName).toEqual(
+        expect(items[1].name).toEqual(
             machineDisplayNamePrefix + mockSubscriptions[0].assignedMachines[0].displayName
         );
         expect(items[1].tmid).not.toBeUndefined();
