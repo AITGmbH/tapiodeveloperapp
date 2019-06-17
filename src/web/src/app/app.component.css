@@ -7,13 +7,7 @@ footer.footer {
 }
 
 .main-header {
-  background: #414753;
-  color: #FFF;
-  height: 80px;
   font-family: "Open Sans", Helvetica, Arial, Verdana, sans-serif;
-  margin-bottom: 0px;
-  text-align: center;
-  top: 0;
 }
 
 .main-content, .main-content .box {
@@ -29,9 +23,6 @@ footer.footer {
 .main-nav {
   background: #FFF;
   font-family: "Open Sans", Helvetica, Arial, Verdana, sans-serif;
-  /* width: 13%; */
-  overflow-y: auto;
-  padding-right: 25px;
 }
 
 .level-item {
@@ -40,8 +31,6 @@ footer.footer {
 
 .logo {
   margin: 12px 26px 12px 20px;
-  height: 55px;
-  vertical-align: middle;
 }
 
 .is-unstyled-list {
