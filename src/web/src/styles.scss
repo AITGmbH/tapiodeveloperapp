@@ -1,5 +1,7 @@
 @import "./styles_navbar.scss";
 @import "./styles_cards.scss";
+@import "./styles_spinner.scss";
+@import "./styles_datatable.scss";
 
 
 @import "../node_modules/bulma/sass/utilities/_all.sass";
@@ -39,108 +41,6 @@ h3.title.is-3 {
 a.has-text-white:hover {
   color: #FFF !important;
 }
-
-/**
-  Start Spinner
-  Source: https://github.com/tobiasahlin/SpinKit
-  License: The MIT License (MIT) Copyright (c) 2015 Tobias Ahlin
-*/
-
-.spinner {
-  width: 40px;
-  height: 40px;
-  position: relative;
-  margin: 100px auto;
-}
-
-.double-bounce1, .double-bounce2 {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background-color: #FFF;
-  opacity: 0.6;
-  position: absolute;
-  top: 0;
-  left: 0;
-
-  -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
-  animation: sk-bounce 2.0s infinite ease-in-out;
-}
-
-.double-bounce2 {
-  -webkit-animation-delay: -1.0s;
-  animation-delay: -1.0s;
-}
-
-@-webkit-keyframes sk-bounce {
-  0%, 100% { -webkit-transform: scale(0.0) }
-  50% { -webkit-transform: scale(1.0) }
-}
-
-@keyframes sk-bounce {
-  0%, 100% {
-    transform: scale(0.0);
-    -webkit-transform: scale(0.0);
-  } 50% {
-      transform: scale(1.0);
-      -webkit-transform: scale(1.0);
-    }
-}
-
-/**
-  End Spinner
-*/
-
-/**
-  Start ngx-datatable
-*/
-
-.ngx-datatable .datatable-body .datatable-row-wrapper:not(:last-of-type) {
-  border-bottom: thin solid #303741;
-}
-
-.datatable-header-cell {
-  font-weight: 700;
-}
-
-.datatable-header {
-  border-bottom: thin solid #303741;
-  margin-right: 15px;
-}
-
-.ngx-datatable .datatable-footer {
-  border-top: thin solid #303741;
-}
-
-.datatable-footer {
-  border-top: thin solid #303741;
-}
-
-.ngx-datatable .pages a {
-  color: #303741;
-  margin-left: 1rem;
-}
-
-.ngx-datatable .datatable-body-cell {
-  line-height: 2.5;
-  margin-right: 15px;
-}
-
-.datatable-footer .datatable-pager {
-  display: none;
-}
-
-.ngx-datatable .datatable-header-cell {
-  margin-right: 15px;
-}
-
-div.empty-row {
-  padding-top: 10px;
-}
-
-/**
-  End ngx-datatable
-*/
 
 .errorMessage {
   margin-top: 2rem;
