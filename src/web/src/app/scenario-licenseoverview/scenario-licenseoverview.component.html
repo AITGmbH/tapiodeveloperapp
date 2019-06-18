@@ -2,7 +2,7 @@
     scenarioTitle="License Overview"
     id="license-overview-scenario"
     description="This scenario shows all the information on subscriptions containing licenses of the tapio developer app by using the GlobalDiscoveryService API.">
-    <div class="card-stack-container">
+    <div class="card-stack-container" *ngIf="subscriptions$ | async ; else loadingOrError">
         <div class="card" *ngFor="let subscription of subscriptions$ | async">
             <header class="card-header">
                 <h1 class="card-header-title">{{ subscription.name }}</h1>
