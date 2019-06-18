@@ -1,3 +1,5 @@
+@import "../node_modules/open-sans-fonts/open-sans-ng.css";
+
 @import "./styles_variables.scss";
 @import "./styles_navbar.scss";
 @import "./styles_cards.scss";
@@ -15,6 +17,9 @@
 @import "../node_modules/bulma/sass/layout/hero.sass";
 @import "../node_modules/bulma/sass/layout/section.sass";
 
+* {
+  font-family: "Open Sans", Helvetica, Arial, Verdana, sans-serif;
+}
 
 html {
   height: 100%;

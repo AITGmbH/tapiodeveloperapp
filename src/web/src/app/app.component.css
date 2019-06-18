@@ -6,10 +6,6 @@ footer.footer {
   left: 0;
 }
 
-.main-header {
-  font-family: "Open Sans", Helvetica, Arial, Verdana, sans-serif;
-}
-
 .main-content, .main-content .box {
   background: #FFF;
   max-width: 99%;
@@ -22,7 +18,6 @@ footer.footer {
 
 .main-nav {
   background: #FFF;
-  font-family: "Open Sans", Helvetica, Arial, Verdana, sans-serif;
 }
 
 .level-item {
@@ -52,7 +47,6 @@ footer.footer {
 
 footer.footer {
   padding: 2.5rem 1rem 2rem 1rem;
-  font-family: "Open Sans", Helvetica, Arial, Verdana, sans-serif;
   background-color: #303741;
   color: #CFCFCF;
   height: 100px;
