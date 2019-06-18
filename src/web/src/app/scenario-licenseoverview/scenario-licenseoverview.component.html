@@ -2,16 +2,12 @@
     scenarioTitle="License Overview"
     id="license-overview-scenario"
     description="This scenario shows all the information on subscriptions containing licenses of the tapio developer app by using the GlobalDiscoveryService API.">
-    <div class="columns" *ngIf="subscriptions$ | async; else loadingOrError">
-    <div class="column is-5">
-        <div class="tile is-ancestor">
-        <div class="tile is-vertical">
-            <div class="tile is-parent" *ngFor="let subscription of subscriptions$ | async">
-            <div class="tile card is-child is-vertical">
-                <header class="card-header">
-                <h1 class="card-header-title">{{ subscription.name }}</h1>
-                </header>
-                <div class="card-content">
+    <div class="card-stack-container">
+        <div class="card is-child is-vertical" *ngFor="let subscription of subscriptions$ | async">
+            <header class="card-header">
+            <h1 class="card-header-title">{{ subscription.name }}</h1>
+            </header>
+            <div class="card-content">
                 <ul class="license-list">
                     <li *ngFor="let license of subscription.licenses">
                     <div class="license-div">
@@ -24,12 +20,8 @@
                     </div>
                     </li>
                 </ul>
-                </div>
-            </div>
             </div>
         </div>
-        </div>
-    </div>
     </div>
 </app-scenario>
 

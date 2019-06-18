@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Observable, of, Subject, BehaviorSubject } from "rxjs";
 import { MachineOverviewService } from "./scenario-machineoverview.service";
 import { Subscription } from "../shared/models/subscription.model";
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, tap } from "rxjs/operators";
 
 @Component({
   selector: "app-scenario-machineoverview",
