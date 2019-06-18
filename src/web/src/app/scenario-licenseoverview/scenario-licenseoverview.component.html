@@ -3,21 +3,21 @@
     id="license-overview-scenario"
     description="This scenario shows all the information on subscriptions containing licenses of the tapio developer app by using the GlobalDiscoveryService API.">
     <div class="card-stack-container">
-        <div class="card is-child is-vertical" *ngFor="let subscription of subscriptions$ | async">
+        <div class="card" *ngFor="let subscription of subscriptions$ | async">
             <header class="card-header">
-            <h1 class="card-header-title">{{ subscription.name }}</h1>
+                <h1 class="card-header-title">{{ subscription.name }}</h1>
             </header>
             <div class="card-content">
                 <ul class="license-list">
                     <li *ngFor="let license of subscription.licenses">
-                    <div class="license-div">
-                        <p><span class="license-content-name">License Id:</span>{{ license.licenseId }}</p>
-                        <p><span class="license-content-name">Application Id:</span>{{ license.applicationId }}</p>
-                        <p><span class="license-content-name">Created date:</span>{{ license.createdDate | date: "medium" }}</p>
-                        <p><span class="license-content-name">Billing start date:</span>{{ license.billingStartDate | date: "medium" }}</p>
-                        <p><span class="license-content-name">Billing interval:</span>{{ license.billingInterval }}</p>
-                        <p><span class="license-content-name">License count:</span>{{ license.licenseCount }}</p>
-                    </div>
+                        <table class="license-list-table">
+                            <tr><td>License Id:</td><td>{{ license.licenseId }}</td></tr>
+                            <tr><td>Application Id:</td><td>{{ license.applicationId }}</td></tr>
+                            <tr><td>Created date:</td><td>{{ license.createdDate | date: "medium" }}</td></tr>
+                            <tr><td>Billing start date:</td><td>{{ license.billingStartDate | date: "medium" }}</td></tr>
+                            <tr><td>Billing interval:</td><td>{{ license.billingInterval }}</td></tr>
+                            <tr><td>License count:</td><td>{{ license.licenseCount }}</td></tr>
+                        </table>
                     </li>
                 </ul>
             </div>
