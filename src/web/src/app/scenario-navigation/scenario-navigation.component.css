@@ -17,6 +17,7 @@ li {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: pre-wrap;
+  height: 37px;
 }
 
 li:hover > a {
@@ -28,8 +29,14 @@ li:hover {
 }
 
 li > a {
-  vertical-align: middle;
-  display: table-cell;
+  display: block;
   padding-left: 20px;
   padding-right: 20px;
+  height: 100%;
+}
+
+li > a > span {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
 }
