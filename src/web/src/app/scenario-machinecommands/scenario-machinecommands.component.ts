@@ -3,7 +3,8 @@ import { MachineCommandsService, CommandItemRead, commandType } from "./scenario
 
 @Component({
     selector: "app-scenario-machinecommands",
-    templateUrl: "./scenario-machinecommands.component.html"
+    templateUrl: "./scenario-machinecommands.component.html",
+    styleUrls: ["./scenario-machinecommands.component.css"]
 })
 export class MachineCommandsComponent implements OnInit {
     constructor(private machineCommandsService: MachineCommandsService) {}
