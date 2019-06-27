@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="(itemData$ | async)">
   <h3 class="title is-3">Item Data</h3>
   <ngx-datatable 
   class="material datatable"
@@ -71,7 +71,7 @@
   <ng-container *ngTemplateOutlet="showError">
   </ng-container>
 </div>
-<div>
+<div *ngIf="(conditions$ | async)">
   <h3 class="title is-3">Conditions</h3>
   <ngx-datatable 
   class="material datatable"
