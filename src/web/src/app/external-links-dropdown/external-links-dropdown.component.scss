@@ -1,0 +1,24 @@
+a.navbar-link {
+  text-transform: uppercase;
+  padding: 26px 50px 26px 26px;
+  font-size: 17px;
+}
+
+div.dropdown-content {
+  padding: 0;
+  border-radius: 0;
+  border: none;
+}
+
+a.navbar-item {
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+a.navbar-item:first-child {
+  padding-top: 20px;
+}
+
+a.navbar-item:last-child {
+  padding-bottom: 20px;
+}

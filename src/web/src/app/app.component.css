@@ -6,6 +6,27 @@ footer.footer {
   left: 0;
 }
 
+header.main-header {
+  height: 80px;
+}
+
+nav.navbar {
+  height: 80px;
+  justify-content: center;
+}
+
+div.navbar-brand span {
+  padding: 26px 0;
+}
+
+div.navbar-brand span:hover {
+  cursor: default;
+}
+
+.navbar-menu {
+  margin-right: 32px;
+}
+
 .main-content, .main-content .box {
   background: #FFF;
   max-width: 99%;
@@ -24,8 +45,10 @@ footer.footer {
   max-height: 50px;
 }
 
-.logo {
-  margin: 12px 26px 12px 20px;
+img.logo {
+  margin: 15px 26px 15px 20px;
+  width: 60px;
+  vertical-align: middle;
 }
 
 .is-unstyled-list {
