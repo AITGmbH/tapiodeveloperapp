@@ -24,6 +24,10 @@ div.ng-select-container:hover {
     border-radius: 0;
 }
 
+.ng-dropdown-panel .ng-dropdown-panel-items {
+    max-height: 300px !important;
+}
+
 div.ng-dropdown-panel-items {
     border: #303741 2px solid;
     border-radius: 0px !important;
