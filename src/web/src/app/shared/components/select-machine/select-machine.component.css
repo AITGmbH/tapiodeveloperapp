@@ -71,3 +71,24 @@ div.ng-option-marked {
 .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-disabled {
     cursor: default;
 }
+
+div.loading-spinner {
+    position: relative;
+    height: 42px;
+    width: 30rem;
+}
+
+div.spinner {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    height: 40px;
+    width: 40px;
+    margin-top: 2px;
+}
+
+#machine-loading-text {
+    padding: 12px 0 0 55px;
+    font-style: italic;
+    color: #303741;
+}

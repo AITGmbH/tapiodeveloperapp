@@ -1,8 +1,8 @@
 import { Component, OnInit, Output, EventEmitter, Input, ViewEncapsulation } from "@angular/core";
-import { Observable, of, Subscription as rxSubscription } from "rxjs";
+import { Observable, of, Subscription as rxSubscription, BehaviorSubject } from "rxjs";
 import { AssignedMachine } from "../../models/assigned-machine.model";
 import { MachineOverviewService } from "src/app/scenario-machineoverview/scenario-machineoverview.service";
-import { map, catchError, tap } from "rxjs/operators";
+import { map, catchError, tap, delay } from "rxjs/operators";
 import { Subscription } from "../../models/subscription.model";
 import { NgOption } from "@ng-select/ng-select";
 
@@ -14,16 +14,22 @@ import { NgOption } from "@ng-select/ng-select";
 })
 export class SelectMachineComponent implements OnInit {
     public items$: Observable<Array<Subscription>>;
+    public error$ = new BehaviorSubject<boolean>(false);
+    public loading$ = new BehaviorSubject<boolean>(false);
     selectedMachine: AssignedMachine;
     @Input() initialMachineId: string;
 
     @Output() public change: EventEmitter<string> = new EventEmitter<string>();
 
-    constructor(private readonly machineOverviewService: MachineOverviewService) {}
+    constructor(private readonly machineOverviewService: MachineOverviewService) {
+        this.loading$.next(true);
+    }
 
     ngOnInit() {
         this.items$ = this.machineOverviewService.getSubscriptions().pipe(
             catchError(err => {
+                this.error$.next(true);
+                this.loading$.next(false);
                 console.log("could not load machines", err);
                 return of([]);
             })
@@ -32,6 +38,8 @@ export class SelectMachineComponent implements OnInit {
 
     public selectedMachineChanged(machine: AssignedMachine) {
         if (machine && machine.tmid) {
+            this.error$.next(false);
+            this.loading$.next(false);
             this.change.emit(machine.tmid);
         }
     }

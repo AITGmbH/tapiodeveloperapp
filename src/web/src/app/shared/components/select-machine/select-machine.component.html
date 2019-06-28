@@ -1,6 +1,6 @@
 <div class="row">
   <div class="tile">
-    <ng-select
+    <ng-select *ngIf="items$ | async; else loadingOrError"
       class="tile dropdown selectmachine-ngselect"
       [items]="items$ | async"
       groupBy="assignedMachines"
@@ -20,3 +20,16 @@
     </ng-select>
   </div>
 </div>
+
+<ng-template #loadingOrError>
+  <div *ngIf="(error$ | async)" class="errorMessage">
+    No data available for this machine
+  </div>
+  <div class="loading-spinner">
+    <div *ngIf="(loading$ | async)" class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+    </div>
+    <p id="machine-loading-text">Loading machine data...</p>
+  </div>
+</ng-template>
