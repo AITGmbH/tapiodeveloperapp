@@ -1,8 +1,6 @@
 import { TestBed, ComponentFixture } from "@angular/core/testing";
-
 import { ScenarioNavigationComponent } from "./scenario-navigation.component";
 import { of } from "rxjs";
-import * as moq from "typemoq";
 import { By } from "@angular/platform-browser";
 import { RouterTestingModule } from "@angular/router/testing";
 import { ScenarioEntry } from "../shared/models/scenario-entity.model";

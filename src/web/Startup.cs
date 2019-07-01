@@ -6,6 +6,7 @@ using Aitgmbh.Tapio.Developerapp.Web.Repositories;
 using Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricalData;
 using Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricConditions;
 using Aitgmbh.Tapio.Developerapp.Web.Scenarios.LicenseOverview;
+using Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData;
 using Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineOverview;
 using Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineState;
 using Aitgmbh.Tapio.Developerapp.Web.Services;
@@ -24,13 +25,15 @@ namespace Aitgmbh.Tapio.Developerapp.Web
     {
         private readonly ILogger<Startup> _logger;
 
-        public Startup(IConfiguration configuration, ILogger<Startup> logger)
+        public Startup(IConfiguration configuration, IHostingEnvironment hostingEnvironment, ILogger<Startup> logger)
         {
             _logger = logger;
             Configuration = configuration;
+            HostingEnvironment = hostingEnvironment;
         }
 
         public IConfiguration Configuration { get; }
+        public IHostingEnvironment HostingEnvironment { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -43,8 +46,13 @@ namespace Aitgmbh.Tapio.Developerapp.Web
                 .AddSingleton<IScenarioRepository, ScenarioRepository>()
                 .AddSingleton<ITokenProvider, TokenProvider>()
                 .AddSingleton<OptionsValidator>()
+                .AddSingleton<IMachineLiveDataCommunicationService, MachineLiveDataCommunicationService>()
+                .AddSingleton<IEvenHubCredentialProvider, EventHubCredentialProvider>()
                 .AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            ConfigureApplicationLocalServices(services);
+
             services
                 .AddHttpClient<IMachineOverviewService, MachineOverviewService>();
             services
@@ -60,9 +68,14 @@ namespace Aitgmbh.Tapio.Developerapp.Web
                 .Bind(Configuration.GetSection("TapioCloud"))
                 .ValidateDataAnnotations()
                 .Validate(c => Guid.TryParse(c.ClientId, out _), @"The client secret must be a valid Guid");
+            services
+                .AddOptions<EventHubCredentials>()
+                .Bind(Configuration.GetSection("EventHub"))
+                .ValidateDataAnnotations();
+            services.AddSignalR();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, OptionsValidator optionsValidator)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, OptionsValidator optionsValidator, IServiceProvider serviceProvider)
         {
             if (optionsValidator == null)
             {
@@ -79,6 +92,8 @@ namespace Aitgmbh.Tapio.Developerapp.Web
             }
 
             optionsValidator.Validate();
+            serviceProvider.GetService<IMachineLiveDataService>().RegisterHubAsync();
+            serviceProvider.GetService<IMachineLiveDataCommunicationService>().RegisterCallback();
 
             app.Use(async (context, next) =>
             {
@@ -96,7 +111,25 @@ namespace Aitgmbh.Tapio.Developerapp.Web
             app.UseStaticFiles();
 
             app.UseHttpsRedirection();
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<MachineLiveDataHub>("/hubs/machineLiveData");
+            });
             app.UseMvc();
+        }
+
+        private void ConfigureApplicationLocalServices(IServiceCollection services)
+        {
+            if (HostingEnvironment.IsDevelopment() && bool.Parse(Configuration["UseLocalLiveData"]))
+            {
+                services.AddSingleton<IMachineLiveDataService, MachineLiveDataLocalService>();
+
+            }
+            else
+            {
+                services.AddSingleton<IMachineLiveDataEventProcessorFactory, MachineLiveDataEventProcessorFactory>();
+                services.AddSingleton<IMachineLiveDataService, MachineLiveDataService>();
+            }
         }
     }
 

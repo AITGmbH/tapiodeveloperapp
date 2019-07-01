@@ -19,12 +19,17 @@ const routes: Routes = [
         loadChildren: "./scenario-historicaldata/scenario-historicaldata.module#ScenarioHistoricaldataModule"
     },
     {
-        path: 'scenario-machinestate',
-        loadChildren: './scenario-machinestate/scenario-machinestate.module#ScenarioMachinestateModule'
+        path: "scenario-machinestate",
+        loadChildren: "./scenario-machinestate/scenario-machinestate.module#ScenarioMachinestateModule"
     },
     {
-        path: 'scenario-historicconditions',
-        loadChildren: './scenario-historicconditions/scenario-historicconditions.module#ScenarioHistoricconditionsModule'
+        path: "scenario-historicconditions",
+        loadChildren:
+            "./scenario-historicconditions/scenario-historicconditions.module#ScenarioHistoricconditionsModule"
+    },
+    {
+        path: "scenario-machinelivedata",
+        loadChildren: "./scenario-machinelivedata/scenario-machinelivedata.module#ScenarioMachineLiveDataModule"
     }
 ];
 
@@ -32,4 +37,4 @@ const routes: Routes = [
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

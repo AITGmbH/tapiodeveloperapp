@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Observable, of, BehaviorSubject } from "rxjs";
+import { BehaviorSubject } from "rxjs";
 import { ScenarioNavigationService } from "./scenario-navigation.service";
 import { ScenarioEntry } from "../shared/models/scenario-entity.model";
 

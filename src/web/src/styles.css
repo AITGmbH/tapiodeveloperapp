@@ -1,25 +1,25 @@
 html {
-  overflow-y: auto;
+    overflow-y: auto;
 }
 
 body {
-  background: rgb(7, 19, 26);
+    background: rgb(7, 19, 26);
 }
 
 h1.title {
-  text-align: left;
-  color: #fff;
+    text-align: left;
+    color: #fff;
 }
 
 h3.title.is-3 {
-  text-align: left;
-  color: #fff;
-  font-size: 35px;
-  margin: 15px 0;
+    text-align: left;
+    color: #fff;
+    font-size: 35px;
+    margin: 15px 0;
 }
 
 a.has-text-white:hover {
-  color: #00ff8c !important;
+    color: #00ff8c !important;
 }
 
 /**
@@ -29,43 +29,51 @@ a.has-text-white:hover {
 */
 
 .spinner {
-  width: 40px;
-  height: 40px;
-  position: relative;
-  margin: 100px auto;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    margin: 100px auto;
 }
 
-.double-bounce1, .double-bounce2 {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background-color: #FFF;
-  opacity: 0.6;
-  position: absolute;
-  top: 0;
-  left: 0;
+.double-bounce1,
+.double-bounce2 {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #fff;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    left: 0;
 
-  -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
-  animation: sk-bounce 2.0s infinite ease-in-out;
+    -webkit-animation: sk-bounce 2s infinite ease-in-out;
+    animation: sk-bounce 2s infinite ease-in-out;
 }
 
 .double-bounce2 {
-  -webkit-animation-delay: -1.0s;
-  animation-delay: -1.0s;
+    -webkit-animation-delay: -1s;
+    animation-delay: -1s;
 }
 
 @-webkit-keyframes sk-bounce {
-  0%, 100% { -webkit-transform: scale(0.0) }
-  50% { -webkit-transform: scale(1.0) }
+    0%,
+    100% {
+        -webkit-transform: scale(0);
+    }
+    50% {
+        -webkit-transform: scale(1);
+    }
 }
 
 @keyframes sk-bounce {
-  0%, 100% {
-    transform: scale(0.0);
-    -webkit-transform: scale(0.0);
-  } 50% {
-      transform: scale(1.0);
-      -webkit-transform: scale(1.0);
+    0%,
+    100% {
+        transform: scale(0);
+        -webkit-transform: scale(0);
+    }
+    50% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
     }
 }
 
@@ -78,13 +86,13 @@ a.has-text-white:hover {
 */
 
 .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-disabled span.ng-option-label {
-  color: black;
-  font-weight: bold;
-  font-size: 1.2rem;
+    color: black;
+    font-weight: bold;
+    font-size: 1.2rem;
 }
 
 .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-disabled {
-  cursor: default;
+    cursor: default;
 }
 
 /**
@@ -96,46 +104,46 @@ a.has-text-white:hover {
 */
 
 .ngx-datatable .datatable-body .datatable-row-wrapper:not(:last-of-type) {
-  border-bottom: thin solid gray;
+    border-bottom: thin solid gray;
 }
 
 .datatable-header-cell {
-  font-weight: 700;
+    font-weight: 700;
 }
 
 .datatable-header {
-  border-bottom: thin solid gray;
-  margin-right: 15px;
+    border-bottom: thin solid gray;
+    margin-right: 15px;
 }
 
 .ngx-datatable .datatable-footer {
-  border-top: thin solid gray;
+    border-top: thin solid gray;
 }
 
 .datatable-footer {
-  border-top: thin solid gray;
+    border-top: thin solid gray;
 }
 
 .ngx-datatable .pages a {
-  color: white;
-  margin-left: 1rem;
+    color: white;
+    margin-left: 1rem;
 }
 
 .ngx-datatable .datatable-body-cell {
-  line-height: 2.5;
-  margin-right: 15px;
+    line-height: 2.5;
+    margin-right: 15px;
 }
 
 .datatable-footer .datatable-pager {
-  display: none;
+    display: none;
 }
 
 .ngx-datatable .datatable-header-cell {
-  margin-right: 15px;
+    margin-right: 15px;
 }
 
 div.empty-row {
-  padding-top: 10px;
+    padding-top: 10px;
 }
 
 /**
@@ -147,15 +155,15 @@ div.empty-row {
 */
 
 div.card {
-  background-color: #333;
+    background-color: #333;
 }
 
 header.card-header {
-  background-color: #eee;
+    background-color: #eee;
 }
 
 div.card-content {
-  color: white;
+    color: white;
 }
 
 /**
@@ -163,11 +171,11 @@ div.card-content {
 */
 
 .errorMessage {
-  margin-top: 2rem;
-  background-color: white;
-  display: block;
-  max-width: 35%;
-  padding: 3px 3px 3px 10px;
-  text-align: left;
-  color: red;
+    margin-top: 2rem;
+    background-color: white;
+    display: block;
+    max-width: 35%;
+    padding: 3px 3px 3px 10px;
+    text-align: left;
+    color: red;
 }

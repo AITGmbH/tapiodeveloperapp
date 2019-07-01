@@ -1,45 +1,37 @@
-<app-scenario 
-  title="Historical Data" 
-  id="historical-data-scenario"
-  description="This scenario lists the different data sources of the selected machine for which data is available. This data can be accessed from the historical database via the historic data API. 
+<app-scenario title="Historical Data" id="historical-data-scenario"
+    description="This scenario lists the different data sources of the selected machine for which data is available. This data can be accessed from the historical database via the historic data API.
   Clicking on a data source that can be visualized will show the visualization diagram. Please note that currently data is available only for 'Testmaschine 02'.">
-  <div>
-    <app-select-machine (change)="selectedMachineChanged($event)"></app-select-machine>
-    <app-date-range (change)="dateRangeChanged($event)"></app-date-range>
-    <div class="flex-container" *ngIf="(sourceKeys$ | async) as sourceKeys; else loadingOrError">
-      <div class="sourceKeyList row">
-        <h1 class="sourceKeyHeader">Source Keys:</h1>
-        <ul>
-          <li *ngFor="let key of sourceKeys.keys; let i = index">
-            <input type="radio" name="sourceKeysList" [id]="key" (change)="radioChanged($event)">
-            <label [for]="key">{{key}}</label>
-          </li>
-        </ul>
-      </div>
-      <div class="sourceKeyData" *ngIf="lineSeriesData; else loadingOrError">
-        <ngx-charts-line-chart
-        class="historicalDataChart"
-        [xAxis]="true"
-        [yAxis]="true"
-        [showGridLines]="true"
-        [roundDomains]="true"
-        [autoScale]="true"
-        [results]="lineSeriesData">
-        </ngx-charts-line-chart>
-      </div>
+    <div>
+        <app-select-machine (change)="selectedMachineChanged($event)"></app-select-machine>
+        <app-date-range (change)="dateRangeChanged($event)"></app-date-range>
+        <div class="flex-container" *ngIf="(sourceKeys$ | async) as sourceKeys; else loadingOrError">
+            <div class="sourceKeyList row">
+                <h1 class="sourceKeyHeader">Source Keys:</h1>
+                <ul>
+                    <li *ngFor="let key of sourceKeys.keys; let i = index">
+                        <input type="radio" name="sourceKeysList" [id]="key" (change)="radioChanged($event)">
+                        <label [for]="key">{{key}}</label>
+                    </li>
+                </ul>
+            </div>
+            <div class="sourceKeyData" *ngIf="lineSeriesData; else loadingOrError">
+                <ngx-charts-line-chart class="historicalDataChart" [xAxis]="true" [yAxis]="true" [showGridLines]="true"
+                    [roundDomains]="true" [autoScale]="true" [results]="lineSeriesData">
+                </ngx-charts-line-chart>
+            </div>
+        </div>
     </div>
-  </div>
 </app-scenario>
 
 <ng-template #loadingOrError>
-  <div *ngIf="(error$ | async); else loading" class="errorMessage">
-    No data available for this machine
-  </div>
-
-  <ng-template #loading>
-    <div *ngIf="loading$ | async" class="spinner">
-      <div class="double-bounce1"></div>
-      <div class="double-bounce2"></div>
+    <div *ngIf="(error$ | async); else loading" class="errorMessage">
+        No data available for this machine
     </div>
-  </ng-template>
+
+    <ng-template #loading>
+        <div *ngIf="loading$ | async" class="spinner">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+        </div>
+    </ng-template>
 </ng-template>
