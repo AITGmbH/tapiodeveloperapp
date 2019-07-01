@@ -88,3 +88,15 @@ footer.footer a.has-text-white:hover {
 .align-right {
   margin-left: 50px;
 }
+
+.scroll-to-top-btn {
+  position: absolute;
+  bottom: 15px;
+  right: 53px;
+  color: #414753;
+}
+
+.scroll-to-top-btn fa-icon:hover {
+  cursor: pointer;
+  color: #303741;
+}

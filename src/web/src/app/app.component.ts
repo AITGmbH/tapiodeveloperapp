@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
+import { Component, OnInit, ViewChild, NgZone } from "@angular/core";
 import { Router } from "@angular/router";
+import { PerfectScrollbarComponent } from "ngx-perfect-scrollbar";
 
 @Component({
     selector: "app-root",
@@ -8,16 +9,15 @@ import { Router } from "@angular/router";
 })
 export class AppComponent implements OnInit {
     title = "developerapp";
-    constructor(private router: Router) {
+    public showScrollToTopBtn: boolean = false;
+
+    constructor(private router: Router, public zone: NgZone) {
         this.router.events.subscribe(segments => {
-            if (this.mainContent) {
-                this.mainContent.nativeElement.scrollTop = 0;
-                this.mainContent.nativeElement.scrollLeft = 0;
-            }
+            this.scrollToTop();
         });
     }
-    @ViewChild("mainContent")
-    public mainContent: ElementRef;
+    @ViewChild("mainContentScrollbar")
+    public mainContent: PerfectScrollbarComponent;
 
     ngOnInit(): void {
         // Get all "navbar-burger" elements
@@ -38,5 +38,21 @@ export class AppComponent implements OnInit {
                 });
             });
         }
+    }
+
+    public scrollToTop(): void {
+        if (this.mainContent && this.mainContent.directiveRef) {
+            this.mainContent.directiveRef.scrollToTop();
+        }
+    }
+
+    // use ngZone because Event is out of Zone https://stackoverflow.com/a/41724333
+    public onScrollYReachStart(): void {
+        this.zone.run(()=> this.showScrollToTopBtn = false)
+    }
+
+    public onScrollDown(): void {
+        
+        this.zone.run(()=> this.showScrollToTopBtn = true)
     }
 }
