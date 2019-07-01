@@ -1,9 +1,23 @@
-div.modal-content {
-    width: 60rem;
+div.modal-card {
+    max-width: 70rem;
+}
+
+header.modal-card-head {
+    justify-content: flex-end !important;
 }
 
 .modal-content pre {
     background-color: #F3F4F4;
     color: #303741;
     text-align: left;
+}
+
+section.modal-card-body {
+    padding: 0;
+    overflow: none;
+}
+
+.modal-card, 
+.modal-content {
+    width: auto;
 }
