@@ -21,6 +21,9 @@ export class ScenarioHistoricaldataComponent implements OnInit {
     error$ = new Subject<boolean>();
     loading$ = new Subject<boolean>();
     lineSeriesData: LineSeriesData[];
+    lineChartScheme = {
+        domain: ['#e3000b', '#0092b4', '#303741']
+    }
 
     constructor(private readonly historicalDataService: HistoricalDataService) {
         this.error$.next(false);

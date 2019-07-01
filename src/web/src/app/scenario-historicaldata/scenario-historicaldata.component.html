@@ -19,7 +19,7 @@
       </div>
       <div class="sourceKeyData" *ngIf="lineSeriesData; else loadingOrError">
         <ngx-charts-line-chart class="historicalDataChart" [xAxis]="true" [yAxis]="true" [showGridLines]="true"
-          [roundDomains]="true" [autoScale]="true" [results]="lineSeriesData">
+          [roundDomains]="true" [autoScale]="true" [results]="lineSeriesData" [scheme]="lineChartScheme">
         </ngx-charts-line-chart>
       </div>
     </div>
