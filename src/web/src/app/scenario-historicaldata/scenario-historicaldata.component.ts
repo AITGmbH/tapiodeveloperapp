@@ -8,7 +8,7 @@ import * as moment from "moment";
 @Component({
     selector: "app-scenario-historicaldata",
     templateUrl: "./scenario-historicaldata.component.html",
-    styleUrls: ["./scenario-historicaldata.component.css"]
+    styleUrls: ["./scenario-historicaldata.component.scss"]
 })
 export class ScenarioHistoricaldataComponent implements OnInit {
     private searchCriteria$ = new BehaviorSubject<ScenarionHistoricaldataSearchCriteria>({

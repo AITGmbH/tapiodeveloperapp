@@ -30,6 +30,7 @@
     "@swimlane/ngx-charts": "^10.1.0",
     "@swimlane/ngx-datatable": "^14.0.0",
     "bulma": "^0.7.2",
+    "bulma-checkradio": "^1.1.1",
     "core-js": "^2.5.4",
     "moment": "^2.24.0",
     "ng-pick-datetime": "^7.0.0",

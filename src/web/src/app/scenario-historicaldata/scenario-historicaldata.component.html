@@ -1,6 +1,4 @@
-<app-scenario
-  scenarioTitle="Historical Data"
-  id="historical-data-scenario"
+<app-scenario scenarioTitle="Historical Data" id="historical-data-scenario"
   description="This scenario lists the different data sources of the selected machine for which data is available. This data can be accessed from the historical database via the historic data API.
   Clicking on a data source that can be visualized will show the visualization diagram. Please note that currently data is available only for 'Testmaschine 02'.">
   <div>
@@ -10,21 +8,18 @@
       <div class="sourceKeyList">
         <h1 class="sourceKeyHeader">Source Keys:</h1>
         <ul>
-          <li *ngFor="let key of sourceKeys.keys; let i = index">
-            <input type="radio" name="sourceKeysList" [id]="key" (change)="radioChanged($event)">
-            <label [for]="key">{{key}}</label>
+          <li *ngFor="let key of sourceKeys.keys; let i = index" class="field">
+            <div class="field">
+              <input class="is-checkradio" type="radio" name="sourceKeysList" [id]="key"
+                (change)="radioChanged($event)" checked="checked">
+              <label [for]="key">{{key}}</label>
+            </div>
           </li>
         </ul>
       </div>
       <div class="sourceKeyData" *ngIf="lineSeriesData; else loadingOrError">
-        <ngx-charts-line-chart
-        class="historicalDataChart"
-        [xAxis]="true"
-        [yAxis]="true"
-        [showGridLines]="true"
-        [roundDomains]="true"
-        [autoScale]="true"
-        [results]="lineSeriesData">
+        <ngx-charts-line-chart class="historicalDataChart" [xAxis]="true" [yAxis]="true" [showGridLines]="true"
+          [roundDomains]="true" [autoScale]="true" [results]="lineSeriesData">
         </ngx-charts-line-chart>
       </div>
     </div>
