@@ -58,6 +58,7 @@ img.logo {
 .columns {
   top: 80px;
   padding-top: 20px;
+  padding-bottom: 20px;
   bottom: 100px;
   margin: 0px;
 }
@@ -76,7 +77,11 @@ footer.footer {
   bottom: 0;
 }
 
-footer > p {
+footer.footer p:hover {
+  cursor: default;
+}
+
+footer.footer a.has-text-white:hover {
   color: #CFCFCF !important;
 }
 
