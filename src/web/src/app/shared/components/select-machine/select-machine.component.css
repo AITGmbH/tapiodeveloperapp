@@ -78,7 +78,7 @@ div.loading-spinner {
     width: 30rem;
 }
 
-div.spinner {
+div.loading-spinner div.spinner {
     position: absolute;
     top: 0;
     left: 10px;

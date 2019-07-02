@@ -56,7 +56,7 @@ div.developer-links > a:hover {
 
 .actual-content {
     background: #fff;
-    min-height: 43rem;
+    min-height: 20rem;
     width: 99%;
     float: left;
 }
