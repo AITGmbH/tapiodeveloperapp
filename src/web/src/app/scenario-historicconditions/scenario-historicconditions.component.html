@@ -73,8 +73,6 @@
           <div class="datatable-cell-value">{{ value | date: "medium" }}</div>
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column [width]="120" [resizeable]="false" name="quality" prop="rts_utc_end_quality">
-      </ngx-datatable-column>
       <ngx-datatable-column [width]="200" [resizeable]="false" name="lm">
         <ng-template let-column="column" ngx-datatable-header-template>
           <span>localized message ({{ column.name }})</span>
