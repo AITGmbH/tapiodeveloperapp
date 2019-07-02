@@ -25,9 +25,6 @@ export class ScenarioMachinestateDetailComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        const defaultMessage = "No data to display";
-        const errorMessage = "Error - No data to display";
-
         this.id$.subscribe(id => {
             if (this.subscription) {
                 this.subscription.unsubscribe();
@@ -36,13 +33,9 @@ export class ScenarioMachinestateDetailComponent implements OnInit {
                 lastKnownState => {
                     this.itemData$ = of(lastKnownState.itds);
                     this.conditions$ = of(lastKnownState.conds);
-                    this.itemData.messages.emptyMessage = defaultMessage;
-                    this.conditions.messages.emptyMessage = defaultMessage;
                 },
                 _ => {
                     this.hasError = true;
-                    this.itemData.messages.emptyMessage = errorMessage;
-                    this.conditions.messages.emptyMessage = errorMessage;
                 }
             );
         });
