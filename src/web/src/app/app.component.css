@@ -70,10 +70,10 @@ img.logo {
 }
 
 footer.footer {
-  padding: 2.5rem 1rem 2rem 1rem;
+  padding: 2rem 1rem 2rem 1rem;
   background-color: #303741;
   color: #CFCFCF;
-  height: 100px;
+  height: 85px;
   bottom: 0;
 }
 
@@ -83,6 +83,13 @@ footer.footer p:hover {
 
 footer.footer a.has-text-white:hover {
   color: #CFCFCF !important;
+}
+
+@media (max-width: 1650px) {
+  footer.footer {
+    height: 60px;
+    padding: 1rem 1rem 2rem 1rem;
+  }
 }
 
 .align-right {
