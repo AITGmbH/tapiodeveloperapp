@@ -26,9 +26,9 @@
   <div class="column is-narrow main-nav">
     <app-scenario-navigation></app-scenario-navigation>
   </div>
-  <perfect-scrollbar class="scroll-container ps-show-always" fxFlex="auto" [scrollIndicators]="true"
+  <perfect-scrollbar class="scroll-container ps-show-always" [scrollIndicators]="true"
     (psYReachStart)="onScrollYReachStart()" (psScrollDown)="onScrollDown()" #mainContentScrollbar>
-    <div class="column main-content scrollable-content">
+    <div class="column main-content">
       <main>
         <router-outlet></router-outlet>
       </main>
