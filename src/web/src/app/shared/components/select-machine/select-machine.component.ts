@@ -2,9 +2,8 @@ import { Component, OnInit, Output, EventEmitter, Input, ViewEncapsulation } fro
 import { Observable, of, Subscription as rxSubscription, BehaviorSubject } from "rxjs";
 import { AssignedMachine } from "../../models/assigned-machine.model";
 import { MachineOverviewService } from "src/app/scenario-machineoverview/scenario-machineoverview.service";
-import { map, catchError, tap, delay } from "rxjs/operators";
+import { catchError, tap } from "rxjs/operators";
 import { Subscription } from "../../models/subscription.model";
-import { NgOption } from "@ng-select/ng-select";
 
 @Component({
     selector: "app-select-machine",
@@ -27,6 +26,15 @@ export class SelectMachineComponent implements OnInit {
 
     ngOnInit() {
         this.items$ = this.machineOverviewService.getSubscriptions().pipe(
+          tap(subscriptions => {
+            for (const subscription of subscriptions) {
+              for (const machine of subscription.assignedMachines) {
+                if (machine.tmid === this.initialMachineId) {
+                  this.selectedMachine = machine;
+                }
+              }
+            }
+          }),
             catchError(err => {
                 this.error$.next(true);
                 this.loading$.next(false);
