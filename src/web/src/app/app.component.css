@@ -59,7 +59,7 @@ img.logo {
   top: 80px;
   padding-top: 20px;
   padding-bottom: 20px;
-  bottom: 100px;
+  bottom: 85px;
   margin: 0px;
 }
 
@@ -87,8 +87,12 @@ footer.footer a.has-text-white:hover {
 
 @media (max-width: 1650px) {
   footer.footer {
-    height: 60px;
-    padding: 1rem 1rem 2rem 1rem;
+    height: 65px;
+    padding: 0.5rem 1rem 2rem 1rem;
+  }
+
+  .scroll-container {
+    margin-bottom: 65px;
   }
 }
 
