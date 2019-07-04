@@ -4,7 +4,7 @@ import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { ScenarioHistoricaldataComponent } from "./scenario-historicaldata.component";
 import { SharedModule } from "../shared/shared.module";
 import { HistoricalDataService } from "./scenario-historicaldata.service";
-import { DebugElement } from "@angular/core";
+import { DebugElement, Component, Directive } from "@angular/core";
 import { of, throwError } from "rxjs";
 import { SourceKeys } from "./source-keys.model";
 import { RouterTestingModule } from "@angular/router/testing";
@@ -19,7 +19,6 @@ describe("ScenarioHistoricaldataComponent", () => {
     let fixture: ComponentFixture<ScenarioHistoricaldataComponent>;
     let historicalDataService: HistoricalDataService;
     let element: DebugElement;
-
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [ScenarioHistoricaldataComponent],

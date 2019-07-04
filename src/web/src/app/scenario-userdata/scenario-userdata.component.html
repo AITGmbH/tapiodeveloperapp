@@ -1,0 +1,8 @@
+<app-scenario title="User Data" id="user-data-scenario">
+    <div *ngIf="jwtToken; else redirectScreen">Hello, {{jwtToken?.email}}</div>
+    <ng-template #redirectScreen>
+        <div>
+            You are getting redirected to the login...
+        </div>
+    </ng-template>
+</app-scenario>

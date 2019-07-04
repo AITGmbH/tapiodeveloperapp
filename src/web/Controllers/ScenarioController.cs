@@ -23,6 +23,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Controllers
         {
             var scenarioEntries = _scenarioRepository
                 .GetAll()
+                .OrderBy(e => e.Caption)
                 .Select(a => new ScenarioEntry(a.Caption, new Uri(a.Url, UriKind.Relative)));
             return Ok(scenarioEntries);
         }

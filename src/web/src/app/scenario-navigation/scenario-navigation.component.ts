@@ -13,6 +13,7 @@ import { ScenarioEntry } from "../shared/models/scenario-entity.model";
 })
 export class ScenarioNavigationComponent implements OnInit {
     private readonly scenarioEntries: BehaviorSubject<ScenarioEntry[]> = new BehaviorSubject<ScenarioEntry[]>([]);
+    public bottomNavigationScenarioUrls: string[] = ["/scenario-userdata", "/scenario-userdata/logout"];
     scenarioEntries$ = this.scenarioEntries.asObservable();
 
     constructor(private readonly scenarioNavigationService: ScenarioNavigationService) {}
