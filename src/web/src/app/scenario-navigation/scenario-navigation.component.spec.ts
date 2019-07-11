@@ -74,10 +74,10 @@ describe("ScenarioNavigationComponent", () => {
         const listElements = debugElement.queryAll(By.css("ul > li > a"));
 
         const firstAnchorElement = listElements[0].nativeElement as HTMLAnchorElement;
-        expect(firstAnchorElement.innerText).toBe("one");
+        expect(firstAnchorElement.innerText).toBe("ONE");
         expect(listElements[0].properties.href).toBe("/one1");
         const secondAnchorElement = listElements[1].nativeElement as HTMLAnchorElement;
-        expect(secondAnchorElement.innerText).toBe("two");
+        expect(secondAnchorElement.innerText).toBe("TWO");
         expect(listElements[1].properties.href).toBe("/two2");
     });
 });

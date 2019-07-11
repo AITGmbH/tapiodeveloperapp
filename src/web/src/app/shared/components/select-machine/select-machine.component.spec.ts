@@ -64,7 +64,7 @@ const mockSubscriptions: Subscription[] = [
     }
 ];
 
-const machineDisplayNamePrefix = "↳ ";
+const machineDisplayNamePrefix = "";
 
 describe("SelectMachineComponent", () => {
     let component: SelectMachineComponent;
@@ -97,14 +97,12 @@ describe("SelectMachineComponent", () => {
         fixture.detectChanges();
         expect(getSubscriptionsSpy).toHaveBeenCalledTimes(1);
         const items = await component.items$.toPromise();
-        expect(items.length).toEqual(6);
+        expect(items.length).toEqual(2);
         expect(items[0].name).toEqual(mockSubscriptions[0].name);
-        expect(items[0].tmid).toBeUndefined();
-        expect((items[0] as NgOption).disabled).toBe(true);
+        expect(items[0].subscriptionId).toEqual("00000000-0000-0000-0000-000000000000");
         expect(items[1].name).toEqual(
-            machineDisplayNamePrefix + mockSubscriptions[0].assignedMachines[0].displayName
-        );
-        expect(items[1].tmid).not.toBeUndefined();
+            machineDisplayNamePrefix + mockSubscriptions[1].name);
+        expect(items[1].subscriptionId).not.toBeUndefined();
         expect((items[1] as NgOption).disabled).toBeUndefined();
         expect(component.selectedMachine).toBeUndefined();
     });
@@ -117,7 +115,7 @@ describe("SelectMachineComponent", () => {
 
         expect(component.selectedMachine.tmid).toEqual(mockSubscriptions[0].assignedMachines[1].tmid);
         expect(component.selectedMachine.displayName).toEqual(
-            machineDisplayNamePrefix + mockSubscriptions[0].assignedMachines[1].displayName
+            machineDisplayNamePrefix + mockSubscriptions[1].assignedMachines[1].displayName
         );
     });
 });
