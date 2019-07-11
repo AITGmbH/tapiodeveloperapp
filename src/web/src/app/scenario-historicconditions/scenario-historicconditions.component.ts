@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, HostListener } from "@angular/core";
 import { BehaviorSubject, of, Observable } from "rxjs";
 import { filter, concatMap, tap, map, catchError } from "rxjs/operators";
 import {
@@ -16,7 +16,10 @@ import { DecimalPipe } from "@angular/common";
     styleUrls: ["./scenario-historicconditions.component.css"]
 })
 export class ScenarioHistoricConditionsComponent implements OnInit {
-    constructor(private readonly historicConditionsService: HistoricConditionsService, private readonly decimalPipe: DecimalPipe) {}
+    constructor(
+        private readonly historicConditionsService: HistoricConditionsService,
+        private readonly decimalPipe: DecimalPipe
+    ) {}
 
     private readonly searchCriteria$ = new BehaviorSubject<{
         tmid?: string;
@@ -47,6 +50,13 @@ export class ScenarioHistoricConditionsComponent implements OnInit {
                     console.warn("hard error occured while fetching data: ", err);
                 }
             });
+    }
+
+    @HostListener("document:keyup", ["$event"])
+    handleKeyboardEvent(event: KeyboardEvent) {
+        if (event.key === "Escape") {
+            this.modalContent = "";
+        }
     }
 
     private patchDurationInFlatHistoricConditionData(): (
@@ -156,6 +166,7 @@ export class ScenarioHistoricConditionsComponent implements OnInit {
             this.modalContent = JSON.stringify(origElement, null, 2);
         }
     }
+
     public selectedMachineChanged(tmid: string) {
         this.searchCriteria$.next({
             tmid,

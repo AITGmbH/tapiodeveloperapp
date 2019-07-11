@@ -1,49 +1,55 @@
-<header
-  class="main-header level">
-  <div class="level-left">
-    <div class="level-item">
-      <a href="https://tapio.one/" target="_blank" rel="noopener"><img src="assets/img/logo/tapio.svg" class="logo" alt="tapio"></a>
-      <span>developer app by</span>
-      <a href="https://aitgmbh.de/" target="_blank" rel="noopener"><img src="assets/img/logo/ait.svg" class="logo" alt="AIT"></a>
+<header class="main-header is-centered">
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a href="https://aitgmbh.de/" target="_blank" rel="noopener" class="ait-logo">
+        <img src="assets/img/logo/ait.svg" class="logo" alt="AIT">
+      </a>
+      <span>
+        tapio developer app
+      </span>
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+        data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
     </div>
-  </div>
-
-  <div class="level-right">
-      <div class="level-item">
-          <app-external-links-dropdown></app-external-links-dropdown>
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-end">
+        <app-external-links-dropdown></app-external-links-dropdown>
       </div>
-  </div>
+    </div>
+  </nav>
 </header>
 
 <div class="columns">
   <div class="column is-narrow main-nav">
     <app-scenario-navigation></app-scenario-navigation>
   </div>
-  <div class="column main-content">
-    <main
-      class="box is-radiusless">
-      <router-outlet></router-outlet>
-    </main>
-  </div>
-  </div>
+  <perfect-scrollbar class="scroll-container ps-show-always" [scrollIndicators]="true"
+    (psYReachStart)="onScrollYReachStart()" (psScrollDown)="onScrollDown()" #mainContentScrollbar>
+    <div class="column main-content">
+      <main>
+        <router-outlet></router-outlet>
+      </main>
+    </div>
+    <div *ngIf="showScrollToTopBtn" class="action-button scroll-to-top-btn" fxLayout="column" fxLayoutAlign="center"
+      fxFlex="auto" (click)='scrollToTop()'>
+      <fa-icon [icon]="['fas', 'chevron-up']" [size]="'4x'"></fa-icon>
+    </div>
+  </perfect-scrollbar>
+</div>
 
 <footer class="footer">
-    <div class="content has-text-centered">
-      <ul class="is-unstyled-list">
-        <li>
-          tapio Developer App by <a href="https://aitgmbh.de/" class="is-single-line has-text-white" target="_blank" rel="noopener">AIT GmbH & Co. KG</a>
-        </li>
-        <li>
-            <a href="https://aitgmbh.de/impressum/" class="is-single-line has-text-white" target="_blank" rel="noopener">Legal Notice - Impressum</a>
-        </li>
-        <li>
-            <a href="https://www.aitgmbh.de/datenschutz/" class="is-single-line has-text-white" target="_blank" rel="noopener">Privacy Policy - GDPR</a>
-        </li>
-        <li>
-          <a href="https://github.com/AITGmbH/tapiodeveloperapp/" class="is-single-line has-text-white" target="_blank" rel="noopener">
-            <fa-icon [icon]="['fab', 'github']"></fa-icon> AITGmbH/tapiodeveloperapp
-          </a>
-        </li>
-      </ul>
-    </div>
+  <div class="content has-text-centered has-text-white">
+    <p>
+      © 2019 AIT GmbH & Co. KG<a href="https://www.aitgmbh.de/impressum/" target="_blank" rel="noopener"
+        class="has-text-white align-right">
+        <fa-icon [icon]="['fas', 'info-circle']"></fa-icon> Legal Notice - Impressum
+      </a>
+      <a href="https://www.aitgmbh.de/datenschutz/" target="_blank" rel="noopener" class="has-text-white align-right">
+        <fa-icon [icon]="['fas', 'shield-alt']"></fa-icon> Privacy Policy - GDPR
+      </a>
+    </p>
+  </div>
 </footer>

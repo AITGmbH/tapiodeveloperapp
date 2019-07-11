@@ -86,9 +86,9 @@ describe("LicenseOverviewComponent", () => {
         // 2 subscriptions
         expect(element.nativeElement.querySelectorAll(".card-header-title").length).toEqual(2);
         // 2 licenses
-        expect(element.nativeElement.querySelectorAll(".license-div").length).toEqual(2);
+        expect(element.nativeElement.querySelectorAll(".license-list").length).toEqual(2);
         // 12 license properties
-        expect(element.nativeElement.querySelectorAll(".license-div p").length).toEqual(12);
+        expect(element.nativeElement.querySelectorAll(".license-list-table tr").length).toEqual(12);
     });
 
     it("should show error on api-error", async () => {
@@ -98,8 +98,8 @@ describe("LicenseOverviewComponent", () => {
 
         expect(await component.subscriptions$.toPromise()).toBeNull();
         expect(element.nativeElement.querySelectorAll(".card-header-title").length).toEqual(0);
-        expect(element.nativeElement.querySelectorAll(".license-div").length).toEqual(0);
-        expect(element.nativeElement.querySelectorAll(".license-div p").length).toEqual(0);
+        expect(element.nativeElement.querySelectorAll(".license-list").length).toEqual(0);
+        expect(element.nativeElement.querySelectorAll(".license-list-table tr").length).toEqual(0);
         expect(element.nativeElement.querySelectorAll(".spinner").length).toEqual(0);
         expect(element.nativeElement.querySelectorAll(".errorMessage").length).toEqual(1);
     });

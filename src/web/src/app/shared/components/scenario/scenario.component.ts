@@ -20,7 +20,7 @@ export class ScenarioComponent implements OnInit {
      * The title of the actual scenario.
      */
     @Input()
-    public title: string | TemplateRef<any>;
+    public scenarioTitle: string | TemplateRef<any>;
 
     /**
      * The description of the actual scenario.
