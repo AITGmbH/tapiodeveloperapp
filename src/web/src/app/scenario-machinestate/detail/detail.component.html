@@ -160,7 +160,7 @@
 </div>
 
 <ng-template #showError>
-  <div class="errorMessage">
+  <div class="errorMessage" *ngIf="hasError">
     <div>
       Could not retrieve machine's Item Data or Conditions from the server.
     </div>
