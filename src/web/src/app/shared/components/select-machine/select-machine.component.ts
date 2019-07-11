@@ -38,7 +38,6 @@ export class SelectMachineComponent implements OnInit {
             catchError(err => {
                 this.error$.next(true);
                 this.loading$.next(false);
-                console.log("could not load machines", err);
                 return of([]);
             })
         );
