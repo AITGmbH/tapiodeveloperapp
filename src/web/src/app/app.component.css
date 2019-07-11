@@ -109,7 +109,7 @@ footer.footer a.has-text-white:hover {
   color: #414753;
 }
 
-.scroll-to-top-btn fa-icon:hover {
+.scroll-to-top-btn .ng-fa-icon:hover {
   cursor: pointer;
   color: #303741;
 }
