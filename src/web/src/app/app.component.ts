@@ -9,9 +9,9 @@ import { PerfectScrollbarComponent } from "ngx-perfect-scrollbar";
 })
 export class AppComponent implements OnInit {
     title = "developerapp";
-    public showScrollToTopBtn: boolean = false;
+    public showScrollToTopBtn = false;
 
-    constructor(private router: Router, public zone: NgZone) {
+    constructor(private readonly router: Router, public zone: NgZone) {
         this.router.events.subscribe(segments => {
             this.scrollToTop();
         });
