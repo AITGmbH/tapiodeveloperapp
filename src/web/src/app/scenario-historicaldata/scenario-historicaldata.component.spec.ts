@@ -7,7 +7,7 @@ import { HistoricalDataService } from "./scenario-historicaldata.service";
 import { DebugElement } from "@angular/core";
 import { of, throwError } from "rxjs";
 import { SourceKeys } from "./source-keys.model";
-import { NgxChartsModule } from "@swimlane/ngx-charts";
+import { RouterTestingModule } from "@angular/router/testing";
 
 const sourceKeysMock: SourceKeys = {
     tmid: "1",
@@ -23,7 +23,7 @@ describe("ScenarioHistoricaldataComponent", () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [ScenarioHistoricaldataComponent],
-            imports: [SharedModule, HttpClientTestingModule, NgxChartsModule],
+            imports: [SharedModule, HttpClientTestingModule, RouterTestingModule],
             providers: [HistoricalDataService]
         }).compileComponents();
     }));
@@ -55,7 +55,9 @@ describe("ScenarioHistoricaldataComponent", () => {
     });
 
     it("should show error on api-error", async () => {
-        const getSourceKeysSpy = spyOn(historicalDataService, "getSourceKeys").and.returnValue(throwError(new Error('test')));
+        const getSourceKeysSpy = spyOn(historicalDataService, "getSourceKeys").and.returnValue(
+            throwError(new Error("test"))
+        );
         fixture.detectChanges();
         expect(getSourceKeysSpy).toHaveBeenCalledTimes(0);
         const machineId = "1";
@@ -66,7 +68,6 @@ describe("ScenarioHistoricaldataComponent", () => {
         expect(getSourceKeysSpy).toHaveBeenCalledWith(machineId);
 
         expect(element.nativeElement.querySelectorAll(".sourceKeyList li").length).toEqual(0);
-        expect(element.nativeElement.querySelectorAll(".spinner").length).toEqual(0);
         expect(element.nativeElement.querySelectorAll(".errorMessage").length).toEqual(1);
     });
 });

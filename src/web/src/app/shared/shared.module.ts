@@ -17,6 +17,8 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from "ng-pick-datetime";
 import { MachineOverviewService } from "../scenario-machineoverview/scenario-machineoverview.service";
 import { ScenarioNavigationService } from "../scenario-navigation/scenario-navigation.service";
 import { AvailableMachinesService } from "./services/available-machines.service";
+import { NgxChartsModule } from "@swimlane/ngx-charts";
+import { PerfectScrollbarModule } from "ngx-perfect-scrollbar";
 
 library.add(faGithub, fas);
 
@@ -29,19 +31,26 @@ library.add(faGithub, fas);
         CommonModule,
         FontAwesomeModule,
         NgxDatatableModule,
+        NgxChartsModule,
         NgSelectModule,
+        PerfectScrollbarModule,
         FormsModule,
         OwlDateTimeModule,
         OwlNativeDateTimeModule
     ],
     exports: [
+        CommonModule,
         ScenarioComponent,
         FontAwesomeModule,
         NgxDatatableModule,
+        NgxChartsModule,
+        PerfectScrollbarModule,
         SelectMachineComponent,
         NgSelectModule,
         FormsModule,
-        DateRangeComponent
+        DateRangeComponent,
+        OwlDateTimeModule,
+        OwlNativeDateTimeModule
     ],
     providers: [
         HistoricalDataService,

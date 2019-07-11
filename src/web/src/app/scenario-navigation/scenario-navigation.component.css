@@ -1,12 +1,42 @@
 a {
-  color: #FFF;
+  color: #303741;
 }
 
 ul {
-  padding: 20px 10px 20px 20px;
+  padding: 11px 10px 20px 0px;
+}
+
+li {
+  background-color: #F3F4F4;
+  color: #303741;
+  font-weight: 600;
+  font-size: 20px;
+  text-transform: uppercase;
+  border: 2px solid #303741;
+  margin-bottom: 10px;
+  height: 45px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre-wrap;
+}
+
+li:hover > a {
+  color: #F3F4F4;
+}
+
+li:hover {
+  background-color: #303741;
 }
 
 li > a {
+  display: block;
+  height: 100%;
+}
+
+li > a > span {
   display: inline-block;
-  padding: 6px 0;
+  padding: 12px 20px 10px 20px;
+  height: 45px;
+  width: 100%;
+  line-height: 16px;
 }

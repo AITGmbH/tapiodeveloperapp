@@ -25,6 +25,10 @@ const routes: Routes = [
     {
         path: 'scenario-historicconditions',
         loadChildren: './scenario-historicconditions/scenario-historicconditions.module#ScenarioHistoricconditionsModule'
+    },
+    {
+        path: "**",
+        redirectTo: "scenario-sample"
     }
 ];
 

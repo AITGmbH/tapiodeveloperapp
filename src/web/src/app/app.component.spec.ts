@@ -1,9 +1,11 @@
-import { TestBed, async } from "@angular/core/testing";
+import { TestBed, async, ComponentFixture } from "@angular/core/testing";
 import { RouterTestingModule } from "@angular/router/testing";
 import { AppComponent } from "./app.component";
 import { Component } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { SharedModule } from "./shared/shared.module";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { APP_BASE_HREF } from "@angular/common";
 
 @Component({
     selector: "app-module-navigation",
@@ -29,60 +31,45 @@ class MockNavigationComponent {}
 })
 class MockScenarioComponent {}
 
-
 describe("AppComponent", () => {
+    let component: AppComponent;
+    let fixture: ComponentFixture<AppComponent>;
+
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-        imports: [
-            RouterTestingModule,
-            SharedModule
-        ],
-        declarations: [
-            AppComponent,
-            MockModuleNavigationComponent,
-            MockExternalLinksDropdownComponent,
-            MockNavigationComponent,
-            MockScenarioComponent
-        ],
+            imports: [HttpClientTestingModule, RouterTestingModule, SharedModule],
+            declarations: [
+                AppComponent,
+                MockModuleNavigationComponent,
+                MockExternalLinksDropdownComponent,
+                MockNavigationComponent,
+                MockScenarioComponent
+            ],
+            providers: [{ provide: APP_BASE_HREF, useValue: "/" }]
         }).compileComponents();
     }));
 
+    beforeEach(() => {
+        fixture = TestBed.createComponent(AppComponent);
+        component = fixture.componentInstance;
+    });
+
     it("should create the app", () => {
-        const fixture = TestBed.createComponent(AppComponent);
-        const app = fixture.debugElement.componentInstance;
-        expect(app).toBeTruthy();
+        expect(component).toBeTruthy();
     });
 
     it(`should have 'developerapp' as title`, () => {
-        const fixture = TestBed.createComponent(AppComponent);
-        const app = fixture.debugElement.componentInstance;
-        expect(app.title).toEqual("developerapp");
-    });
-
-    it(`should open the tapio website in a new tab`, () => {
-        const fixture = TestBed.createComponent(AppComponent);
-        const anchorTapio = fixture.debugElement.query(By.css(".level-left a[href='https://tapio.one/']"));
-        const realAnchor = anchorTapio.nativeElement as HTMLAnchorElement;
-        expect(realAnchor.target).toBe("_blank");
-    });
-
-    it(`should open the tapio website with relation noopener`, () => {
-        const fixture = TestBed.createComponent(AppComponent);
-        const anchorTapio = fixture.debugElement.query(By.css(".level-left a[href='https://tapio.one/']"));
-        const realAnchor = anchorTapio.nativeElement as HTMLAnchorElement;
-        expect(realAnchor.rel).toBe("noopener");
+        expect(component.title).toEqual("developerapp");
     });
 
     it(`should open the ait website in a new tab`, () => {
-        const fixture = TestBed.createComponent(AppComponent);
-        const anchorTapio = fixture.debugElement.query(By.css(".level-left a[href='https://aitgmbh.de/']"));
+        const anchorTapio = fixture.debugElement.query(By.css(".is-centered a[href='https://aitgmbh.de/']"));
         const realAnchor = anchorTapio.nativeElement as HTMLAnchorElement;
         expect(realAnchor.target).toBe("_blank");
     });
 
     it(`should open the ait website with relation noopener`, () => {
-        const fixture = TestBed.createComponent(AppComponent);
-        const anchorTapio = fixture.debugElement.query(By.css(".level-left a[href='https://aitgmbh.de/']"));
+        const anchorTapio = fixture.debugElement.query(By.css(".is-centered a[href='https://aitgmbh.de/']"));
         const realAnchor = anchorTapio.nativeElement as HTMLAnchorElement;
         expect(realAnchor.rel).toBe("noopener");
     });
