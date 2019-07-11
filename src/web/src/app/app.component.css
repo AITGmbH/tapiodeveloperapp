@@ -13,10 +13,12 @@ header.main-header {
 nav.navbar {
   height: 80px;
   justify-content: center;
+  background-color: #414753;
 }
 
 div.navbar-brand span {
   padding: 26px 0;
+  color: white;
 }
 
 div.navbar-brand span:hover {
@@ -24,7 +26,7 @@ div.navbar-brand span:hover {
 }
 
 .navbar-menu {
-  margin-right: 32px;
+  margin-right: 42px;
 }
 
 .main-content, .main-content .box {

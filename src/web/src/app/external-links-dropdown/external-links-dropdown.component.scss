@@ -4,6 +4,18 @@ a.navbar-link {
   font-size: 17px;
 }
 
+.navbar .navbar-item.has-dropdown:focus a.navbar-link, 
+.navbar .navbar-item.has-dropdown:hover a.navbar-link, 
+.navbar .navbar-item.has-dropdown.is-active a.navbar-link {
+  background-color: #303741 !important;
+}
+
+.navbar-item.has-dropdown:focus .navbar-link, 
+.navbar-item.has-dropdown:hover .navbar-link, 
+.navbar-item.has-dropdown.is-active .navbar-link{
+  background-color: #303741 !important;
+}
+
 div.dropdown-content {
   padding: 0;
   border-radius: 0;
