@@ -61,8 +61,8 @@ div.developer-links > a:hover {
     float: left;
 }
 
-/* smartphones portrait */
-@media (max-width: 480px) and (orientation: portrait) {
+/* smartphones*/
+@media (max-width: 480px) {
     .developer-links {
         display: none;
     }

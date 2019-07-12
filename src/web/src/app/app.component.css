@@ -19,7 +19,7 @@ div.navbar-brand span {
   color: white;
 }
 
-@media (max-width: 480px) and (orientation: portrait) {
+@media (max-width: 1024px) {
   nav.navbar {
     height: 60px; 
     justify-content: center;
@@ -47,6 +47,10 @@ div.navbar-brand span {
   .dropdown-content {
     background-color: #303741;
     color: white;
+  }
+
+  div.main-nav {
+    display: none;
   }
 }
 

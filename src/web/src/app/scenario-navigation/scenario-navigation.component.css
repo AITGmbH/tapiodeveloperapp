@@ -40,3 +40,16 @@ li > a > span {
   width: 100%;
   line-height: 16px;
 }
+
+/* smartphones and tablets */
+@media (max-width: 1024px) {
+  ul {
+    background-color: #414753;
+    padding: 8px 4px;
+  }
+
+  li {
+    margin-bottom: 5px;
+    width: 100%;
+  }
+}
