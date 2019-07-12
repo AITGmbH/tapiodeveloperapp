@@ -11,26 +11,69 @@ header.main-header {
 }
 
 nav.navbar {
-  height: 80px;
   justify-content: center;
   background-color: #414753;
 }
 
 div.navbar-brand span {
-  padding: 26px 0;
   color: white;
 }
 
-div.navbar-brand span:hover {
-  cursor: default;
+@media (max-width: 480px) and (orientation: portrait) {
+  nav.navbar {
+    height: 60px; 
+    justify-content: center;
+  }
+
+  .navbar-menu {
+    padding: 0px;
+  }
+
+  div.navbar-brand > span {
+    padding-top: 17px;
+  }
+  
+  img.logo {
+    margin: 12px 10px 0px 10px;
+    width: 45px;
+    vertical-align: middle;
+  }
+
+  .navbar-burger {
+    width: 60px;
+    height: 60px;
+  }
+
+  .dropdown-content {
+    background-color: #303741;
+    color: white;
+  }
 }
 
-.navbar-menu {
-  margin-right: 42px;
+@media only screen and (min-width: 769px) {
+  nav.navbar {
+    height: 80px;
+    justify-content: center;
+  }
+
+  div.navbar-brand span:hover {
+    cursor: default;
+  }
+
+  .navbar-menu {
+    margin-right: 42px;
+  }
+
+  img.logo {
+    margin: 15px 26px 15px 20px;
+    width: 60px;
+    vertical-align: middle;
+  }
 }
 
-.main-content, .main-content .box {
-  background: #FFF;
+.main-content,
+.main-content .box {
+  background: #fff;
   max-width: 99%;
   overflow-y: auto;
 }
@@ -40,7 +83,7 @@ div.navbar-brand span:hover {
 }
 
 .main-nav {
-  background: #FFF;
+  background: #fff;
 }
 
 .level-item {
@@ -48,8 +91,6 @@ div.navbar-brand span:hover {
 }
 
 img.logo {
-  margin: 15px 26px 15px 20px;
-  width: 60px;
   vertical-align: middle;
 }
 
@@ -65,7 +106,7 @@ img.logo {
   margin: 0px;
 }
 
-@media only screen and (max-device-width: 768px) {
+@media only screen and (max-width: 768px) {
   .columns {
     min-height: 20rem;
   }
@@ -74,7 +115,7 @@ img.logo {
 footer.footer {
   padding: 2rem 1rem 2rem 1rem;
   background-color: #303741;
-  color: #CFCFCF;
+  color: #cfcfcf;
   height: 85px;
   bottom: 0;
 }
@@ -84,7 +125,7 @@ footer.footer p:hover {
 }
 
 footer.footer a.has-text-white:hover {
-  color: #CFCFCF !important;
+  color: #cfcfcf !important;
 }
 
 @media (max-width: 1650px) {
@@ -94,7 +135,7 @@ footer.footer a.has-text-white:hover {
   }
 
   .scroll-container {
-    margin-bottom: 65px;
+  margin-bottom: 65px;
   }
 }
 

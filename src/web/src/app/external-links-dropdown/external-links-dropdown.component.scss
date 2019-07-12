@@ -1,13 +1,26 @@
+@import "../../styles_variables.scss";
+
 a.navbar-link {
   text-transform: uppercase;
   padding: 26px 50px 26px 26px;
   font-size: 17px;
 }
 
+@media (max-width: 480px) and (orientation: portrait) { 
+  a.navbar-link {
+    display: none;
+  }
+
+  a.navbar-item {
+    background-color: $ait-dark-gray;
+    color: white;
+  }
+}
+
 .navbar-item.has-dropdown:focus .navbar-link, 
 .navbar-item.has-dropdown:hover .navbar-link, 
 .navbar-item.has-dropdown.is-active .navbar-link{
-  background-color: #303741 !important;
+  background-color: $ait-dark-gray !important;
 }
 
 div.dropdown-content {
