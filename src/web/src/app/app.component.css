@@ -90,6 +90,18 @@ footer.footer a.has-text-white:hover {
   color: #303741;
 }
 
+/* only smartphones */
+@media (max-width: 480px) {
+  footer.footer {
+    height: 65px;
+    padding: 0.5rem 0.5rem 2rem 0.5rem;
+  }
+
+  .align-right {
+    margin-left: 15px;
+  }
+}
+
 /* smartphones and tablets */
 @media (max-width: 1024px) {
   .columns {
