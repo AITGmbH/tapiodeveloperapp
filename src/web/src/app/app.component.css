@@ -27,7 +27,7 @@ div.navbar-brand > span {
 .main-content .box {
   background: #fff;
   max-width: 99%;
-  overflow-y: auto;
+  height: 100%;
 }
 
 .box {
