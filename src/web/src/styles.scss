@@ -57,3 +57,11 @@ a.has-text-white:hover {
   text-align: left;
   color: red;
 }
+
+/* smartphones and tablets */
+@media (max-width: 1024px) {
+  .errorMessage {
+    margin-top: 1rem;
+    max-width: 100%;
+  }
+}

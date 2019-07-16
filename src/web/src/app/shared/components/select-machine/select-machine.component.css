@@ -92,3 +92,14 @@ div.loading-spinner div.spinner {
     font-style: italic;
     color: #303741;
 }
+
+/* only smartphones */
+@media (max-width: 480px) and (orientation: portrait) {
+    div.row {
+        width: 100%;
+    }
+
+    div.ng-dropdown-panel-items {
+        width: 100%;
+    }
+}
