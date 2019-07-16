@@ -156,6 +156,10 @@ footer.footer a.has-text-white:hover {
   .scroll-container {
   margin-bottom: 65px;
   }
+
+  .scroll-to-top-btn {
+    right: 20px;
+  }
 }
 
 /* tablets and desktop */
