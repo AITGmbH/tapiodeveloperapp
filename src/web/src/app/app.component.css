@@ -93,12 +93,18 @@ footer.footer a.has-text-white:hover {
 /* only smartphones */
 @media (max-width: 480px) {
   footer.footer {
-    height: 65px;
     padding: 0.5rem 0.5rem 2rem 0.5rem;
   }
 
   .align-right {
     margin-left: 15px;
+  }
+}
+
+/* only tablets */
+@media (min-width: 481px) and (max-width: 1024px) {
+  footer.footer {
+  padding: 1.3rem 1rem 2rem 1rem;
   }
 }
 
@@ -150,7 +156,6 @@ footer.footer a.has-text-white:hover {
 
   footer.footer {
     height: 65px;
-    padding: 0.5rem 1rem 2rem 1rem;
   }
 
   .scroll-container {
