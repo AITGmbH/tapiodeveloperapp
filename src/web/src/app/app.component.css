@@ -23,62 +23,6 @@ div.navbar-brand > span {
   padding-top: 25px;
 }
 
-@media (max-width: 1024px) {
-  nav.navbar {
-    height: 60px; 
-    justify-content: center;
-  }
-
-  .navbar-menu {
-    padding: 0px;
-  }
-
-  div.navbar-brand > span {
-    padding-top: 17px;
-  }
-  
-  img.logo {
-    margin: 12px 10px 0px 10px;
-    width: 45px;
-    vertical-align: middle;
-  }
-
-  .navbar-burger {
-    width: 60px;
-    height: 60px;
-  }
-
-  .dropdown-content {
-    background-color: #303741;
-    color: white;
-  }
-
-  div.main-nav {
-    display: none;
-  }
-}
-
-@media only screen and (min-width: 769px) {
-  nav.navbar {
-    height: 80px;
-    justify-content: center;
-  }
-
-  div.navbar-brand span:hover {
-    cursor: default;
-  }
-
-  .navbar-menu {
-    margin-right: 42px;
-  }
-
-  img.logo {
-    margin: 15px 26px 15px 20px;
-    width: 60px;
-    vertical-align: middle;
-  }
-}
-
 .main-content,
 .main-content .box {
   background: #fff;
@@ -114,12 +58,6 @@ img.logo {
   margin: 0px;
 }
 
-@media only screen and (max-width: 768px) {
-  .columns {
-    min-height: 20rem;
-  }
-}
-
 footer.footer {
   padding: 2rem 1rem 2rem 1rem;
   background-color: #303741;
@@ -136,17 +74,6 @@ footer.footer a.has-text-white:hover {
   color: #cfcfcf !important;
 }
 
-@media (max-width: 1650px) {
-  footer.footer {
-    height: 65px;
-    padding: 0.5rem 1rem 2rem 1rem;
-  }
-
-  .scroll-container {
-  margin-bottom: 65px;
-  }
-}
-
 .align-right {
   margin-left: 50px;
 }
@@ -161,4 +88,82 @@ footer.footer a.has-text-white:hover {
 .scroll-to-top-btn .ng-fa-icon:hover {
   cursor: pointer;
   color: #303741;
+}
+
+/* smartphones and tablets */
+@media (max-width: 1024px) {
+  .columns {
+    top: 60px;
+    padding: 0px;
+    bottom: 65px;
+    margin: 0px;
+  }
+
+  header.main-header {
+    height: 60px;
+  }
+
+  nav.navbar {
+    height: 60px; 
+    justify-content: center;
+  }
+
+  .navbar-menu {
+    padding: 0px;
+  }
+
+  div.navbar-brand > span {
+    padding-top: 17px;
+  }
+  
+  img.logo {
+    margin: 12px 10px 0px 10px;
+    width: 45px;
+    vertical-align: middle;
+  }
+
+  .navbar-burger {
+    width: 60px;
+    height: 60px;
+  }
+
+  .dropdown-content {
+    background-color: #303741;
+    color: white;
+  }
+
+  div.main-nav {
+    display: none;
+  }
+
+  footer.footer {
+    height: 65px;
+    padding: 0.5rem 1rem 2rem 1rem;
+  }
+
+  .scroll-container {
+  margin-bottom: 65px;
+  }
+}
+
+/* tablets and desktop */
+@media only screen and (min-width: 769px) {
+  nav.navbar {
+    height: 80px;
+    justify-content: center;
+  }
+
+  div.navbar-brand span:hover {
+    cursor: default;
+  }
+
+  .navbar-menu {
+    margin-right: 42px;
+  }
+
+  img.logo {
+    margin: 15px 26px 15px 20px;
+    width: 60px;
+    vertical-align: middle;
+  }
 }

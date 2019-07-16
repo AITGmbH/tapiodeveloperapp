@@ -61,9 +61,13 @@ div.developer-links > a:hover {
     float: left;
 }
 
-/* smartphones*/
-@media (max-width: 480px) {
+/* smartphones and tablets */
+@media (max-width: 1024px) {
     .developer-links {
         display: none;
+    }
+
+    .actual-content {
+        min-height: 5rem;
     }
 }
