@@ -30,3 +30,10 @@
   background-color: #F3F4F4;
   color: #303741;
 }
+
+/* only smartphones */
+@media (max-width: 480px) and (orientation: portrait) {
+  .dateTimePickerInput {
+    width: 100%;
+  }
+}
