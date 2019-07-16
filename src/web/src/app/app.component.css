@@ -19,6 +19,10 @@ div.navbar-brand span {
   color: white;
 }
 
+div.navbar-brand > span {
+  padding-top: 25px;
+}
+
 @media (max-width: 1024px) {
   nav.navbar {
     height: 60px; 
