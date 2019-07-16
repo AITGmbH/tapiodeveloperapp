@@ -14,11 +14,15 @@ export class AppComponent implements OnInit {
     constructor(private readonly router: Router, public zone: NgZone) {
         this.router.events.subscribe(segments => {
             this.scrollToTop();
+
+            this.closeBurgersIfOpen();
         });
     }
     @ViewChild("mainContentScrollbar")
     public mainContent: PerfectScrollbarComponent;
 
+
+    private burgers: {button: Element, content: Element}[] = [];
     ngOnInit(): void {
         // Get all "navbar-burger" elements
         const navbarBurgers = Array.prototype.slice.call(document.querySelectorAll(".navbar-burger"), 0);
@@ -27,16 +31,23 @@ export class AppComponent implements OnInit {
         if (navbarBurgers.length > 0) {
             // Add a click event on each of them
             navbarBurgers.forEach((el: any) => {
+                // Get the target from the "data-target" attribute
+                const target = el.dataset.target;
+                const $target = document.getElementById(target);
+                this.burgers.push({button: el, content: $target});
                 el.addEventListener("click", () => {
-                    // Get the target from the "data-target" attribute
-                    const target = el.dataset.target;
-                    const $target = document.getElementById(target);
-
                     // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
                     el.classList.toggle("is-active");
                     $target.classList.toggle("is-active");
                 });
             });
+        }
+    }
+
+    private closeBurgersIfOpen() {
+        for (const burger of this.burgers) {
+            burger.button.classList.remove('is-active');
+            burger.content.classList.remove('is-active');
         }
     }
 
