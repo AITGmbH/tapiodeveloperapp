@@ -101,6 +101,24 @@ div.developer-links > a:hover {
 
     div.accordion-header.toggle {
         background-color: #303741;
+        border-radius: 0px;
+    }
+
+    .accordions .accordion .accordion-header + .accordion-body {
+        border: 1px solid #303741;
+        border-radius: 0px;
+        background-color: #F3F4F4;
+    }
+
+    .accordions .accordion .accordion-header + .accordion-body .accordion-content {
+        padding: 0;
+    }
+
+    div.accordion-content div.scenario-description {
+        color: #303741;
+        font-size: 14px;
+        line-height: 20px;
+        margin: 0.5rem 0.75rem;
     }
 }
 
