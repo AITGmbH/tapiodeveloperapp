@@ -11,10 +11,9 @@ import { VERSION } from "src/environments/version";
     styleUrls: ["./scenario.component.css"]
 })
 export class ScenarioComponent implements OnInit {
-    private gitHubRepoUrl =
-        "https://github.com/AITGmbH/tapiodeveloperapp/tree/";
+    private gitHubRepoUrl = "https://github.com/AITGmbH/tapiodeveloperapp/tree/";
 
-    private static readonly gitHubRepoUrl = 'https://github.com/AITGmbH/tapiodeveloperapp/tree/';
+    private static readonly gitHubRepoUrl = "https://github.com/AITGmbH/tapiodeveloperapp/tree/";
 
     /**
      * The title of the actual scenario.
@@ -60,37 +59,35 @@ export class ScenarioComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.scenarioDocumentationService
-            .getUrls(this.id)
-            .subscribe(docPaths => {
-                if (docPaths.backend) {
-                    this.hasBackendUrl = true;
-                    this.backendUrl =
-                        this.gitHubRepoUrl +
-                        this.version +
-                        "/" +
-                        docPaths.backend;
-                }
+        this.scenarioDocumentationService.getUrls(this.id).subscribe(docPaths => {
+            if (docPaths.backend) {
+                this.hasBackendUrl = true;
+                this.backendUrl = this.gitHubRepoUrl + this.version + "/" + docPaths.backend;
+            }
 
-                if (docPaths.frontend) {
-                    this.frontendUrl =
-                        this.gitHubRepoUrl +
-                        this.version +
-                        "/" +
-                        docPaths.frontend;
-                }
+            if (docPaths.frontend) {
+                this.frontendUrl = this.gitHubRepoUrl + this.version + "/" + docPaths.frontend;
+            }
 
-                if (docPaths.tapio) {
-                    this.tapioDocumentationUrl = docPaths.tapio;
-                }
+            if (docPaths.tapio) {
+                this.tapioDocumentationUrl = docPaths.tapio;
+            }
+        });
+
+        // Add a click event on each of them
+        Array.prototype.slice.call(document.querySelectorAll(".accordion"), 0).forEach((el: any) => {
+            el.addEventListener("click", () => {
+                // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+                el.classList.toggle("is-active");
             });
+        });
     }
 
     isString(value: string | TemplateRef<any>): value is string {
-        return typeof value === 'string';
+        return typeof value === "string";
     }
 
     isTemplateRef(value: string | TemplateRef<any>): value is TemplateRef<any> {
-        return typeof value !== 'string';
+        return typeof value !== "string";
     }
 }

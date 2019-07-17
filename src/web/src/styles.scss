@@ -6,7 +6,6 @@
 @import "./styles_spinner.scss";
 @import "./styles_datatable.scss";
 
-
 @import "../node_modules/bulma/sass/utilities/_all.sass";
 @import "../node_modules/bulma/sass/base/_all.sass";
 @import "../node_modules/bulma/sass/elements/button.sass";
@@ -16,6 +15,7 @@
 @import "../node_modules/bulma/sass/components/navbar.sass";
 @import "../node_modules/bulma/sass/layout/hero.sass";
 @import "../node_modules/bulma/sass/layout/section.sass";
+@import "../node_modules/bulma-accordion/src/sass/index.sass";
 
 * {
   font-family: "Open Sans", Helvetica, Arial, Verdana, sans-serif;

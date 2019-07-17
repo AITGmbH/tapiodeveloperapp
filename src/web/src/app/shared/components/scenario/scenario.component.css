@@ -65,7 +65,7 @@ div.developer-links > a:hover {
         font-weight: 700;
         line-height: 40px;
     }
-    
+
     div.scenario-description {
         font-size: 14px;
     }
@@ -84,19 +84,45 @@ div.developer-links > a:hover {
     div.content-header {
         margin-bottom: 1.5rem;
     }
+
+    .only-desktop {
+        display: none;
+    }
+
+    .only-mobile {
+        display: block;
+    }
+
+    section.accordions {
+        float: left;
+        clear: both;
+        margin-top: 1rem;
+    }
+
+    div.accordion-header.toggle {
+        background-color: #303741;
+    }
 }
 
 /* only desktop */
-@media (min-width: 1025px) { 
+@media (min-width: 1025px) {
     h1.title {
         max-width: 80%;
     }
-    
+
     div.scenario-description {
         max-width: 80%;
     }
 
     .actual-content {
         min-height: 30rem;
+    }
+
+    .only-desktop {
+        display: block;
+    }
+
+    .only-mobile {
+        display: none;
     }
 }
