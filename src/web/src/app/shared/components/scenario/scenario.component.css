@@ -97,6 +97,7 @@ div.developer-links > a:hover {
         float: left;
         clear: both;
         margin-top: 1rem;
+        width: 100%;
     }
 
     div.accordion-header.toggle {
