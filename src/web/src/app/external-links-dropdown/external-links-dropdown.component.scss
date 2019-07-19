@@ -6,23 +6,6 @@ a.navbar-link {
   font-size: 17px;
 }
 
-@media (max-width: 1024px) { 
-  
-  a.navbar-link {
-    display: none;
-  }
-
-  a.navbar-item {
-    background-color: $ait-dark-gray;
-    color: white;
-  }
-}
-
-@media (min-width: 1025px) {
-  app-scenario-navigation {
-    display: none;
-  }
-}
 
 .navbar-item.has-dropdown:focus .navbar-link, 
 .navbar-item.has-dropdown:hover .navbar-link, 
@@ -47,4 +30,41 @@ a.navbar-item:first-child {
 
 a.navbar-item:last-child {
   padding-bottom: 20px;
+}
+
+/* Smartphones and tablets */
+@media (max-width: 1024px) { 
+  
+  a.navbar-link {
+    display: none;
+  }
+
+  a.navbar-item {
+    background-color: $ait-dark-gray;
+    color: white;
+  }
+}
+
+/* only tablets with orientation landscape */
+@media (min-width: 851px) and (max-width: 1024px) and (orientation: landscape) {
+  a.navbar-link {
+    display: block;
+  }
+
+  a.navbar-link {
+    text-transform: uppercase;
+    padding: 17px 50px 17px 26px;
+    font-size: 17px;
+  }
+
+  app-scenario-navigation {
+    display: none;
+  }
+}
+
+/* only desktop */
+@media (min-width: 1025px) {
+  app-scenario-navigation {
+    display: none;
+  }
 }

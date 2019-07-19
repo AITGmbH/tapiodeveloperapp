@@ -101,13 +101,6 @@ footer.footer a.has-text-white:hover {
   }
 }
 
-/* only tablets */
-@media (min-width: 481px) and (max-width: 1024px) {
-  footer.footer {
-  padding: 1.3rem 1rem 2rem 1rem;
-  }
-}
-
 /* smartphones and tablets */
 @media (max-width: 1024px) {
   .columns {
@@ -145,11 +138,6 @@ footer.footer a.has-text-white:hover {
     height: 60px;
   }
 
-  .dropdown-content {
-    background-color: #303741;
-    color: white;
-  }
-
   div.main-nav {
     display: none;
   }
@@ -167,19 +155,67 @@ footer.footer a.has-text-white:hover {
   }
 }
 
-/* tablets and desktop */
-@media only screen and (min-width: 769px) {
+/* only tablets */
+@media (min-width: 641px) and (max-width: 1024px) {
+  footer.footer {
+  padding: 1.3rem 1rem 2rem 1rem;
+  }
+}
+
+/* only tablets with orientation landscape */
+@media (min-width: 851px) and (max-width: 1024px) and (orientation: landscape) {
+  div.main-nav {
+    display: block;
+  }
+  
   nav.navbar {
-    height: 80px;
-    justify-content: center;
+    height: 60px; 
+  }
+  
+  .scroll-to-top-btn {
+    bottom: 15px;
+    right: 40px;
   }
 
-  div.navbar-brand span:hover {
-    cursor: default;
+  div.navbar-brand > span {
+    padding-top: 17px;
+  }
+  
+  img.logo {
+    margin: 12px 10px 0px 10px;
+    width: 45px;
+    vertical-align: middle;
+  }
+
+  .navbar-burger {
+    width: 60px;
+    height: 60px;
+  }
+
+  div.navbar-menu {
+    display: block !important;
+  }
+}
+
+/* tablets and desktop */
+@media (min-width: 961px) {
+  nav.navbar {
+    justify-content: center;
   }
 
   .navbar-menu {
     margin-right: 42px;
+  }
+}
+
+/* only desktop */
+@media (min-width: 1025px) {
+  nav.navbar {
+    height: 80px;
+  }
+
+  div.navbar-brand span:hover {
+    cursor: default;
   }
 
   img.logo {

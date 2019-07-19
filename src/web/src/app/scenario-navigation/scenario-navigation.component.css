@@ -53,3 +53,11 @@ li > a > span {
     width: 100%;
   }
 }
+
+/* only tablets with orientation landscape */
+@media (min-width: 851px) and (max-width: 1024px) and (orientation: landscape) {
+  ul {
+    background-color: #fff;
+    padding: 8px 4px;
+  }
+}
