@@ -101,14 +101,18 @@ div.developer-links > a:hover {
     }
 
     div.accordion-header.toggle {
-        background-color: #303741;
+        border: 1px solid #303741;
+        background-color: #F3F4F4;
         border-radius: 0px;
+        color: #303741;
+        font-size: 18px;
+        font-weight: 700;
     }
 
     .accordions .accordion .accordion-header + .accordion-body {
-        border: 1px solid #303741;
+        border: none;
         border-radius: 0px;
-        background-color: #F3F4F4;
+        background-color: #FFF;
     }
 
     .accordions .accordion .accordion-header + .accordion-body .accordion-content {
