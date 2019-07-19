@@ -6,7 +6,6 @@ a.navbar-link {
   font-size: 17px;
 }
 
-
 .navbar-item.has-dropdown:focus .navbar-link, 
 .navbar-item.has-dropdown:hover .navbar-link, 
 .navbar-item.has-dropdown.is-active .navbar-link{
@@ -59,6 +58,23 @@ a.navbar-item:last-child {
 
   app-scenario-navigation {
     display: none;
+  }
+}
+
+/* only tablets */
+@media (min-width: 851px) and (max-width: 1024px) and (orientation: portrait) {
+  a.navbar-link {
+    display: block;
+  }
+
+  a.navbar-link {
+    text-transform: uppercase;
+    padding: 17px 50px 17px 26px;
+    font-size: 17px;
+  }
+
+  app-scenario-navigation {
+    display: block;
   }
 }
 
