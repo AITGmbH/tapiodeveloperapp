@@ -101,6 +101,14 @@ footer.footer a.has-text-white:hover {
   }
 }
 
+/* only smartphones in landscape */
+@media (min-width: 481px) and (max-width: 900px) and (orientation: landscape) {
+  footer.footer {
+    height: 40px !important;
+    padding: 0.5rem 0.5rem 1rem 0.5rem !important;
+  }
+}
+
 /* smartphones and tablets */
 @media (max-width: 1024px) {
   .columns {
