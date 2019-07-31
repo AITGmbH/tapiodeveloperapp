@@ -58,7 +58,7 @@ export class LiveDataUpdateDirective implements DoCheck {
     private getAnimationMetadata(): AnimationMetadata[] {
         return [
             style({
-                backgroundColor: "#ffa04b"
+                backgroundColor: "#0092b4"
             }),
             animate(
                 "1000ms ease-in",
