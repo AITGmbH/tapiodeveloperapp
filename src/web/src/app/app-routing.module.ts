@@ -30,6 +30,10 @@ const routes: Routes = [
     {
         path: "scenario-machinelivedata",
         loadChildren: "./scenario-machinelivedata/scenario-machinelivedata.module#ScenarioMachineLiveDataModule"
+    },
+    {
+        path: "**",
+        redirectTo: "scenario-sample"
     }
 ];
 

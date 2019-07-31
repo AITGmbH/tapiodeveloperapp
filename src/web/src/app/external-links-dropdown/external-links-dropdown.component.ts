@@ -6,7 +6,7 @@ import { Component } from "@angular/core";
 @Component({
   selector: "app-external-links-dropdown",
   templateUrl: "./external-links-dropdown.component.html",
-  styleUrls: ["./external-links-dropdown.component.css"]
+  styleUrls: ["./external-links-dropdown.component.scss"]
 })
 export class ExternalLinksDropdownComponent {
   constructor() { }

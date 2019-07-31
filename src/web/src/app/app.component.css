@@ -1,15 +1,38 @@
-.main-header {
-  background: #FFF;
-  color: #000;
-  height: 50px;
-  font-family: audimat, sans-serif;
-  margin-bottom: 0px;
+.main-header,
+.columns,
+footer.footer {
+  position: absolute;
+  right: 0;
+  left: 0;
+}
+
+header.main-header {
+  height: 80px;
+}
+
+nav.navbar {
+  height: 80px;
+  justify-content: center;
+  background-color: #414753;
+}
+
+div.navbar-brand span {
+  padding: 26px 0;
+  color: white;
+}
+
+div.navbar-brand span:hover {
+  cursor: default;
+}
+
+.navbar-menu {
+  margin-right: 42px;
 }
 
 .main-content, .main-content .box {
-  background: #000;
-  padding-right: 30px;
+  background: #FFF;
   max-width: 99%;
+  overflow-y: auto;
 }
 
 .box {
@@ -17,19 +40,16 @@
 }
 
 .main-nav {
-  background: #000;
-  font-family: audimat, sans-serif;
-  width: 15%;
-  border-right: 1px solid #333;
+  background: #FFF;
 }
 
 .level-item {
   max-height: 50px;
 }
 
-.logo {
-  margin: 12px 26px 12px 20px;
-  height: 26px;
+img.logo {
+  margin: 15px 26px 15px 20px;
+  width: 60px;
   vertical-align: middle;
 }
 
@@ -38,9 +58,11 @@
 }
 
 .columns {
-  margin-top: 0;
-  margin-bottom: 0;
-  min-height: 53rem;
+  top: 80px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  bottom: 85px;
+  margin: 0px;
 }
 
 @media only screen and (max-device-width: 768px) {
@@ -50,12 +72,44 @@
 }
 
 footer.footer {
-  padding: 2rem 1rem 3rem 1rem;
-  font-family: audimat, sans-serif;
-  background-color: #000;
-  color: #FFF;
+  padding: 2rem 1rem 2rem 1rem;
+  background-color: #303741;
+  color: #CFCFCF;
+  height: 85px;
+  bottom: 0;
 }
 
-.is-single-line {
-    white-space: nowrap;
+footer.footer p:hover {
+  cursor: default;
+}
+
+footer.footer a.has-text-white:hover {
+  color: #CFCFCF !important;
+}
+
+@media (max-width: 1650px) {
+  footer.footer {
+    height: 65px;
+    padding: 0.5rem 1rem 2rem 1rem;
+  }
+
+  .scroll-container {
+    margin-bottom: 65px;
+  }
+}
+
+.align-right {
+  margin-left: 50px;
+}
+
+.scroll-to-top-btn {
+  position: absolute;
+  bottom: 15px;
+  right: 53px;
+  color: #414753;
+}
+
+.scroll-to-top-btn .ng-fa-icon:hover {
+  cursor: pointer;
+  color: #303741;
 }

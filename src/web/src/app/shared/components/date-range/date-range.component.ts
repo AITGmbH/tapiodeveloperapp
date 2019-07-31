@@ -24,7 +24,7 @@ export class DateRangeComponent implements OnInit {
 
     public dateTimeRange: Date[] = [
         moment()
-            .subtract(2, "days")
+            .subtract(1, "days")
             .toDate(),
         moment().toDate()
     ];

@@ -17,9 +17,9 @@ Run the `Ensure-Prerequisites.ps1` PowerShell script to install the prerequisite
 Execute the following commands
 
 ```PowerShell
-cd src\web
+cd .\src\web
+npm ci
 ng build
-npm install
 dotnet build
 ```
 
@@ -63,14 +63,14 @@ dotnet user-secrets set "EventHub:StorageConnectionString" "XYZ"
 Execute the following commands in one shell
 
 ```PowerShell
-cd src\web
+cd .\src\web
 ng build --watch
 ```
 
 Execute the following commands in another shell
 
 ```PowerShell
-cd src\web
+cd .\src\web
 dotnet run
 ```
 
@@ -81,13 +81,13 @@ Navigate to <https://localhost:5001> with a browser
 Execute the following commands
 
 ```PowerShell
-cd src\web
-npm install
+cd .\src\web
+npm ci
 ng build
 dotnet publish
 ```
 
-The result can be found in the directory `src\web\bin\Debug\netcoreapp2.2\publish`
+The result can be found in the directory `.\src\web\bin\Debug\netcoreapp2.2\publish`
 
 ### Azure App Service
 

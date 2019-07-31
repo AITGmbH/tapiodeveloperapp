@@ -1,0 +1,44 @@
+.card-stack-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+    display: flex;
+}
+
+.card-stack-container > .card {
+    flex-basis: auto;
+    flex-grow: 0;
+    flex-shrink: 1;
+    margin: 3px;
+    align-self: stretch;
+    display: flex;
+    flex-flow: column;
+}
+
+.card-stack-container > .card > .card-content {
+    flex: 1;
+}
+
+
+div.card {
+    background-color: #F3F4F4;
+    color: #303741;
+}
+
+header.card-header {
+    background-color: #303741;
+    font-family: "Roboto", Helvetica, Arial, Verdana, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.card-header > h1 {
+    color: #F3F4F4;
+}
+
+div.card-content {
+    color: #303741;
+    border: 2px solid #303741;
+}

@@ -183,4 +183,4 @@ export class ScenarioFancyModule { }
 Reload the app and click on the `Fancy Scenario` menu entry.
 🤓 the main content is changed with the correct heading and documentation links
 
-Congratulation, you just created your first custom scenario.
+Congratulations, you just created your first custom scenario.
