@@ -35,3 +35,6 @@ group development
   nuget xunit >= 2.4.0
   nuget xunit.runner.visualstudio >= 2.4.0
   nuget Moq
+  nuget Microsoft.AspNetCore.App = 2.2.0
+  nuget Microsoft.Azure.EventHubs = 3.0.0
+  nuget Microsoft.Azure.EventHubs.Processor = 3.0.0

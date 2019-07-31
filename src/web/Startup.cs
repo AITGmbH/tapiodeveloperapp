@@ -6,6 +6,7 @@ using Aitgmbh.Tapio.Developerapp.Web.Repositories;
 using Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricalData;
 using Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricConditions;
 using Aitgmbh.Tapio.Developerapp.Web.Scenarios.LicenseOverview;
+using Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData;
 using Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineOverview;
 using Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineState;
 using Aitgmbh.Tapio.Developerapp.Web.Services;
@@ -43,6 +44,9 @@ namespace Aitgmbh.Tapio.Developerapp.Web
                 .AddSingleton<IScenarioRepository, ScenarioRepository>()
                 .AddSingleton<ITokenProvider, TokenProvider>()
                 .AddSingleton<OptionsValidator>()
+                .AddSingleton<IMachineLiveDataService, MachineLiveDataService>()
+                .AddSingleton<IEvenHubCredentialProvider, EventHubCredentialProvider>()
+                .AddSingleton<IMachineLiveDataEventProcessorFactory, MachineLiveDataEventProcessorFactory>()
                 .AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services
@@ -60,9 +64,14 @@ namespace Aitgmbh.Tapio.Developerapp.Web
                 .Bind(Configuration.GetSection("TapioCloud"))
                 .ValidateDataAnnotations()
                 .Validate(c => Guid.TryParse(c.ClientId, out _), @"The client secret must be a valid Guid");
+            services
+                .AddOptions<EventHubCredentials>()
+                .Bind(Configuration.GetSection("EventHub"))
+                .ValidateDataAnnotations();
+            services.AddSignalR();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, OptionsValidator optionsValidator)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, OptionsValidator optionsValidator, IServiceProvider serviceProvider)
         {
             if (optionsValidator == null)
             {
@@ -79,6 +88,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web
             }
 
             optionsValidator.Validate();
+            serviceProvider.GetService<IMachineLiveDataService>().RegisterHubAsync();
 
             app.Use(async (context, next) =>
             {
@@ -96,6 +106,10 @@ namespace Aitgmbh.Tapio.Developerapp.Web
             app.UseStaticFiles();
 
             app.UseHttpsRedirection();
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<MachineLiveDataHub>("/hubs/machineLiveData");
+            });
             app.UseMvc();
         }
     }

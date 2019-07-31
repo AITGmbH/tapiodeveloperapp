@@ -48,6 +48,16 @@ dotnet user-secrets set "TapioCloud:ClientID" "XYZ"
 dotnet user-secrets set "TapioCloud:ClientSecret" "XYZ"
 ```
 
+If you want to use streaming data you need to configure your [azure event hub](https://azure.microsoft.com/de-de/services/event-hubs/) instance and provide the according connection strings. A service for local live data generation will be added later on
+
+```PowerShell
+cd .\src\web\
+dotnet user-secrets set "EventHub:EventHubEntityPath" "XYZ"
+dotnet user-secrets set "EventHub:EventHubConnectionString" "XYZ"
+dotnet user-secrets set "EventHub:StorageContainerName" "XYZ"
+dotnet user-secrets set "EventHub:StorageConnectionString" "XYZ"
+```
+
 #### Run
 
 Execute the following commands in one shell
@@ -84,12 +94,16 @@ The result can be found in the directory `.\src\web\bin\Debug\netcoreapp2.2\publ
 Provide access to the client id and secret via [App Settings](https://docs.microsoft.com/en-us/azure/app-service/web-sites-configure#app-settings).
 Settings
 
-* TapioCloud:ClientID XYZ
-* TapioCloud:ClientSecret XYZ
+- TapioCloud:ClientID XYZ
+- TapioCloud:ClientSecret XYZ
+- EventHub:EventHubEntityPath XYZ
+- EventHub:EventHubConnectionString XYZ
+- EventHub:StorageContainerName XYZ
+- EventHub:StorageConnectionString XYZ
 
 ## Legal Notice
 
-You can find the Legal Notice - Impressum on <https://www.aitgmbh.de/impressum/>.
+You can find the Legal Notice - [Impressum](https://www.aitgmbh.de/impressum/).
 
 ## License
 

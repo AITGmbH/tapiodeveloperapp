@@ -27,9 +27,9 @@
 </app-scenario>
 
 <ng-template #loadingOrError>
-  <div *ngIf="(error$ | async); else loading" class="errorMessage">
-    No data available for this machine
-  </div>
+    <div *ngIf="(error$ | async); else loading" class="errorMessage">
+        No data available for this machine
+    </div>
 
   <ng-template #loading>
     <div *ngIf="loading$ | async" class="spinner">

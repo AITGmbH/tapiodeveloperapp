@@ -14,3 +14,6 @@ Serilog.AspNetCore
 Serilog.Sinks.Console
 Serilog.Sinks.File
 Serilog.Settings.Configuration
+Microsoft.AspNetCore.App
+Microsoft.Azure.EventHubs
+Microsoft.Azure.EventHubs.Processor
