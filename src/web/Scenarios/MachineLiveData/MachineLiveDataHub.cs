@@ -1,11 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
+using System.Threading.Tasks;
 
 namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
 {
-    public class MachineLiveDataHub : Hub, IMachineLiveDataHub
+    public class MachineLiveDataHub : Hub
     {
         public async Task JoinGroup(string groupName)
         {
@@ -16,30 +14,5 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
         {
             await Groups.RemoveFromGroupAsync(Context.ConnectionId, groupName).ConfigureAwait(false);
         }
-
-        public override async Task OnConnectedAsync()
-        {
-            MachineLiveDataConnectionHandler.Connections.Add(Context.ConnectionId);
-            await base.OnConnectedAsync().ConfigureAwait(false);
-        }
-
-        public override async Task OnDisconnectedAsync(Exception exception)
-        {
-            MachineLiveDataConnectionHandler.Connections.Remove(Context.ConnectionId);
-            await base.OnDisconnectedAsync(exception).ConfigureAwait(false);
-        }
-    }
-
-    public interface IMachineLiveDataHub
-    {
-        Task JoinGroup(string groupName);
-        Task LeaveGroup(string groupName);
-        Task OnConnectedAsync();
-        Task OnDisconnectedAsync(Exception exception);
-    }
-
-    public static class MachineLiveDataConnectionHandler
-    {
-        public static HashSet<string> Connections { get; } = new HashSet<string>();
     }
 }

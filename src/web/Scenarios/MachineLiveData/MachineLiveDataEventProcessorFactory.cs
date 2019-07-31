@@ -15,7 +15,6 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
         private readonly IEvenHubCredentialProvider _credentialProvider;
         private readonly ILogger<MachineLiveDataEventProcessorFactory> _logger;
 
-
         public MachineLiveDataEventProcessorFactory(IEvenHubCredentialProvider credentialProvider, ILogger<MachineLiveDataEventProcessorFactory> logger)
         {
             _credentialProvider = credentialProvider ?? throw new ArgumentNullException(nameof(credentialProvider));

@@ -45,7 +45,6 @@ namespace Aitgmbh.Tapio.Developerapp.Web
                 .AddSingleton<ITokenProvider, TokenProvider>()
                 .AddSingleton<OptionsValidator>()
                 .AddSingleton<IMachineLiveDataService, MachineLiveDataService>()
-                .AddSingleton<IMachineLiveDataCommunicationService, MachineLiveDataCommunicationService>()
                 .AddSingleton<IEvenHubCredentialProvider, EventHubCredentialProvider>()
                 .AddSingleton<IMachineLiveDataEventProcessorFactory, MachineLiveDataEventProcessorFactory>()
                 .AddMvc()
@@ -90,7 +89,6 @@ namespace Aitgmbh.Tapio.Developerapp.Web
 
             optionsValidator.Validate();
             serviceProvider.GetService<IMachineLiveDataService>().RegisterHubAsync();
-            serviceProvider.GetService<IMachineLiveDataCommunicationService>().RegisterCallback();
 
             app.Use(async (context, next) =>
             {

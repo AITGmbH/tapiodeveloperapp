@@ -5,6 +5,9 @@ using Newtonsoft.Json.Converters;
 
 namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
 {
+    /// <summary>
+    /// Data model for machine data as returned by the machine live data service
+    /// </summary>
     public class MachineLiveDataContainer
     {
         [JsonProperty("tmid")]
@@ -22,7 +25,6 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
         [JsonProperty("msg")]
         public dynamic Message { get; set; }
     }
-
 
     public static class MaterialLiveDataContainerExtension
     {
@@ -44,5 +46,4 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
             },
         };
     }
-
 }
