@@ -11,7 +11,10 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineOverview
 {
     public sealed class MachineOverviewService : IMachineOverviewService
     {
+
+#pragma warning disable S1075 // URIs should not be hardcoded
         private const string TargetUrl = "https://globaldisco.tapio.one";
+#pragma warning restore S1075 // URIs should not be hardcoded
         private const string TargetRoute = "/api/userProfile/";
         private const string UserMail = "felix.vigenschow@aitgmbh.de";
 
