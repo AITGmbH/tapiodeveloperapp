@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using Aitgmbh.Tapio.Developerapp.Web.Models;
 using Aitgmbh.Tapio.Developerapp.Web.Scenarios.LicenseOverview;
 using Aitgmbh.Tapio.Developerapp.Web.Services;
 using Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.HelperClasses;
@@ -15,7 +16,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.Scenarios.LicenseOverview
     public class LicenseOverviewServiceTests
     {
         private const string TestSubscriptions = @"{
-            ""totalCount"": 2,
+            ""email"": ""woodgod@example.localhost"",
             ""subscriptions"": [
             {
                 ""licenses"": [
@@ -99,7 +100,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.Scenarios.LicenseOverview
             }]}";
 
         private readonly SubscriptionOverview _expectedSubscriptions = new SubscriptionOverview {
-            TotalCount = 2,
+            Email = "woodgod@example.localhost",
             Subscriptions = new[] {
                 new Subscription {
                     Licenses = new[] {

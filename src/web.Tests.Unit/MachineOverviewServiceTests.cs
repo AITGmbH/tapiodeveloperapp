@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using Aitgmbh.Tapio.Developerapp.Web.Models;
 using Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineOverview;
 using Aitgmbh.Tapio.Developerapp.Web.Services;
 using Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.HelperClasses;

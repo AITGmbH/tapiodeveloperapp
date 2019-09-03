@@ -59,6 +59,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web
                 .AddHttpClient<IHistoricalDataService, HistoricalDataService>();
             services
                 .AddHttpClient<IHistoricConditionsService, HistoricConditionsService>();
+            services.AddHttpClient<IUserProfileService, UserProfileService>();
             services
                 .AddOptions<TapioCloudCredentials>()
                 .Bind(Configuration.GetSection("TapioCloud"))
