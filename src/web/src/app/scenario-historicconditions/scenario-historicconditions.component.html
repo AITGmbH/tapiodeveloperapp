@@ -1,98 +1,98 @@
 <app-scenario scenarioTitle="Historic Conditions" id="historic-conditions-scenario" class="has-text-left"
-  description="This scenario uses the condition data API to receive the state of conditions over a specific time interval.
-  The entries are ordered by duration, starting with the longest. By clicking on any row inside the table you can view the actual JSON resonse of the API.
+    description="This scenario uses the condition data API to receive the state of conditions over a specific time interval.
+  The entries are ordered by duration, starting with the longest. By clicking on any row inside the table you can view the actual JSON response of the API.
   Please note that currently data is available only for 'Testmaschine 02'. Selecting a time interval larger than 1 day will cause a lot of data being transferred and processed, which can lead to your browser to being unresponsive.">
-  <div>
-    <app-select-machine (change)="selectedMachineChanged($event)">
-    </app-select-machine>
-  </div>
-  <div>
-    <app-date-range (change)="dateRangeChanged($event)"> </app-date-range>
-  </div>
-  <div class="modal is-active" *ngIf="modalContent">
-    <div class="modal-background" aria-label="close" (click)="modalContent = ''"></div>
-    <div class="modal-card">
-      <header class="modal-card-head level-right">
-        <button class="delete" aria-label="close" (click)="modalContent = ''"></button>
-      </header>
-      <section class="modal-card-body">
-        <div class="modal-content">
-          <pre>{{ modalContent }}</pre>
-        </div>
-      </section>
+    <div>
+        <app-select-machine (change)="selectedMachineChanged($event)">
+        </app-select-machine>
     </div>
-  </div>
+    <div>
+        <app-date-range (change)="dateRangeChanged($event)"> </app-date-range>
+    </div>
+    <div class="modal is-active" *ngIf="modalContent">
+        <div class="modal-background" aria-label="close" (click)="modalContent = ''"></div>
+        <div class="modal-card">
+            <header class="modal-card-head level-right">
+                <button class="delete" aria-label="close" (click)="modalContent = ''"></button>
+            </header>
+            <section class="modal-card-body">
+                <div class="modal-content">
+                    <pre>{{ modalContent }}</pre>
+                </div>
+            </section>
+        </div>
+    </div>
 
-  <div *ngIf="!(loading$ | async) && !(error$ | async) && (rows$ | async);
+    <div *ngIf="!(loading$ | async) && !(error$ | async) && (rows$ | async);
       else loadingOrError">
-    <ngx-datatable class="material datatable" [columnMode]="'force'" [headerHeight]="30" [rowHeight]="'auto'"
-      [footerHeight]="35" [scrollbarH]="true" [rows]="rows$ | async"
-      [sorts]="[{ prop: 'duration', dir: 'desc' }, { prop: 'sts', dir: 'desc' }]" [selectionType]="'single'"
-      (select)="onElementSelected($event)">
-      <ngx-datatable-column name="key" [resizeable]="false" [width]="250">
-        <ng-template let-column="column" ngx-datatable-header-template>
-          <span>Key (identifier)</span>
-        </ng-template>
-        <ng-template let-value="value" ngx-datatable-cell-template>
-          <div class="datatable-cell-value" style="word-wrap:break-word">
-            {{ value }}
-          </div>
-        </ng-template>
-      </ngx-datatable-column>
-      <ngx-datatable-column [width]="150" [resizeable]="false" name="provider" prop="provider">
-      </ngx-datatable-column>
-      <ngx-datatable-column name="key" [resizeable]="false" [width]="300">
-        <ng-template let-column="column" ngx-datatable-header-template>
-          <span>key (usually OPC UA Node ID)</span>
-        </ng-template>
-        <ng-template let-value="value" ngx-datatable-cell-template>
-          <div class="datatable-cell-value" style="word-wrap:break-word">
-            {{ value }}
-          </div>
-        </ng-template>
-      </ngx-datatable-column>
-      <ngx-datatable-column name="s" [resizeable]="false" [width]="200">
-        <ng-template let-column="column" ngx-datatable-header-template>
-          <span>source</span>
-        </ng-template>
-        <ng-template let-value="value" ngx-datatable-cell-template>
-          <div class="datatable-cell-value" style="word-wrap:break-word">
-            {{ value }}
-          </div>
-        </ng-template>
-      </ngx-datatable-column>
-      <ngx-datatable-column [width]="120" [resizeable]="false" name="severity" prop="sv">
-      </ngx-datatable-column>
-      <ngx-datatable-column [width]="120" [resizeable]="false" name="duration" prop="duration">
-      </ngx-datatable-column>
-      <ngx-datatable-column name="sts" [resizeable]="false" [width]="250">
-        <ng-template let-column="column" ngx-datatable-header-template>
-          <span>source time stamp ({{ column.name }})</span>
-        </ng-template>
-        <ng-template let-value="value" ngx-datatable-cell-template>
-          <div class="datatable-cell-value">{{ value | date: "medium" }}</div>
-        </ng-template>
-      </ngx-datatable-column>
-      <ngx-datatable-column [width]="200" [resizeable]="false" name="lm">
-        <ng-template let-column="column" ngx-datatable-header-template>
-          <span>localized message ({{ column.name }})</span>
-        </ng-template>
-        <ng-template let-value="value" ngx-datatable-cell-template>
-          <div style="white-space:pre-wrap">{{ value | json }}</div>
-        </ng-template>
-      </ngx-datatable-column>
-    </ngx-datatable>
-  </div>
+        <ngx-datatable class="material datatable" [columnMode]="'force'" [headerHeight]="30" [rowHeight]="'auto'"
+            [footerHeight]="35" [scrollbarH]="true" [rows]="rows$ | async"
+            [sorts]="[{ prop: 'duration', dir: 'desc' }, { prop: 'sts', dir: 'desc' }]" [selectionType]="'single'"
+            (select)="onElementSelected($event)">
+            <ngx-datatable-column name="key" [resizeable]="false" [width]="250">
+                <ng-template let-column="column" ngx-datatable-header-template>
+                    <span>Key (identifier)</span>
+                </ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <div class="datatable-cell-value" style="word-wrap:break-word">
+                        {{ value }}
+                    </div>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column [width]="150" [resizeable]="false" name="provider" prop="provider">
+            </ngx-datatable-column>
+            <ngx-datatable-column name="key" [resizeable]="false" [width]="300">
+                <ng-template let-column="column" ngx-datatable-header-template>
+                    <span>key (usually OPC UA Node ID)</span>
+                </ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <div class="datatable-cell-value" style="word-wrap:break-word">
+                        {{ value }}
+                    </div>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="s" [resizeable]="false" [width]="200">
+                <ng-template let-column="column" ngx-datatable-header-template>
+                    <span>source</span>
+                </ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <div class="datatable-cell-value" style="word-wrap:break-word">
+                        {{ value }}
+                    </div>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column [width]="120" [resizeable]="false" name="severity" prop="sv">
+            </ngx-datatable-column>
+            <ngx-datatable-column [width]="120" [resizeable]="false" name="duration" prop="duration">
+            </ngx-datatable-column>
+            <ngx-datatable-column name="sts" [resizeable]="false" [width]="250">
+                <ng-template let-column="column" ngx-datatable-header-template>
+                    <span>source time stamp ({{ column.name }})</span>
+                </ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <div class="datatable-cell-value">{{ value | date: "medium" }}</div>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column [width]="200" [resizeable]="false" name="lm">
+                <ng-template let-column="column" ngx-datatable-header-template>
+                    <span>localized message ({{ column.name }})</span>
+                </ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <div style="white-space:pre-wrap">{{ value | json }}</div>
+                </ng-template>
+            </ngx-datatable-column>
+        </ngx-datatable>
+    </div>
 </app-scenario>
 
 <ng-template #loadingOrError>
-  <div *ngIf="(error$ | async)" class="errorMessage">
-    No data available for this machine
-  </div>
-  <div>
-    <div *ngIf="(loading$ | async)" class="spinner">
-      <div class="double-bounce1"></div>
-      <div class="double-bounce2"></div>
+    <div *ngIf="(error$ | async)" class="errorMessage">
+        No data available for this machine
     </div>
-  </div>
+    <div>
+        <div *ngIf="(loading$ | async)" class="spinner">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+        </div>
+    </div>
 </ng-template>
