@@ -95,7 +95,7 @@ a.navbar-burger:hover {
 
 @media all and (max-width: 1024px) {
     .mobhide {
-        display: none;
+        display: none !important;
     }
 }
 
