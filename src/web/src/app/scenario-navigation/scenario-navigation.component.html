@@ -2,7 +2,6 @@
     <a class="navbar-link">
         Menu
     </a>
-
     <div class="navbar-dropdown is-boxed">
         <a *ngFor="let scenarioEntry of scenarioEntries$ | async" routerLink="{{scenarioEntry.url}}" class="navbar-item"
             (click)="selectEntry()">
