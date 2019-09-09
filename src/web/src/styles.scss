@@ -92,3 +92,18 @@ div.navbar-brand > a.navbar-burger {
 a.navbar-burger:hover {
     color: white;
 }
+
+@media all and (max-width: 1024px) {
+    .mobhide {
+        display: none;
+    }
+}
+
+@media all and (min-width: 1025px) {
+    .largeshow {
+        display: inherit;
+    }
+    .largehide {
+        display: none;
+    }
+}

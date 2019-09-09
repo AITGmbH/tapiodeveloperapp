@@ -15,7 +15,7 @@
         </div>
 
         <div class="navbar-menu" id="navMenu">
-            <div class="navbar-start" app-scenario-navigation>
+            <div class="navbar-start largehide" app-scenario-navigation>
             </div>
             <!-- <div class="navbar-end">
                 <div class="navbar-item has-dropdown is-hoverable">
@@ -106,8 +106,8 @@
 </header>
 
 <div class="columns">
-    <div class="column is-narrow main-nav">
-        <!-- <app-scenario-navigation></app-scenario-navigation> -->
+    <div class="column is-narrow main-nav mobhide">
+        <div app-scenario-navigation></div>
     </div>
     <perfect-scrollbar class="scroll-container ps-show-always" [scrollIndicators]="true"
         (psYReachStart)="onScrollYReachStart()" (psScrollDown)="onScrollDown()" #mainContentScrollbar>
