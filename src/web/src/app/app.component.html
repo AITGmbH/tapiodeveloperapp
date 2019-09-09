@@ -1,5 +1,88 @@
 <header class="main-header is-centered">
-  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <nav class="navbar" role="navigation" aria-label="dropdown navigation">
+        <div class="navbar-brand">
+            <a href="https://aitgmbh.de/" target="_blank" rel="noopener" class="ait-logo">
+                <img src="assets/img/logo/ait.svg" class="logo" alt="AIT">
+            </a>
+            <span>
+                tapio developer app
+            </span>
+            <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div class="navbar-menu" id="navMenu">
+            <div class="navbar-start" app-scenario-navigation>
+            </div>
+            <!-- <div class="navbar-end">
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        Docs
+                    </a>
+
+                    <div class="navbar-dropdown is-boxed">
+                        <a class="navbar-item">
+                            Overview
+                        </a>
+                        <a class="navbar-item">
+                            Elements
+                        </a>
+                        <a class="navbar-item">
+                            Components
+                        </a>
+                        <hr class="navbar-divider">
+                        <div class="navbar-item">
+                            Version 0.7.5
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <div class="navbar-end" app-external-links-dropdown>
+
+                <!-- <app-external-links-dropdown></app-external-links-dropdown> -->
+            </div>
+
+            <!-- <div class="navbar-end">
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        Links
+                    </a>
+
+                    <div class="navbar-dropdown is-boxed is-right">
+                        <app-external-links-dropdown></app-external-links-dropdown>
+                    </div>
+                </div>
+            </div> -->
+
+
+            <!-- <div class="navbar-end">
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        Links
+                    </a>
+
+                    <div class="navbar-dropdown is-boxed is-right">
+                        <a href="https://github.com/AITGmbH/tapiodeveloperapp/" class="navbar-item" target="_blank"
+                            rel="noopener">
+                            <fa-icon [icon]="['fab', 'github']"></fa-icon>
+                            AITGmbH/tapiodeveloperapp
+                        </a>
+                        <a href="https://developer.tapio.one/" class="navbar-item" target="_blank" rel="noopener">
+                            tapio Developer Portal
+                        </a>
+                        <a href="http://www.mytapio.one" class="navbar-item" target="_blank" rel="noopener">
+                            tapio Management Portal
+                        </a>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+
+    </nav>
+    <!-- <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a href="https://aitgmbh.de/" target="_blank" rel="noopener" class="ait-logo">
         <img src="assets/img/logo/ait.svg" class="logo" alt="AIT">
@@ -19,37 +102,38 @@
         <app-external-links-dropdown></app-external-links-dropdown>
       </div>
     </div>
-  </nav>
+  </nav> -->
 </header>
 
 <div class="columns">
-  <div class="column is-narrow main-nav">
-    <app-scenario-navigation></app-scenario-navigation>
-  </div>
-  <perfect-scrollbar class="scroll-container ps-show-always" [scrollIndicators]="true"
-    (psYReachStart)="onScrollYReachStart()" (psScrollDown)="onScrollDown()" #mainContentScrollbar>
-    <div class="column main-content">
-      <main>
-        <router-outlet></router-outlet>
-      </main>
+    <div class="column is-narrow main-nav">
+        <!-- <app-scenario-navigation></app-scenario-navigation> -->
     </div>
-    <div *ngIf="showScrollToTopBtn" class="action-button scroll-to-top-btn" fxLayout="column" fxLayoutAlign="center"
-      fxFlex="auto" (click)='scrollToTop()'>
-      <fa-icon [icon]="['fas', 'chevron-up']" [size]="'4x'"></fa-icon>
-    </div>
-  </perfect-scrollbar>
+    <perfect-scrollbar class="scroll-container ps-show-always" [scrollIndicators]="true"
+        (psYReachStart)="onScrollYReachStart()" (psScrollDown)="onScrollDown()" #mainContentScrollbar>
+        <div class="column main-content">
+            <main>
+                <router-outlet></router-outlet>
+            </main>
+        </div>
+        <div *ngIf="showScrollToTopBtn" class="action-button scroll-to-top-btn" fxLayout="column" fxLayoutAlign="center"
+            fxFlex="auto" (click)='scrollToTop()'>
+            <fa-icon [icon]="['fas', 'chevron-up']" [size]="'4x'"></fa-icon>
+        </div>
+    </perfect-scrollbar>
 </div>
 
 <footer class="footer">
-  <div class="content has-text-centered has-text-white">
-    <p>
-      © 2019 AIT GmbH & Co. KG<a href="https://www.aitgmbh.de/impressum/" target="_blank" rel="noopener"
-        class="has-text-white align-right">
-        <fa-icon [icon]="['fas', 'info-circle']"></fa-icon> Legal Notice - Impressum
-      </a>
-      <a href="https://www.aitgmbh.de/datenschutz/" target="_blank" rel="noopener" class="has-text-white align-right">
-        <fa-icon [icon]="['fas', 'shield-alt']"></fa-icon> Privacy Policy - GDPR
-      </a>
-    </p>
-  </div>
+    <div class="content has-text-centered has-text-white">
+        <p>
+            © 2019 AIT GmbH & Co. KG<a href="https://www.aitgmbh.de/impressum/" target="_blank" rel="noopener"
+                class="has-text-white align-right">
+                <fa-icon [icon]="['fas', 'info-circle']"></fa-icon> Legal Notice - Impressum
+            </a>
+            <a href="https://www.aitgmbh.de/datenschutz/" target="_blank" rel="noopener"
+                class="has-text-white align-right">
+                <fa-icon [icon]="['fas', 'shield-alt']"></fa-icon> Privacy Policy - GDPR
+            </a>
+        </p>
+    </div>
 </footer>

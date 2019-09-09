@@ -6,7 +6,6 @@
 @import "./styles_spinner.scss";
 @import "./styles_datatable.scss";
 
-
 @import "../node_modules/bulma/sass/utilities/_all.sass";
 @import "../node_modules/bulma/sass/base/_all.sass";
 @import "../node_modules/bulma/sass/elements/button.sass";
@@ -18,42 +17,78 @@
 @import "../node_modules/bulma/sass/layout/section.sass";
 
 * {
-  font-family: "Open Sans", Helvetica, Arial, Verdana, sans-serif;
+    font-family: "Open Sans", Helvetica, Arial, Verdana, sans-serif;
 }
 
 html {
-  height: 100%;
-  overflow-y: hidden;
+    height: 100%;
+    overflow-y: hidden;
 }
 
 body {
-  background: #FFF;
-  height: 100%;
-  width: 100%;
+    background: #fff;
+    height: 100%;
+    width: 100%;
 }
 
 h1.title {
-  text-align: left;
-  color: #303741;
+    text-align: left;
+    color: #303741;
 }
 
 h3.title.is-3 {
-  text-align: left;
-  color: #303741;
-  font-size: 35px;
-  margin: 15px 0;
+    text-align: left;
+    color: #303741;
+    font-size: 35px;
+    margin: 15px 0;
 }
 
 a.has-text-white:hover {
-  color: #FFF !important;
+    color: #fff !important;
 }
 
 .errorMessage {
-  margin-top: 2rem;
-  background-color: white;
-  display: block;
-  max-width: 35%;
-  padding: 3px 3px 3px 0px;
-  text-align: left;
-  color: red;
+    margin-top: 2rem;
+    background-color: white;
+    display: block;
+    max-width: 35%;
+    padding: 3px 3px 3px 0px;
+    text-align: left;
+    color: red;
+}
+
+div.navbar-item.has-dropdown:hover > a.navbar-link {
+    background-color: transparent !important;
+    color: white;
+}
+
+// div.navbar-item > a.navbar-link:hover {
+//     color: white !important;
+// }
+
+// nav.navbar,
+// div.navbar-start {
+//     height: 80px;
+//     justify-content: center;
+// }
+
+// div.navbar-end {
+//     height: 80px;
+// }
+
+div.navbar-brand > span {
+    padding: 26px 0;
+    color: white;
+}
+
+div.navbar-brand > a.navbar-burger {
+    height: 80px;
+}
+
+.navbar-menu {
+    margin-right: 42px;
+}
+
+a.navbar-burger:hover {
+    color: white;
 }
