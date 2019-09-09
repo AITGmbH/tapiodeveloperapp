@@ -6,8 +6,7 @@ import { NavigationService } from "../shared/services/navigation.service";
  */
 @Component({
     selector: "[app-external-links-dropdown]",
-    templateUrl: "./external-links-dropdown.component.html",
-    styleUrls: ["./external-links-dropdown.component.scss"]
+    templateUrl: "./external-links-dropdown.component.html"
 })
 export class ExternalLinksDropdownComponent {
     constructor(private readonly navigationService: NavigationService) {}
