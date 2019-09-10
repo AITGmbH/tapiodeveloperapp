@@ -10,6 +10,7 @@ import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { DebugElement, Component, Directive } from "@angular/core";
 import { SharedModule } from "../shared/shared.module";
 
+declare const viewport;
 const scenarioServiceStub = {
     getEntries() {
         return of([
@@ -34,6 +35,7 @@ describe("ScenarioNavigationComponent", () => {
     let debugElement: DebugElement;
 
     beforeEach(async () => {
+        viewport.set("desktop-hd");
         TestBed.configureTestingModule({
             imports: [SharedModule, RouterTestingModule, HttpClientTestingModule],
             declarations: [

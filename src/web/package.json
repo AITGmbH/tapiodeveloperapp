@@ -62,6 +62,7 @@
         "karma-coverage-istanbul-reporter": "^2.0.5",
         "karma-jasmine": "~1.1.2",
         "karma-jasmine-html-reporter": "^0.2.2",
+        "karma-viewport": "^1.0.4",
         "path": "^0.12.7",
         "protractor": "~5.4.0",
         "ts-node": "~7.0.0",
