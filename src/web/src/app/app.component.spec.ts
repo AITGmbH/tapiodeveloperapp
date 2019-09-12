@@ -73,4 +73,11 @@ describe("AppComponent", () => {
         const realAnchor = anchorTapio.nativeElement as HTMLAnchorElement;
         expect(realAnchor.rel).toBe("noopener");
     });
+
+    it("should call append event handlers on create", async done => {
+        const createHandlerOnBurgerSpy = spyOn<any>(component, "createNavbarBurgerToggle").and.callThrough();
+        fixture.detectChanges();
+        expect(createHandlerOnBurgerSpy).toHaveBeenCalled();
+        done();
+    });
 });

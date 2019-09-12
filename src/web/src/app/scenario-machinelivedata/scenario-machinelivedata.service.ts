@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { SignalRService } from "../shared/services/signalr.service";
-import { Subject, Subscription } from "rxjs";
+import { Subject } from "rxjs";
 import { MachineLiveDataContainer } from "./scenario-machinelivedata.models";
 
 @Injectable()

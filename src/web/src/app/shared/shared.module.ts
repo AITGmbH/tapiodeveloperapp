@@ -19,6 +19,7 @@ import { ScenarioNavigationService } from "../scenario-navigation/scenario-navig
 import { AvailableMachinesService } from "./services/available-machines.service";
 import { NgxChartsModule } from "@swimlane/ngx-charts";
 import { PerfectScrollbarModule } from "ngx-perfect-scrollbar";
+import { NavigationService } from "./services/navigation.service";
 
 library.add(faGithub, fas);
 
@@ -57,7 +58,8 @@ library.add(faGithub, fas);
         MachineOverviewService,
         ScenarioNavigationService,
         DecimalPipe,
-        AvailableMachinesService
+        AvailableMachinesService,
+        NavigationService
     ]
 })
 export class SharedModule {

@@ -5,7 +5,7 @@ div.row {
     font-weight: 600;
     line-height: 25px;
     height: 44px !important;
-    width: 30rem;
+    width: 25rem;
 }
 
 div.ng-select-container {
@@ -32,7 +32,7 @@ div.ng-dropdown-panel-items {
     border: #303741 2px solid;
     border-radius: 0px !important;
     font-weight: 400;
-    width: 30rem;
+    width: 25rem;
     right: 1px;
 }
 
