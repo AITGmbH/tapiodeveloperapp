@@ -4,6 +4,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Aitgmbh.Tapio.Developerapp.Web.Models;
 using Aitgmbh.Tapio.Developerapp.Web.Services;
 
 namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricalData
@@ -29,7 +30,11 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricalData
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 using (var responseMessage = await _httpClient.SendAsync(request, cancellationToken))
                 {
-                    responseMessage.EnsureSuccessStatusCode();
+                    if (!responseMessage.IsSuccessStatusCode)
+                    {
+                        throw new HttpException(responseMessage.StatusCode);
+                    }
+
                     var content = await responseMessage.Content.ReadAsStringAsync();
                     var result = SourceKeyResponseExtension.FromJson(content);
                     result.MachineId = machineId;
@@ -47,7 +52,11 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricalData
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 using (var responseMessage = await _httpClient.SendAsync(request, cancellationToken))
                 {
-                    responseMessage.EnsureSuccessStatusCode();
+                    if (!responseMessage.IsSuccessStatusCode)
+                    {
+                        throw new HttpException(responseMessage.StatusCode);
+                    }
+
                     var content = await responseMessage.Content.ReadAsStringAsync();
                     var result = HistoricalDataResponseExtension.FromJson(content);
                     return result;
