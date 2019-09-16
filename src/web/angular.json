@@ -8,7 +8,11 @@
       "sourceRoot": "src",
       "projectType": "application",
       "prefix": "app",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -24,10 +28,11 @@
             ],
             "styles": [
               "node_modules/bulma/css/bulma.min.css",
+              "node_modules/bulma-checkradio/dist/css/bulma-checkradio.min.css",
               "node_modules/@ng-select/ng-select/themes/default.theme.css",
               "node_modules/ng-pick-datetime/assets/style/picker.min.css",
               "src/assets/font/audimat/fonts.css",
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": [],
             "es5BrowserSupport": true
@@ -84,7 +89,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": [],
             "assets": [

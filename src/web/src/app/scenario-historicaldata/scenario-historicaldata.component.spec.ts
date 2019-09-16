@@ -68,7 +68,6 @@ describe("ScenarioHistoricaldataComponent", () => {
         expect(getSourceKeysSpy).toHaveBeenCalledWith(machineId);
 
         expect(element.nativeElement.querySelectorAll(".sourceKeyList li").length).toEqual(0);
-        expect(element.nativeElement.querySelectorAll(".spinner").length).toEqual(0);
         expect(element.nativeElement.querySelectorAll(".errorMessage").length).toEqual(1);
     });
 });

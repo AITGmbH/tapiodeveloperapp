@@ -1,0 +1,83 @@
+h1 {
+  font-family: "Roboto", Helvetica, Arial, Verdana, sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+  text-transform: uppercase; 
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  min-height: 35rem;
+}
+
+div.sourceKeyList {
+  margin-top: 1rem;
+  margin-right: 25px;
+  text-align: left;
+  min-width: 30%;
+  clear: both;
+}
+
+.is-checkradio[type=radio]+label::after, 
+.is-checkradio[type=radio]+label::before, 
+.is-checkradio[type=radio]+label:after, 
+.is-checkradio[type=radio]+label:before {
+  width: 1.4rem;
+  height: 1.4rem;
+  margin: 3px;
+}
+
+.is-checkradio[type=radio]:checked+label::after, 
+.is-checkradio[type=radio]:checked+label:after {
+  border: 2px solid #e3000b !important;
+  background-color: #e3000b !important;
+}
+
+// Setzt die Border des ausgewählten Elements auf rot. Kann auch entfernt werden, Felix fragen.
+.is-checkradio[type=radio]:checked+label::before, 
+.is-checkradio[type=radio]:checked+label:before {
+  border: 1px solid #e3000b !important;
+}
+
+.is-checkradio[type=checkbox]:hover:not([disabled])+label::before, 
+.is-checkradio[type=checkbox]:hover:not([disabled])+label:before, 
+.is-checkradio[type=radio]:hover:not([disabled])+label::before, 
+.is-checkradio[type=radio]:hover:not([disabled])+label:before {
+  border-color: #e3000b !important;
+}
+
+li {
+  margin-top: 5px;
+}
+
+li > label {
+  margin-left: 10px;
+}
+
+li > label:hover,
+li > input:hover { 
+  cursor: pointer; 
+} 
+
+div.sourceKeyData {
+  margin-top: 1rem;
+  margin-left: 5px;
+  flex: 1;
+  display: grid;
+}
+
+div > .historicalDataChart {
+  background-color: white;
+}
+
+.errorMessage {
+  margin-top: 2rem;
+  background-color: white;
+  display: block;
+  max-width: 35%;
+  height: fit-content;
+  padding: 5px;
+  text-align: left;
+  color: red;
+}

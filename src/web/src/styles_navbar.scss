@@ -1,0 +1,17 @@
+@import "./styles_variables.scss";
+
+$navbar-background-color: $ait-dark-gray;
+$navbar-item-color: white;
+
+$navbar-item-hover-color: $ait-dark-gray;
+$navbar-item-hover-background-color: $ait-light-gray;
+
+$navbar-dropdown-arrow: white;
+
+$navbar-dropdown-background-color: $ait-dark-gray;
+$navbar-dropdown-item-hover-background-color: $ait-light-gray;
+$navbar-dropdown-item-hover-color: $ait-dark-gray;
+
+$navbar-dropdown-boxed-radius: 0px;
+
+$navbar-burger-color: white;

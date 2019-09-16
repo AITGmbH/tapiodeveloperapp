@@ -8,7 +8,7 @@ import * as moment from "moment";
 @Component({
     selector: "app-scenario-historicaldata",
     templateUrl: "./scenario-historicaldata.component.html",
-    styleUrls: ["./scenario-historicaldata.component.css"]
+    styleUrls: ["./scenario-historicaldata.component.scss"]
 })
 export class ScenarioHistoricaldataComponent implements OnInit {
     private searchCriteria$ = new BehaviorSubject<ScenarionHistoricaldataSearchCriteria>({
@@ -21,6 +21,9 @@ export class ScenarioHistoricaldataComponent implements OnInit {
     error$ = new Subject<boolean>();
     loading$ = new Subject<boolean>();
     lineSeriesData: LineSeriesData[];
+    lineChartScheme = {
+        domain: ['#e3000b', '#0092b4', '#303741']
+    }
 
     constructor(private readonly historicalDataService: HistoricalDataService) {
         this.error$.next(false);

@@ -1,12 +1,44 @@
-a {
-  color: #FFF;
-}
+@media all and (min-width: 1025px) {
+    a {
+        color: #303741;
+    }
 
-ul {
-  padding: 20px 10px 20px 20px;
-}
+    ul {
+        padding: 11px 10px 20px 0px;
+    }
 
-li > a {
-  display: inline-block;
-  padding: 6px 0;
+    li {
+        background-color: #f3f4f4;
+        color: #303741;
+        font-weight: 600;
+        font-size: 20px;
+        text-transform: uppercase;
+        border: 2px solid #303741;
+        margin-bottom: 10px;
+        height: 45px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: pre-wrap;
+    }
+
+    li:hover > a {
+        color: #f3f4f4;
+    }
+
+    li:hover {
+        background-color: #303741;
+    }
+
+    li > a {
+        display: block;
+        height: 100%;
+    }
+
+    li > a > span {
+        display: inline-block;
+        padding: 12px 20px 10px 20px;
+        height: 45px;
+        width: 100%;
+        line-height: 16px;
+    }
 }
