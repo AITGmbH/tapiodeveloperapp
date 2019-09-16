@@ -14,16 +14,20 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricalData
         public string[] Keys { get; set; }
     }
 
-    public class HistoricalDataResponse {
+    public class HistoricalDataResponse
+    {
         [JsonProperty("values")]
         public HistoricalDataResponseElement[] Values { get; set; }
     }
-    public class HistoricalDataResponseElement {
-        
+
+    public class HistoricalDataResponseElement
+    {
         [JsonProperty("key")]
         public string Key { get; set; }
+
         [JsonProperty("values")]
         public HistoricalItemData[] Values { get; set; }
+
         [JsonProperty("moreDataAvailable")]
         public bool MoreDataAvailable { get; set; }
     }
@@ -32,19 +36,25 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricalData
     {
         [JsonProperty("rts_utc")]
         public DateTime? ReceiveTimestampUtc { get; set; }
+
         [JsonProperty("k")]
         public string Key { get; set; }
+
         [JsonProperty("vt")]
         public string DataValueType { get; set; }
+
         [JsonProperty("v")]
         public dynamic Value { get; set; }
 
         [JsonProperty("vNum")]
         public double? ValueAsNumber { get; set; }
+
         [JsonProperty("u")]
         public string Unit { get; set; }
+
         [JsonProperty("q")]
         public string Quality { get; set; }
+
         [JsonProperty("sts")]
         public DateTime SourceTimestamp { get; set; }
 
@@ -52,14 +62,17 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricalData
         public string ReceiveTimestamp { get; set; }
     }
 
-    public class HistoricalDataRequest {
-        
+    public class HistoricalDataRequest
+    {
         [JsonProperty("from")]
         public string From { get; set; }
+
         [JsonProperty("to")]
         public string To { get; set; }
+
         [JsonProperty("keys")]
         public string[] Keys { get; set; }
+
         [JsonProperty("limit")]
         public int? Limit { get; set; }
     }
@@ -73,7 +86,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricalData
         public static HistoricalDataResponse FromJson(string json) => JsonConvert.DeserializeObject<HistoricalDataResponse>(json, Converter.Settings);
     }
 
-    public static class HistoricalDataReqeuestExtension
+    public static class HistoricalDataRequestExtension
     {
         public static string ToJson(HistoricalDataRequest req) => JsonConvert.SerializeObject(req, Converter.Settings);
     }
@@ -86,7 +99,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricalData
             Converters =
             {
                 new IsoDateTimeConverter { DateTimeStyles = DateTimeStyles.AssumeUniversal }
-            },
+            }
         };
     }
 }
