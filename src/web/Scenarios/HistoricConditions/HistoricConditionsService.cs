@@ -19,7 +19,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricConditions
             _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
             _tokenProvider = tokenProvider ?? throw new ArgumentNullException(nameof(tokenProvider));
         }
-        
+
         public Task<HistoricConditionsResponse> GetConditionsAsync(CancellationToken cancellationToken, string machineId)
         {
             return GetConditionsAsync(cancellationToken, machineId, new HistoricConditionsRequest
@@ -27,19 +27,22 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricConditions
                 From = DateTime.Now.AddDays(-3)
             });
         }
-        
+
         public async Task<HistoricConditionsResponse> GetConditionsAsync(CancellationToken cancellationToken, string machineId, HistoricConditionsRequest requestData)
         {
             var token = await _tokenProvider.ReceiveTokenAsync(TapioScope.CoreApi);
-            var request = new HttpRequestMessage(HttpMethod.Post, new Uri(String.Format(GetData, machineId)));
-            request.Content = new StringContent(HistoricConditionsRequestExtension.ToJson(requestData),Encoding.UTF8, "application/json");
-
-            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            var responseMessage = await _httpClient.SendAsync(request, cancellationToken);
-            responseMessage.EnsureSuccessStatusCode();
-            var content = await responseMessage.Content.ReadAsStringAsync();
-            var result = HistoricConditionsResponseExtension.FromJson(content);
-            return result;
+            using (var request = new HttpRequestMessage(HttpMethod.Post, new Uri(string.Format(GetData, machineId))))
+            {
+                request.Content = new StringContent(HistoricConditionsRequestExtension.ToJson(requestData), Encoding.UTF8, "application/json");
+                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                using (var responseMessage = await _httpClient.SendAsync(request, cancellationToken))
+                {
+                    responseMessage.EnsureSuccessStatusCode();
+                    var content = await responseMessage.Content.ReadAsStringAsync();
+                    var result = HistoricConditionsResponseExtension.FromJson(content);
+                    return result;
+                }
+            }
         }
     }
 

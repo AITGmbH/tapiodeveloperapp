@@ -37,7 +37,10 @@ indent_style = space
 #Formatting - new line options
 
 #require braces to be on a new line for control_blocks, methods, and types (also known as "Allman" style)
-csharp_new_line_before_open_brace = control_blocks, methods, types
+csharp_new_line_before_open_brace = control_blocks, methods, types, properties
+csharp_new_line_before_else = true
+csharp_new_line_before_catch = true
+csharp_new_line_before_finally = true
 
 #Formatting - organize using options
 

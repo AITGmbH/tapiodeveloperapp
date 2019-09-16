@@ -1,5 +1,4 @@
 using System;
-using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -12,10 +11,8 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricalData
 {
     public sealed class HistoricalDataService : IHistoricalDataService
     {
-        private const string GetMachineSourceKeys =
-            "https://core.tapio.one/api/machines/historic/tmids/{0}/items/keys";
-        private const string GetHistoricalData =
-            "https://core.tapio.one/api/machines/historic/tmids/{0}/items";
+        private const string GetMachineSourceKeys = "https://core.tapio.one/api/machines/historic/tmids/{0}/items/keys";
+        private const string GetHistoricalData = "https://core.tapio.one/api/machines/historic/tmids/{0}/items";
         private readonly HttpClient _httpClient;
         private readonly ITokenProvider _tokenProvider;
 
@@ -28,41 +25,49 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricalData
         public async Task<SourceKeyResponse> GetSourceKeysAsync(CancellationToken cancellationToken, string machineId)
         {
             var token = await _tokenProvider.ReceiveTokenAsync(TapioScope.CoreApi);
-            var request = new HttpRequestMessage(HttpMethod.Get, new Uri(String.Format(GetMachineSourceKeys, machineId)));
-            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            var responseMessage = await _httpClient.SendAsync(request, cancellationToken);
-            if (!responseMessage.IsSuccessStatusCode)
+            using (var request = new HttpRequestMessage(HttpMethod.Get, new Uri(string.Format(GetMachineSourceKeys, machineId))))
             {
-                throw new HttpException(responseMessage.StatusCode);
+                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                using (var responseMessage = await _httpClient.SendAsync(request, cancellationToken))
+                {
+                    if (!responseMessage.IsSuccessStatusCode)
+                    {
+                        throw new HttpException(responseMessage.StatusCode);
+                    }
+
+                    var content = await responseMessage.Content.ReadAsStringAsync();
+                    var result = SourceKeyResponseExtension.FromJson(content);
+                    result.MachineId = machineId;
+                    return result;
+                }
             }
-            var content = await responseMessage.Content.ReadAsStringAsync();
-            var result = SourceKeyResponseExtension.FromJson(content);
-            result.MachineId = machineId;
-            return result;
         }
 
         public async Task<HistoricalDataResponse> GetHistoricalDataAsync(CancellationToken cancellationToken, string machineId, HistoricalDataRequest historicalDataRequest)
         {
-
             var token = await _tokenProvider.ReceiveTokenAsync(TapioScope.CoreApi);
-            var request = new HttpRequestMessage(HttpMethod.Post, new Uri(String.Format(GetHistoricalData, machineId)));
-            request.Content = new StringContent(HistoricalDataReqeuestExtension.ToJson(historicalDataRequest), Encoding.UTF8, "application/json");
-            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            var responseMessage = await _httpClient.SendAsync(request, cancellationToken);
-            Console.WriteLine(responseMessage);
-            if (!responseMessage.IsSuccessStatusCode)
+            using (var request = new HttpRequestMessage(HttpMethod.Post, new Uri(string.Format(GetHistoricalData, machineId))))
             {
-                throw new HttpException(responseMessage.StatusCode);
+                request.Content = new StringContent(HistoricalDataRequestExtension.ToJson(historicalDataRequest), Encoding.UTF8, "application/json");
+                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                using (var responseMessage = await _httpClient.SendAsync(request, cancellationToken))
+                {
+                    if (!responseMessage.IsSuccessStatusCode)
+                    {
+                        throw new HttpException(responseMessage.StatusCode);
+                    }
+
+                    var content = await responseMessage.Content.ReadAsStringAsync();
+                    var result = HistoricalDataResponseExtension.FromJson(content);
+                    return result;
+                }
             }
-            var content = await responseMessage.Content.ReadAsStringAsync();
-            var result = HistoricalDataResponseExtension.FromJson(content);
-            return result;
         }
     }
 
     public interface IHistoricalDataService
     {
-        Task<HistoricalDataResponse> GetHistoricalDataAsync(CancellationToken cancellationToken, string machineId, HistoricalDataRequest request);
+        Task<HistoricalDataResponse> GetHistoricalDataAsync(CancellationToken cancellationToken, string machineId, HistoricalDataRequest historicalDataRequest);
         Task<SourceKeyResponse> GetSourceKeysAsync(CancellationToken cancellationToken, string machineId);
     }
 }

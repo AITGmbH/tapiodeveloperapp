@@ -1,8 +1,8 @@
 import { Component, OnInit, Output, EventEmitter, Input, ViewEncapsulation } from "@angular/core";
-import { Observable, of, Subscription as rxSubscription, BehaviorSubject } from "rxjs";
+import { Observable, of, BehaviorSubject } from "rxjs";
 import { AssignedMachine } from "../../models/assigned-machine.model";
 import { MachineState } from "../../models/assigned-machine.model";
-import { MachineOverviewService } from "src/app/scenario-machineoverview/scenario-machineoverview.service";
+import { MachineOverviewService } from "../../../scenario-machineoverview/scenario-machineoverview.service";
 import { catchError, tap } from "rxjs/operators";
 import { Subscription } from "../../models/subscription.model";
 
