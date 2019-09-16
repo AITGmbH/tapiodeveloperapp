@@ -71,7 +71,7 @@ describe("AppComponent", () => {
     it(`should open the ait website with relation noopener`, () => {
         const anchorTapio = fixture.debugElement.query(By.css(".is-centered a[href='https://aitgmbh.de/']"));
         const realAnchor = anchorTapio.nativeElement as HTMLAnchorElement;
-        expect(realAnchor.rel).toBe("noopener");
+        expect(realAnchor.rel).toBe("noopener noreferrer");
     });
 
     it("should call append event handlers on create", async done => {

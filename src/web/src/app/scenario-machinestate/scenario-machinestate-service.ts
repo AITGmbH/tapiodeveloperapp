@@ -1,24 +1,24 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
 
 /**
  * Provides access to the tapio machine state.
  */
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: "root" })
 export class MachineStateService {
 
-    constructor(private http: HttpClient) { }
+    constructor(private readonly http: HttpClient) { }
 
     getMachines(): Observable<AssignedMachine[]> {
-        return this.http.get<SubscriptionsOverview>('/api/machineOverview/').pipe(map(overview => {
+        return this.http.get<SubscriptionsOverview>("/api/machineOverview/").pipe(map(overview => {
             return [].concat(...overview.subscriptions.map(subscription => subscription.assignedMachines));
         }));
     }
 
     getLastKnownStateFromMachine(machineId: string): Observable<LastKnownState> {
-         return this.http.get<LastKnownState>('/api/machineState/' + machineId);
+         return this.http.get<LastKnownState>("/api/machineState/" + machineId);
     }
 }
 

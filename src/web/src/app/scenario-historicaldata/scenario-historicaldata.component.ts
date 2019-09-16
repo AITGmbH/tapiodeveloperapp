@@ -5,13 +5,14 @@ import { HistoricalDataService } from "./scenario-historicaldata.service";
 import { HistoricalDataResponseElement, HistoricItemData } from "./historical-data.model";
 import { filter, concatMap, tap, map, catchError } from "rxjs/operators";
 import * as moment from "moment";
+
 @Component({
     selector: "app-scenario-historicaldata",
     templateUrl: "./scenario-historicaldata.component.html",
     styleUrls: ["./scenario-historicaldata.component.scss"]
 })
 export class ScenarioHistoricaldataComponent implements OnInit {
-    private searchCriteria$ = new BehaviorSubject<ScenarionHistoricaldataSearchCriteria>({
+    private readonly searchCriteria$ = new BehaviorSubject<ScenarionHistoricaldataSearchCriteria>({
         data: {
             // initial value, maybe add input
             limit: 1000
@@ -22,8 +23,8 @@ export class ScenarioHistoricaldataComponent implements OnInit {
     loading$ = new Subject<boolean>();
     lineSeriesData: LineSeriesData[];
     lineChartScheme = {
-        domain: ['#e3000b', '#0092b4', '#303741']
-    }
+        domain: ["#e3000b", "#0092b4", "#303741"]
+    };
 
     constructor(private readonly historicalDataService: HistoricalDataService) {
         this.error$.next(false);
@@ -143,7 +144,7 @@ export class ScenarioHistoricaldataComponent implements OnInit {
 
     public radioChanged(event: Event) {
         if (event && event.target instanceof HTMLInputElement) {
-            const ele = event.target as HTMLInputElement;
+            const ele = event.target;
             this.sourceKeySelected(ele.id);
         }
     }

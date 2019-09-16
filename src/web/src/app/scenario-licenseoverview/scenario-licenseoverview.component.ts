@@ -13,7 +13,7 @@ export class LicenseOverviewComponent implements OnInit {
     subscriptions$: Observable<Subscription[]>;
     error$ = new BehaviorSubject<boolean>(false);
 
-    constructor(private licenseOverviewService: LicenseOverviewService) {}
+    constructor(private readonly licenseOverviewService: LicenseOverviewService) {}
 
     ngOnInit() {
         this.subscriptions$ = this.licenseOverviewService.getSubscriptions().pipe(
