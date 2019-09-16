@@ -341,3 +341,5 @@ src/web/coverage
 src/web/src/environments/version.ts
 
 src/web/log*.txt
+
+.ionide/
