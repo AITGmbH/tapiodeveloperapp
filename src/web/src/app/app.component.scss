@@ -84,9 +84,13 @@ footer.footer a.has-text-white:hover {
     margin-left: 50px;
 }
 
+/deep/ app-root > div > perfect-scrollbar > .ps[style] {
+    position: absolute !important;
+}
+
 .scroll-to-top-btn {
-    position: absolute;
-    bottom: 15px;
+    position: fixed;
+    bottom: 100px;
     right: 53px;
     color: #414753;
 }
