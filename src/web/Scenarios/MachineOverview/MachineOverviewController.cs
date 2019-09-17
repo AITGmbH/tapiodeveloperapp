@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Aitgmbh.Tapio.Developerapp.Web.Models;
@@ -26,14 +27,15 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineOverview
         public async Task<ActionResult<SubscriptionOverview>> GetAllSubscriptionsAsync(CancellationToken cancellationToken)
         {
             var subscriptions = await _machineOverviewService.GetSubscriptionsAsync(cancellationToken);
-            foreach (var subscription in subscriptions.Subscriptions)
-            {
-                foreach (var assignedMachine in subscription.AssignedMachines)
+            var tasks = (
+                from subscription in subscriptions.Subscriptions
+                from assignedMachine in subscription.AssignedMachines
+                select Task.Run(async () =>
                 {
                     var machineState = await _machineStateService.GetMachineStateAsync(assignedMachine.Id, cancellationToken);
                     assignedMachine.MachineState = machineState.HasValues ? MachineState.Running : MachineState.Offline;
-                }
-            }
+                }, cancellationToken)).ToList();
+            await Task.WhenAll(tasks);
             return Ok(subscriptions);
         }
     }
