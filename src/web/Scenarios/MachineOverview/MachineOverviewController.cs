@@ -34,7 +34,6 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineOverview
                     assignedMachine.MachineState = machineState.HasValues ? MachineState.Running : MachineState.Offline;
                 }
             }
-
             return Ok(subscriptions);
         }
     }
