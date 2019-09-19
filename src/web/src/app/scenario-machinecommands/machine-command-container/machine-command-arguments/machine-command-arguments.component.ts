@@ -33,7 +33,7 @@ export class MachineCommandArgumentsComponent implements OnInit {
     }
 
     public valueChange(arg: MachineCommandArgument) {
-        const value = parseFloat(arg.value).toFixed(2);
+        const value = parseFloat(arg.value);
         this._args[arg.name].value = value;
         const machineCommand = this.args.find(el => el.name === arg.name);
         if (machineCommand) {

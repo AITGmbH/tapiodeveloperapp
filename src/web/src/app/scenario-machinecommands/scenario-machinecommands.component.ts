@@ -13,12 +13,4 @@ export class MachineCommandsComponent implements OnInit {
     ngOnInit() {
         this.commands$ = this.machineCommandsService.getCommandsAsync();
     }
-
-    public execute() {
-        // const commandItem = { id: "123", serverId: "456", tmid: "798" } as CommandItemRead;
-        // const observable = this.machineCommandsService.readItem(commandItem);
-        // observable.subscribe(result => {
-        //     console.log(result);
-        // });
-    }
 }

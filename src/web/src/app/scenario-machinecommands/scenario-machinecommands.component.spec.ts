@@ -4,7 +4,27 @@ import { SharedModule } from "../shared/shared.module";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { DebugElement } from "@angular/core";
 import { MachineCommandsComponent } from "./scenario-machinecommands.component";
-import { MachineCommandsService } from "./scenario-machinecommands.service";
+import { MachineCommandsService, CommandItem, commandType } from "./scenario-machinecommands.service";
+import { of } from "rxjs/internal/observable/of";
+import { MachineCommandContainerComponent } from "./machine-command-container/machine-command-container.component";
+import { MachineCommandArgumentsComponent } from "./machine-command-container/machine-command-arguments/machine-command-arguments.component";
+
+const availableCommandItemsMock = [
+    Object.assign(new CommandItem(), {
+        id: "123",
+        tmid: "1234",
+        inArguments: null,
+        serverId: "12345",
+        commandType: commandType.read
+    } as CommandItem),
+    Object.assign(new CommandItem(), {
+        id: "123",
+        tmid: "1234",
+        inArguments: null,
+        serverId: "12345",
+        commandType: commandType.read
+    })
+];
 
 describe("MachineCommandsComponent", () => {
     let component: MachineCommandsComponent;
@@ -14,7 +34,11 @@ describe("MachineCommandsComponent", () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [MachineCommandsComponent],
+            declarations: [
+                MachineCommandsComponent,
+                MachineCommandContainerComponent,
+                MachineCommandArgumentsComponent
+            ],
             providers: [MachineCommandsService],
             imports: [SharedModule, HttpClientTestingModule]
         }).compileComponents();
@@ -27,7 +51,21 @@ describe("MachineCommandsComponent", () => {
         machineCommandsService = element.injector.get(MachineCommandsService);
     });
 
-    it("should create", () => {
+    it("should create machine command component", () => {
         expect(component).toBeTruthy();
+    });
+
+    it("should load available machine commands on init", done => {
+        const getCommandsAsyncSpy = spyOn(machineCommandsService, "getCommandsAsync").and.returnValue(
+            of(availableCommandItemsMock)
+        );
+
+        fixture.detectChanges();
+
+        expect(getCommandsAsyncSpy).toHaveBeenCalled();
+        component.commands$.subscribe(availableCommands => {
+            expect(availableCommands).toEqual(availableCommandItemsMock);
+            done();
+        });
     });
 });

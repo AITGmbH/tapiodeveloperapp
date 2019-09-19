@@ -12,7 +12,7 @@
                         <div class="tile is-ancestor">
                             <div class="tile is-parent is-3">
                                 <div class="tile is-child">
-                                    <button [disabled]="loading" class="button" (click)="executeCommand()">
+                                    <button [disabled]="loading$ | async" class="button" (click)="executeCommand()">
                                         <fa-icon [icon]="['fas', 'play']"></fa-icon>
                                     </button>
 
