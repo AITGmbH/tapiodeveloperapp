@@ -3,11 +3,15 @@ using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+
 using Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricConditions;
 using Aitgmbh.Tapio.Developerapp.Web.Services;
 using Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.HelperClasses;
+
 using FluentAssertions;
+
 using Moq;
+
 using Xunit;
 
 namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.Scenarios.HistoricConditions

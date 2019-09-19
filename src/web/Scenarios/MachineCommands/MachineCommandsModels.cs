@@ -1,13 +1,9 @@
-using System;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Dynamic;
-using System.Linq;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineCommands
 {
-
     public class Command
     {
         [JsonProperty("id")]
@@ -32,13 +28,10 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineCommands
         {
             CommandType = "itemRead";
         }
-
     }
 
     public class CommandItemWrite : Command
     {
-
-
         public CommandItemWrite()
         {
             CommandType = "itemWrite";
@@ -65,14 +58,6 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineCommands
         }
     }
 
-    //public class CommandMethod : Command
-    //{
-    //    public CommandMethod()
-    //    {
-    //        CommandType = "method";
-    //    }
-    //}
-
     public class CommandResponse
     {
         [JsonProperty("cloudConnectorId")]
@@ -85,7 +70,6 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineCommands
         public dynamic Response { get; set; }
     }
 
-
     public enum CommandResponseStatus
     {
         Successfull = 200,
@@ -94,45 +78,20 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineCommands
         Error = 500
     }
 
-    //public class CommandValueType
-    //{
-    //    private CommandValueType(string value) { Value = value; }
-
-    //    public string Value { get; set; }
-
-    //    public static CommandValueType Int32 { get { return new CommandValueType("Int32"); } }
-    //    public static CommandValueType UInt32 { get { return new CommandValueType("UInt32"); } }
-    //    public static CommandValueType Boolean { get { return new CommandValueType("Boolean"); } }
-    //    public static CommandValueType String { get { return new CommandValueType("String"); } }
-    //    public static CommandValueType Byte { get { return new CommandValueType("byte[]"); } }
-    //    public static CommandValueType Double { get { return new CommandValueType("Double"); } }
-    //    public static CommandValueType Float { get { return new CommandValueType("Float"); } }
-
-    //}
-
     public class InArgumentValue
     {
         [JsonProperty("valueType")]
         public string ValueType { get; set; }
+
         public InArgumentValue()
         {
-
         }
+
         public InArgumentValue(dynamic value, string valueType)
         {
             ValueType = valueType;
             Value = value;
         }
-
-        //[JsonIgnore]
-        //public CommandValueType ValueType { get; set; }
-
-        //[JsonProperty("valueType")]
-        //public string Type {
-        //    get { return ValueType.Value; }
-
-        //    set { ValueType.Value = value; }
-        //}
 
         [JsonProperty("value")]
         public dynamic Value { get; set; }
