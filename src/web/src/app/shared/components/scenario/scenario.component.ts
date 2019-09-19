@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, TemplateRef } from "@angular/core";
 import { ScenarioDocumentationService } from "./scenario-documentation-service";
-import { VERSION } from "src/environments/version";
+import { VERSION } from "../../../../environments/version";
 
 /**
  * Represents an abstract scenario. Scenario using this will automatically get the look & feel and behavior they want.
@@ -11,10 +11,7 @@ import { VERSION } from "src/environments/version";
     styleUrls: ["./scenario.component.css"]
 })
 export class ScenarioComponent implements OnInit {
-    private gitHubRepoUrl =
-        "https://github.com/AITGmbH/tapiodeveloperapp/tree/";
-
-    private static readonly gitHubRepoUrl = 'https://github.com/AITGmbH/tapiodeveloperapp/tree/';
+    private readonly gitHubRepoUrl = "https://github.com/AITGmbH/tapiodeveloperapp/tree/";
 
     /**
      * The title of the actual scenario.
@@ -65,19 +62,11 @@ export class ScenarioComponent implements OnInit {
             .subscribe(docPaths => {
                 if (docPaths.backend) {
                     this.hasBackendUrl = true;
-                    this.backendUrl =
-                        this.gitHubRepoUrl +
-                        this.version +
-                        "/" +
-                        docPaths.backend;
+                    this.backendUrl = `${this.gitHubRepoUrl}${this.version}/${docPaths.backend}`;
                 }
 
                 if (docPaths.frontend) {
-                    this.frontendUrl =
-                        this.gitHubRepoUrl +
-                        this.version +
-                        "/" +
-                        docPaths.frontend;
+                    this.frontendUrl = `${this.gitHubRepoUrl}${this.version}/${docPaths.frontend}`;
                 }
 
                 if (docPaths.tapio) {
@@ -87,10 +76,10 @@ export class ScenarioComponent implements OnInit {
     }
 
     isString(value: string | TemplateRef<any>): value is string {
-        return typeof value === 'string';
+        return typeof value === "string";
     }
 
     isTemplateRef(value: string | TemplateRef<any>): value is TemplateRef<any> {
-        return typeof value !== 'string';
+        return typeof value !== "string";
     }
 }

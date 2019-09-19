@@ -10,13 +10,10 @@ import { SubscriptionsOverview } from "../models/subscription-overview.model";
  */
 @Injectable()
 export class AvailableMachinesService {
-    constructor(private http: HttpClient) {}
+    constructor(private readonly http: HttpClient) {}
 
     /**
      * retrieves a flat array of all assigned machines
-     *
-     * @returns {Observable<AssignedMachine[]>}
-     * @memberof AvailableMachinesService
      */
     public getMachines(): Observable<AssignedMachine[]> {
         return this.http
