@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { DebugElement } from "@angular/core";
 import { MachineCommandArgumentsComponent } from "./machine-command-arguments.component";
@@ -21,13 +20,6 @@ const commandArgumentChangedMock = {
 };
 
 const machineArgumentMock = new MachineCommandArgument("value", CommandValueType.Float, 24);
-
-// const commandResponseMock = Object.assign(new CommandResponse(), {
-//     CloudConnectorId: "123",
-//     Response: {},
-//     Status: CommandResponseStatus.Successfull,
-//     StatusDescrption: "abc"
-// } as CommandResponse);
 
 describe("MachineCommandArgumentsComponent", () => {
     let component: MachineCommandArgumentsComponent;

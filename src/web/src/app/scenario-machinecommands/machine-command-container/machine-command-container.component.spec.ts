@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { DebugElement } from "@angular/core";
 import { of } from "rxjs/internal/observable/of";
@@ -13,7 +12,6 @@ import {
 } from "../scenario-machinecommands.service";
 import { MachineCommandArgumentsComponent } from "./machine-command-arguments/machine-command-arguments.component";
 import { SharedModule } from "../../shared/shared.module";
-import { tap } from "rxjs/operators";
 import { throwError } from "rxjs/internal/observable/throwError";
 
 const commandItemMock = Object.assign(new CommandItem(), {

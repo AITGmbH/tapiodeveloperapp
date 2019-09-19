@@ -62,6 +62,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineCommands
                     _logger.LogInformation("Sending request to tapio");
                     using (var responseMessage = await _httpClient.SendAsync(request, cancellationToken))
                     {
+                        responseMessage.EnsureSuccessStatusCode();
                         var content = await responseMessage.Content.ReadAsStringAsync();
                         return JsonConvert.DeserializeObject<IEnumerable<CommandResponse>>(content);
                     }
@@ -119,12 +120,19 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineCommands
 
         private dynamic TranslateArgument(dynamic commandArgument, dynamic defaultArgument)
         {
-            var commandValue = commandArgument.value.Value.ToString();
-            if (float.TryParse(commandValue, out float result))
+            if (commandArgument.GetType() == typeof(InArgumentValue))
             {
-                defaultArgument.Value = result;
+                var commandArg = (InArgumentValue)commandArgument;
+                defaultArgument.Value = commandArg.Value;
             }
-
+            else
+            {
+                var commandValue = commandArgument.value.Value.ToString();
+                if (float.TryParse(commandValue, out float result))
+                {
+                    defaultArgument.Value = result;
+                }
+            }
             return defaultArgument;
         }
     }
