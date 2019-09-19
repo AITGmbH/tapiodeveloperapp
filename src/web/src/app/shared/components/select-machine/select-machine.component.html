@@ -15,11 +15,11 @@
             {{ item.name }}
         </ng-template>
         <ng-template ng-option-tmp let-item="item">
-            <p *ngIf="item.machineState == machineState.Running">
+            <p *ngIf="item.machineState == machineStateType.Running">
                 {{ item.displayName }}
             </p>
-            <p *ngIf="item.machineState == machineState.Offline">
-                <i>{{ item.displayName }} [offline]</i>
+            <p *ngIf="item.machineState == machineStateType.Offline">
+                <em>{{ item.displayName }} [offline]</em>
             </p>
         </ng-template>
     </ng-select>

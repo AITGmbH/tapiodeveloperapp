@@ -16,7 +16,7 @@ export class SelectMachineComponent implements OnInit {
     public items$: Observable<Array<Subscription>>;
     public error$ = new BehaviorSubject<boolean>(false);
     public loading$ = new BehaviorSubject<boolean>(false);
-    machineState = MachineState;
+    machineStateType = MachineState;
     selectedMachine: AssignedMachine;
     @Input() initialMachineId: string;
 
