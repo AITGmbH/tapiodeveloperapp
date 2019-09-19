@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Mime;
@@ -12,11 +13,14 @@ using Newtonsoft.Json;
 
 namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineCommands
 {
-    public class MachineCommandsService: IMachineCommandsService
+    public class MachineCommandsService : IMachineCommandsService
     {
         private const string TapioOneCommandingEndpoint = "https://core.tapio.one/api/commanding";
 
         private static readonly Uri TapioOneCommandingRequest = new Uri(TapioOneCommandingEndpoint);
+
+        private const string CommandType = "Float";
+        private const string CommandKey = "value";
 
         private readonly HttpClient _httpClient;
         private readonly ITokenProvider _tokenProvider;
@@ -27,22 +31,32 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineCommands
             _tokenProvider = tokenProvider ?? throw new ArgumentNullException(nameof(tokenProvider));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
-        public async Task<CommandResponse> ExecuteItemReadAsync(CommandItemRead command, CancellationToken cancellationToken)
+        public async Task<IEnumerable<CommandResponse>> ExecuteItemReadAsync(CommandItemRead command, CancellationToken cancellationToken)
         {
-            if (string.IsNullOrWhiteSpace(command.Id))
-            {
-                throw new ArgumentException("Value cannot be null or whitespace.", nameof(command.Id));
-            }
+            var actualCommand = GetCommandbyId(command.Id);
 
-            if (string.IsNullOrWhiteSpace(command.NodeId))
+            using (_logger.BeginScope(new Dictionary<string, object> { { "MachineId", actualCommand.TapioMachineId }, { "RequestEndpoint", TapioOneCommandingEndpoint } }))
             {
-                throw new ArgumentException("Value cannot be null or whitespace.", nameof(command.NodeId));
-            }
+                var token = await _tokenProvider.ReceiveTokenAsync(TapioScope.CoreApi);
+                var request = new HttpRequestMessage(HttpMethod.Post, TapioOneCommandingRequest);
+                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-            if (string.IsNullOrWhiteSpace(command.TapioMachineId))
-            {
-                throw new ArgumentException("Value cannot be null or whitespace.", nameof(command.TapioMachineId));
+
+                var requestContent = JsonConvert.SerializeObject(actualCommand, Formatting.None);
+
+                request.Content = new StringContent(requestContent, Encoding.UTF8, MediaTypeNames.Application.Json);
+
+                _logger.LogInformation("Sending request to tapio");
+                var responseMessage = await _httpClient.SendAsync(request, cancellationToken);
+                var content = await responseMessage.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<IEnumerable<CommandResponse>>(content);
             }
+        }
+
+        public async Task<IEnumerable<CommandResponse>> ExecuteItemWriteAsync(CommandItemWrite command, CancellationToken cancellationToken)
+        {
+            var actualCommand = GetCommandbyId(command.Id);
+            actualCommand.InArguments.value = TranslateArgument(command.InArguments.value, actualCommand.InArguments.value);
 
             using (_logger.BeginScope(new Dictionary<string, object> { { "MachineId", command.TapioMachineId }, { "RequestEndpoint", TapioOneCommandingEndpoint } }))
             {
@@ -50,34 +64,84 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineCommands
                 var request = new HttpRequestMessage(HttpMethod.Post, TapioOneCommandingRequest);
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-               
+
                 var requestContent = JsonConvert.SerializeObject(command, Formatting.None);
 
                 request.Content = new StringContent(requestContent, Encoding.UTF8, MediaTypeNames.Application.Json);
 
                 _logger.LogInformation("Sending request to tapio");
                 var responseMessage = await _httpClient.SendAsync(request, cancellationToken);
-                responseMessage.EnsureSuccessStatusCode();
                 var content = await responseMessage.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<CommandResponse>(content);
+                return JsonConvert.DeserializeObject<IEnumerable<CommandResponse>>(content);
             }
         }
 
-        public Task<CommandResponse> ExecuteItemWriteAsync(CommandItemWrite command, CancellationToken cancellationToken)
+        public Task<IEnumerable<Command>> GetCommandsAsync(CancellationToken cancellationToken)
+            => Task.FromResult(GetDefaultCommands());
+
+        private IEnumerable<Command> GetDefaultCommands()
         {
-            throw new NotImplementedException();
+            var itemWriteHeatingValue = new CommandItemWrite()
+            {
+                Id = "Kante!Heizung01.Value-Write",
+                TapioMachineId = "2f5b690df6c0406982d49fd9b7a8835b",
+                NodeId = "Simu2"
+            };
+
+            itemWriteHeatingValue.AddInArgument(CommandType, 42, CommandKey);
+
+            var itemReadHeatingValue = new CommandItemRead()
+            {
+                Id = "Kante!Heizung01.Value-Read",
+                TapioMachineId = "2f5b690df6c0406982d49fd9b7a8835b",
+                NodeId = "Simu2"
+            };
+
+            var itemWriteHeatingState = new CommandItemWrite()
+            {
+                Id = "Kante!Heizung01.State-Write",
+                TapioMachineId = "2f5b690df6c0406982d49fd9b7a8835b",
+                NodeId = "Simu2"
+            };
+
+            itemWriteHeatingState.AddInArgument(CommandType, 24, CommandKey);
+
+            var itemReadHeatingState = new CommandItemRead()
+            {
+                Id = "Kante!Heizung01.State-Read",
+                TapioMachineId = "2f5b690df6c0406982d49fd9b7a8835b",
+                NodeId = "Simu2"
+            };
+
+            var commands = new List<Command>();
+            commands.Add(itemWriteHeatingValue);
+            commands.Add(itemReadHeatingValue);
+            commands.Add(itemWriteHeatingState);
+            commands.Add(itemReadHeatingState);
+
+            return commands;
         }
 
-        public Task<CommandResponse> ExecuteMethodAsync(CommandMethod command, CancellationToken cancellationToken)
+        private Command GetCommandbyId(string id) => GetDefaultCommands().FirstOrDefault(el => el.Id == id);
+
+        private dynamic TranslateArgument(dynamic commandArgument, dynamic defaultArgument)
         {
-            throw new NotImplementedException();
+            var commandValue = commandArgument.value.Value.ToString();
+            if (float.TryParse(commandValue, out float result))
+            {
+                defaultArgument.Value = result;
+            }
+
+            return defaultArgument;
         }
+
+
     }
 
     public interface IMachineCommandsService
     {
-        Task<CommandResponse> ExecuteItemReadAsync(CommandItemRead command, CancellationToken cancellationToken);
-        Task<CommandResponse> ExecuteItemWriteAsync(CommandItemWrite command, CancellationToken cancellationToken);
-        Task<CommandResponse> ExecuteMethodAsync(CommandMethod command, CancellationToken cancellationToken);
+        Task<IEnumerable<CommandResponse>> ExecuteItemReadAsync(CommandItemRead command, CancellationToken cancellationToken);
+        Task<IEnumerable<CommandResponse>> ExecuteItemWriteAsync(CommandItemWrite command, CancellationToken cancellationToken);
+        Task<IEnumerable<Command>> GetCommandsAsync(CancellationToken cancellationToken);
     }
 }

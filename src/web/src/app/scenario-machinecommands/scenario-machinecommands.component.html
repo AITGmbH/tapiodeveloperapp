@@ -1,6 +1,7 @@
 <app-scenario title="Machine Commands" id="machine-commands-scenario"
     description="This scenario shows how to use machine commands. This includes a default set of configured commands within your cloud connector instance and how these can be invoked and what kind of result message can be received.">
 
-    <app-machine-command-container></app-machine-command-container>
+    <app-machine-command-container *ngFor="let command of commands$ | async" [command]="command">
+    </app-machine-command-container>
 
 </app-scenario>

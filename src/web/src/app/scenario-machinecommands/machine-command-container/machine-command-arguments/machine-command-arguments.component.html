@@ -1,0 +1,44 @@
+<div *ngIf="args.length > 0">
+    <h1>
+        Arguments
+    </h1>
+
+    <div *ngFor="let arg of args">
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Name</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    {{arg.name}}
+                </div>
+            </div>
+        </div>
+
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Type</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    {{arg.valueType}}
+                </div>
+            </div>
+        </div>
+
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Value</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <p class="control">
+                        <input class="input" type="number" placeholder="Value" [(ngModel)]="arg.value"
+                            (change)="valueChange(arg)" step="0.05" value="0.00">
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

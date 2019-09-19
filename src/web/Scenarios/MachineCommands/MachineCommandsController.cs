@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Aitgmbh.Tapio.Developerapp.Web.Models;
@@ -17,23 +18,17 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineCommands
         {
             _commandsService = commandsService ?? throw new ArgumentNullException(nameof(commandsService));
         }
-        [HttpPost("read")]
-        public Task<CommandResponse> ExecuteCommandItemReadAsync([FromBody] CommandItemRead command, CancellationToken cancellationToken)
-        {
-            return _commandsService.ExecuteItemReadAsync(command, cancellationToken);
-        }
+        [HttpPost("itemRead")]
+        public Task<IEnumerable<CommandResponse>> ExecuteCommandItemReadAsync([FromBody] CommandItemRead command, CancellationToken cancellationToken)
+            => _commandsService.ExecuteItemReadAsync(command, cancellationToken);
 
-        [HttpPost("write")]
-        public Task ExecuteCommandItemWriteAsync([FromBody] CommandItemWrite command, CancellationToken cancellationToken)
-        {
-            return _commandsService.ExecuteItemWriteAsync(command, cancellationToken);
+        [HttpPost("itemWrite")]
+        public Task<IEnumerable<CommandResponse>> ExecuteCommandItemWriteAsync([FromBody] CommandItemWrite command, CancellationToken cancellationToken)
+            => _commandsService.ExecuteItemWriteAsync(command, cancellationToken);
 
-        }
 
-        [HttpPost("method")]
-        public Task ExecuteCommandMethodAsync([FromBody] CommandMethod command, CancellationToken cancellationToken)
-        {
-            return _commandsService.ExecuteMethodAsync(command, cancellationToken);
-        }
+        [HttpGet("commands")]
+        public Task<IEnumerable<Command>> GetCommandsAsync(CancellationToken cancellationToken)
+            => _commandsService.GetCommandsAsync(cancellationToken);
     }
 }
