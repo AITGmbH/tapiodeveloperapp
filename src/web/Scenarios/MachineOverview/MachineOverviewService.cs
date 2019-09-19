@@ -1,9 +1,10 @@
 using System;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
-
+using Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineState;
 using Aitgmbh.Tapio.Developerapp.Web.Services;
 
 namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineOverview
@@ -23,8 +24,23 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineOverview
             _tokenProvider = tokenProvider ?? throw new ArgumentNullException(nameof(tokenProvider));
         }
 
-        public async Task<SubscriptionOverview> GetSubscriptionsAsync(CancellationToken cancellationToken)
+        public async Task<SubscriptionOverview> GetSubscriptionsAsync(CancellationToken cancellationToken, IMachineStateService machineStateService)
         {
+            async Task GetMachineState(SubscriptionOverview subscriptionOverview)
+            {
+                var tasks = (
+                    from subscription in subscriptionOverview.Subscriptions
+                    from assignedMachine in subscription.AssignedMachines
+                    select Task.Run(async () =>
+                    {
+                        var machineState =
+                            await machineStateService.GetMachineStateAsync(assignedMachine.Id, cancellationToken);
+                        assignedMachine.MachineState =
+                            machineState.HasValues ? MachineState.Running : MachineState.Offline;
+                    }, cancellationToken)).ToList();
+                await Task.WhenAll(tasks);
+            }
+
             var token = await _tokenProvider.ReceiveTokenAsync(TapioScope.GlobalDiscovery);
             var request = new HttpRequestMessage(HttpMethod.Get, GlobalDiscoSubscriptionOverviewRequest);
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
@@ -32,12 +48,13 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineOverview
             responseMessage.EnsureSuccessStatusCode();
             var content = await responseMessage.Content.ReadAsStringAsync();
             var result = SubscriptionOverviewExtension.FromJson(content);
+            await GetMachineState(result);
             return result;
         }
     }
 
     public interface IMachineOverviewService
     {
-        Task<SubscriptionOverview> GetSubscriptionsAsync(CancellationToken cancellationToken);
+        Task<SubscriptionOverview> GetSubscriptionsAsync(CancellationToken cancellationToken, IMachineStateService machineStateService);
     }
 }

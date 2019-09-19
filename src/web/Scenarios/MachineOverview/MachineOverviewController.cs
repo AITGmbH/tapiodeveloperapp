@@ -26,16 +26,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineOverview
         [HttpGet]
         public async Task<ActionResult<SubscriptionOverview>> GetAllSubscriptionsAsync(CancellationToken cancellationToken)
         {
-            var subscriptions = await _machineOverviewService.GetSubscriptionsAsync(cancellationToken);
-            var tasks = (
-                from subscription in subscriptions.Subscriptions
-                from assignedMachine in subscription.AssignedMachines
-                select Task.Run(async () =>
-                {
-                    var machineState = await _machineStateService.GetMachineStateAsync(assignedMachine.Id, cancellationToken);
-                    assignedMachine.MachineState = machineState.HasValues ? MachineState.Running : MachineState.Offline;
-                }, cancellationToken)).ToList();
-            await Task.WhenAll(tasks);
+            var subscriptions = await _machineOverviewService.GetSubscriptionsAsync(cancellationToken, _machineStateService);
             return Ok(subscriptions);
         }
     }
