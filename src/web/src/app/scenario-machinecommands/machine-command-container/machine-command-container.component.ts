@@ -13,7 +13,7 @@ export class MachineCommandContainerComponent implements OnInit {
     public commandResponse$: Observable<CommandResponse> = of({} as CommandResponse);
     public loading$ = new Subject<boolean>();
     @Input() command: CommandItem;
-    constructor(private machineCommandsService: MachineCommandsService) {}
+    constructor(private readonly machineCommandsService: MachineCommandsService) {}
 
     ngOnInit() {
         this.loading$.next(false);

@@ -10,7 +10,7 @@ export enum commandType {
 
 @Injectable()
 export class MachineCommandsService {
-    constructor(private httpClient: HttpClient) {}
+    constructor(private readonly httpClient: HttpClient) {}
 
     public executeCommandAsync(commandItem: CommandItem): Observable<CommandResponse> {
         return this.httpClient.post<CommandResponse>(`/api/machineCommands/${commandItem.commandType}`, commandItem);

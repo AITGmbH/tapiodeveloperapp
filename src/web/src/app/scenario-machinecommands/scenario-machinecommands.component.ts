@@ -4,12 +4,11 @@ import { Observable } from "rxjs";
 
 @Component({
     selector: "app-scenario-machinecommands",
-    templateUrl: "./scenario-machinecommands.component.html",
-    styleUrls: ["./scenario-machinecommands.component.css"]
+    templateUrl: "./scenario-machinecommands.component.html"
 })
 export class MachineCommandsComponent implements OnInit {
     public commands$: Observable<CommandItem[]>;
-    constructor(private machineCommandsService: MachineCommandsService) {}
+    constructor(private readonly machineCommandsService: MachineCommandsService) {}
     ngOnInit() {
         this.commands$ = this.machineCommandsService.getCommandsAsync();
     }
