@@ -35,13 +35,13 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineCommands
 
         public async Task<IEnumerable<CommandResponse>> ExecuteItemReadAsync(CommandItemRead command, CancellationToken cancellationToken)
         {
-            var actualCommand = GetCommandbyId(command.Id);
+            var actualCommand = GetCommandById(command.Id);
             return await ExecuteCommandAsync(actualCommand, cancellationToken);
         }
 
         public async Task<IEnumerable<CommandResponse>> ExecuteItemWriteAsync(CommandItemWrite command, CancellationToken cancellationToken)
         {
-            var actualCommand = GetCommandbyId(command.Id);
+            var actualCommand = GetCommandById(command.Id);
             actualCommand.InArguments = TranslateArgument(command.InArguments, actualCommand.InArguments);
             return await ExecuteCommandAsync(actualCommand, cancellationToken);
         }
