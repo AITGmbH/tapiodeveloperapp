@@ -116,7 +116,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineCommands
             return commands;
         }
 
-        private Command GetCommandbyId(string id) => GetDefaultCommands().FirstOrDefault(el => el.Id == id);
+        private Command GetCommandById(string id) => GetDefaultCommands().FirstOrDefault(el => el.Id == id);
 
         private Dictionary<string, InArgumentValue> TranslateArgument(Dictionary<string, InArgumentValue> commandArgument, Dictionary<string, InArgumentValue> defaultArgument)
         {
