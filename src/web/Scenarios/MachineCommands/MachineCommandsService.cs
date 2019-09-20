@@ -33,17 +33,17 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineCommands
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public Task<IEnumerable<CommandResponse>> ExecuteItemReadAsync(CommandItemRead command, CancellationToken cancellationToken)
+        public async Task<IEnumerable<CommandResponse>> ExecuteItemReadAsync(CommandItemRead command, CancellationToken cancellationToken)
         {
             var actualCommand = GetCommandbyId(command.Id);
-            return ExecuteCommandAsync(actualCommand, cancellationToken);
+            return await ExecuteCommandAsync(actualCommand, cancellationToken);
         }
 
-        public Task<IEnumerable<CommandResponse>> ExecuteItemWriteAsync(CommandItemWrite command, CancellationToken cancellationToken)
+        public async Task<IEnumerable<CommandResponse>> ExecuteItemWriteAsync(CommandItemWrite command, CancellationToken cancellationToken)
         {
             var actualCommand = GetCommandbyId(command.Id);
-            actualCommand.InArguments.value = TranslateArgument(command.InArguments.value, actualCommand.InArguments.value);
-            return ExecuteCommandAsync(actualCommand, cancellationToken);
+            actualCommand.InArguments = TranslateArgument(command.InArguments, actualCommand.InArguments);
+            return await ExecuteCommandAsync(actualCommand, cancellationToken);
         }
 
         private async Task<IEnumerable<CommandResponse>> ExecuteCommandAsync(Command command, CancellationToken cancellationToken)
@@ -70,8 +70,8 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineCommands
             }
         }
 
-        public Task<IEnumerable<Command>> GetCommandsAsync(CancellationToken cancellationToken)
-            => Task.FromResult(GetDefaultCommands());
+        public IEnumerable<Command> GetCommands()
+            => GetDefaultCommands();
 
         private IEnumerable<Command> GetDefaultCommands()
         {
@@ -118,21 +118,21 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineCommands
 
         private Command GetCommandbyId(string id) => GetDefaultCommands().FirstOrDefault(el => el.Id == id);
 
-        private dynamic TranslateArgument(dynamic commandArgument, dynamic defaultArgument)
+        private Dictionary<string, InArgumentValue> TranslateArgument(Dictionary<string, InArgumentValue> commandArgument, Dictionary<string, InArgumentValue> defaultArgument)
         {
-            if (commandArgument.GetType() == typeof(InArgumentValue))
+            float value = 0;
+            if (commandArgument.ContainsKey(CommandKey))
             {
-                var commandArg = (InArgumentValue)commandArgument;
-                defaultArgument.Value = commandArg.Value;
-            }
-            else
-            {
-                var commandValue = commandArgument.value.Value.ToString();
-                if (float.TryParse(commandValue, out float result))
+                var argument = commandArgument[CommandKey];
+                if (float.TryParse(argument.Value.ToString(), out float result))
                 {
-                    defaultArgument.Value = result;
+                    value = result;
                 }
             }
+
+            var defaultCommandValue = defaultArgument[CommandKey];
+            defaultCommandValue.Value = value;
+            defaultArgument[CommandKey] = defaultCommandValue;
             return defaultArgument;
         }
     }
@@ -143,6 +143,6 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineCommands
 
         Task<IEnumerable<CommandResponse>> ExecuteItemWriteAsync(CommandItemWrite command, CancellationToken cancellationToken);
 
-        Task<IEnumerable<Command>> GetCommandsAsync(CancellationToken cancellationToken);
+        IEnumerable<Command> GetCommands();
     }
 }

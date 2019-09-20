@@ -28,12 +28,16 @@ export enum CommandResponseStatus {
     Error = 500
 }
 
+export interface IMachineCommandInArgumentMap {
+    [key: string]: MachineCommandInArgument;
+}
+
 export class CommandItem {
     public id: string;
     public tmid: string;
     public serverId: string;
     public commandType: commandType;
-    public inArguments: any;
+    public inArguments: IMachineCommandInArgumentMap;
 }
 
 export class CommandResponse {
@@ -51,6 +55,11 @@ export enum CommandValueType {
     Byte = "byte[]",
     Double = "Double",
     Float = "Float"
+}
+
+export class MachineCommandInArgument {
+    valueType: CommandValueType;
+    value: any;
 }
 
 export class MachineCommandArgument {

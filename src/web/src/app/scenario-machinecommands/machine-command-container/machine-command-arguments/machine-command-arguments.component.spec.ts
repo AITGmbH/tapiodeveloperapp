@@ -2,7 +2,11 @@ import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { DebugElement } from "@angular/core";
 import { MachineCommandArgumentsComponent } from "./machine-command-arguments.component";
-import { MachineCommandArgument, CommandValueType } from "../../scenario-machinecommands.service";
+import {
+    MachineCommandArgument,
+    CommandValueType,
+    IMachineCommandInArgumentMap
+} from "../../scenario-machinecommands.service";
 import { FormsModule } from "@angular/forms";
 
 const commandArgumentsMock = {
@@ -10,14 +14,14 @@ const commandArgumentsMock = {
         value: 42,
         valueType: "Float"
     }
-};
+} as IMachineCommandInArgumentMap;
 
 const commandArgumentChangedMock = {
     value: {
         value: 24,
         valueType: "Float"
     }
-};
+} as IMachineCommandInArgumentMap;
 
 const machineArgumentMock = new MachineCommandArgument("value", CommandValueType.Float, 24);
 

@@ -29,7 +29,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineCommands
             => _commandsService.ExecuteItemWriteAsync(command, cancellationToken);
 
         [HttpGet("commands")]
-        public Task<IEnumerable<Command>> GetCommandsAsync(CancellationToken cancellationToken)
-            => _commandsService.GetCommandsAsync(cancellationToken);
+        public IEnumerable<Command> GetCommands(CancellationToken cancellationToken)
+            => _commandsService.GetCommands();
     }
 }

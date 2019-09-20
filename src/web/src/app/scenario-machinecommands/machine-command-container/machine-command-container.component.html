@@ -26,9 +26,7 @@
                                     <h1>
                                         Request
                                     </h1>
-                                    <textarea [disabled]="true" rows="10">
-                                    {{command | json}}
-
+                                    <textarea [disabled]="true" rows="10" [ngModel]="command | json">
                                     </textarea>
                                 </div>
                             </div>
@@ -37,7 +35,8 @@
                                     <h1>
                                         Result
                                     </h1>
-                                    <textarea [disabled]="true" rows="10">{{commandResponse$ | async | json}}</textarea>
+                                    <textarea [disabled]="true" rows="10"
+                                        [ngModel]="commandResponse$ | async | json"></textarea>
                                 </div>
                             </div>
                         </div>

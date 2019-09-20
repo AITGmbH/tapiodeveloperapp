@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
-import { MachineCommandArgument } from "../../scenario-machinecommands.service";
+import { MachineCommandArgument, IMachineCommandInArgumentMap } from "../../scenario-machinecommands.service";
 
 @Component({
     selector: "app-machine-command-arguments",
@@ -7,10 +7,10 @@ import { MachineCommandArgument } from "../../scenario-machinecommands.service";
     styleUrls: ["./machine-command-arguments.component.scss"]
 })
 export class MachineCommandArgumentsComponent implements OnInit {
-    private _args: any;
+    private _args: IMachineCommandInArgumentMap;
     public args: MachineCommandArgument[] = [];
 
-    @Input("arguments") public set setMachineCommandArguments(args: any) {
+    @Input("arguments") public set setMachineCommandArguments(args: IMachineCommandInArgumentMap) {
         this.handleArguments(args);
     }
     @Output() argumentsChange = new EventEmitter();
@@ -18,7 +18,7 @@ export class MachineCommandArgumentsComponent implements OnInit {
 
     ngOnInit() {}
 
-    public handleArguments(args: any) {
+    public handleArguments(args: IMachineCommandInArgumentMap) {
         if (!args) {
             return;
         }

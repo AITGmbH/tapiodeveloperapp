@@ -1,6 +1,5 @@
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Dynamic;
 
 namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineCommands
 {
@@ -19,7 +18,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineCommands
         public string CommandType { get; set; }
 
         [JsonProperty("inArguments")]
-        public dynamic InArguments { get; set; }
+        public Dictionary<string, InArgumentValue> InArguments { get; set; }
     }
 
     public class CommandItemRead : Command
@@ -37,23 +36,21 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineCommands
             CommandType = "itemWrite";
         }
 
-        public void AddInArgument(string type, dynamic value, string key = "value")
+        public void AddInArgument(string type, object value, string key = "value")
         {
             if (InArguments == null)
             {
-                InArguments = new ExpandoObject() as IDictionary<string, object>;
+                InArguments = new Dictionary<string, InArgumentValue>();
             }
 
             var argumentValue = new InArgumentValue() { ValueType = type, Value = value };
-
-            var expandoDict = InArguments as IDictionary<string, object>;
-            if (expandoDict.ContainsKey(key))
+            if (InArguments.ContainsKey(key))
             {
-                expandoDict[key] = argumentValue;
+                InArguments[key] = argumentValue;
             }
             else
             {
-                expandoDict.Add(key, argumentValue);
+                InArguments.Add(key, argumentValue);
             }
         }
     }
@@ -67,7 +64,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineCommands
         public CommandResponseStatus Status { get; set; }
 
         [JsonProperty("commandResponse")]
-        public dynamic Response { get; set; }
+        public object Response { get; set; }
     }
 
     public enum CommandResponseStatus
@@ -83,17 +80,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineCommands
         [JsonProperty("valueType")]
         public string ValueType { get; set; }
 
-        public InArgumentValue()
-        {
-        }
-
-        public InArgumentValue(dynamic value, string valueType)
-        {
-            ValueType = valueType;
-            Value = value;
-        }
-
         [JsonProperty("value")]
-        public dynamic Value { get; set; }
+        public object Value { get; set; }
     }
 }
