@@ -107,9 +107,14 @@ footer.footer a.has-text-white:hover {
     margin-left: 50px;
 }
 
+/* Fixes style bug in historicaldata where content pushes out of scope after sourcekey selection */
+#contentScrollContainer /deep/ > .ps[style] {
+    position: absolute !important;
+}
+
 .scroll-to-top-btn {
-    position: absolute;
-    bottom: 15px;
+    position: fixed;
+    bottom: 100px;
     right: 53px;
     color: #414753;
 }
