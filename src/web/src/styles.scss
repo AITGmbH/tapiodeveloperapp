@@ -93,3 +93,10 @@ a.navbar-burger:hover {
         display: none;
     }
 }
+
+/* IE11 Bulma Dropdown Override see:https://github.com/jgthms/bulma/issues/2503 and https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-within */
+.navbar-item.is-hoverable:hover .navbar-dropdown.is-boxed {
+    opacity: 1 !important;
+    pointer-events: auto;
+    transform: translateY(0);
+}
