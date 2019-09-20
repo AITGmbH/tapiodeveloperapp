@@ -7,7 +7,8 @@ import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
     selector: "app-scenario-machinestate-detail",
-    templateUrl: "./detail.component.html"
+    templateUrl: "./detail.component.html",
+    styleUrls: ["./detail.component.scss"]
 })
 export class ScenarioMachinestateDetailComponent implements OnInit {
     id$: Subject<string> = new Subject<string>();
