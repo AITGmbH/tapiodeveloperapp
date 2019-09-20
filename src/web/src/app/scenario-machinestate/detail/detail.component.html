@@ -1,168 +1,166 @@
+
 <div *ngIf="(conditions$ | async)||(itemData$ | async); else showError">
-  <perfect-scrollbar class="scroll-container ps-show-always" [scrollIndicators]="true">
-
-    <div *ngIf="(itemData$ | async)" style="width: 1640px;">
-      <h3 class="title is-3">Item Data</h3>
-      <ngx-datatable class="material datatable" [columnMode]="'force'" [headerHeight]="30" [rowHeight]="'auto'"
-        [footerHeight]="35" [scrollbarH]="false" [rows]="itemData$ | async" #itemData>
-        <ngx-datatable-column name="k" [resizeable]="false" [width]="400">
-          <ng-template let-column="column" ngx-datatable-header-template>
-            <span>Key ({{column.name}})</span>
-          </ng-template>
-          <ng-template let-value="value" ngx-datatable-cell-template>
-            <div class="datatable-cell-value">{{value}}</div>
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="v" [resizeable]="false" [width]="300">
-          <ng-template let-column="column" ngx-datatable-header-template>
-            <span>Value ({{column.name}})</span>
-          </ng-template>
-          <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
-            <img class="datatable-cell-value" *ngIf="(row.vt === 'b')" alt="base64 encoded image"
-              [src]="domSanitizerService.bypassSecurityTrustUrl('data:image/jpeg;charset=utf-8;base64, ' + value)" />
-            <div class="datatable-cell-value" *ngIf="row.vt === 'dss'" style="white-space:pre-wrap">{{value | json}}
-            </div>
-            <div class="datatable-cell-value" *ngIf="row.vt !== 'b' && row.vt !== 'dss'">{{value}}</div>
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="p" [resizeable]="false" [width]="120">
-          <ng-template let-column="column" ngx-datatable-header-template>
-            <span>Provider ({{column.name}})</span>
-          </ng-template>
-          <ng-template let-value="value" ngx-datatable-cell-template>
-            <div class="datatable-cell-value">{{value}}</div>
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="q" [resizeable]="false" [width]="120">
-          <ng-template let-column="column" ngx-datatable-header-template>
-            <span>Quality ({{column.name}})</span>
-          </ng-template>
-          <ng-template let-value="value" ngx-datatable-cell-template>
-            <div class="datatable-cell-value">{{value}}</div>
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="rts" [resizeable]="false" [width]="250">
-          <ng-template let-column="column" ngx-datatable-header-template>
-            <span>Receive Time Stamp ({{column.name}})</span>
-          </ng-template>
-          <ng-template let-value="value" ngx-datatable-cell-template>
-            <div class="datatable-cell-value">{{ value | date: 'medium' }}</div>
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="sts" [resizeable]="false" [width]="250">
-          <ng-template let-column="column" ngx-datatable-header-template>
-            <span>Source Time Stamp ({{column.name}})</span>
-          </ng-template>
-          <ng-template let-value="value" ngx-datatable-cell-template>
-            <div class="datatable-cell-value">{{ value | date: 'medium' }}</div>
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="vt" [resizeable]="false" [width]="200">
-          <ng-template let-column="column" ngx-datatable-header-template>
-            <span>Data Value Type ({{column.name}})</span>
-          </ng-template>
-          <ng-template let-value="value" ngx-datatable-cell-template>
-            <div class="datatable-cell-value">{{value}}</div>
-          </ng-template>
-        </ngx-datatable-column>
-      </ngx-datatable>
+    <div *ngIf="(itemData$ | async)">
+        <h3 class="title is-3">Item Data</h3>
+        <ngx-datatable class="material datatable" [columnMode]="'force'" [headerHeight]="30" [rowHeight]="'auto'"
+                       [footerHeight]="35" [scrollbarH]="true" [rows]="itemData$ | async" #itemData>
+            <ngx-datatable-column name="k" [resizeable]="false" [width]="400">
+                <ng-template let-column="column" ngx-datatable-header-template>
+                    <span>Key ({{column.name}})</span>
+                </ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <div class="datatable-cell-value">{{value}}</div>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="v" [resizeable]="false" [width]="300">
+                <ng-template let-column="column" ngx-datatable-header-template>
+                    <span>Value ({{column.name}})</span>
+                </ng-template>
+                <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+                    <img class="datatable-cell-value" *ngIf="(row.vt === 'b')" alt="base64 encoded image"
+                         [src]="domSanitizerService.bypassSecurityTrustUrl('data:image/jpeg;charset=utf-8;base64, ' + value)" />
+                    <div class="datatable-cell-value" *ngIf="row.vt === 'dss'" style="white-space: pre-wrap">
+                        {{value | json}}
+                    </div>
+                    <div class="datatable-cell-value" *ngIf="row.vt !== 'b' && row.vt !== 'dss'">{{value}}</div>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="p" [resizeable]="false" [width]="120">
+                <ng-template let-column="column" ngx-datatable-header-template>
+                    <span>Provider ({{column.name}})</span>
+                </ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <div class="datatable-cell-value">{{value}}</div>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="q" [resizeable]="false" [width]="120">
+                <ng-template let-column="column" ngx-datatable-header-template>
+                    <span>Quality ({{column.name}})</span>
+                </ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <div class="datatable-cell-value">{{value}}</div>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="rts" [resizeable]="false" [width]="250">
+                <ng-template let-column="column" ngx-datatable-header-template>
+                    <span>Receive Time Stamp ({{column.name}})</span>
+                </ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <div class="datatable-cell-value">{{ value | date: 'medium' }}</div>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="sts" [resizeable]="false" [width]="250">
+                <ng-template let-column="column" ngx-datatable-header-template>
+                    <span>Source Time Stamp ({{column.name}})</span>
+                </ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <div class="datatable-cell-value">{{ value | date: 'medium' }}</div>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="vt" [resizeable]="false" [width]="200">
+                <ng-template let-column="column" ngx-datatable-header-template>
+                    <span>Data Value Type ({{column.name}})</span>
+                </ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <div class="datatable-cell-value">{{value}}</div>
+                </ng-template>
+            </ngx-datatable-column>
+        </ngx-datatable>
     </div>
-  </perfect-scrollbar>
 
-  <perfect-scrollbar class="scroll-container ps-show-always" [scrollIndicators]="true">
-    <div *ngIf="(conditions$ | async)" style="min-width: 2325px;">
-      <h3 class="title is-3">Conditions</h3>
-      <ngx-datatable class="material datatable" [rows]="conditions$ | async" [columnMode]="'force'" [headerHeight]="30"
-        [rowHeight]="'auto'" [footerHeight]="35" [scrollbarH]="false" #conditions>
-        <ngx-datatable-column name="k" [resizeable]="false" [width]="300">
-          <ng-template let-column="column" ngx-datatable-header-template>
-            <span>Key ({{column.name}})</span>
-          </ng-template>
-          <ng-template let-value="value" ngx-datatable-cell-template>
-            <div class="datatable-cell-value" style="word-wrap:break-word">{{value}}</div>
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="p" [resizeable]="false" [width]="200">
-          <ng-template let-column="column" ngx-datatable-header-template>
-            <span>Provider ({{column.name}})</span>
-          </ng-template>
-          <ng-template let-value="value" ngx-datatable-cell-template>
-            <div class="datatable-cell-value">{{value}}</div>
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="s" [resizeable]="false" [width]="200">
-          <ng-template let-column="column" ngx-datatable-header-template>
-            <span>Source ({{column.name}})</span>
-          </ng-template>
-          <ng-template let-value="value" ngx-datatable-cell-template>
-            <div class="datatable-cell-value" style="word-wrap:break-word">{{value}}</div>
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="as" [resizeable]="false" [width]="200">
-          <ng-template let-column="column" ngx-datatable-header-template>
-            <span>Active State ({{column.name}})</span>
-          </ng-template>
-          <ng-template let-value="value" ngx-datatable-cell-template>
-            <div class="datatable-cell-value">{{value}}</div>
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="sv" [resizeable]="false" [width]="175">
-          <ng-template let-column="column" ngx-datatable-header-template>
-            <span>Severity ({{column.name}})</span>
-          </ng-template>
-          <ng-template let-value="value" ngx-datatable-cell-template>
-            <div class="datatable-cell-value">{{value}}</div>
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="lm" [resizeable]="false" [width]="250">
-          <ng-template let-column="column" ngx-datatable-header-template>
-            <span>Localized message text ({{column.name}})</span>
-          </ng-template>
-          <ng-template let-value="value" ngx-datatable-cell-template>
-            <div class="datatable-cell-value" style="white-space: pre-wrap">{{value | json}}</div>
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="ls" [resizeable]="false" [width]="250">
-          <ng-template let-column="column" ngx-datatable-header-template>
-            <span>Localized source text ({{column.name}})</span>
-          </ng-template>
-          <ng-template let-value="value" ngx-datatable-cell-template>
-            <div class="datatable-cell-value" style="white-space: pre-wrap">{{value | json}}</div>
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="vls" [resizeable]="false" [width]="250">
-          <ng-template let-column="column" ngx-datatable-header-template>
-            <span>Additional Value List ({{column.name}})</span>
-          </ng-template>
-          <ng-template let-value="value" ngx-datatable-cell-template>
-            <div class="datatable-cell-value" style="white-space: pre-wrap">{{value | json}}</div>
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="rts" [resizeable]="false" [width]="250">
-          <ng-template let-column="column" ngx-datatable-header-template>
-            <span>Receive Time Stamp ({{column.name}})</span>
-          </ng-template>
-          <ng-template let-value="value" ngx-datatable-cell-template>
-            <div class="datatable-cell-value">{{ value | date: 'medium' }}</div>
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="sts" [resizeable]="false" [width]="250">
-          <ng-template let-column="column" ngx-datatable-header-template>
-            <span>Source Time Stamp ({{column.name}})</span>
-          </ng-template>
-          <ng-template let-value="value" ngx-datatable-cell-template>
-            <div class="datatable-cell-value">{{ value | date: 'medium' }}</div>
-          </ng-template>
-        </ngx-datatable-column>
-      </ngx-datatable>
+    <div *ngIf="(conditions$ | async)">
+        <h3 class="title is-3">Conditions</h3>
+        <ngx-datatable class="material datatable" [rows]="conditions$ | async" [columnMode]="'force'" [headerHeight]="30"
+                       [rowHeight]="'auto'" [footerHeight]="35" [scrollbarH]="true" #conditions>
+            <ngx-datatable-column name="k" [resizeable]="false" [width]="300">
+                <ng-template let-column="column" ngx-datatable-header-template>
+                    <span>Key ({{column.name}})</span>
+                </ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <div class="datatable-cell-value" style="word-wrap: break-word">{{value}}</div>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="p" [resizeable]="false" [width]="200">
+                <ng-template let-column="column" ngx-datatable-header-template>
+                    <span>Provider ({{column.name}})</span>
+                </ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <div class="datatable-cell-value">{{value}}</div>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="s" [resizeable]="false" [width]="200">
+                <ng-template let-column="column" ngx-datatable-header-template>
+                    <span>Source ({{column.name}})</span>
+                </ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <div class="datatable-cell-value" style="word-wrap: break-word">{{value}}</div>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="as" [resizeable]="false" [width]="200">
+                <ng-template let-column="column" ngx-datatable-header-template>
+                    <span>Active State ({{column.name}})</span>
+                </ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <div class="datatable-cell-value">{{value}}</div>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="sv" [resizeable]="false" [width]="175">
+                <ng-template let-column="column" ngx-datatable-header-template>
+                    <span>Severity ({{column.name}})</span>
+                </ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <div class="datatable-cell-value">{{value}}</div>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="lm" [resizeable]="false" [width]="250">
+                <ng-template let-column="column" ngx-datatable-header-template>
+                    <span>Localized message text ({{column.name}})</span>
+                </ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <div class="datatable-cell-value" style="white-space: pre-wrap">{{value | json}}</div>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="ls" [resizeable]="false" [width]="250">
+                <ng-template let-column="column" ngx-datatable-header-template>
+                    <span>Localized source text ({{column.name}})</span>
+                </ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <div class="datatable-cell-value" style="white-space: pre-wrap">{{value | json}}</div>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="vls" [resizeable]="false" [width]="250">
+                <ng-template let-column="column" ngx-datatable-header-template>
+                    <span>Additional Value List ({{column.name}})</span>
+                </ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <div class="datatable-cell-value" style="white-space: pre-wrap">{{value | json}}</div>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="rts" [resizeable]="false" [width]="250">
+                <ng-template let-column="column" ngx-datatable-header-template>
+                    <span>Receive Time Stamp ({{column.name}})</span>
+                </ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <div class="datatable-cell-value">{{ value | date: 'medium' }}</div>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="sts" [resizeable]="false" [width]="250">
+                <ng-template let-column="column" ngx-datatable-header-template>
+                    <span>Source Time Stamp ({{column.name}})</span>
+                </ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <div class="datatable-cell-value">{{ value | date: 'medium' }}</div>
+                </ng-template>
+            </ngx-datatable-column>
+        </ngx-datatable>
     </div>
-  </perfect-scrollbar>
 </div>
 
+
 <ng-template #showError>
-  <div class="errorMessage" *ngIf="hasError">
-    <div>
-      Could not retrieve machine's Item Data or Conditions from the server.
+    <div class="errorMessage" *ngIf="hasError">
+        <div>
+            Could not retrieve machine's Item Data or Conditions from the server.
+        </div>
     </div>
-  </div>
 </ng-template>

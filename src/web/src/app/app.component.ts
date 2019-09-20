@@ -1,41 +1,55 @@
-import { Component, OnInit, ViewChild, NgZone } from "@angular/core";
-import { Router } from "@angular/router";
-import { PerfectScrollbarComponent } from "ngx-perfect-scrollbar";
+import { Component, OnInit, HostListener } from "@angular/core";
+import { Router, NavigationEnd } from "@angular/router";
 
 @Component({
     selector: "app-root",
     templateUrl: "./app.component.html",
     styleUrls: ["./app.component.scss"]
 })
+
 export class AppComponent implements OnInit {
     public title = "developerapp";
     public showScrollToTopBtn = false;
 
-    constructor(private readonly router: Router, public zone: NgZone) {
-        this.router.events.subscribe(segments => {
-            this.scrollToTop();
-        });
-    }
-    @ViewChild("mainContentScrollbar")
-    public mainContent: PerfectScrollbarComponent;
+    constructor(
+        private router: Router
+    ) { }
 
     ngOnInit(): void {
+        this.router.events.subscribe((evt) => {
+            if (!(evt instanceof NavigationEnd)) {
+                return;
+            }
+            this.scrollToTop();
+        });
         this.createNavbarBurgerToggle();
     }
 
-    public scrollToTop(): void {
-        if (this.mainContent && this.mainContent.directiveRef) {
-            this.mainContent.directiveRef.scrollToTop();
+    @HostListener('window:scroll', ['$event']) // for window scroll events
+    onScroll(event) {
+        const mainDiv = document.getElementById('scrollableContainer');
+        if (mainDiv.scrollTop > 0) {
+            this.showScrollToTopBtn = true;
+        } else {
+            this.showScrollToTopBtn = false;
         }
     }
 
-    // use ngZone because Event is out of Zone https://stackoverflow.com/a/41724333
-    public onScrollYReachStart(): void {
-        this.zone.run(() => (this.showScrollToTopBtn = false));
-    }
+    public scrollbarOptions = { axis: 'y', theme: 'minimal-dark' };
 
-    public onScrollDown(): void {
-        this.zone.run(() => (this.showScrollToTopBtn = true));
+
+    private scrollToTop() {
+        const mainDiv = document.getElementById('scrollableContainer');
+        //mainDiv.scrollTop = 0;
+        let scrollToTop = window.setInterval(() => {
+            var pos = mainDiv.scrollTop;
+            if (pos > 0) {
+                mainDiv.scrollTo(0, pos - 20); // how far to scroll on each step
+            } else {
+                window.clearInterval(scrollToTop);
+                this.showScrollToTopBtn = false;
+            }
+        }, 16);
     }
 
     private createNavbarBurgerToggle() {

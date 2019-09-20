@@ -4,25 +4,31 @@
   <div>
     <app-select-machine (change)="selectedMachineChanged($event)"></app-select-machine>
     <app-date-range (change)="dateRangeChanged($event)"></app-date-range>
-    <div class="flex-container" *ngIf="(sourceKeys$ | async) as sourceKeys; else loadingOrError">
-      <div class="sourceKeyList">
-        <h1 class="sourceKeyHeader">Source Keys:</h1>
-        <ul>
-          <li *ngFor="let key of sourceKeys.keys; let i = index" class="field">
-            <div class="field">
-              <input class="is-checkradio" type="radio" name="sourceKeysList" [id]="key"
-                (change)="radioChanged($event)" checked="checked">
-              <label [for]="key">{{key}}</label>
-            </div>
-          </li>
-        </ul>
+      <div class="flex-container" *ngIf="(sourceKeys$ | async) as sourceKeys; else loadingOrError">
+          <div class="columns is-mobile">
+              <div class="column">
+                  <div class="sourceKeyList">
+                      <h1 class="sourceKeyHeader">Source Keys:</h1>
+                      <ul>
+                          <li *ngFor="let key of sourceKeys.keys; let i = index" class="field">
+                              <div class="field">
+                                  <input class="is-checkradio" type="radio" name="sourceKeysList" [id]="key"
+                                         (change)="radioChanged($event)" checked="checked">
+                                  <label [for]="key">{{key}}</label>
+                              </div>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+              <div class="column">
+                  <div class="sourceKeyData fullWidthAndHeight" *ngIf="lineSeriesData; else loadingOrError">
+                      <ngx-charts-line-chart class="historicalDataChart" [xAxis]="true" [yAxis]="true" [showGridLines]="true"
+                                             [roundDomains]="true" [autoScale]="true" [results]="lineSeriesData" [scheme]="lineChartScheme">
+                      </ngx-charts-line-chart>
+                  </div>
+              </div>
+          </div>
       </div>
-      <div class="sourceKeyData" *ngIf="lineSeriesData; else loadingOrError">
-        <ngx-charts-line-chart class="historicalDataChart" [xAxis]="true" [yAxis]="true" [showGridLines]="true"
-          [roundDomains]="true" [autoScale]="true" [results]="lineSeriesData" [scheme]="lineChartScheme">
-        </ngx-charts-line-chart>
-      </div>
-    </div>
   </div>
 </app-scenario>
 
