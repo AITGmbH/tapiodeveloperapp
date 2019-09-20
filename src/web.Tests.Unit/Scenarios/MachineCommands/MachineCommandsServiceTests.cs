@@ -47,7 +47,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.Scenarios.MachineCommands
             using (var httpClient = new HttpClient(messageHandlerMock.Object))
             {
                 var service = new MachineCommandsService(httpClient, _standardTokenProviderMock.Object, _loggerMock.Object);
-                var commands = (await service.GetCommandsAsync(CancellationToken.None));
+                var commands = service.GetCommands();
                 commands.Should().HaveCount(4);
             }
         }
