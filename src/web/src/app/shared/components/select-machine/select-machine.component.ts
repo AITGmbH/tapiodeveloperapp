@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input, ViewEncapsulation } from "@angular/core";
 import { Observable, of, BehaviorSubject } from "rxjs";
 import { AssignedMachine } from "../../models/assigned-machine.model";
+import { MachineState } from "../../models/assigned-machine.model";
 import { MachineOverviewService } from "../../../scenario-machineoverview/scenario-machineoverview.service";
 import { catchError, tap } from "rxjs/operators";
 import { Subscription } from "../../models/subscription.model";
@@ -15,6 +16,7 @@ export class SelectMachineComponent implements OnInit {
     public items$: Observable<Array<Subscription>>;
     public error$ = new BehaviorSubject<boolean>(false);
     public loading$ = new BehaviorSubject<boolean>(false);
+    machineStateType = MachineState;
     selectedMachine: AssignedMachine;
     @Input() initialMachineId: string;
 

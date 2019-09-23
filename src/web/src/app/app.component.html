@@ -27,7 +27,7 @@
     <div class="column is-narrow main-nav mobhide">
         <div app-scenario-navigation></div>
     </div>
-    <perfect-scrollbar class="scroll-container ps-show-always" [scrollIndicators]="true"
+    <perfect-scrollbar id="contentScrollContainer" class="scroll-container ps-show-always" [scrollIndicators]="true"
         (psYReachStart)="onScrollYReachStart()" (psScrollDown)="onScrollDown()" #mainContentScrollbar>
         <div class="column main-content">
             <main>

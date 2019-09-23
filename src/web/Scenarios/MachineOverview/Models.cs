@@ -42,6 +42,9 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineOverview
 
         [JsonProperty("displayName")]
         public string DisplayName { get; set; }
+
+        [JsonProperty("machineState")]
+        public MachineState MachineState { get; set; }
     }
 
     public class License
@@ -63,6 +66,14 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineOverview
 
         [JsonProperty("licenseCount")]
         public long LicenseCount { get; set; }
+    }
+
+    public enum MachineState
+    {
+        [JsonProperty("running")]
+        Running,
+        [JsonProperty("offline")]
+        Offline
     }
 
     public static class SubscriptionOverviewExtension

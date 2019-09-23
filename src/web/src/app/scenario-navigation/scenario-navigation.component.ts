@@ -10,7 +10,7 @@ import { NavigationService } from "../shared/services/navigation.service";
 @Component({
     selector: "[app-scenario-navigation]",
     templateUrl: "./scenario-navigation.component.html",
-    styleUrls: ["./scenario-navigation.component.css"]
+    styleUrls: ["./scenario-navigation.component.scss"]
 })
 export class ScenarioNavigationComponent implements OnInit {
     private readonly scenarioEntries: BehaviorSubject<ScenarioEntry[]> = new BehaviorSubject<ScenarioEntry[]>([]);

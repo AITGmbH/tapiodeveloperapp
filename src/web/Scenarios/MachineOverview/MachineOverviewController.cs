@@ -1,7 +1,9 @@
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Aitgmbh.Tapio.Developerapp.Web.Models;
+using Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineState;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineOverview
@@ -13,16 +15,18 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineOverview
     public sealed class MachineOverviewController : Controller
     {
         private readonly IMachineOverviewService _machineOverviewService;
+        private readonly IMachineStateService _machineStateService;
 
-        public MachineOverviewController(IMachineOverviewService machineOverviewService)
+        public MachineOverviewController(IMachineOverviewService machineOverviewService, IMachineStateService machineStateService)
         {
             _machineOverviewService = machineOverviewService ?? throw new ArgumentNullException(nameof(machineOverviewService));
+            _machineStateService = machineStateService ?? throw new ArgumentNullException(nameof(machineStateService));
         }
 
         [HttpGet]
         public async Task<ActionResult<SubscriptionOverview>> GetAllSubscriptionsAsync(CancellationToken cancellationToken)
         {
-            var subscriptions = await _machineOverviewService.GetSubscriptionsAsync(cancellationToken);
+            var subscriptions = await _machineOverviewService.GetSubscriptionsAsync(cancellationToken, _machineStateService);
             return Ok(subscriptions);
         }
     }
