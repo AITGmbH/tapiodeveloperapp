@@ -44,14 +44,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineCommands
             }
 
             var argumentValue = new InArgumentValue() { ValueType = type, Value = value };
-            if (InArguments.ContainsKey(key))
-            {
-                InArguments[key] = argumentValue;
-            }
-            else
-            {
-                InArguments.Add(key, argumentValue);
-            }
+            InArguments[key] = argumentValue;
         }
     }
 
