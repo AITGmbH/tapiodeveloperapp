@@ -2,8 +2,7 @@
               class="has-text-left">
     <app-select-machine (change)="selectedMachineChanged($event)">
     </app-select-machine>
-    <perfect-scrollbar class="scroll-container ps-show-always" [scrollIndicators]="true">
-        <div style="width: 1832px">
+        <div>
             <h3 class="title is-3">Item data</h3>
             <ngx-datatable class="material datatable" [columnMode]="'force'" [headerHeight]="30" [rowHeight]="'auto'"
                 [footerHeight]="35" [scrollbarH]="false" [rows]="itemData$ | async">
@@ -58,87 +57,83 @@
                 </ngx-datatable-column>
             </ngx-datatable>
         </div>
-    </perfect-scrollbar>
 
     <h1 class="title is-4">Condition</h1>
-    <perfect-scrollbar class="scroll-container ps-show-always" [scrollIndicators]="true">
-        <div style="width: 2431px">
-            <ngx-datatable class="material datatable" [columnMode]="'force'" [headerHeight]="30" [rowHeight]="'auto'"
-                [footerHeight]="35" [scrollbarH]="false" [rows]="conditionData$ | async">
-                <ngx-datatable-column [width]="150" [resizeable]="true" name="key (k)" prop="msg.k">
-                    <ng-template let-value="value" ngx-datatable-cell-template>
-                        <div live-data-update [liveDataValue]="value" class="datatable-cell-value">
-                            {{ value }}
-                        </div>
-                    </ng-template>
-                </ngx-datatable-column>
-                <ngx-datatable-column [width]="150" [resizeable]="true" name="provider (p)" prop="msg.p">
-                    <ng-template let-value="value" ngx-datatable-cell-template>
-                        <div live-data-update [liveDataValue]="value" class="datatable-cell-value">
-                            {{ value }}
-                        </div>
-                    </ng-template>
-                </ngx-datatable-column>
-                <ngx-datatable-column [width]="150" [resizeable]="true" name="source (s)" prop="msg.s">
-                    <ng-template let-value="value" ngx-datatable-cell-template>
-                        <div live-data-update [liveDataValue]="value" class="datatable-cell-value">
-                            {{ value }}
-                        </div>
-                    </ng-template>
-                </ngx-datatable-column>
-                <ngx-datatable-column [width]="200" [resizeable]="true" name="active state (as)" prop="msg.as">
-                    <ng-template let-value="value" ngx-datatable-cell-template>
-                        <div live-data-update [liveDataValue]="value" class="datatable-cell-value">
-                            {{ value }}
-                        </div>
-                    </ng-template>
-                </ngx-datatable-column>
-                <ngx-datatable-column [width]="150" [resizeable]="true" name="severity (sv)" prop="msg.sv">
-                    <ng-template let-value="value" ngx-datatable-cell-template>
-                        <div live-data-update [liveDataValue]="value" class="datatable-cell-value">
-                            {{ value }}
-                        </div>
-                    </ng-template>
-                </ngx-datatable-column>
-                <ngx-datatable-column [width]="250" [resizeable]="true" name="localized source text (ls)" prop="msg.ls">
-                    <ng-template let-value="value" ngx-datatable-cell-template>
-                        <div live-data-update [liveDataValue]="value" class="datatable-cell-value">
-                            {{ value | json }}
-                        </div>
-                    </ng-template>
-                </ngx-datatable-column>
-                <ngx-datatable-column [width]="280" [resizeable]="true" name="localized source message (lm)"
-                    prop="msg.lm">
-                    <ng-template let-value="value" ngx-datatable-cell-template>
-                        <div live-data-update [liveDataValue]="value" class="datatable-cell-value">
-                            {{ value | json }}
-                        </div>
-                    </ng-template>
-                </ngx-datatable-column>
-                <ngx-datatable-column [width]="250" [resizeable]="true" name="additional value list (vls)"
-                    prop="msg.vls">
-                    <ng-template let-value="value" ngx-datatable-cell-template>
-                        <div live-data-update [liveDataValue]="value" class="datatable-cell-value">
-                            {{ value | json }}
-                        </div>
-                    </ng-template>
-                </ngx-datatable-column>
-                <ngx-datatable-column [width]="250" [resizeable]="true" name="receive timestamp (rts)" prop="msg.rts">
-                    <ng-template let-value="value" ngx-datatable-cell-template>
-                        <div live-data-update [liveDataValue]="value" class="datatable-cell-value">
-                            {{ value | date: 'yyyy-MM-dd HH:mm:ss.SSS' }}
-                        </div>
-                    </ng-template>
-                </ngx-datatable-column>
-                <ngx-datatable-column [width]="250" [resizeable]="true" name="source timestamp (sts)" prop="msg.sts">
-                    <ng-template let-value="value" ngx-datatable-cell-template>
-                        <div live-data-update [liveDataValue]="value" class="datatable-cell-value">
-                            {{ value | date: 'yyyy-MM-dd HH:mm:ss.SSS' }}
-                        </div>
-                    </ng-template>
-                </ngx-datatable-column>
-            </ngx-datatable>
-        </div>
-    </perfect-scrollbar>
-
+    <div>
+        <ngx-datatable class="material datatable" [columnMode]="'force'" [headerHeight]="30" [rowHeight]="'auto'"
+                       [footerHeight]="35" [scrollbarH]="false" [rows]="conditionData$ | async">
+            <ngx-datatable-column [width]="150" [resizeable]="true" name="key (k)" prop="msg.k">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <div live-data-update [liveDataValue]="value" class="datatable-cell-value">
+                        {{ value }}
+                    </div>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column [width]="150" [resizeable]="true" name="provider (p)" prop="msg.p">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <div live-data-update [liveDataValue]="value" class="datatable-cell-value">
+                        {{ value }}
+                    </div>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column [width]="150" [resizeable]="true" name="source (s)" prop="msg.s">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <div live-data-update [liveDataValue]="value" class="datatable-cell-value">
+                        {{ value }}
+                    </div>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column [width]="200" [resizeable]="true" name="active state (as)" prop="msg.as">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <div live-data-update [liveDataValue]="value" class="datatable-cell-value">
+                        {{ value }}
+                    </div>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column [width]="150" [resizeable]="true" name="severity (sv)" prop="msg.sv">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <div live-data-update [liveDataValue]="value" class="datatable-cell-value">
+                        {{ value }}
+                    </div>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column [width]="250" [resizeable]="true" name="localized source text (ls)" prop="msg.ls">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <div live-data-update [liveDataValue]="value" class="datatable-cell-value">
+                        {{ value | json }}
+                    </div>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column [width]="280" [resizeable]="true" name="localized source message (lm)"
+                                  prop="msg.lm">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <div live-data-update [liveDataValue]="value" class="datatable-cell-value">
+                        {{ value | json }}
+                    </div>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column [width]="250" [resizeable]="true" name="additional value list (vls)"
+                                  prop="msg.vls">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <div live-data-update [liveDataValue]="value" class="datatable-cell-value">
+                        {{ value | json }}
+                    </div>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column [width]="250" [resizeable]="true" name="receive timestamp (rts)" prop="msg.rts">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <div live-data-update [liveDataValue]="value" class="datatable-cell-value">
+                        {{ value | date: 'yyyy-MM-dd HH:mm:ss.SSS' }}
+                    </div>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column [width]="250" [resizeable]="true" name="source timestamp (sts)" prop="msg.sts">
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <div live-data-update [liveDataValue]="value" class="datatable-cell-value">
+                        {{ value | date: 'yyyy-MM-dd HH:mm:ss.SSS' }}
+                    </div>
+                </ng-template>
+            </ngx-datatable-column>
+        </ngx-datatable>
+    </div>
 </app-scenario>

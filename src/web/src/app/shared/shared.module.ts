@@ -18,7 +18,6 @@ import { MachineOverviewService } from "../scenario-machineoverview/scenario-mac
 import { ScenarioNavigationService } from "../scenario-navigation/scenario-navigation.service";
 import { AvailableMachinesService } from "./services/available-machines.service";
 import { NgxChartsModule } from "@swimlane/ngx-charts";
-import { PerfectScrollbarModule } from "ngx-perfect-scrollbar";
 import { NavigationService } from "./services/navigation.service";
 
 library.add(faGithub, fas);
@@ -34,7 +33,6 @@ library.add(faGithub, fas);
         NgxDatatableModule,
         NgxChartsModule,
         NgSelectModule,
-        PerfectScrollbarModule,
         FormsModule,
         OwlDateTimeModule,
         OwlNativeDateTimeModule
@@ -45,7 +43,6 @@ library.add(faGithub, fas);
         FontAwesomeModule,
         NgxDatatableModule,
         NgxChartsModule,
-        PerfectScrollbarModule,
         SelectMachineComponent,
         NgSelectModule,
         FormsModule,
