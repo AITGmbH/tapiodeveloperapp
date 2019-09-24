@@ -1,11 +1,13 @@
 import { TestBed, async, ComponentFixture } from "@angular/core/testing";
 import { RouterTestingModule } from "@angular/router/testing";
+import { Router, NavigationEnd, NavigationStart } from "@angular/router";
 import { AppComponent } from "./app.component";
 import { Component } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { SharedModule } from "./shared/shared.module";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { APP_BASE_HREF } from "@angular/common";
+import { Observable } from "rxjs";
 
 @Component({
     selector: "app-module-navigation",
@@ -29,7 +31,19 @@ class MockNavigationComponent {}
     selector: "app-scenario",
     template: "<ul></ul>"
 })
-class MockScenarioComponent {}
+class MockScenarioComponent { }
+
+class MockRouterScrollToTop {
+    public navigationEndTop = new NavigationEnd(0, "", "");
+    public navigationEndScrolled = new NavigationEnd(20, "", "");
+    public navigationStart = new NavigationStart(0, "");
+    public events = new Observable(observer => {
+        observer.next(this.navigationEndTop);
+        observer.next(this.navigationEndScrolled);
+        observer.next(this.navigationStart);
+        observer.complete();
+    });
+}
 
 describe("AppComponent", () => {
     let component: AppComponent;
@@ -45,7 +59,10 @@ describe("AppComponent", () => {
                 MockNavigationComponent,
                 MockScenarioComponent
             ],
-            providers: [{ provide: APP_BASE_HREF, useValue: "/" }]
+            providers: [
+                { provide: APP_BASE_HREF, useValue: "/" },
+                { provide: Router, useClass: MockRouterScrollToTop }
+            ]
         }).compileComponents();
     }));
 
@@ -79,5 +96,12 @@ describe("AppComponent", () => {
         fixture.detectChanges();
         expect(createHandlerOnBurgerSpy).toHaveBeenCalled();
         done();
+    });
+
+    it('should do something on window scroll', () => {
+        window.dispatchEvent(new Event('scroll'));
+        const mainDiv = document.getElementById('scrollableContainer');
+        mainDiv.scrollTop = 50;
+        window.dispatchEvent(new Event('scroll'));
     });
 });

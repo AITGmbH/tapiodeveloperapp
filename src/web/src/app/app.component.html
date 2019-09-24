@@ -23,23 +23,23 @@
     </nav>
 </header>
 
-<div class="columns">
-    <div class="column is-narrow main-nav mobhide">
-        <div app-scenario-navigation></div>
-    </div>
-    <perfect-scrollbar id="contentScrollContainer" class="scroll-container ps-show-always" [scrollIndicators]="true"
-        (psYReachStart)="onScrollYReachStart()" (psScrollDown)="onScrollDown()" #mainContentScrollbar>
-        <div class="column main-content">
+<div class="bd-content">
+    <div class="columns show-scrollbar">
+        <div class="column is-narrow main-nav mobhide">
+            <div app-scenario-navigation></div>
+        </div>
+        <div class="column" id="scrollableContainer" (scroll)="onScroll($event)">
             <main>
                 <router-outlet></router-outlet>
             </main>
+            <div *ngIf="showScrollToTopBtn" class="action-button scroll-to-top-btn" fxLayout="column" fxLayoutAlign="center"
+                 fxFlex="auto" (click)='scrollToTop()'>
+                <fa-icon [icon]="['fas', 'chevron-up']" [size]="'2x'"></fa-icon>
+            </div>
         </div>
-        <div *ngIf="showScrollToTopBtn" class="action-button scroll-to-top-btn" fxLayout="column" fxLayoutAlign="center"
-            fxFlex="auto" (click)='scrollToTop()'>
-            <fa-icon [icon]="['fas', 'chevron-up']" [size]="'2x'"></fa-icon>
-        </div>
-    </perfect-scrollbar>
+    </div>
 </div>
+
 
 <footer class="footer">
     <div class="content has-text-centered has-text-white">
