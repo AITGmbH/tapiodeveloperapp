@@ -16,7 +16,6 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.Scenarios.LicenseOverview
     public class LicenseOverviewServiceTests
     {
         private const string TestSubscriptions = @"{
-            ""email"": ""woodgod@example.localhost"",
             ""subscriptions"": [
             {
                 ""licenses"": [
@@ -100,7 +99,6 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.Scenarios.LicenseOverview
             }]}";
 
         private readonly SubscriptionOverview _expectedSubscriptions = new SubscriptionOverview {
-            Email = "woodgod@example.localhost",
             Subscriptions = new[] {
                 new Subscription {
                     Licenses = new[] {

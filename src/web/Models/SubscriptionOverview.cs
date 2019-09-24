@@ -7,9 +7,6 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Models
 {
     public class SubscriptionOverview
     {
-        [JsonProperty("email")]
-        public string Email { get; set; }
-
         [JsonProperty("subscriptions")]
         public Subscription[] Subscriptions { get; set; }
     }
