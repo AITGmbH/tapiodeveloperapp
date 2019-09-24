@@ -15,6 +15,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit
 {
     public class MachineOverviewServiceTests
     {
+        private const string TapioMail = "some@mail.address";
         private const string Content = @"{
             ""totalCount"": 2,
             ""subscriptions"": [
@@ -56,10 +57,11 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit
         public MachineOverviewServiceTests()
         {
             _standardTokenProviderMock = new Mock<ITokenProvider>();
+            _standardTokenProviderMock.Setup(f => f.GetTapioEmail()).Returns(TapioMail);
         }
 
         [Fact]
-        public async Task GGetSubscriptionsAsync_ThrowsNoException()
+        public async Task GetSubscriptionsAsync_ThrowsNoException()
         {
             var messageHandlerMock = new Mock<HttpMessageHandler>()
                 .SetupSendAsyncMethod(HttpStatusCode.OK, Content);

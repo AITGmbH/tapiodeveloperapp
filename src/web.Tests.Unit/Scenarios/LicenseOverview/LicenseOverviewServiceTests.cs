@@ -15,6 +15,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.Scenarios.LicenseOverview
 {
     public class LicenseOverviewServiceTests
     {
+        private const string TapioMail = "some@mail.address";
         private const string TestSubscriptions = @"{
             ""subscriptions"": [
             {
@@ -188,6 +189,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.Scenarios.LicenseOverview
         public LicenseOverviewServiceTests()
         {
             _standardTokenProviderMock = new Mock<ITokenProvider>();
+            _standardTokenProviderMock.Setup(f => f.GetTapioEmail()).Returns(TapioMail);
         }
 
         [Fact]
