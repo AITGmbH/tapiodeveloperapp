@@ -9,7 +9,9 @@ import { APP_BASE_HREF } from "@angular/common";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { DebugElement, Component, Directive } from "@angular/core";
 import { SharedModule } from "../shared/shared.module";
+import { NavigationService } from "../shared/services/navigation.service";
 
+declare const viewport;
 const scenarioServiceStub = {
     getEntries() {
         return of([
@@ -32,8 +34,10 @@ describe("ScenarioNavigationComponent", () => {
     let component: ScenarioNavigationComponent;
     let fixture: ComponentFixture<ScenarioNavigationComponent>;
     let debugElement: DebugElement;
+    let navigationService: NavigationService;
 
     beforeEach(async () => {
+        viewport.set("desktop-hd");
         TestBed.configureTestingModule({
             imports: [SharedModule, RouterTestingModule, HttpClientTestingModule],
             declarations: [
@@ -51,6 +55,7 @@ describe("ScenarioNavigationComponent", () => {
                 })
             ],
             providers: [
+                NavigationService,
                 { provide: APP_BASE_HREF, useValue: "/" },
                 { provide: ScenarioNavigationService, useValue: scenarioServiceStub }
             ]
@@ -61,6 +66,7 @@ describe("ScenarioNavigationComponent", () => {
         fixture = TestBed.createComponent(ScenarioNavigationComponent);
         component = fixture.componentInstance;
         debugElement = fixture.debugElement;
+        navigationService = debugElement.injector.get(NavigationService);
         fixture.detectChanges();
     });
 
@@ -77,5 +83,11 @@ describe("ScenarioNavigationComponent", () => {
         const secondAnchorElement = listElements[1].nativeElement as HTMLAnchorElement;
         expect(secondAnchorElement.innerText).toBe("TWO");
         expect(listElements[1].properties.href).toBe("/two2");
+    });
+
+    it("should execute select entry and call through service", () => {
+        const navigationServiceToggleMenuSpy = spyOn(navigationService, "toggleMenu");
+        component.selectEntry();
+        expect(navigationServiceToggleMenuSpy).toHaveBeenCalled();
     });
 });

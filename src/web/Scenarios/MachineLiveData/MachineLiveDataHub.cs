@@ -1,5 +1,6 @@
-using Microsoft.AspNetCore.SignalR;
 using System.Threading.Tasks;
+
+using Microsoft.AspNetCore.SignalR;
 
 namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineLiveData
 {

@@ -14,7 +14,7 @@ header.modal-card-head {
 
 section.modal-card-body {
     padding: 0;
-    overflow: none;
+    overflow: hidden;
 }
 
 .modal-card, 

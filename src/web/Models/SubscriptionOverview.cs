@@ -63,6 +63,9 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Models
 
         [JsonProperty("equipmentGroup")]
         public EquipmentGroup EquipmentGroup { get; set; }
+
+        [JsonProperty("machineState")]
+        public MachineState MachineState { get; set; }
     }
 
     public class License
@@ -84,6 +87,14 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Models
 
         [JsonProperty("licenseCount")]
         public long LicenseCount { get; set; }
+    }
+
+    public enum MachineState
+    {
+        [JsonProperty("running")]
+        Running,
+        [JsonProperty("offline")]
+        Offline
     }
 
     public static class SubscriptionOverviewExtension

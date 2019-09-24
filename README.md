@@ -103,6 +103,22 @@ Settings
 - EventHub:StorageContainerName XYZ
 - EventHub:StorageConnectionString XYZ
 
+## Execute Tests
+
+### Front End
+
+```PowerShell
+cd .\src\web
+ng test
+```
+
+### Back End
+
+```PowerShell
+cd .\src
+dotnet test
+```
+
 ## Legal Notice
 
 You can find the Legal Notice - [Impressum](https://www.aitgmbh.de/impressum/).

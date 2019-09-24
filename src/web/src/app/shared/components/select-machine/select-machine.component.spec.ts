@@ -8,6 +8,7 @@ import { Subscription } from "../../models/subscription.model";
 import { DebugElement } from "@angular/core";
 import { of } from "rxjs";
 import { FormsModule } from "@angular/forms";
+import { MachineState } from '../../models/assigned-machine.model';
 
 const mockSubscriptions: Subscription[] = [
     {
@@ -27,11 +28,13 @@ const mockSubscriptions: Subscription[] = [
         assignedMachines: [
             {
                 tmid: "c2241cdc59034d11b9fcc9b325e67f79",
-                displayName: "Testmachine1"
+                displayName: "Testmachine1",
+                machineState: MachineState.Offline
             },
             {
                 tmid: "c2241cdc59034d11b9fcc9b325e67f71",
-                displayName: "Testmachine2"
+                displayName: "Testmachine2",
+                machineState: MachineState.Offline
             }
         ],
         subscriptionTypes: ["Developer", "Customer", "Manufacturer"]
@@ -53,11 +56,13 @@ const mockSubscriptions: Subscription[] = [
         assignedMachines: [
             {
                 tmid: "c2241cdc59034d11b9fcc9b325e67f79",
-                displayName: "Another testmachine"
+                displayName: "Another testmachine",
+                machineState: MachineState.Offline
             },
             {
                 tmid: "c2241cdc59034d11b9fcc9b325e67f71",
-                displayName: "The second testmachine"
+                displayName: "The second testmachine",
+                machineState: MachineState.Offline
             }
         ],
         subscriptionTypes: ["Developer", "Customer", "Manufacturer"]

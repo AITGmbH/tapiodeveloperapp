@@ -7,7 +7,6 @@ using Moq.Protected;
 
 namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.HelperClasses
 {
-
     public static class MoqExtensions
     {
         private const string SendAsyncMethodName = "SendAsync";

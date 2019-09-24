@@ -7,6 +7,7 @@ import { MachineOverviewService } from "./scenario-machineoverview.service";
 import { Subscription } from "../shared/models/subscription.model";
 import { of } from 'rxjs';
 import { DebugElement } from '@angular/core';
+import { MachineState } from '../shared/models/assigned-machine.model';
 
 const mockSubscriptions: Subscription[] = [
     {
@@ -26,11 +27,13 @@ const mockSubscriptions: Subscription[] = [
         assignedMachines: [
             {
                 tmid: "c2241cdc59034d11b9fcc9b325e67f79",
-                displayName: "Testmachine1"
+                displayName: "Testmachine1",
+                machineState: MachineState.Offline
             },
             {
                 tmid: "c2241cdc59034d11b9fcc9b325e67f71",
-                displayName: "Testmachine2"
+                displayName: "Testmachine2",
+                machineState: MachineState.Offline
             }
         ],
         subscriptionTypes: ["Developer", "Customer", "Manufacturer"]
