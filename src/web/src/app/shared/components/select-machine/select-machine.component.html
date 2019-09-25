@@ -1,8 +1,7 @@
 <div class="control">
-    <ng-select *ngIf="items$ | async; else loadingOrError" class="tile dropdown is-6" [items]="items$ | async"
-        groupBy="assignedMachines" bindLabel="displayName" placeholder="Please select a machine" [clearable]="false"
-        [searchable]="false" [dropdownPosition]="'bottom'" (change)="selectedMachineChanged($event)"
-        [(ngModel)]="selectedMachine">
+    <ng-select *ngIf="items$ | async; else loadingOrError" class="" [items]="items$ | async" groupBy="assignedMachines"
+        bindLabel="displayName" placeholder="Please select a machine" [clearable]="false" [searchable]="false"
+        [dropdownPosition]="'bottom'" (change)="selectedMachineChanged($event)" [(ngModel)]="selectedMachine">
         <ng-template ng-optgroup-tmp let-item="item">
             {{ item.name }}
         </ng-template>

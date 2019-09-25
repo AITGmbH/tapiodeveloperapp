@@ -142,6 +142,11 @@ img.logo {
 
 // /* smartphones and tablets */
 @media (max-width: 1024px) {
+    .container.is-fluid {
+        margin-left: 16px;
+        margin-right: 16px;
+        max-width: none;
+    }
     //     .columns {
     //         top: 60px;
     //         padding: 0px;
@@ -195,6 +200,7 @@ img.logo {
 
 // /* only tablets */
 // @media (min-width: 641px) and (max-width: 1024px) {
+
 //     footer.footer {
 //         padding: 1.3rem 1rem 2rem 1rem;
 //     }

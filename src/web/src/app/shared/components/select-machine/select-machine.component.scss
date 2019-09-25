@@ -1,5 +1,18 @@
 div.control {
     margin-bottom: 24px;
+    width: 30rem;
+}
+
+@media (max-width: 1024px) {
+    div.control {
+        width: 25rem;
+    }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+    div.control {
+        width: 25rem;
+    }
 }
 
 div.control ng-select {
