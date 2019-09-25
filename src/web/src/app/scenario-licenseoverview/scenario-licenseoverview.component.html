@@ -1,33 +1,56 @@
-<app-scenario
-    scenarioTitle="License Overview"
-    id="license-overview-scenario"
+<app-scenario scenarioTitle="License Overview" id="license-overview-scenario"
     description="This scenario shows all the information on subscriptions containing licenses of the tapio developer app by using the GlobalDiscoveryService API.">
-    <div class="card-stack-container" *ngIf="subscriptions$ | async ; else loadingOrError">
-        <div class="card" *ngFor="let subscription of subscriptions$ | async">
-            <header class="card-header">
-                <h1 class="card-header-title">{{ subscription.name }}</h1>
-            </header>
-            <div class="card-content">
-                <ul class="license-list">
-                    <li *ngFor="let license of subscription.licenses">
-                        <table class="license-list-table">
-                            <tr><td>License Id:</td><td>{{ license.licenseId }}</td></tr>
-                            <tr><td>Application Id:</td><td>{{ license.applicationId }}</td></tr>
-                            <tr><td>Created date:</td><td>{{ license.createdDate | date: "medium" }}</td></tr>
-                            <tr><td>Billing start date:</td><td>{{ license.billingStartDate | date: "medium" }}</td></tr>
-                            <tr><td>Billing interval:</td><td>{{ license.billingInterval }}</td></tr>
-                            <tr><td>License count:</td><td>{{ license.licenseCount }}</td></tr>
-                        </table>
-                    </li>
-                </ul>
+
+    <div class="tile is-ancestor">
+        <div class="tile is-6 is-vertical is-parent">
+            <div class="tile is-child" *ngFor="let subscription of subscriptions$ | async">
+                <div class="card">
+                    <header class="card-header"
+                        title="subscription {{subscription.name}} has got {{subscription.assignedMachines.length}} assigned machines">
+                        <h1 class="card-header-title">{{subscription.name}}</h1>
+                    </header>
+                    <div class="card-content">
+                        <ul>
+                            <li *ngFor="let license of subscription.licenses">
+                                <table class="license-list-table">
+                                    <tr>
+                                        <td>License Id:</td>
+                                        <td>{{ license.licenseId }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Application Id:</td>
+                                        <td>{{ license.applicationId }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Created date:</td>
+                                        <td>{{ license.createdDate | date: "medium" }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Billing start date:</td>
+                                        <td>{{ license.billingStartDate | date: "medium" }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Billing interval:</td>
+                                        <td>{{ license.billingInterval }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>License count:</td>
+                                        <td>{{ license.licenseCount }}</td>
+                                    </tr>
+                                </table>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
 </app-scenario>
 
 <ng-template #loadingOrError>
     <div *ngIf="error$ | async; else loading" class="errorMessage">
-      No data available
+        No data available
     </div>
 
     <ng-template #loading>

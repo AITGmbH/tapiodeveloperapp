@@ -22,6 +22,16 @@
     font-family: "Open Sans", Helvetica, Arial, Verdana, sans-serif;
 }
 
+.errorMessage {
+    margin-top: 2rem;
+    background-color: white;
+    display: block;
+    max-width: 35%;
+    padding: 3px 3px 3px 0px;
+    text-align: left;
+    color: red;
+}
+
 @media all and (max-width: 1024px) {
     .mobhide {
         display: none !important;
