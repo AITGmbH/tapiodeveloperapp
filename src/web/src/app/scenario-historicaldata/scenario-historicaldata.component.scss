@@ -85,3 +85,27 @@ div > .historicalDataChart {
     text-align: left;
     color: red;
 }
+
+.source-key-select {
+    background-color: #f3f4f4;
+    color: #303741;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.source-key-select {
+    margin-bottom: 24px;
+    width: 30rem;
+}
+
+@media (max-width: 1024px) {
+    .source-key-select {
+        width: 25rem;
+    }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+    .source-key-select {
+        width: 25rem;
+    }
+}
