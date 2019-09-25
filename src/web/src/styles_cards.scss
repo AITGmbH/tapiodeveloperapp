@@ -1,29 +1,5 @@
-.card-stack-container {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-    align-content: flex-start;
-    display: flex;
-}
-
-.card-stack-container > .card {
-    flex-basis: auto;
-    flex-grow: 0;
-    flex-shrink: 1;
-    margin: 3px;
-    align-self: stretch;
-    display: flex;
-    flex-flow: column;
-}
-
-.card-stack-container > .card > .card-content {
-    flex: 1;
-}
-
-
 div.card {
-    background-color: #F3F4F4;
+    background-color: #f3f4f4;
     color: #303741;
 }
 
@@ -34,8 +10,8 @@ header.card-header {
     font-weight: 600;
 }
 
-.card-header > h1 {
-    color: #F3F4F4;
+header.card-header > h1 {
+    color: #f3f4f4;
 }
 
 div.card-content {

@@ -6,50 +6,46 @@ import { Router, NavigationEnd } from "@angular/router";
     templateUrl: "./app.component.html",
     styleUrls: ["./app.component.scss"]
 })
-
 export class AppComponent implements OnInit {
     public title = "developerapp";
     public showScrollToTopBtn = false;
 
-    constructor(
-        private router: Router
-    ) { }
+    constructor(private router: Router) {}
 
     ngOnInit(): void {
-        this.router.events.subscribe((evt) => {
+        this.router.events.subscribe(evt => {
             if (!(evt instanceof NavigationEnd)) {
                 return;
             }
-            this.scrollToTop();
+            // this.scrollToTop();
         });
         this.createNavbarBurgerToggle();
     }
 
-    @HostListener('window:scroll', ['$event']) // for window scroll events
-    onScroll(event) {
-        const mainDiv = document.getElementById('scrollableContainer');
-        if (mainDiv.scrollTop > 0) {
-            this.showScrollToTopBtn = true;
-        } else {
-            this.showScrollToTopBtn = false;
-        }
-    }
+    // @HostListener("window:scroll", ["$event"]) // for window scroll events
+    // onScroll(event) {
+    //     const mainDiv = document.getElementById("scrollableContainer");
+    //     if (mainDiv.scrollTop > 0) {
+    //         this.showScrollToTopBtn = true;
+    //     } else {
+    //         this.showScrollToTopBtn = false;
+    //     }
+    // }
 
-    public scrollbarOptions = { axis: 'y', theme: 'minimal-dark' };
-
+    public scrollbarOptions = { axis: "y", theme: "minimal-dark" };
 
     private scrollToTop() {
-        const mainDiv = document.getElementById('scrollableContainer');
-        //mainDiv.scrollTop = 0;
-        let scrollToTop = window.setInterval(() => {
-            var pos = mainDiv.scrollTop;
-            if (pos > 0) {
-                mainDiv.scrollTo(0, pos - 20); // how far to scroll on each step
-            } else {
-                window.clearInterval(scrollToTop);
-                this.showScrollToTopBtn = false;
-            }
-        }, 16);
+        // const mainDiv = document.getElementById('scrollableContainer');
+        // //mainDiv.scrollTop = 0;
+        // let scrollToTop = window.setInterval(() => {
+        //     var pos = mainDiv.scrollTop;
+        //     if (pos > 0) {
+        //         mainDiv.scrollTo(0, pos - 20); // how far to scroll on each step
+        //     } else {
+        //         window.clearInterval(scrollToTop);
+        //         this.showScrollToTopBtn = false;
+        //     }
+        // }, 16);
     }
 
     private createNavbarBurgerToggle() {

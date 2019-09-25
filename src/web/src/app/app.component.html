@@ -1,5 +1,188 @@
-<header class="main-header is-centered">
-    <nav class="navbar" role="navigation" aria-label="dropdown navigation">
+<!-- <nav class="navbar" role="navigation" aria-label="dropdown navigation">
+  <div class="container">
+    <div class="navbar-brand">
+      <a href="https://aitgmbh.de/" target="_blank" rel="noopener noreferrer" class="ait-logo">
+        <img src="assets/img/logo/ait.svg" class="logo" alt="AIT">
+      </a>
+      <span>
+        tapio developer app
+      </span>
+      <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div class="navbar-menu" id="navMenu">
+      <div class="navbar-start largehide" app-scenario-navigation>
+      </div>
+      <div class="navbar-end" app-external-links-dropdown>
+      </div>
+    </div>
+  </div>
+
+</nav>
+<section class="section">
+  <div class="container is-fluid">
+    <div class="columns">
+      <div class="column is-narrow mobhide">
+        <div app-scenario-navigation></div>
+      </div>
+      <div class="column" id="scrollableContainer" (scroll)="onScroll($event)">
+        <main>
+          <router-outlet></router-outlet>
+        </main>
+        <div *ngIf="showScrollToTopBtn" class="action-button scroll-to-top-btn" fxLayout="column" fxLayoutAlign="center"
+          fxFlex="auto" (click)='scrollToTop()'>
+          <fa-icon [icon]="['fas', 'chevron-up']" [size]="'2x'"></fa-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-4">
+        © 2019 AIT GmbH & Co. KG
+      </div>
+      <div class="column is-4">
+        <a href="https://www.aitgmbh.de/impressum" target="_blank" rel="noopener noreferrer"
+          class="has-text-white align-right">
+          <fa-icon [icon]="['fas', 'info-circle']"></fa-icon> Legal Notice - Impressum
+        </a>
+      </div>
+      <div class="column is-4">
+        <a href="https://www.aitgmbh.de/datenschutz" target="_blank" rel="noopener noreferrer"
+          class="has-text-white align-right">
+          <fa-icon [icon]="['fas', 'shield-alt']"></fa-icon> Privacy Policy - GDPR
+        </a>
+      </div>
+    </div>
+  </div>
+</footer> -->
+
+<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="https://bulma.io">
+            <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+        </a>
+
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+            data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+            <a class="navbar-item">
+                Home
+            </a>
+
+            <a class="navbar-item">
+                Documentation
+            </a>
+
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                    More
+                </a>
+
+                <div class="navbar-dropdown">
+                    <a class="navbar-item">
+                        About
+                    </a>
+                    <a class="navbar-item">
+                        Jobs
+                    </a>
+                    <a class="navbar-item">
+                        Contact
+                    </a>
+                    <hr class="navbar-divider">
+                    <a class="navbar-item">
+                        Report an issue
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <div class="buttons">
+                    <a class="button is-primary">
+                        <strong>Sign up</strong>
+                    </a>
+                    <a class="button is-light">
+                        Log in
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav> -->
+
+<!-- <main class="site-content">
+    <div class="container">
+        <div class="tile is-ancestor">
+            <div class="tile is-vertical is-8">
+                <div class="tile">
+                    <div class="tile is-parent is-vertical">
+                        <article class="tile is-child notification is-primary">
+                            <p class="title">Vertical...</p>
+                            <p class="subtitle">Top tile</p>
+                        </article>
+                        <article class="tile is-child notification is-warning">
+                            <p class="title">...tiles</p>
+                            <p class="subtitle">Bottom tile</p>
+                        </article>
+                    </div>
+                    <div class="tile is-parent">
+                        <article class="tile is-child notification is-info">
+                            <p class="title">Middle tile</p>
+                            <p class="subtitle">With an image</p>
+                            <figure class="image is-4by3">
+                                <img src="https://bulma.io/images/placeholders/640x480.png">
+                            </figure>
+                        </article>
+                    </div>
+                </div>
+                <div class="tile is-parent">
+                    <article class="tile is-child notification is-danger">
+                        <p class="title">Wide tile</p>
+                        <p class="subtitle">Aligned with the right tile</p>
+                        <div class="content">
+                        </div>
+                    </article>
+                </div>
+            </div>
+            <div class="tile is-parent">
+                <article class="tile is-child notification is-success">
+                    <div class="content">
+                        <p class="title">Tall tile</p>
+                        <p class="subtitle">With even more content</p>
+                        <div class="content">
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+
+ -->
+
+<!-- <header class="site-header">header</header> -->
+<nav class="navbar site-header" role="navigation" aria-label="dropdown navigation">
+    <div class="container">
         <div class="navbar-brand">
             <a href="https://aitgmbh.de/" target="_blank" rel="noopener noreferrer" class="ait-logo">
                 <img src="assets/img/logo/ait.svg" class="logo" alt="AIT">
@@ -20,38 +203,75 @@
             <div class="navbar-end" app-external-links-dropdown>
             </div>
         </div>
-    </nav>
-</header>
+    </div>
 
-<div class="bd-content">
-    <div class="columns show-scrollbar">
-        <div class="column is-narrow main-nav mobhide">
-            <div app-scenario-navigation></div>
-        </div>
-        <div class="column" id="scrollableContainer" (scroll)="onScroll($event)">
-            <main>
-                <router-outlet></router-outlet>
-            </main>
-            <div *ngIf="showScrollToTopBtn" class="action-button scroll-to-top-btn" fxLayout="column" fxLayoutAlign="center"
-                 fxFlex="auto" (click)='scrollToTop()'>
-                <fa-icon [icon]="['fas', 'chevron-up']" [size]="'2x'"></fa-icon>
+</nav>
+
+<main class="site-content">
+    <div class="container">
+        <div class="tile is-ancestor">
+            <div class="tile is-vertical is-8">
+                <div class="tile">
+                    <div class="tile is-parent is-vertical">
+                        <article class="tile is-child notification is-primary">
+                            <p class="title">Vertical...</p>
+                            <p class="subtitle">Top tile</p>
+                        </article>
+                        <article class="tile is-child notification is-warning">
+                            <p class="title">...tiles</p>
+                            <p class="subtitle">Bottom tile</p>
+                        </article>
+                    </div>
+                    <div class="tile is-parent">
+                        <article class="tile is-child notification is-info">
+                            <p class="title">Middle tile</p>
+                            <p class="subtitle">With an image</p>
+                            <figure class="image is-4by3">
+                                <img src="https://bulma.io/images/placeholders/640x480.png">
+                            </figure>
+                        </article>
+                    </div>
+                </div>
+                <div class="tile is-parent">
+                    <article class="tile is-child notification is-danger">
+                        <p class="title">Wide tile</p>
+                        <p class="subtitle">Aligned with the right tile</p>
+                        <div class="content">
+                        </div>
+                    </article>
+                </div>
+            </div>
+            <div class="tile is-parent">
+                <article class="tile is-child notification is-success">
+                    <div class="content">
+                        <p class="title">Tall tile</p>
+                        <p class="subtitle">With even more content</p>
+                        <div class="content">
+                        </div>
+                    </div>
+                </article>
             </div>
         </div>
     </div>
-</div>
-
-
-<footer class="footer">
-    <div class="content has-text-centered has-text-white">
-        <p>
-            © 2019 AIT GmbH & Co. KG<a href="https://www.aitgmbh.de/impressum" target="_blank" rel="noopener noreferrer"
-                class="has-text-white align-right">
-                <fa-icon [icon]="['fas', 'info-circle']"></fa-icon> Legal Notice - Impressum
-            </a>
-            <a href="https://www.aitgmbh.de/datenschutz" target="_blank" rel="noopener noreferrer"
-                class="has-text-white align-right">
-                <fa-icon [icon]="['fas', 'shield-alt']"></fa-icon> Privacy Policy - GDPR
-            </a>
-        </p>
+</main>
+<footer class="footer site-footer">
+    <div class="content has-text-centered">
+        <div class="columns">
+            <div class="column is-4">
+                © 2019 AIT GmbH & Co. KG
+            </div>
+            <div class="column is-4">
+                <a href="https://www.aitgmbh.de/impressum" target="_blank" rel="noopener noreferrer"
+                    class="has-text-white align-right">
+                    <fa-icon [icon]="['fas', 'info-circle']"></fa-icon> Legal Notice - Impressum
+                </a>
+            </div>
+            <div class="column is-4">
+                <a href="https://www.aitgmbh.de/datenschutz" target="_blank" rel="noopener noreferrer"
+                    class="has-text-white align-right">
+                    <fa-icon [icon]="['fas', 'shield-alt']"></fa-icon> Privacy Policy - GDPR
+                </a>
+            </div>
+        </div>
     </div>
 </footer>
