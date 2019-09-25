@@ -5,7 +5,7 @@ import * as moment from "moment";
 @Component({
     selector: "app-date-range",
     templateUrl: "./date-range.component.html",
-    styleUrls: ["./date-range.component.css"],
+    styleUrls: ["./date-range.component.scss"],
     encapsulation: ViewEncapsulation.None
 })
 export class DateRangeComponent implements OnInit {

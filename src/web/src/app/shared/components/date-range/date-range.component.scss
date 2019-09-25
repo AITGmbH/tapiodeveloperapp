@@ -1,0 +1,40 @@
+div.control {
+    text-align: left;
+    margin: 10px 0;
+}
+
+div.control input {
+    background-color: #f3f4f4;
+    color: #303741;
+    border: 2px solid #303741;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 6px 10px 6px 10px;
+    width: 30rem;
+}
+
+@media (max-width: 1024px) {
+    div.control input {
+        width: 25rem;
+    }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+    div.control input {
+        width: 25rem;
+    }
+}
+
+.owl-dt-popup-container,
+.owl-dt-popup-container input,
+.owl-dt-popup-container button {
+    color: #303741;
+}
+.owl-dt-calendar-table span.owl-dt-calendar-cell-selected {
+    background-color: #303741;
+    color: #f3f4f4;
+}
+.owl-dt-calendar-table td.owl-dt-calendar-cell-in-range {
+    background-color: #f3f4f4;
+    color: #303741;
+}
