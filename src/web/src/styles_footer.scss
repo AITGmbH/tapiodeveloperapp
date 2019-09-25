@@ -1,3 +1,5 @@
-$footer-background-color: #303741;
-$footer-color: #cfcfcf;
+@import "./styles_variables.scss";
+
+$footer-background-color: $ait-dark-gray;
+$footer-color: $ait-light-gray;
 $footer-padding: 2rem 1rem 2rem 1rem;

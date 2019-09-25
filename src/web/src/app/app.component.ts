@@ -17,35 +17,32 @@ export class AppComponent implements OnInit {
             if (!(evt instanceof NavigationEnd)) {
                 return;
             }
-            // this.scrollToTop();
+            this.scrollToTop();
         });
         this.createNavbarBurgerToggle();
     }
 
-    // @HostListener("window:scroll", ["$event"]) // for window scroll events
-    // onScroll(event) {
-    //     const mainDiv = document.getElementById("scrollableContainer");
-    //     if (mainDiv.scrollTop > 0) {
-    //         this.showScrollToTopBtn = true;
-    //     } else {
-    //         this.showScrollToTopBtn = false;
-    //     }
-    // }
-
-    public scrollbarOptions = { axis: "y", theme: "minimal-dark" };
+    @HostListener("window:scroll", ["$event"]) // for window scroll events
+    onScroll(event) {
+        if (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop > 100) {
+            this.showScrollToTopBtn = true;
+        } else if (
+            (this.showScrollToTopBtn && window.pageYOffset) ||
+            document.documentElement.scrollTop ||
+            document.body.scrollTop < 10
+        ) {
+            this.showScrollToTopBtn = false;
+        }
+    }
 
     private scrollToTop() {
-        // const mainDiv = document.getElementById('scrollableContainer');
-        // //mainDiv.scrollTop = 0;
-        // let scrollToTop = window.setInterval(() => {
-        //     var pos = mainDiv.scrollTop;
-        //     if (pos > 0) {
-        //         mainDiv.scrollTo(0, pos - 20); // how far to scroll on each step
-        //     } else {
-        //         window.clearInterval(scrollToTop);
-        //         this.showScrollToTopBtn = false;
-        //     }
-        // }, 16);
+        (function scroll() {
+            const currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            if (currentScroll > 0) {
+                window.requestAnimationFrame(scroll);
+                window.scrollTo(0, currentScroll - currentScroll / 4);
+            }
+        })();
     }
 
     private createNavbarBurgerToggle() {

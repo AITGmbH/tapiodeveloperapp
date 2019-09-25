@@ -107,17 +107,17 @@ img.logo {
 //     margin-left: 50px;
 // }
 
-// .scroll-to-top-btn {
-//     position: fixed;
-//     bottom: 100px;
-//     right: 53px;
-//     color: #414753;
-// }
+.scroll-to-top-btn {
+    position: fixed;
+    bottom: 100px;
+    right: 53px;
+    color: #414753;
+}
 
-// .scroll-to-top-btn .ng-fa-icon:hover {
-//     cursor: pointer;
-//     color: #303741;
-// }
+.scroll-to-top-btn .ng-fa-icon:hover {
+    cursor: pointer;
+    color: #303741;
+}
 
 // /* only smartphones */
 // @media (max-width: 480px) {
@@ -188,9 +188,9 @@ img.logo {
     //         margin-bottom: 65px;
     //     }
 
-    //     .scroll-to-top-btn {
-    //         right: 20px;
-    //     }
+    .scroll-to-top-btn {
+        right: 20px;
+    }
 }
 
 // /* only tablets */
