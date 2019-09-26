@@ -10,7 +10,7 @@ export class AppComponent implements OnInit {
     public title = "developerapp";
     public showScrollToTopBtn = false;
 
-    constructor(private router: Router) {}
+    constructor(private readonly router: Router) {}
 
     ngOnInit(): void {
         this.router.events.subscribe(evt => {
