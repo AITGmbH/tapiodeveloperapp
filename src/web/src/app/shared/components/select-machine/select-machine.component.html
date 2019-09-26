@@ -1,5 +1,5 @@
 <div class="control">
-    <ng-select *ngIf="items$ | async; else loadingOrError" class="select" [items]="items$ | async"
+    <ng-select *ngIf="items$ | async; else loadingOrError" class="select-machine" [items]="items$ | async"
         groupBy="assignedMachines" bindLabel="displayName" placeholder="Please select a machine" [clearable]="false"
         [searchable]="false" [dropdownPosition]="'bottom'" (change)="selectedMachineChanged($event)"
         [(ngModel)]="selectedMachine">
