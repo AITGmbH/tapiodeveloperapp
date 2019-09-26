@@ -27,16 +27,21 @@ export class ScenarioMachinestateDetailComponent implements OnInit {
 
     ngOnInit(): void {
         this.id$.subscribe(id => {
-            if(!id) {
+            if (!id) {
                 return;
-            } 
+            }
             if (this.subscription) {
                 this.subscription.unsubscribe();
             }
             this.hasError = false;
             this.subscription = this.machineStateService.getLastKnownStateFromMachine(id).subscribe(
                 lastKnownState => {
-                    this.hasError = !(lastKnownState.itds && lastKnownState.conds && lastKnownState.itds.length > 0 && lastKnownState.conds.length > 0);
+                    this.hasError = !(
+                        lastKnownState.itds &&
+                        lastKnownState.conds &&
+                        lastKnownState.itds.length > 0 &&
+                        lastKnownState.conds.length > 0
+                    );
                     this.itemData$ = of(lastKnownState.itds);
                     this.conditions$ = of(lastKnownState.conds);
                 },
