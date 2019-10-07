@@ -1,20 +1,20 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { ScenarioMachinestateComponent } from './scenario-machinestate.component';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+import { ScenarioMachinestateComponent } from "./scenario-machinestate.component";
 
 const routes: Routes = [
     {
-        path: '',
+        path: "",
         component: ScenarioMachinestateComponent
     },
     {
-        path: ':tmid',
+        path: ":tmid",
         component: ScenarioMachinestateComponent
     }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
 })
-export class ScenarioMachinestateRoutingModule { }
+export class ScenarioMachinestateRoutingModule {}

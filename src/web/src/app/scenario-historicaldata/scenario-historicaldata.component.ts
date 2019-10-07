@@ -5,6 +5,7 @@ import { HistoricalDataService } from "./scenario-historicaldata.service";
 import { HistoricalDataResponseElement, HistoricItemData } from "./historical-data.model";
 import { filter, concatMap, tap, map, catchError } from "rxjs/operators";
 import * as moment from "moment";
+import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
     selector: "app-scenario-historicaldata",
@@ -18,6 +19,7 @@ export class ScenarioHistoricaldataComponent implements OnInit {
             limit: 1000
         }
     });
+    public loadingCriterias: any;
     sourceKeys$: Observable<SourceKeys>;
     error$ = new Subject<boolean>();
     loading$ = new Subject<boolean>();
@@ -25,14 +27,22 @@ export class ScenarioHistoricaldataComponent implements OnInit {
     lineChartScheme = {
         domain: ["#e3000b", "#0092b4", "#303741"]
     };
+    public initialMachineId: string;
+    public selectedSourceKey: string;
 
-    constructor(private readonly historicalDataService: HistoricalDataService) {
+    constructor(
+        private readonly historicalDataService: HistoricalDataService,
+        private readonly router: Router,
+        private readonly route: ActivatedRoute
+    ) {
         this.error$.next(false);
         this.loading$.next(false);
     }
 
     ngOnInit() {
-        this.searchCriteria$
+        this.initialMachineId = this.route.snapshot.params.tmid;
+
+        this.loadingCriterias = this.searchCriteria$
             .pipe(
                 filter(this.filterIncompleteSearchCriteria()),
                 tap(this.setLoadingFlags()),
@@ -89,6 +99,9 @@ export class ScenarioHistoricaldataComponent implements OnInit {
     }
 
     public selectedMachineChanged(tmid: string) {
+        console.log(tmid);
+        this.router.navigate(["scenario-historicaldata", tmid]);
+
         this.error$.next(false);
         this.loading$.next(true);
         this.sourceKeys$ = null;
@@ -105,6 +118,8 @@ export class ScenarioHistoricaldataComponent implements OnInit {
         });
         this.historicalDataService.getSourceKeys(tmid).subscribe(
             sourceKeys => {
+                console.log(sourceKeys);
+
                 this.sourceKeys$ = of(sourceKeys);
                 this.loading$.next(false);
             },
@@ -129,6 +144,7 @@ export class ScenarioHistoricaldataComponent implements OnInit {
     }
 
     public sourceKeySelectChanged(key: string) {
+        this.selectedSourceKey = key;
         if (!key) {
             return;
         }
