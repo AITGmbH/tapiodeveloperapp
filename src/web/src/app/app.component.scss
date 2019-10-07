@@ -20,6 +20,14 @@ div.navbar-brand > div > span {
     line-height: 80px;
 }
 
+.site-content div.container.is-fluid {
+    padding-top: 20px;
+}
+
+.navbar-burger:hover {
+    color: white !important;
+}
+
 // /* smartphones and tablets */
 @media (max-width: 1024px) {
     .container.is-fluid {
