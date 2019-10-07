@@ -1,11 +1,25 @@
-div.row {
+div.control {
+    margin-bottom: 24px;
+    width: 30rem;
+}
+
+@media (max-width: 1024px) {
+    div.control {
+        width: 25rem;
+    }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+    div.control {
+        width: 25rem;
+    }
+}
+
+div.control .select-machine {
     background-color: #f3f4f4;
     color: #303741;
     font-size: 20px;
     font-weight: 600;
-    line-height: 25px;
-    height: 44px !important;
-    width: 25rem;
 }
 
 div.ng-select-container {
@@ -20,8 +34,9 @@ div.ng-select-container:hover {
     cursor: pointer;
 }
 
-.selectmachine-ngselect.dropdown {
-    border-radius: 0;
+.selectmachine-ngselect.dropdown,
+.ng-dropdown-panel.ng-select-bottom .ng-dropdown-panel-items .ng-option:last-child {
+    border-radius: 0 !important;
 }
 
 .ng-dropdown-panel .ng-dropdown-panel-items {
@@ -32,8 +47,7 @@ div.ng-dropdown-panel-items {
     border: #303741 2px solid;
     border-radius: 0px !important;
     font-weight: 400;
-    width: 25rem;
-    right: 1px;
+    width: 100%;
 }
 
 div.ng-placeholder {

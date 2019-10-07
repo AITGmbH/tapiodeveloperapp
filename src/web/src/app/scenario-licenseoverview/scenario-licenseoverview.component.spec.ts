@@ -25,10 +25,26 @@ const mockSubscriptions: Subscription[] = [
         name: "AIT GmbH & Co. KG",
         tapioId: "AIT Developer-Subscription 008",
         assignedMachines: [
-            { tmid: "1db18c675db4486ab8fdd22c2aabddb3", displayName: "Hack the Twig 01", machineState: MachineState.Offline },
-            { tmid: "2f5b690df6c0406982d49fd9b7a8835b", displayName: "Testmaschine 02", machineState: MachineState.Running },
-            { tmid: "5ef41d18b3d249d885f6a79d16386986", displayName: "testmachine limited 001", machineState: MachineState.Offline  },
-            { tmid: "c2241cdc59034d11b9fcc9b325e67f79", displayName: "testmachine limited 002", machineState: MachineState.Offline  }
+            {
+                tmid: "1db18c675db4486ab8fdd22c2aabddb3",
+                displayName: "Hack the Twig 01",
+                machineState: MachineState.Offline
+            },
+            {
+                tmid: "2f5b690df6c0406982d49fd9b7a8835b",
+                displayName: "Testmaschine 02",
+                machineState: MachineState.Running
+            },
+            {
+                tmid: "5ef41d18b3d249d885f6a79d16386986",
+                displayName: "testmachine limited 001",
+                machineState: MachineState.Offline
+            },
+            {
+                tmid: "c2241cdc59034d11b9fcc9b325e67f79",
+                displayName: "testmachine limited 002",
+                machineState: MachineState.Offline
+            }
         ],
         subscriptionTypes: ["Developer", "Customer", "Manufacturer"]
     },
@@ -46,7 +62,9 @@ const mockSubscriptions: Subscription[] = [
         subscriptionId: "910e26de-bb4a-4eec-861d-422de55b0cca",
         name: "AIT GmbH & Co. KG - Testcustomer",
         tapioId: "Testing-Applications 002",
-        assignedMachines: [{ tmid: "T00000AIT01", displayName: "AIT Bearbeitungszentrum 01", machineState: MachineState.Offline }],
+        assignedMachines: [
+            { tmid: "T00000AIT01", displayName: "AIT Bearbeitungszentrum 01", machineState: MachineState.Offline }
+        ],
         subscriptionTypes: ["Customer"]
     }
 ];
@@ -77,7 +95,9 @@ describe("LicenseOverviewComponent", () => {
     });
 
     it("should fetch data and display it", async () => {
-        const getSubscriptionsSpy = spyOn(licenseOverviewService, "getSubscriptions").and.returnValue(of(mockSubscriptions));
+        const getSubscriptionsSpy = spyOn(licenseOverviewService, "getSubscriptions").and.returnValue(
+            of(mockSubscriptions)
+        );
         fixture.detectChanges();
         expect(getSubscriptionsSpy).toHaveBeenCalledTimes(1);
         const subscriptions = await component.subscriptions$.toPromise();
@@ -87,13 +107,15 @@ describe("LicenseOverviewComponent", () => {
         // 2 subscriptions
         expect(element.nativeElement.querySelectorAll(".card-header-title").length).toEqual(2);
         // 2 licenses
-        expect(element.nativeElement.querySelectorAll(".license-list").length).toEqual(2);
+        expect(element.nativeElement.querySelectorAll(".card-content li").length).toEqual(2);
         // 12 license properties
         expect(element.nativeElement.querySelectorAll(".license-list-table tr").length).toEqual(12);
     });
 
     it("should show error on api-error", async () => {
-        const getSubscriptionsSpy = spyOn(licenseOverviewService, "getSubscriptions").and.returnValue(throwError(new Error('test')));
+        const getSubscriptionsSpy = spyOn(licenseOverviewService, "getSubscriptions").and.returnValue(
+            throwError(new Error("test"))
+        );
         fixture.detectChanges();
         expect(getSubscriptionsSpy).toHaveBeenCalledTimes(1);
 

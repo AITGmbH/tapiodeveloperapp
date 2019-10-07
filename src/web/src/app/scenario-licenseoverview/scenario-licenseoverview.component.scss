@@ -1,0 +1,12 @@
+li {
+    padding-bottom: 25px;
+}
+
+li:last-child {
+    padding-bottom: 0px;
+}
+
+.license-list-table {
+    border-collapse: separate;
+    border-spacing: 10px 0;
+}

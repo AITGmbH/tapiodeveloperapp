@@ -6,17 +6,14 @@ import { Router, NavigationEnd } from "@angular/router";
     templateUrl: "./app.component.html",
     styleUrls: ["./app.component.scss"]
 })
-
 export class AppComponent implements OnInit {
     public title = "developerapp";
     public showScrollToTopBtn = false;
 
-    constructor(
-        private router: Router
-    ) { }
+    constructor(private readonly router: Router) {}
 
     ngOnInit(): void {
-        this.router.events.subscribe((evt) => {
+        this.router.events.subscribe(evt => {
             if (!(evt instanceof NavigationEnd)) {
                 return;
             }
@@ -25,31 +22,27 @@ export class AppComponent implements OnInit {
         this.createNavbarBurgerToggle();
     }
 
-    @HostListener('window:scroll', ['$event']) // for window scroll events
+    @HostListener("window:scroll", ["$event"]) // for window scroll events
     onScroll(event) {
-        const mainDiv = document.getElementById('scrollableContainer');
-        if (mainDiv.scrollTop > 0) {
+        if (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop > 100) {
             this.showScrollToTopBtn = true;
-        } else {
+        } else if (
+            (this.showScrollToTopBtn && window.pageYOffset) ||
+            document.documentElement.scrollTop ||
+            document.body.scrollTop < 10
+        ) {
             this.showScrollToTopBtn = false;
         }
     }
 
-    public scrollbarOptions = { axis: 'y', theme: 'minimal-dark' };
-
-
     private scrollToTop() {
-        const mainDiv = document.getElementById('scrollableContainer');
-        //mainDiv.scrollTop = 0;
-        let scrollToTop = window.setInterval(() => {
-            var pos = mainDiv.scrollTop;
-            if (pos > 0) {
-                mainDiv.scrollTo(0, pos - 20); // how far to scroll on each step
-            } else {
-                window.clearInterval(scrollToTop);
-                this.showScrollToTopBtn = false;
+        (function scroll() {
+            const currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            if (currentScroll > 0) {
+                window.requestAnimationFrame(scroll);
+                window.scrollTo(0, currentScroll - currentScroll / 4);
             }
-        }, 16);
+        })();
     }
 
     private createNavbarBurgerToggle() {
