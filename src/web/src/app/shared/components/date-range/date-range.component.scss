@@ -10,19 +10,8 @@ div.control input {
     font-size: 18px;
     font-weight: 600;
     padding: 6px 10px 6px 10px;
+    height: 42px;
     width: 30rem;
-}
-
-@media (max-width: 1024px) {
-    div.control input {
-        width: 25rem;
-    }
-}
-
-@media (min-width: 641px) and (max-width: 1024px) {
-    div.control input {
-        width: 25rem;
-    }
 }
 
 .owl-dt-popup-container,
@@ -37,4 +26,34 @@ div.control input {
 .owl-dt-calendar-table td.owl-dt-calendar-cell-in-range {
     background-color: #f3f4f4;
     color: #303741;
+}
+
+@media (max-width: 1024px) {
+    div.control input {
+        width: 25rem;
+    }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+    div.control {
+        width: 25rem;
+    }
+}
+
+@media (min-width: 321px) and (max-width: 641px) {
+    div.control input {
+        width: 20rem;
+    }
+    div.control input {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 320px) {
+    div.control input {
+        width: 15rem;
+    }
+    div.control input {
+        font-size: 12px;
+    }
 }
