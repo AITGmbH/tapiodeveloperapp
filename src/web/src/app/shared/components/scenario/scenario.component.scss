@@ -33,6 +33,12 @@ div.scenario-description {
     max-width: 80%;
 }
 
+@media (max-width: 1024px) {
+    div.scenario-description {
+        max-width: 100%;
+    }
+}
+
 .developer-links {
     background-color: #0092b4;
     float: right;

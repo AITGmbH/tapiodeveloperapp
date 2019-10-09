@@ -30,12 +30,6 @@ div.navbar-brand > div > span {
 
 // /* smartphones and tablets */
 @media (max-width: 1024px) {
-    .container.is-fluid {
-        margin-left: 16px;
-        margin-right: 16px;
-        max-width: none;
-    }
-
     nav .container.is-fluid {
         padding-right: 16px;
         max-width: none;
