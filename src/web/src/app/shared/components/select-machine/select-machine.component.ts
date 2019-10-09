@@ -29,8 +29,6 @@ export class SelectMachineComponent implements OnInit {
     ngOnInit() {
         this.items$ = this.machineOverviewService.getSubscriptions().pipe(
             tap(subscriptions => {
-                console.log(subscriptions);
-
                 for (const subscription of subscriptions) {
                     for (const machine of subscription.assignedMachines) {
                         if (machine.tmid === this.initialMachineId) {
