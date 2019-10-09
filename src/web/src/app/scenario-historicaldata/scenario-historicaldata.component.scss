@@ -95,6 +95,18 @@ div > .historicalDataChart {
     width: 30rem;
 }
 
+// @media (max-width: 1024px) {
+//     .source-key-select {
+//         width: 25rem;
+//     }
+// }
+
+// @media (min-width: 641px) and (max-width: 1024px) {
+//     .source-key-select {
+//         width: 25rem;
+//     }
+// }
+
 @media (max-width: 1024px) {
     .source-key-select {
         width: 25rem;
@@ -104,5 +116,19 @@ div > .historicalDataChart {
 @media (min-width: 641px) and (max-width: 1024px) {
     .source-key-select {
         width: 25rem;
+    }
+}
+
+@media (min-width: 321px) and (max-width: 641px) {
+    .source-key-select {
+        width: 20rem;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 320px) {
+    .source-key-select {
+        width: 15rem;
+        font-size: 12px;
     }
 }
