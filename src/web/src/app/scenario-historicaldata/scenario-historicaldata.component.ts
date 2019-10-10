@@ -202,7 +202,7 @@ export class ScenarioHistoricaldataComponent implements OnInit {
         };
     }
 
-    private createRoute() {
+    private createRoute(): void {
         this.router.navigate(["scenario-historicaldata", this.selectedMachineId], {
             queryParams: {
                 sourceKey: this.selectedSourceKey
