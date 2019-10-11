@@ -61,9 +61,7 @@ export class ScenarioHistoricaldataComponent implements OnInit {
             });
     }
 
-    private transformHistoricalDataToLineSeries(): (
-        value?: HistoricalDataResponseElement
-    ) => LineSeriesData[] {
+    private transformHistoricalDataToLineSeries(): (value?: HistoricalDataResponseElement) => LineSeriesData[] {
         return (responseElement?: HistoricalDataResponseElement): LineSeriesData[] => {
             if (!responseElement) {
                 return [];
@@ -73,10 +71,7 @@ export class ScenarioHistoricaldataComponent implements OnInit {
                     name: responseElement.key,
                     series: responseElement.values
                         // filter out non-numeric values
-                        .filter(
-                            (itemData: HistoricItemData) =>
-                                typeof itemData.vNum === "number"
-                        )
+                        .filter((itemData: HistoricItemData) => typeof itemData.vNum === "number")
                         // transform to series element
                         .map((itemData: HistoricItemData) => ({
                             value: itemData.vNum,
@@ -87,18 +82,9 @@ export class ScenarioHistoricaldataComponent implements OnInit {
         };
     }
 
-    private filterIncompleteSearchCriteria(): (
-        value: ScenarionHistoricaldataSearchCriteria
-    ) => boolean {
+    private filterIncompleteSearchCriteria(): (value: ScenarionHistoricaldataSearchCriteria) => boolean {
         return (obj: ScenarionHistoricaldataSearchCriteria) => {
-            return !!(
-                obj &&
-                obj.machineId &&
-                obj.data.key &&
-                obj.data.from &&
-                obj.data.to &&
-                obj.data.limit
-            );
+            return !!(obj && obj.machineId && obj.data.key && obj.data.from && obj.data.to && obj.data.limit);
         };
     }
 
@@ -142,11 +128,11 @@ export class ScenarioHistoricaldataComponent implements OnInit {
         });
     }
 
-    public radioChanged(event: Event) {
-        if (event && event.target instanceof HTMLInputElement) {
-            const ele = event.target;
-            this.sourceKeySelected(ele.id);
+    public sourceKeySelectChanged(key: string) {
+        if (!key) {
+            return;
         }
+        this.sourceKeySelected(key);
     }
 
     public sourceKeySelected(key: string) {

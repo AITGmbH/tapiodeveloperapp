@@ -31,7 +31,7 @@ class MockNavigationComponent {}
     selector: "app-scenario",
     template: "<ul></ul>"
 })
-class MockScenarioComponent { }
+class MockScenarioComponent {}
 
 class MockRouterScrollToTop {
     public navigationEndTop = new NavigationEnd(0, "", "");
@@ -59,10 +59,7 @@ describe("AppComponent", () => {
                 MockNavigationComponent,
                 MockScenarioComponent
             ],
-            providers: [
-                { provide: APP_BASE_HREF, useValue: "/" },
-                { provide: Router, useClass: MockRouterScrollToTop }
-            ]
+            providers: [{ provide: APP_BASE_HREF, useValue: "/" }, { provide: Router, useClass: MockRouterScrollToTop }]
         }).compileComponents();
     }));
 
@@ -80,13 +77,13 @@ describe("AppComponent", () => {
     });
 
     it(`should open the ait website in a new tab`, () => {
-        const anchorTapio = fixture.debugElement.query(By.css(".is-centered a[href='https://aitgmbh.de/']"));
+        const anchorTapio = fixture.debugElement.query(By.css("a[href='https://aitgmbh.de/']"));
         const realAnchor = anchorTapio.nativeElement as HTMLAnchorElement;
         expect(realAnchor.target).toBe("_blank");
     });
 
     it(`should open the ait website with relation noopener`, () => {
-        const anchorTapio = fixture.debugElement.query(By.css(".is-centered a[href='https://aitgmbh.de/']"));
+        const anchorTapio = fixture.debugElement.query(By.css("a[href='https://aitgmbh.de/']"));
         const realAnchor = anchorTapio.nativeElement as HTMLAnchorElement;
         expect(realAnchor.rel).toBe("noopener noreferrer");
     });
@@ -98,10 +95,9 @@ describe("AppComponent", () => {
         done();
     });
 
-    it('should do something on window scroll', () => {
-        window.dispatchEvent(new Event('scroll'));
-        const mainDiv = document.getElementById('scrollableContainer');
-        mainDiv.scrollTop = 50;
-        window.dispatchEvent(new Event('scroll'));
+    it("should do something on window scroll", () => {
+        const onScrollSpy = spyOn(component, "onScroll").and.callThrough();
+        window.dispatchEvent(new Event("scroll"));
+        expect(onScrollSpy).toHaveBeenCalled();
     });
 });

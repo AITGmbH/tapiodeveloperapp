@@ -7,7 +7,7 @@ import { catchError } from "rxjs/operators";
 @Component({
     selector: "app-scenario-licenseoverview",
     templateUrl: "./scenario-licenseoverview.component.html",
-    styleUrls: ["./scenario-licenseoverview.component.css"]
+    styleUrls: ["./scenario-licenseoverview.component.scss"]
 })
 export class LicenseOverviewComponent implements OnInit {
     subscriptions$: Observable<Subscription[]>;

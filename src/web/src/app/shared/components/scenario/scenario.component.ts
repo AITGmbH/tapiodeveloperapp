@@ -8,7 +8,7 @@ import { VERSION } from "../../../../environments/version";
 @Component({
     selector: "app-scenario",
     templateUrl: "./scenario.component.html",
-    styleUrls: ["./scenario.component.css"]
+    styleUrls: ["./scenario.component.scss"]
 })
 export class ScenarioComponent implements OnInit {
     private readonly gitHubRepoUrl = "https://github.com/AITGmbH/tapiodeveloperapp/tree/";

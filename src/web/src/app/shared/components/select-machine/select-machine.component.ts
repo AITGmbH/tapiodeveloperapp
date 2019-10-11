@@ -9,7 +9,7 @@ import { Subscription } from "../../models/subscription.model";
 @Component({
     selector: "app-select-machine",
     templateUrl: "select-machine.component.html",
-    styleUrls: ["./select-machine.component.css"],
+    styleUrls: ["./select-machine.component.scss"],
     encapsulation: ViewEncapsulation.None
 })
 export class SelectMachineComponent implements OnInit {
