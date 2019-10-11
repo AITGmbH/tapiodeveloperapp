@@ -14,6 +14,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Services
 #pragma warning restore S1075 // URIs should not be hardcoded
 
         private readonly ConfidentialClientApplication _application;
+        private readonly string _tapioEmail;
 
         public TokenProvider(IOptions<TapioCloudCredentials> options)
         {
@@ -24,6 +25,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Services
 
             var clientCredential = new ClientCredential(options.Value.ClientSecret);
             _application = new ConfidentialClientApplication(options.Value.ClientId, RedirectUri, clientCredential, null, new TokenCache());
+            _tapioEmail = options.Value.Email;
         }
 
         public Task<string> ReceiveTokenAsync<TScope>(TScope scope)
@@ -36,6 +38,8 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Services
 
             return ReceiveTokenInternalAsync(scope);
         }
+
+        public string GetTapioEmail() => _tapioEmail;
 
         private async Task<string> ReceiveTokenInternalAsync<TScope>(TScope scope)
             where TScope : TapioScope

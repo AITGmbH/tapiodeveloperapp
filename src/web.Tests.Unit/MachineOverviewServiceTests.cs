@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Aitgmbh.Tapio.Developerapp.Web.Models;
 using Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineOverview;
 using Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineState;
 using Aitgmbh.Tapio.Developerapp.Web.Services;
@@ -20,6 +21,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit
 {
     public class MachineOverviewServiceTests
     {
+        private const string TapioMail = "some@mail.address";
         private const string Content = @"{
             ""totalCount"": 2,
             ""subscriptions"": [
@@ -63,6 +65,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit
         {
             var ct = new CancellationToken();
             _standardTokenProviderMock = new Mock<ITokenProvider>();
+            _standardTokenProviderMock.Setup(f => f.GetTapioEmail()).Returns(TapioMail);
             _machineStateServiceMock = new Mock<IMachineStateService>();
             _machineStateServiceMock.Setup(
                 machineStateService => machineStateService.GetMachineStateAsync(
@@ -70,19 +73,19 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit
                     ct
                 )
             ).Returns(async () => {
-                    using (var streamReader = GetTestDataFromAssembly("SingleMachineWithSomeData.json"))
-                    using (var jsonReader = new JsonTextReader(streamReader))
-                    {
-                        var array = await JArray.LoadAsync(jsonReader, ct);
-                        var result = array.HasValues ? array.Descendants().First() : new JObject();
-                        return result;
-                    }
+                using (var streamReader = GetTestDataFromAssembly("SingleMachineWithSomeData.json"))
+                using (var jsonReader = new JsonTextReader(streamReader))
+                {
+                    var array = await JArray.LoadAsync(jsonReader, ct);
+                    var result = array.HasValues ? array.Descendants().First() : new JObject();
+                    return result;
                 }
+            }
             );
         }
 
         [Fact]
-        public async Task GGetSubscriptionsAsync_ThrowsNoException()
+        public async Task GetSubscriptionsAsync_ThrowsNoException()
         {
             var messageHandlerMock = new Mock<HttpMessageHandler>()
                 .SetupSendAsyncMethod(HttpStatusCode.OK, Content);
@@ -153,7 +156,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit
                         It.IsAny<string>(),
                         ct
                     )
-                ).Returns( () => Task.FromResult(JToken.FromObject(new JObject())));
+                ).Returns(() => Task.FromResult(JToken.FromObject(new JObject())));
 
                 var result = await machineOverviewService.GetSubscriptionsAsync(CancellationToken.None, _machineStateServiceMock.Object);
                 result.Subscriptions[0].AssignedMachines.Should().HaveCount(3);

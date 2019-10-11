@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using Aitgmbh.Tapio.Developerapp.Web.Models;
 using Aitgmbh.Tapio.Developerapp.Web.Scenarios.LicenseOverview;
 using Aitgmbh.Tapio.Developerapp.Web.Services;
 using Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.HelperClasses;
@@ -14,8 +15,8 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.Scenarios.LicenseOverview
 {
     public class LicenseOverviewServiceTests
     {
+        private const string TapioMail = "some@mail.address";
         private const string TestSubscriptions = @"{
-            ""totalCount"": 2,
             ""subscriptions"": [
             {
                 ""licenses"": [
@@ -99,7 +100,6 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.Scenarios.LicenseOverview
             }]}";
 
         private readonly SubscriptionOverview _expectedSubscriptions = new SubscriptionOverview {
-            TotalCount = 2,
             Subscriptions = new[] {
                 new Subscription {
                     Licenses = new[] {
@@ -189,6 +189,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.Scenarios.LicenseOverview
         public LicenseOverviewServiceTests()
         {
             _standardTokenProviderMock = new Mock<ITokenProvider>();
+            _standardTokenProviderMock.Setup(f => f.GetTapioEmail()).Returns(TapioMail);
         }
 
         [Fact]

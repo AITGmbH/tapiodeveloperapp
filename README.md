@@ -47,6 +47,7 @@ Run the following commands with the actual secrets
 cd .\src\web\
 dotnet user-secrets set "TapioCloud:ClientID" "XYZ"
 dotnet user-secrets set "TapioCloud:ClientSecret" "XYZ"
+dotnet user-secrets set "TapioCloud:Email" "XYZ"
 ```
 
 If you want to use streaming data you need to configure your [azure event hub](https://azure.microsoft.com/de-de/services/event-hubs/) instance and provide the according connection strings. A service for local live data generation will be added later on
@@ -97,6 +98,7 @@ Settings
 
 - TapioCloud:ClientID XYZ
 - TapioCloud:ClientSecret XYZ
+- TapioCloud:Email XYZ
 - EventHub:EventHubEntityPath XYZ
 - EventHub:EventHubConnectionString XYZ
 - EventHub:StorageContainerName XYZ

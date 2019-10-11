@@ -6,5 +6,7 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Services
     {
         Task<string> ReceiveTokenAsync<TScope>(TScope scope)
             where TScope : TapioScope;
+
+        string GetTapioEmail();
     }
 }

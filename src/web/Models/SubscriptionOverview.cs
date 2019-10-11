@@ -3,13 +3,10 @@ using System.Globalization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineOverview
+namespace Aitgmbh.Tapio.Developerapp.Web.Models
 {
     public class SubscriptionOverview
     {
-        [JsonProperty("totalCount")]
-        public long TotalCount { get; set; }
-
         [JsonProperty("subscriptions")]
         public Subscription[] Subscriptions { get; set; }
     }
@@ -33,6 +30,27 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineOverview
 
         [JsonProperty("subscriptionTypes")]
         public string[] SubscriptionTypes { get; set; }
+
+        [JsonProperty("role")]
+        public string Role { get; set; }
+
+        [JsonProperty("equipmentGroups")]
+        public EquipmentGroup[] EquipmentGroups { get; set; }
+    }
+
+    public class EquipmentGroup
+    {
+        [JsonProperty("displayName")]
+        public string DisplayName { get; set; }
+
+        [JsonProperty("groupPosition")]
+        public int GroupPosition { get; set; }
+
+        [JsonProperty("id")]
+        public Guid Id { get; set; }
+
+        [JsonProperty("parentId")]
+        public Guid? ParentId { get; set; }
     }
 
     public class AssignedMachine
@@ -42,6 +60,9 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineOverview
 
         [JsonProperty("displayName")]
         public string DisplayName { get; set; }
+
+        [JsonProperty("equipmentGroup")]
+        public EquipmentGroup EquipmentGroup { get; set; }
 
         [JsonProperty("machineState")]
         public MachineState MachineState { get; set; }

@@ -1,27 +1,32 @@
-using System;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading;
-using System.Threading.Tasks;
+using Aitgmbh.Tapio.Developerapp.Web.Models;
 using Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineState;
 using Aitgmbh.Tapio.Developerapp.Web.Services;
+using System.Linq;
+using System.Net.Http.Headers;
+using System.Net.Http;
+using System.Net;
+using System.Threading.Tasks;
+using System.Threading;
+using System;
 
 namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineOverview
 {
     public sealed class MachineOverviewService : IMachineOverviewService
     {
-        private const string GlobalDiscoSubscriptionOverview = "https://globaldisco.tapio.one/api/subscriptionOverview";
-
-        private static readonly Uri GlobalDiscoSubscriptionOverviewRequest = new Uri(GlobalDiscoSubscriptionOverview);
+#pragma warning disable S1075 // URIs should not be hardcoded
+        private const string TargetUrl = "https://globaldisco.tapio.one";
+#pragma warning restore S1075 // URIs should not be hardcoded
+        private const string TargetRoute = "/api/userProfile/";
 
         private readonly HttpClient _httpClient;
         private readonly ITokenProvider _tokenProvider;
+        private readonly string _tapioEmail;
 
         public MachineOverviewService(HttpClient httpClient, ITokenProvider tokenProvider)
         {
             _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
             _tokenProvider = tokenProvider ?? throw new ArgumentNullException(nameof(tokenProvider));
+            _tapioEmail = tokenProvider.GetTapioEmail() ?? throw new ArgumentNullException(nameof(tokenProvider));
         }
 
         public async Task<SubscriptionOverview> GetSubscriptionsAsync(CancellationToken cancellationToken, IMachineStateService machineStateService)
@@ -36,17 +41,17 @@ namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineOverview
                         var machineState =
                             await machineStateService.GetMachineStateAsync(assignedMachine.Id, cancellationToken);
                         assignedMachine.MachineState =
-                            machineState.HasValues ? MachineState.Running : MachineState.Offline;
+                            machineState.HasValues ? Models.MachineState.Running : Models.MachineState.Offline;
                     }, cancellationToken)).ToList();
                 await Task.WhenAll(tasks);
             }
 
             var token = await _tokenProvider.ReceiveTokenAsync(TapioScope.GlobalDiscovery);
-            var request = new HttpRequestMessage(HttpMethod.Get, GlobalDiscoSubscriptionOverviewRequest);
+            var request = new HttpRequestMessage(HttpMethod.Get, new Uri($"{TargetUrl}{TargetRoute}{WebUtility.UrlEncode(_tapioEmail)}"));
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            var responseMessage = await _httpClient.SendAsync(request, cancellationToken);
+            var responseMessage = await _httpClient.SendAsync(request, cancellationToken).ConfigureAwait(false);
             responseMessage.EnsureSuccessStatusCode();
-            var content = await responseMessage.Content.ReadAsStringAsync();
+            var content = await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
             var result = SubscriptionOverviewExtension.FromJson(content);
             await GetMachineState(result);
             return result;
