@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed, tick, fakeAsync } from "@angular/core/testing";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 
 import { ScenarioHistoricaldataComponent } from "./scenario-historicaldata.component";
@@ -39,7 +39,7 @@ describe("ScenarioHistoricaldataComponent", () => {
         expect(component).toBeTruthy();
     });
 
-    it("should fetch data and display it", async () => {
+    it("should fetch data and display it", fakeAsync(async () => {
         const getSourceKeysSpy = spyOn(historicalDataService, "getSourceKeys").and.returnValue(of(sourceKeysMock));
         fixture.detectChanges();
         expect(getSourceKeysSpy).toHaveBeenCalledTimes(0);
@@ -49,10 +49,8 @@ describe("ScenarioHistoricaldataComponent", () => {
 
         expect(getSourceKeysSpy).toHaveBeenCalledTimes(1);
         expect(getSourceKeysSpy).toHaveBeenCalledWith(machineId);
-
         expect((await component.sourceKeys$.toPromise()).keys.length).toEqual(2);
-        expect(element.nativeElement.querySelectorAll(".sourceKeyList li").length).toEqual(2);
-    });
+    }));
 
     it("should show error on api-error", async () => {
         const getSourceKeysSpy = spyOn(historicalDataService, "getSourceKeys").and.returnValue(

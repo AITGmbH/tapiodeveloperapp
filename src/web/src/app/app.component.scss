@@ -1,110 +1,7 @@
-.main-header,
-.columns,
-footer.footer {
-    position: absolute;
-    right: 0;
-    left: 0;
-}
-
-.show-scrollbar {
-    overflow: auto;
-}
-
-* /deep/::-webkit-scrollbar {
-    width: 0.4em;
-    height: 0.4em;
-    background-color: #f5f5f5;
-    overflow: auto;
-}
-
-* /deep/::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-    background-color: #f5f5f5;
-}
-
-* /deep/::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    background-color: #aaa;
-}
-
-header.main-header {
-    height: 80px;
-}
-
-.main-content,
-.main-content .box {
-    background: #fff;
-    max-width: 99%;
-    overflow-y: auto;
-}
-
-.box {
-    padding: 14px 30px 14px 14px;
-}
-
-.main-nav {
-    background: #fff;
-}
-
-.level-item {
-    max-height: 50px;
-}
-
 img.logo {
     margin: 15px 26px 15px 20px;
     width: 60px;
     vertical-align: middle;
-}
-
-.is-unstyled-list {
-    list-style-type: none;
-}
-
-.columns {
-    top: 80px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    bottom: 85px;
-    margin: 0px;
-}
-
-@media only screen and (max-device-width: 768px) {
-    .columns {
-        min-height: 20rem;
-    }
-}
-
-footer.footer {
-    padding: 2rem 1rem 2rem 1rem;
-    background-color: #303741;
-    color: #cfcfcf;
-    height: 85px;
-    bottom: 0;
-}
-
-footer.footer p:hover {
-    cursor: default;
-}
-
-footer.footer a.has-text-white:hover {
-    color: #cfcfcf !important;
-}
-
-@media (max-width: 1650px) {
-    footer.footer {
-        height: 65px;
-        padding: 0.5rem 1rem 2rem 1rem;
-    }
-
-    .scroll-container {
-        margin-bottom: 65px;
-    }
-}
-
-.align-right {
-    margin-left: 50px;
 }
 
 .scroll-to-top-btn {
@@ -119,51 +16,23 @@ footer.footer a.has-text-white:hover {
     color: #303741;
 }
 
-/* only smartphones */
-@media (max-width: 480px) {
-    footer.footer {
-        padding: 0.5rem 0.5rem 2rem 0.5rem;
-        font-size: x-small;
-    }
-
-    .align-right {
-        margin-left: 15px;
-    }
+div.navbar-brand > div > span {
+    line-height: 80px;
 }
 
-/* only smartphones in landscape */
-@media (min-width: 481px) and (max-width: 900px) and (orientation: landscape) {
-    footer.footer {
-        height: 40px !important;
-        padding: 0.5rem 0.5rem 1rem 0.5rem !important;
-        font-size: x-small;
-    }
+.site-content div.container.is-fluid {
+    padding-top: 20px;
 }
 
-/* smartphones and tablets */
+.navbar-burger:hover {
+    color: white !important;
+}
+
+// /* smartphones and tablets */
 @media (max-width: 1024px) {
-    .columns {
-        top: 60px;
-        padding: 0px;
-        bottom: 65px;
-        margin: 0px;
-    }
-
-    header.main-header {
-        height: 60px;
-    }
-
-    nav.navbar {
-        height: 60px;
-        justify-content: center;
-    }
-
-    .navbar-menu {
-        padding: 0px;
-    }
-
-    div.navbar-brand > span {
-        padding-top: 17px;
+    nav .container.is-fluid {
+        padding-right: 16px;
+        max-width: none;
     }
 
     img.logo {
@@ -176,89 +45,11 @@ footer.footer a.has-text-white:hover {
         height: 60px;
     }
 
-    div.main-nav {
-        display: none;
-    }
-
-    footer.footer {
-        height: 65px;
-    }
-
-    .scroll-container {
-        margin-bottom: 65px;
+    div.navbar-brand > div > span {
+        line-height: 60px;
     }
 
     .scroll-to-top-btn {
         right: 20px;
-    }
-}
-
-/* only tablets */
-@media (min-width: 641px) and (max-width: 1024px) {
-    footer.footer {
-        padding: 1.3rem 1rem 2rem 1rem;
-    }
-}
-
-/* only tablets with orientation landscape */
-@media (min-width: 851px) and (max-width: 1024px) and (orientation: landscape) {
-    div.main-nav {
-        display: block;
-    }
-
-    nav.navbar {
-        height: 60px;
-    }
-
-    .scroll-to-top-btn {
-        bottom: 15px;
-        right: 40px;
-    }
-
-    div.navbar-brand > span {
-        padding-top: 17px;
-    }
-
-    img.logo {
-        margin: 12px 10px 0px 10px;
-        width: 45px;
-        vertical-align: middle;
-    }
-
-    .navbar-burger {
-        width: 60px;
-        height: 60px;
-    }
-
-    div.navbar-menu {
-        display: block !important;
-    }
-}
-
-/* tablets and desktop */
-@media (min-width: 961px) {
-    nav.navbar {
-        justify-content: center;
-    }
-
-    .navbar-menu {
-        margin-right: 42px;
-    }
-}
-
-/* only desktop */
-@media (min-width: 1025px) {
-    nav.navbar {
-        height: 80px;
-    }
-
-    div.navbar-brand span:hover {
-        cursor: default;
-    }
-
-    img.logo {
-        margin: 15px 26px 15px 20px;
-        width: 60px;
-        vertical-align: middle;
     }
 }

@@ -3,8 +3,9 @@
 > A show case for [tapio](https://tapio.one/)
 
 [![Build Status](https://dev.azure.com/ait-public/tapioDeveloperApp/_apis/build/status/AITGmbH.tapiodeveloperapp.CI?branchName=master)](https://dev.azure.com/ait-public/tapioDeveloperApp/_build/latest?definitionId=2&branchName=master)
-
+[![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=AITGmbH_tapiodeveloperapp&metric=alert_status)](https://sonarcloud.io/dashboard?id=AITGmbH_tapiodeveloperapp)
 [![Preview Deplyoment Status](https://vsrm.dev.azure.com/ait-public/_apis/public/Release/badge/654de716-0886-436a-8a4b-068a6af8aad0/1/1)](https://dev.azure.com/ait-public/tapioDeveloperApp/_release?definitionId=1)
+[![License](https://img.shields.io/badge/Licence-MIT-brightgreen.svg)](LICENSE)
 
 [Production Website](https://tapiodeveloperapp.aitgmbh.de)
 

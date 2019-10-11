@@ -1,7 +1,7 @@
-<div class="dateTimePicker">
-    <label class="example-input-wrapper">
-        <input type="text" placeholder="please select a date time range" class="dateTimePickerInput"
-            [(ngModel)]="dateTimeRange" [selectMode]="'range'" [owlDateTimeTrigger]="dtRange1" [owlDateTime]="dtRange1"
+<div class="control">
+    <label>
+        <input type="text" placeholder="please select a date time range" [(ngModel)]="dateTimeRange"
+            [selectMode]="'range'" [owlDateTimeTrigger]="dtRange1" [owlDateTime]="dtRange1"
             (dateTimeChange)="dateTimeChanged()">
         <owl-date-time #dtRange1></owl-date-time>
     </label>

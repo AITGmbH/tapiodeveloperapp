@@ -5,23 +5,15 @@
     <div>
         <app-select-machine (change)="selectedMachineChanged($event)"></app-select-machine>
         <app-date-range (change)="dateRangeChanged($event)"></app-date-range>
-        <div class="flex-container" *ngIf="(sourceKeys$ | async) as sourceKeys; else loadingOrError">
-            <div class="columns is-mobile">
+
+        <ng-select class="source-key-select" *ngIf="(sourceKeys$ | async) as sourceKeys" [items]="sourceKeys.keys"
+            placeholder="Please select a source key" [clearable]="false" [searchable]="false"
+            [dropdownPosition]="'bottom'" (change)="sourceKeySelectChanged($event)">
+        </ng-select>
+
+        <div *ngIf="(sourceKeys$ | async) as sourceKeys; else loadingOrError">
+            <div class="columns">
                 <div class="column">
-                    <div class="sourceKeyList">
-                        <h1 class="sourceKeyHeader">Source Keys:</h1>
-                        <ul>
-                            <li *ngFor="let key of sourceKeys.keys" class="field">
-                                <div class="field">
-                                    <input class="is-checkradio" type="radio" name="sourceKeysList" [id]="key"
-                                        (change)="radioChanged($event)" checked="checked">
-                                    <label [for]="key">{{key}}</label>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="column is-three-quarters">
                     <div class="sourceKeyData full-height" *ngIf="lineSeriesData; else loadingOrError">
                         <ngx-charts-line-chart class="historicalDataChart" [xAxis]="true" [yAxis]="true"
                             [showGridLines]="true" [roundDomains]="true" [autoScale]="true" [results]="lineSeriesData"
