@@ -3,23 +3,22 @@
   Clicking on a data source that can be visualized will show the visualization diagram.
   Since this API provides data from the past, it is also possible to retrieve data from machines which are currently offline.">
     <div>
-        <app-select-machine (change)="selectedMachineChanged($event)"></app-select-machine>
+        <app-select-machine (change)="selectedMachineChanged($event)" [initialMachineId]="selectedMachineId">
+        </app-select-machine>
         <app-date-range (change)="dateRangeChanged($event)"></app-date-range>
 
         <ng-select class="source-key-select" *ngIf="(sourceKeys$ | async) as sourceKeys" [items]="sourceKeys.keys"
             placeholder="Please select a source key" [clearable]="false" [searchable]="false"
-            [dropdownPosition]="'bottom'" (change)="sourceKeySelectChanged($event)">
+            [dropdownPosition]="'bottom'" [(ngModel)]="selectedSourceKey" (change)="sourceKeySelectChanged($event)">
         </ng-select>
 
-        <div *ngIf="(sourceKeys$ | async) as sourceKeys; else loadingOrError">
-            <div class="columns">
-                <div class="column">
-                    <div class="sourceKeyData full-height" *ngIf="lineSeriesData; else loadingOrError">
-                        <ngx-charts-line-chart class="historicalDataChart" [xAxis]="true" [yAxis]="true"
-                            [showGridLines]="true" [roundDomains]="true" [autoScale]="true" [results]="lineSeriesData"
-                            [scheme]="lineChartScheme">
-                        </ngx-charts-line-chart>
-                    </div>
+        <div class="columns">
+            <div class="column">
+                <div class="sourceKeyData full-height" *ngIf="lineSeriesData; else loadingOrError">
+                    <ngx-charts-line-chart class="historicalDataChart" [xAxis]="true" [yAxis]="true"
+                        [showGridLines]="true" [roundDomains]="true" [autoScale]="true" [results]="lineSeriesData"
+                        [scheme]="lineChartScheme">
+                    </ngx-charts-line-chart>
                 </div>
             </div>
         </div>

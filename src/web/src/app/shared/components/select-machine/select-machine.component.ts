@@ -28,15 +28,16 @@ export class SelectMachineComponent implements OnInit {
 
     ngOnInit() {
         this.items$ = this.machineOverviewService.getSubscriptions().pipe(
-          tap(subscriptions => {
-            for (const subscription of subscriptions) {
-              for (const machine of subscription.assignedMachines) {
-                if (machine.tmid === this.initialMachineId) {
-                  this.selectedMachine = machine;
+            tap(subscriptions => {
+                for (const subscription of subscriptions) {
+                    for (const machine of subscription.assignedMachines) {
+                        if (machine.tmid === this.initialMachineId) {
+                            this.selectedMachine = machine;
+                            this.selectedMachineChanged(this.selectedMachine);
+                        }
+                    }
                 }
-              }
-            }
-          }),
+            }),
             catchError(err => {
                 this.error$.next(true);
                 this.loading$.next(false);

@@ -6,10 +6,15 @@ const routes: Routes = [
     {
         path: "",
         component: ScenarioHistoricaldataComponent
-    }];
+    },
+    {
+        path: ":tmid",
+        component: ScenarioHistoricaldataComponent
+    }
+];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class ScenarioHistoricaldataRoutingModule { }
+export class ScenarioHistoricaldataRoutingModule {}

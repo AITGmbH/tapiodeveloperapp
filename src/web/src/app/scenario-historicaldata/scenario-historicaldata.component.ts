@@ -5,6 +5,7 @@ import { HistoricalDataService } from "./scenario-historicaldata.service";
 import { HistoricalDataResponseElement, HistoricItemData } from "./historical-data.model";
 import { filter, concatMap, tap, map, catchError } from "rxjs/operators";
 import * as moment from "moment";
+import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
     selector: "app-scenario-historicaldata",
@@ -18,6 +19,7 @@ export class ScenarioHistoricaldataComponent implements OnInit {
             limit: 1000
         }
     });
+    public loadingCriterias: any;
     sourceKeys$: Observable<SourceKeys>;
     error$ = new Subject<boolean>();
     loading$ = new Subject<boolean>();
@@ -25,14 +27,25 @@ export class ScenarioHistoricaldataComponent implements OnInit {
     lineChartScheme = {
         domain: ["#e3000b", "#0092b4", "#303741"]
     };
+    public selectedMachineId: string;
+    public selectedSourceKey: string;
 
-    constructor(private readonly historicalDataService: HistoricalDataService) {
+    constructor(
+        private readonly historicalDataService: HistoricalDataService,
+        private readonly router: Router,
+        private readonly route: ActivatedRoute
+    ) {
         this.error$.next(false);
         this.loading$.next(false);
     }
 
     ngOnInit() {
-        this.searchCriteria$
+        this.selectedMachineId = this.route.snapshot.params.tmid;
+        if (this.route.snapshot.queryParams.sourceKey) {
+            this.selectedSourceKey = this.route.snapshot.queryParams.sourceKey;
+        }
+
+        this.loadingCriterias = this.searchCriteria$
             .pipe(
                 filter(this.filterIncompleteSearchCriteria()),
                 tap(this.setLoadingFlags()),
@@ -89,6 +102,10 @@ export class ScenarioHistoricaldataComponent implements OnInit {
     }
 
     public selectedMachineChanged(tmid: string) {
+        this.selectedMachineId = tmid;
+        this.lineSeriesData = null;
+        this.createRoute();
+
         this.error$.next(false);
         this.loading$.next(true);
         this.sourceKeys$ = null;
@@ -107,6 +124,14 @@ export class ScenarioHistoricaldataComponent implements OnInit {
             sourceKeys => {
                 this.sourceKeys$ = of(sourceKeys);
                 this.loading$.next(false);
+                if (this.selectedSourceKey) {
+                    if (sourceKeys.keys.some(el => el === this.selectedSourceKey)) {
+                        this.sourceKeySelectChanged(this.selectedSourceKey);
+                    } else {
+                        this.selectedSourceKey = null;
+                        this.createRoute();
+                    }
+                }
             },
             error => {
                 console.error("could not load sourceKeys", error);
@@ -132,6 +157,8 @@ export class ScenarioHistoricaldataComponent implements OnInit {
         if (!key) {
             return;
         }
+        this.selectedSourceKey = key;
+        this.createRoute();
         this.sourceKeySelected(key);
     }
 
@@ -173,6 +200,14 @@ export class ScenarioHistoricaldataComponent implements OnInit {
                     })
                 );
         };
+    }
+
+    private createRoute(): void {
+        this.router.navigate(["scenario-historicaldata", this.selectedMachineId], {
+            queryParams: {
+                sourceKey: this.selectedSourceKey
+            }
+        });
     }
 }
 
