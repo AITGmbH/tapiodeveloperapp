@@ -9,11 +9,11 @@ using Xunit;
 
 namespace Aitgmbh.Tapio.Developerapp.Web.Tests.Unit.Scenarios.MachineLiveData
 {
-    public class MachineLiveDataServiceTest
+    public class MachineLiveDataServiceTests
     {
         private readonly Mock<IMachineLiveDataEventProcessorFactory> _machineLiveDataEventProcessorFactoryMock;
         private readonly  Mock<ILogger<MachineLiveDataService>> _loggerMock;
-        public MachineLiveDataServiceTest()
+        public MachineLiveDataServiceTests()
         {
             _machineLiveDataEventProcessorFactoryMock = new Mock<IMachineLiveDataEventProcessorFactory>();
             _loggerMock = new Mock<ILogger<MachineLiveDataService>>();

@@ -1,0 +1,48 @@
+<div class="column is-12">
+    <div class="tile is-ancestor">
+        <div class="tile is-vertical">
+            <div class="tile is-parent">
+                <div class="tile card is-child is-vertical">
+                    <header class="card-header">
+                        <h1 class="card-header-title">
+                            {{command.id}}
+                        </h1>
+                    </header>
+                    <div class="card-content">
+                        <div class="tile is-ancestor">
+                            <div class="tile is-parent is-3">
+                                <div class="tile is-child">
+                                    <button [disabled]="loading$ | async" class="button" (click)="executeCommand()">
+                                        <fa-icon [icon]="['fas', 'play']"></fa-icon>
+                                    </button>
+
+                                    <app-machine-command-arguments [(arguments)]="command.inArguments">
+                                    </app-machine-command-arguments>
+
+                                </div>
+                            </div>
+                            <div class="tile is-parent">
+                                <div class="tile is-child">
+                                    <h1>
+                                        Request
+                                    </h1>
+                                    <textarea [disabled]="true" rows="10" [ngModel]="command | json">
+                                    </textarea>
+                                </div>
+                            </div>
+                            <div class="tile is-parent">
+                                <div class="tile is-child">
+                                    <h1>
+                                        Result
+                                    </h1>
+                                    <textarea [disabled]="true" rows="10"
+                                        [ngModel]="commandResponse$ | async | json"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

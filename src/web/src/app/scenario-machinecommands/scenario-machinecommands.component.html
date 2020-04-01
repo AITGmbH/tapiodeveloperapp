@@ -1,0 +1,7 @@
+<app-scenario scenarioTitle="Machine Commands" id="machine-commands-scenario"
+    description="This scenario shows how to use the commanding API in order to send commands to a machine. This includes a default set of configured commands within the cloud connector instance of 'Testmaschine 02', how these can be invoked and what kind of result message can be received. Any changes to values can be seen in the MACHINE STATE scenario for 'Testmaschine 02' as well.">
+
+    <app-machine-command-container *ngFor="let command of commands$ | async" [command]="command">
+    </app-machine-command-container>
+
+</app-scenario>
