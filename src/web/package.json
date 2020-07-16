@@ -33,7 +33,7 @@
         "bulma": "^0.7.2",
         "bulma-checkradio": "^1.1.1",
         "core-js": "^2.5.4",
-        "lodash": "^4.17.15",
+        "lodash": "^4.17.19",
         "moment": "^2.24.0",
         "ng-pick-datetime": "^7.0.0",
         "open-sans-fonts": "^1.5.1",
