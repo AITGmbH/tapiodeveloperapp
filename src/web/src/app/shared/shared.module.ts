@@ -2,8 +2,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule, DecimalPipe } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 
-import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
-import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeModule, FaIconLibrary } from "@fortawesome/angular-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 
@@ -19,8 +18,6 @@ import { ScenarioNavigationService } from "../scenario-navigation/scenario-navig
 import { AvailableMachinesService } from "./services/available-machines.service";
 import { NgxChartsModule } from "@swimlane/ngx-charts";
 import { NavigationService } from "./services/navigation.service";
-
-library.add(faGithub, fas);
 
 /**
  * Provides access to shared functionality.
@@ -60,5 +57,9 @@ library.add(faGithub, fas);
     ]
 })
 export class SharedModule {
+    constructor(library: FaIconLibrary) {
+        library.addIconPacks(fas);
+        library.addIcons(faGithub);
+    }
     faGitHub = faGithub;
 }
