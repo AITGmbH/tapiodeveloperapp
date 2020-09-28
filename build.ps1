@@ -22,6 +22,7 @@ if ($null -eq $fakeEntry) {
     --tool-path "$BUILD_PACKAGES" `
     --version "$FAKE_VERSION"
 
+  Write-Host "$LASTEXITCODE"
   if ($LASTEXITCODE -ne 0) {
     Write-Host $error[0]
     throw "Could not install $FAKE_PACKAGE_NAME"
