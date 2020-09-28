@@ -12,7 +12,7 @@ import { SelectMachineComponent } from "./components/select-machine/select-machi
 import { NgSelectModule } from "@ng-select/ng-select";
 import { HistoricalDataService } from "../scenario-historicaldata/scenario-historicaldata.service";
 import { DateRangeComponent } from "./components/date-range/date-range.component";
-import { OwlDateTimeModule, OwlNativeDateTimeModule } from "ng-pick-datetime";
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from "@danielmoncada/angular-datetime-picker";
 import { MachineOverviewService } from "../scenario-machineoverview/scenario-machineoverview.service";
 import { ScenarioNavigationService } from "../scenario-navigation/scenario-navigation.service";
 import { AvailableMachinesService } from "./services/available-machines.service";
