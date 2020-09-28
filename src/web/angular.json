@@ -34,8 +34,7 @@
               "src/assets/font/audimat/fonts.css",
               "src/styles.scss"
             ],
-            "scripts": [],
-            "es5BrowserSupport": true
+            "scripts": []
           },
           "configurations": {
             "production": {
