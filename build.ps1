@@ -12,14 +12,18 @@ if (!(Test-Path $BUILD_PACKAGES)) {
 $installedPackages = & dotnet tool list --tool-path "$BUILD_PACKAGES" | Out-String
 $fakeEntry = $installedPackages -split "`n" | Select-String -Pattern "$FAKE_PACKAGE_NAME" -CaseSensitive | Select-Object -First 1
 
+Write-Host "FAKE_PACKAGE_NAME: $FAKE_PACKAGE_NAME"
+Write-Host "FAKE_VERSION: $FAKE_VERSION"
+Write-Host "BUILD_PACKAGES: $BUILD_PACKAGES"
 
 if ($null -eq $fakeEntry) {
   # installs fake cli if not present
-  & dotnet tool install "$FAKE_PACKAGE_NAME" `
+  $errMsg = & dotnet tool install "$FAKE_PACKAGE_NAME" `
     --tool-path "$BUILD_PACKAGES" `
-    --version "$($FAKE_VERSION)"
+    --version "$FAKE_VERSION" 2>&1
 
   if ($LASTEXITCODE -ne 0) {
+    Write-Host "ErrorMsg Fake Install: $errMsg"
     throw "Could not install $FAKE_PACKAGE_NAME"
   }
 }
