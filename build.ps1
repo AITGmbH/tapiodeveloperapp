@@ -6,12 +6,14 @@ $FAKE_PACKAGE_NAME = "fake-cli"
 
 # the folder is needed to successfully list the tools
 if (!(Test-Path $BUILD_PACKAGES)) {
+  Write-Host "Creating new package folder"
   New-Item -Path $BUILD_PACKAGES -ItemType Directory | Out-Null
 }
 
 $installedPackages = & dotnet tool list --tool-path "$BUILD_PACKAGES" | Out-String
 $fakeEntry = $installedPackages -split "`n" | Select-String -Pattern "$FAKE_PACKAGE_NAME" -CaseSensitive | Select-Object -First 1
 
+Write-Host "installedPackages: $installedPackages"
 Write-Host "FAKE_PACKAGE_NAME: $FAKE_PACKAGE_NAME"
 Write-Host "FAKE_VERSION: $FAKE_VERSION"
 Write-Host "BUILD_PACKAGES: $BUILD_PACKAGES"
