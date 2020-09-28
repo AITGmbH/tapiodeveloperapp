@@ -18,12 +18,11 @@ Write-Host "BUILD_PACKAGES: $BUILD_PACKAGES"
 
 if ($null -eq $fakeEntry) {
   # installs fake cli if not present
-  $errMsg = & dotnet tool install "$FAKE_PACKAGE_NAME" `
+  & dotnet tool install "$FAKE_PACKAGE_NAME" `
     --tool-path "$BUILD_PACKAGES" `
-    --version "$FAKE_VERSION" 2>&1
+    --version "$FAKE_VERSION"
 
   if ($LASTEXITCODE -ne 0) {
-    Write-Host "ErrorMsg Fake Install: $errMsg"
     throw "Could not install $FAKE_PACKAGE_NAME"
   }
 }
