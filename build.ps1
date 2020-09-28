@@ -1,5 +1,5 @@
 $BUILD_PACKAGES = '.buildpackages'
-$FAKE_VERSION = "5.12.0"
+$FAKE_VERSION = "5.20.3"
 $FAKE_PACKAGE_NAME = "fake-cli"
 
 # prerequisites dotnet sdk is installed
