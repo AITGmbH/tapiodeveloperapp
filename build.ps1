@@ -23,7 +23,7 @@ if ($null -eq $fakeEntry) {
     --version "$FAKE_VERSION"
 
   if ($LASTEXITCODE -ne 0) {
-    Get-Error -Newest 3
+    Write-Host $error[0]
     throw "Could not install $FAKE_PACKAGE_NAME"
   }
 }
