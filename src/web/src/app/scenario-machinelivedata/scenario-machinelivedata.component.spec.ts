@@ -69,10 +69,8 @@ describe("ScenarioMachineLiveDataComponent", () => {
         dataItemMock.msg.k = keyName;
         const dataContainerSubject = new Subject<MachineLiveDataContainer>();
 
-        const startConnectionAsyncSpy = spyOn(machineLiveDataService, "startConnectionAsync").and.returnValue(
-            of(voidPromiseMock)
-        );
-        const joinGroupAsyncSpy = spyOn(machineLiveDataService, "joinGroupAsync").and.returnValue(of(voidPromiseMock));
+        const startConnectionAsyncSpy = spyOn(machineLiveDataService, "startConnectionAsync").and.returnValue(voidPromiseMock);
+        const joinGroupAsyncSpy = spyOn(machineLiveDataService, "joinGroupAsync").and.returnValue(voidPromiseMock);
         const addDataListenerSpy = spyOn(machineLiveDataService, "addDataListener").and.callFake(
             () => dataContainerSubject
         );
@@ -103,10 +101,8 @@ describe("ScenarioMachineLiveDataComponent", () => {
         dataItemMock.msg.k = keyName;
         const dataContainerSubject = new Subject<MachineLiveDataContainer>();
 
-        const startConnectionAsyncSpy = spyOn(machineLiveDataService, "startConnectionAsync").and.returnValue(
-            of(voidPromiseMock)
-        );
-        const joinGroupAsyncSpy = spyOn(machineLiveDataService, "joinGroupAsync").and.returnValue(of(voidPromiseMock));
+        const startConnectionAsyncSpy = spyOn(machineLiveDataService, "startConnectionAsync").and.returnValue(voidPromiseMock);
+        const joinGroupAsyncSpy = spyOn(machineLiveDataService, "joinGroupAsync").and.returnValue(voidPromiseMock);
         const addDataListenerSpy = spyOn(machineLiveDataService, "addDataListener").and.callFake(
             () => dataContainerSubject
         );
@@ -131,11 +127,11 @@ describe("ScenarioMachineLiveDataComponent", () => {
         const machineId1 = "ABC";
         const machineId2 = "DEF";
 
-        spyOn(machineLiveDataService, "startConnectionAsync").and.returnValue(of(voidPromiseMock));
+        spyOn(machineLiveDataService, "startConnectionAsync").and.returnValue(voidPromiseMock);
         spyOn(machineLiveDataService, "addDataListener").and.callFake(() => {
             return new Subject<MachineLiveDataContainer>();
         });
-        const joinGroupAsyncSpy = spyOn(machineLiveDataService, "joinGroupAsync").and.returnValue(of(voidPromiseMock));
+        const joinGroupAsyncSpy = spyOn(machineLiveDataService, "joinGroupAsync").and.returnValue(voidPromiseMock);
 
         await component.selectedMachineChanged(machineId1);
         expect(joinGroupAsyncSpy).toHaveBeenCalledWith(machineId1);
@@ -163,8 +159,8 @@ describe("ScenarioMachineLiveDataComponent", () => {
 
         const dataContainerSubject = new Subject<MachineLiveDataContainer>();
 
-        spyOn(machineLiveDataService, "startConnectionAsync").and.returnValue(of(voidPromiseMock));
-        spyOn(machineLiveDataService, "joinGroupAsync").and.returnValue(of(voidPromiseMock));
+        spyOn(machineLiveDataService, "startConnectionAsync").and.returnValue(voidPromiseMock);
+        spyOn(machineLiveDataService, "joinGroupAsync").and.returnValue(voidPromiseMock);
         const addDataListenerSpy = spyOn(machineLiveDataService, "addDataListener").and.callFake(
             () => dataContainerSubject
         );
@@ -211,8 +207,8 @@ describe("ScenarioMachineLiveDataComponent", () => {
 
         const dataContainerSubject = new Subject<MachineLiveDataContainer>();
 
-        spyOn(machineLiveDataService, "startConnectionAsync").and.returnValue(of(voidPromiseMock));
-        spyOn(machineLiveDataService, "joinGroupAsync").and.returnValue(of(voidPromiseMock));
+        spyOn(machineLiveDataService, "startConnectionAsync").and.returnValue(voidPromiseMock);
+        spyOn(machineLiveDataService, "joinGroupAsync").and.returnValue(voidPromiseMock);
         const addDataListenerSpy = spyOn(machineLiveDataService, "addDataListener").and.callFake(
             () => dataContainerSubject
         );
@@ -245,8 +241,8 @@ describe("ScenarioMachineLiveDataComponent", () => {
         dataItemMock.tmid = otherMachineId;
         const dataContainerSubject = new Subject<MachineLiveDataContainer>();
 
-        spyOn(machineLiveDataService, "startConnectionAsync").and.returnValue(of(voidPromiseMock));
-        spyOn(machineLiveDataService, "joinGroupAsync").and.returnValue(of(voidPromiseMock));
+        spyOn(machineLiveDataService, "startConnectionAsync").and.returnValue(voidPromiseMock);
+        spyOn(machineLiveDataService, "joinGroupAsync").and.returnValue(voidPromiseMock);
         spyOn(machineLiveDataService, "addDataListener").and.callFake(() => dataContainerSubject);
         const addElementSpy = spyOn<any>(component, "addElement").and.callThrough();
         fixture.detectChanges();

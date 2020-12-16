@@ -30,12 +30,11 @@
               "node_modules/bulma/css/bulma.min.css",
               "node_modules/bulma-checkradio/dist/css/bulma-checkradio.min.css",
               "node_modules/@ng-select/ng-select/themes/default.theme.css",
-              "node_modules/ng-pick-datetime/assets/style/picker.min.css",
+              "node_modules/@danielmoncada/angular-datetime-picker/assets/style/picker.min.css",
               "src/assets/font/audimat/fonts.css",
               "src/styles.scss"
             ],
-            "scripts": [],
-            "es5BrowserSupport": true
+            "scripts": []
           },
           "configurations": {
             "production": {

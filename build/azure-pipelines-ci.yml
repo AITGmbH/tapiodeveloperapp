@@ -22,6 +22,11 @@ steps:
         sonar.cpd.exclusions=**/*.html
         sonar.typescript.lcov.reportPaths=$(Build.Repository.LocalPath)/src/web/coverage/developerapp/lcov.info
         sonar.cs.vscoveragexml.reportsPaths=$(Build.Repository.LocalPath)/**/*.coveragexml
+  - task: UseDotNet@2
+    inputs:
+      packageType: 'sdk'
+      useGlobalJson: true
+      workingDirectory: '$(Build.Repository.LocalPath)'
   - task: PowerShell@2
     displayName: 'Run fake build'
     inputs:

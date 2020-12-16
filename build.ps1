@@ -1,5 +1,5 @@
 $BUILD_PACKAGES = '.buildpackages'
-$FAKE_VERSION = "5.12.0"
+$FAKE_VERSION = "5.20.3"
 $FAKE_PACKAGE_NAME = "fake-cli"
 
 # prerequisites dotnet sdk is installed
@@ -12,14 +12,14 @@ if (!(Test-Path $BUILD_PACKAGES)) {
 $installedPackages = & dotnet tool list --tool-path "$BUILD_PACKAGES" | Out-String
 $fakeEntry = $installedPackages -split "`n" | Select-String -Pattern "$FAKE_PACKAGE_NAME" -CaseSensitive | Select-Object -First 1
 
-
 if ($null -eq $fakeEntry) {
   # installs fake cli if not present
   & dotnet tool install "$FAKE_PACKAGE_NAME" `
     --tool-path "$BUILD_PACKAGES" `
-    --version "$($FAKE_VERSION)"
+    --version "$FAKE_VERSION"
 
   if ($LASTEXITCODE -ne 0) {
+    Write-Host $error[0]
     throw "Could not install $FAKE_PACKAGE_NAME"
   }
 }
@@ -34,6 +34,7 @@ elseif(-not ($fakeEntry -like "*$($FAKE_VERSION)*")) {
     --version "$($FAKE_VERSION)"
 
   if ($LASTEXITCODE -ne 0) {
+    Write-Host $error[0]
     throw "Could not update $FAKE_PACKAGE_NAME"
   }
 }

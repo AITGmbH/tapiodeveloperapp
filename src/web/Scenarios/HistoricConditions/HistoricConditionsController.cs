@@ -2,7 +2,6 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Aitgmbh.Tapio.Developerapp.Web.Models;
-using Aitgmbh.Tapio.Developerapp.Web.Scenarios.MachineOverview;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Aitgmbh.Tapio.Developerapp.Web.Scenarios.HistoricConditions
